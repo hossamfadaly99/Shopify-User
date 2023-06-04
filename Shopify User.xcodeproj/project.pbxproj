@@ -111,11 +111,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0480FD782A2D130C00C03B99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */,
+				04FF36BB2A2C84520058ACDF /* Signup_VC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0480FD792A2D14BD00C03B99 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */,
+				0482A1782A2C7679007E5A7B /* Login_VC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0482A1772A2C762B007E5A7B /* Login_Screen */ = {
 			isa = PBXGroup;
 			children = (
-				0482A1782A2C7679007E5A7B /* Login_VC.swift */,
-				0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */,
+				0480FD792A2D14BD00C03B99 /* View */,
 			);
 			path = Login_Screen;
 			sourceTree = "<group>";
@@ -123,8 +140,7 @@
 		04FF36BA2A2C84200058ACDF /* Signup_Screen */ = {
 			isa = PBXGroup;
 			children = (
-				04FF36BB2A2C84520058ACDF /* Signup_VC.swift */,
-				04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */,
+				0480FD782A2D130C00C03B99 /* View */,
 			);
 			path = Signup_Screen;
 			sourceTree = "<group>";
@@ -634,7 +650,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -688,7 +704,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -713,6 +729,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -741,6 +758,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
