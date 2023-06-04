@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482A1782A2C7679007E5A7B /* Login_VC.swift */; };
 		0482A17B2A2C76A2007E5A7B /* Login_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */; };
+		04FF36BC2A2C84520058ACDF /* Signup_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF36BB2A2C84520058ACDF /* Signup_VC.swift */; };
+		04FF36BE2A2C846B0058ACDF /* Signup_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */; };
 		9F598C8A2A27C58100C36A93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F598C892A27C58100C36A93 /* AppDelegate.swift */; };
 		9F598C8C2A27C58100C36A93 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F598C8B2A27C58100C36A93 /* SceneDelegate.swift */; };
 		9F598C8E2A27C58100C36A93 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F598C8D2A27C58100C36A93 /* ViewController.swift */; };
@@ -49,6 +51,8 @@
 /* Begin PBXFileReference section */
 		0482A1782A2C7679007E5A7B /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
 		0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login_SB.storyboard; sourceTree = "<group>"; };
+		04FF36BB2A2C84520058ACDF /* Signup_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup_VC.swift; sourceTree = "<group>"; };
+		04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup_SB.storyboard; sourceTree = "<group>"; };
 		365672AD4C21299D0D13AF44 /* Pods_Shopify_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopify_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8730510172CDC1B0B9B49AFD /* Pods-Shopify User.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify User.debug.xcconfig"; path = "Target Support Files/Pods-Shopify User/Pods-Shopify User.debug.xcconfig"; sourceTree = "<group>"; };
 		91211149AAF2D03A0730E928 /* Pods-Shopify UserTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shopify UserTests.release.xcconfig"; path = "Target Support Files/Pods-Shopify UserTests/Pods-Shopify UserTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -114,6 +118,15 @@
 				0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */,
 			);
 			path = Login_Screen;
+			sourceTree = "<group>";
+		};
+		04FF36BA2A2C84200058ACDF /* Signup_Screen */ = {
+			isa = PBXGroup;
+			children = (
+				04FF36BB2A2C84520058ACDF /* Signup_VC.swift */,
+				04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */,
+			);
+			path = Signup_Screen;
 			sourceTree = "<group>";
 		};
 		32D5B746F1B3BF59F239CE41 /* Pods */ = {
@@ -200,6 +213,7 @@
 		9F598CBC2A27E23C00C36A93 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				04FF36BA2A2C84200058ACDF /* Signup_Screen */,
 				0482A1772A2C762B007E5A7B /* Login_Screen */,
 				9F598CC42A27E2C700C36A93 /* Home */,
 			);
@@ -348,7 +362,7 @@
 				};
 			};
 			buildConfigurationList = 9F598C812A27C58100C36A93 /* Build configuration list for PBXProject "Shopify User" */;
-			compatibilityVersion = "Xcode 12.0";
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -372,6 +386,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04FF36BE2A2C846B0058ACDF /* Signup_SB.storyboard in Resources */,
 				9F598C992A27C58300C36A93 /* LaunchScreen.storyboard in Resources */,
 				9F598C962A27C58300C36A93 /* Assets.xcassets in Resources */,
 				9F598C912A27C58100C36A93 /* Main.storyboard in Resources */,
@@ -505,6 +520,7 @@
 			files = (
 				9F598CCA2A27E39A00C36A93 /* DummyModel.swift in Sources */,
 				9F598C8E2A27C58100C36A93 /* ViewController.swift in Sources */,
+				04FF36BC2A2C84520058ACDF /* Signup_VC.swift in Sources */,
 				9F598CC12A27E28A00C36A93 /* LocalSource.swift in Sources */,
 				9F598C942A27C58200C36A93 /* Shopify_User.xcdatamodeld in Sources */,
 				0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */,
