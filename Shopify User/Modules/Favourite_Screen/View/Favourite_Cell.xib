@@ -12,24 +12,103 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="101" id="KGk-i7-Jjw" customClass="Favourite_Cell" customModule="Shopify_User" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="Favourite_Cell" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM" customClass="Favourite_Cell" customModule="Shopify_User" customModuleProvider="target">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sjC-Zv-OpI">
-                        <rect key="frame" x="16" y="8" width="82" height="84"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sjC-Zv-OpI">
+                        <rect key="frame" x="8" y="4" width="90" height="92"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="90" id="x6L-hO-KoN"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpy-Tg-iif">
-                        <rect key="frame" x="139" y="19" width="42" height="21"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jpy-Tg-iif">
+                        <rect key="frame" x="106" y="10" width="33" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price :" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVl-1W-qFn">
+                        <rect key="frame" x="106" y="48" width="36" height="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="left" translatesAutoresizingMaskIntoConstraints="NO" id="6cf-7v-UKf" customClass="CosmosView" customModule="Cosmos">
+                        <rect key="frame" x="106" y="72" width="130" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="SUc-EA-em1"/>
+                            <constraint firstAttribute="width" constant="130" id="px4-UW-RGZ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                <integer key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                <color key="value" red="0.047039323789999997" green="0.43705595380000001" blue="0.083511419779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starMargin">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="updateOnTouch" value="NO"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="fillMode">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                <real key="value" value="30"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                <color key="value" red="0.047039323789999997" green="0.43705595380000001" blue="0.083511419779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                <color key="value" red="0.047039323789999997" green="0.43705595380000001" blue="0.083511419779999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cto-o7-iCg">
+                        <rect key="frame" x="106" y="28" width="208" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8B-Ao-oxO">
+                        <rect key="frame" x="150" y="48" width="33" height="15"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="sjC-Zv-OpI" secondAttribute="bottom" constant="4" id="1xb-Ke-bUl"/>
+                    <constraint firstItem="cto-o7-iCg" firstAttribute="leading" secondItem="sjC-Zv-OpI" secondAttribute="trailing" constant="8" id="3ia-HU-fnp"/>
+                    <constraint firstItem="sjC-Zv-OpI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="8mI-EV-EJh"/>
+                    <constraint firstItem="Y8B-Ao-oxO" firstAttribute="top" secondItem="bVl-1W-qFn" secondAttribute="top" id="B8V-wk-yqx"/>
+                    <constraint firstItem="6cf-7v-UKf" firstAttribute="top" secondItem="bVl-1W-qFn" secondAttribute="bottom" constant="9" id="IFN-Vt-fFI"/>
+                    <constraint firstItem="cto-o7-iCg" firstAttribute="top" secondItem="Jpy-Tg-iif" secondAttribute="bottom" constant="3" id="TSK-XB-hvg"/>
+                    <constraint firstItem="sjC-Zv-OpI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="TfL-7o-UaX"/>
+                    <constraint firstItem="Jpy-Tg-iif" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="dPQ-CQ-WcA"/>
+                    <constraint firstItem="Jpy-Tg-iif" firstAttribute="leading" secondItem="sjC-Zv-OpI" secondAttribute="trailing" constant="8" symbolic="YES" id="e5Z-9N-kE4"/>
+                    <constraint firstItem="Y8B-Ao-oxO" firstAttribute="leading" secondItem="bVl-1W-qFn" secondAttribute="trailing" constant="8" symbolic="YES" id="gkS-9f-KZB"/>
+                    <constraint firstAttribute="trailing" secondItem="cto-o7-iCg" secondAttribute="trailing" constant="6" id="hSA-5F-1Ad"/>
+                    <constraint firstItem="bVl-1W-qFn" firstAttribute="top" secondItem="cto-o7-iCg" secondAttribute="bottom" constant="3" id="ia3-vX-vcF"/>
+                    <constraint firstItem="6cf-7v-UKf" firstAttribute="leading" secondItem="sjC-Zv-OpI" secondAttribute="trailing" constant="8" symbolic="YES" id="pug-l0-DDj"/>
+                    <constraint firstItem="bVl-1W-qFn" firstAttribute="leading" secondItem="sjC-Zv-OpI" secondAttribute="trailing" constant="8" symbolic="YES" id="pyt-NT-YVv"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="pImg" destination="sjC-Zv-OpI" id="RWC-2W-Kck"/>
+                <outlet property="pName" destination="cto-o7-iCg" id="wkD-IP-0lZ"/>
+                <outlet property="pPrice" destination="Y8B-Ao-oxO" id="GAB-Bu-tyb"/>
+                <outlet property="ratingCosmos" destination="6cf-7v-UKf" id="tsL-tk-hDK"/>
+            </connections>
             <point key="canvasLocation" x="259.5419847328244" y="-12.67605633802817"/>
         </tableViewCell>
     </objects>

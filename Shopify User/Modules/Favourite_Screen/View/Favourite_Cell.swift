@@ -6,9 +6,15 @@
 //
 
 import UIKit
+import Cosmos
 
 class Favourite_Cell: UITableViewCell {
-
+    @IBOutlet weak var pImg: UIImageView!
+    @IBOutlet weak var pName: UILabel!
+    @IBOutlet weak var pPrice: UILabel!
+    
+    @IBOutlet weak var ratingCosmos: CosmosView!
+   
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
