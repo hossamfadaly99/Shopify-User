@@ -6,3 +6,6 @@
 //
 
 import Foundation
+class Constants {
+    static let SCREEN_ID_FAVOURITE = "ID_Favourie"
+}

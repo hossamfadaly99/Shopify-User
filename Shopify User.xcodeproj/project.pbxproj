@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04818CA02A30647500E6CCF1 /* Favourite_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04818C9F2A30647500E6CCF1 /* Favourite_SB.storyboard */; };
+		04818CA22A3064A300E6CCF1 /* Favourite_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04818CA12A3064A300E6CCF1 /* Favourite_VC.swift */; };
+		04818CA62A30659400E6CCF1 /* Favourite_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04818CA42A30659400E6CCF1 /* Favourite_Cell.swift */; };
+		04818CA72A30659400E6CCF1 /* Favourite_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04818CA52A30659400E6CCF1 /* Favourite_Cell.xib */; };
 		0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482A1782A2C7679007E5A7B /* Login_VC.swift */; };
 		0482A17B2A2C76A2007E5A7B /* Login_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */; };
 		9F598C8A2A27C58100C36A93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F598C892A27C58100C36A93 /* AppDelegate.swift */; };
@@ -47,6 +51,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		04818C9F2A30647500E6CCF1 /* Favourite_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Favourite_SB.storyboard; sourceTree = "<group>"; };
+		04818CA12A3064A300E6CCF1 /* Favourite_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite_VC.swift; sourceTree = "<group>"; };
+		04818CA42A30659400E6CCF1 /* Favourite_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite_Cell.swift; sourceTree = "<group>"; };
+		04818CA52A30659400E6CCF1 /* Favourite_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Favourite_Cell.xib; sourceTree = "<group>"; };
 		0482A1782A2C7679007E5A7B /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
 		0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login_SB.storyboard; sourceTree = "<group>"; };
 		365672AD4C21299D0D13AF44 /* Pods_Shopify_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopify_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +115,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04818C9D2A30643900E6CCF1 /* Favourite_Screen */ = {
+			isa = PBXGroup;
+			children = (
+				04818CA32A3064BC00E6CCF1 /* ViewModel */,
+				04818C9E2A30645300E6CCF1 /* View */,
+			);
+			path = Favourite_Screen;
+			sourceTree = "<group>";
+		};
+		04818C9E2A30645300E6CCF1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04818C9F2A30647500E6CCF1 /* Favourite_SB.storyboard */,
+				04818CA12A3064A300E6CCF1 /* Favourite_VC.swift */,
+				04818CA42A30659400E6CCF1 /* Favourite_Cell.swift */,
+				04818CA52A30659400E6CCF1 /* Favourite_Cell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04818CA32A3064BC00E6CCF1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		0482A1772A2C762B007E5A7B /* Login_Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +235,7 @@
 		9F598CBC2A27E23C00C36A93 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				04818C9D2A30643900E6CCF1 /* Favourite_Screen */,
 				0482A1772A2C762B007E5A7B /* Login_Screen */,
 				9F598CC42A27E2C700C36A93 /* Home */,
 			);
@@ -372,6 +408,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04818CA02A30647500E6CCF1 /* Favourite_SB.storyboard in Resources */,
+				04818CA72A30659400E6CCF1 /* Favourite_Cell.xib in Resources */,
 				9F598C992A27C58300C36A93 /* LaunchScreen.storyboard in Resources */,
 				9F598C962A27C58300C36A93 /* Assets.xcassets in Resources */,
 				9F598C912A27C58100C36A93 /* Main.storyboard in Resources */,
@@ -506,12 +544,14 @@
 				9F598CCA2A27E39A00C36A93 /* DummyModel.swift in Sources */,
 				9F598C8E2A27C58100C36A93 /* ViewController.swift in Sources */,
 				9F598CC12A27E28A00C36A93 /* LocalSource.swift in Sources */,
+				04818CA62A30659400E6CCF1 /* Favourite_Cell.swift in Sources */,
 				9F598C942A27C58200C36A93 /* Shopify_User.xcdatamodeld in Sources */,
 				0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */,
 				9F598C8A2A27C58100C36A93 /* AppDelegate.swift in Sources */,
 				9F598CC32A27E2B200C36A93 /* NetworkService.swift in Sources */,
 				9F598C8C2A27C58100C36A93 /* SceneDelegate.swift in Sources */,
 				9F598CC72A27E36A00C36A93 /* Home.swift in Sources */,
+				04818CA22A3064A300E6CCF1 /* Favourite_VC.swift in Sources */,
 				9F598CCD2A27E3E700C36A93 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
