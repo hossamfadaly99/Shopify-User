@@ -17,7 +17,7 @@ class Signup_VC: UIViewController {
     
 override func viewDidLoad() {
         super.viewDidLoad()
-    
+    print("started")
     email_TF.addPaddingToTF()
     email_TF.layer.cornerRadius = 15.0
     email_TF.layer.borderWidth = 2.0
