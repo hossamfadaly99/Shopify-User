@@ -41,6 +41,12 @@ override func viewDidLoad() {
     
     
     @IBAction func signin(_ sender: Any) {
+        var model = Customer()
+        model.lastName = lastName_TF.text ?? ""
+        model.firstName = firstName_TF.text ?? ""
+        model.email = email_TF.text ?? ""
+        model.tags = password_TF.text ?? ""
+        Network.postMethod(url:"https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json", model: model)
     }
     
 }

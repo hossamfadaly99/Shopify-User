@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0480FD7C2A2D212600C03B99 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0480FD7B2A2D212600C03B99 /* Customer.swift */; };
 		0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482A1782A2C7679007E5A7B /* Login_VC.swift */; };
 		0482A17B2A2C76A2007E5A7B /* Login_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */; };
 		04FF36BC2A2C84520058ACDF /* Signup_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF36BB2A2C84520058ACDF /* Signup_VC.swift */; };
@@ -49,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0480FD7B2A2D212600C03B99 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		0482A1782A2C7679007E5A7B /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
 		0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login_SB.storyboard; sourceTree = "<group>"; };
 		04FF36BB2A2C84520058ACDF /* Signup_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup_VC.swift; sourceTree = "<group>"; };
@@ -281,6 +283,7 @@
 			isa = PBXGroup;
 			children = (
 				9F598CC92A27E39A00C36A93 /* DummyModel.swift */,
+				0480FD7B2A2D212600C03B99 /* Customer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 				9F598CCA2A27E39A00C36A93 /* DummyModel.swift in Sources */,
 				9F598C8E2A27C58100C36A93 /* ViewController.swift in Sources */,
 				04FF36BC2A2C84520058ACDF /* Signup_VC.swift in Sources */,
+				0480FD7C2A2D212600C03B99 /* Customer.swift in Sources */,
 				9F598CC12A27E28A00C36A93 /* LocalSource.swift in Sources */,
 				9F598C942A27C58200C36A93 /* Shopify_User.xcdatamodeld in Sources */,
 				0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */,
