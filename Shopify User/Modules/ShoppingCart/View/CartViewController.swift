@@ -9,13 +9,26 @@ import UIKit
 
 class CartViewController: UIViewController {
 
+  var viewModel: CartViewModel!
+
   @IBOutlet weak var tableView: UITableView!
   override func viewDidLoad() {
         super.viewDidLoad()
+    //TODO save cart id in the customer
+
+    viewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getCreateCartURL()))
+
+    viewModel.bindDataToView = {
+      self.tableView.reloadData()
+    }
 
         // Do any additional setup after loading the view.
     let cell = UINib(nibName: "CartItemCell", bundle: nil)
     tableView.register(cell, forCellReuseIdentifier: "CartItemCell")
+
+
+
+    viewModel.loadCartItems()
 
     }
     
@@ -40,7 +53,7 @@ extension CartViewController: UITableViewDelegate{
 
 extension CartViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    10
+    viewModel.cartArray.count
   }
 
 
@@ -53,6 +66,7 @@ extension CartViewController: UITableViewDataSource{
 
     makeTableCellCornerRadius(cell: cell)
     cell.setupUI()
+    cell.loadData(item: viewModel.cartArray[indexPath.row])
     
     return cell
 

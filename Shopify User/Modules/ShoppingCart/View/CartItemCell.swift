@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CartItemCell: UITableViewCell {
 
@@ -14,8 +15,10 @@ class CartItemCell: UITableViewCell {
   @IBOutlet weak var addBtn: UIButton!
   @IBOutlet weak var counterLabel: UILabel!
   @IBOutlet weak var titleLabel: UILabel!
-
   @IBOutlet weak var priceLabel: UILabel!
+
+  var counter: Int = 0
+
   override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -44,6 +47,23 @@ class CartItemCell: UITableViewCell {
   func setupUI(){
     makeBtnShadow(layer: minusBtn.layer)
     makeBtnShadow(layer: addBtn.layer)
+  }
+
+  func loadData(item: Line_items){
+    counter = Int(counterLabel.text ?? "0") ?? 0
+    titleLabel.text = item.name
+    priceLabel.text = "$\(item.price ?? "0")"
+    counterLabel.text = "\(counter)"
+    photoImage.image = UIImage(named: "product_placeholder")
+  }
+  @IBAction func plusBtnClick(_ sender: Any) {
+    counter += 1
+    counterLabel.text = "\(counter)"
+  }
+
+  @IBAction func minusBtnClick(_ sender: Any) {
+    counter += -1
+    counterLabel.text = "\(counter)"
   }
 
 }
