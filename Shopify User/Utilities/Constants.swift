@@ -6,9 +6,12 @@
 //
 
 import Foundation
+
 class Constants {
     //Screens IDs
     static let SCREEN_ID_FAVOURITE = "ID_Favourie"
+    static let SCREEN_ID_LOGIN = "ID_Login"
+    static let SCREEN_ID_SIGNUP = "ID_Signup"
     static let SCREEN_ID_PRODUCTSDETAILS = "ID_Products_Details"
     
     //Cell IDs

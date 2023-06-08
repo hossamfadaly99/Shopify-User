@@ -16,6 +16,7 @@
 		04816F862A3139A000949265 /* ProductDetails_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04816F852A3139A000949265 /* ProductDetails_SB.storyboard */; };
 		0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482A1782A2C7679007E5A7B /* Login_VC.swift */; };
 		0482A17B2A2C76A2007E5A7B /* Login_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */; };
+		0484B7222A31F87700304C32 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0484B7212A31F87700304C32 /* Customer.swift */; };
 		04FF36BC2A2C84520058ACDF /* Signup_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF36BB2A2C84520058ACDF /* Signup_VC.swift */; };
 		04FF36BE2A2C846B0058ACDF /* Signup_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */; };
 		9F598C8A2A27C58100C36A93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F598C892A27C58100C36A93 /* AppDelegate.swift */; };
@@ -65,6 +66,7 @@
 		04816F852A3139A000949265 /* ProductDetails_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProductDetails_SB.storyboard; sourceTree = "<group>"; };
 		0482A1782A2C7679007E5A7B /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
 		0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login_SB.storyboard; sourceTree = "<group>"; };
+		0484B7212A31F87700304C32 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
 		04FF36BB2A2C84520058ACDF /* Signup_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup_VC.swift; sourceTree = "<group>"; };
 		04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup_SB.storyboard; sourceTree = "<group>"; };
 		365672AD4C21299D0D13AF44 /* Pods_Shopify_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopify_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				9F598CC92A27E39A00C36A93 /* DummyModel.swift */,
+				0484B7212A31F87700304C32 /* Customer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -601,6 +604,7 @@
 				0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */,
 				9F598C8A2A27C58100C36A93 /* AppDelegate.swift in Sources */,
 				9F598CC32A27E2B200C36A93 /* NetworkService.swift in Sources */,
+				0484B7222A31F87700304C32 /* Customer.swift in Sources */,
 				9F598C8C2A27C58100C36A93 /* SceneDelegate.swift in Sources */,
 				9F598CC72A27E36A00C36A93 /* Home.swift in Sources */,
 				9F598CCD2A27E3E700C36A93 /* Constants.swift in Sources */,
