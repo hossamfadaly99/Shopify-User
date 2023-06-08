@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BrandCustomViewCell" customModule="Shopify_User" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="113" height="107"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="113" height="107"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uqx-lX-ipm">
+                        <rect key="frame" x="0.0" y="0.0" width="113" height="77"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football" translatesAutoresizingMaskIntoConstraints="NO" id="aUb-Ju-O0c">
+                                <rect key="frame" x="0.0" y="0.0" width="113" height="77"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aUb-Ju-O0c" secondAttribute="trailing" id="Raw-hG-i5a"/>
+                            <constraint firstAttribute="bottom" secondItem="aUb-Ju-O0c" secondAttribute="bottom" id="Zbo-pU-TOQ"/>
+                            <constraint firstItem="aUb-Ju-O0c" firstAttribute="leading" secondItem="Uqx-lX-ipm" secondAttribute="leading" id="blx-ny-RvR"/>
+                            <constraint firstItem="aUb-Ju-O0c" firstAttribute="top" secondItem="Uqx-lX-ipm" secondAttribute="top" id="njj-8p-EEk"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4n6-J7-Uxl">
+                        <rect key="frame" x="0.0" y="82.666666666666671" width="113" height="20.333333333333329"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Uqx-lX-ipm" secondAttribute="trailing" id="A47-aq-WuL"/>
+                <constraint firstAttribute="bottom" secondItem="4n6-J7-Uxl" secondAttribute="bottom" constant="4" id="C1o-Sh-VtD"/>
+                <constraint firstAttribute="trailing" secondItem="4n6-J7-Uxl" secondAttribute="trailing" id="Qka-87-bLe"/>
+                <constraint firstItem="Uqx-lX-ipm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Yo7-xk-fj1"/>
+                <constraint firstItem="4n6-J7-Uxl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="coP-Gd-4Ka"/>
+                <constraint firstAttribute="bottom" secondItem="Uqx-lX-ipm" secondAttribute="bottom" constant="30" id="tLq-rt-xWd"/>
+                <constraint firstItem="Uqx-lX-ipm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="wPE-1F-ATW"/>
+            </constraints>
+            <size key="customSize" width="113" height="107"/>
+            <connections>
+                <outlet property="brandImg" destination="aUb-Ju-O0c" id="FLj-fG-zSf"/>
+                <outlet property="brandNameLabel" destination="4n6-J7-Uxl" id="Vpc-yU-GgJ"/>
+            </connections>
+            <point key="canvasLocation" x="177.86259541984731" y="8.8028169014084519"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="football" width="278" height="182"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
