@@ -11,7 +11,7 @@ import Alamofire
 protocol NetworkService{
     func loadData<T: Decodable>(url:String,param :Parameters,header : HTTPHeaders ,compilitionHandler: @escaping (T?, Error?) -> Void)
 }
-class NetworkManager : NetworkService{
+class MonicaNetworkManager : NetworkService{
     
      func loadData<T: Decodable>(url:String,param :Parameters,header : HTTPHeaders,compilitionHandler: @escaping (T?, Error?) -> Void){
          

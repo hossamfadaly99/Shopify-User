@@ -26,7 +26,7 @@ class GetProductsViewModel{
                let param = ["vendor": brandName ?? "ADIDAS"]
         
         let url = "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json"
-        NetworkManager().loadData(url : url, param: param, header: headers) { [weak self] (result : ProductResponse? ,error) in
+        MonicaNetworkManager().loadData(url : url, param: param, header: headers) { [weak self] (result : ProductResponse? ,error) in
             self?.result = result?.products
         }
     }
