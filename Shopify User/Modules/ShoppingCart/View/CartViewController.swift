@@ -9,10 +9,14 @@ import UIKit
 
 class CartViewController: UIViewController {
 
-    override func viewDidLoad() {
+  @IBOutlet weak var tableView: UITableView!
+  override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    let cell = UINib(nibName: "CartItemCell", bundle: nil)
+    tableView.register(cell, forCellReuseIdentifier: "CartItemCell")
+
     }
     
 
@@ -25,5 +29,41 @@ class CartViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+extension CartViewController: UITableViewDelegate{
+
+
+
+}
+
+extension CartViewController: UITableViewDataSource{
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    10
+  }
+
+
+  func numberOfSections(in tableView: UITableView) -> Int {
+    1
+  }
+
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as! CartItemCell
+
+    makeTableCellCornerRadius(cell: cell)
+    cell.setupUI()
+    
+    return cell
+
+  }
+
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
+
+
+
+
 
 }

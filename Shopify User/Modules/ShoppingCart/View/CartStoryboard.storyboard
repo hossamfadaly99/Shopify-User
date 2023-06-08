@@ -26,16 +26,20 @@
                                 <color key="textColor" name="black_22"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KPW-Qg-yRm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KPW-Qg-yRm">
                                 <rect key="frame" x="16" y="178" width="361" height="475"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="yFE-bB-IHE"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="pUa-Q4-ECW"/>
+                                </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wL-Ta-WUf">
                                 <rect key="frame" x="340" y="667.66666666666663" width="37" height="37"/>
-                                <color key="tintColor" name="black_22"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="arrow.right" catalog="system" cornerStyle="capsule">
                                     <directionalEdgeInsets key="contentInsets" top="8" leading="8" bottom="8" trailing="8"/>
+                                    <color key="baseBackgroundColor" name="black_22"/>
                                 </buttonConfiguration>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-Oh-sQ6">
@@ -55,10 +59,11 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="nxd-bP-mWQ"/>
                                 </constraints>
-                                <color key="tintColor" name="main_green"/>
                                 <size key="titleShadowOffset" width="16" height="16"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Checkout" cornerStyle="capsule"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Checkout" cornerStyle="capsule">
+                                    <color key="baseBackgroundColor" name="main_green"/>
+                                </buttonConfiguration>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your coupon here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bqo-wB-SQt">
                                 <rect key="frame" x="16" y="669" width="316" height="34"/>
@@ -89,6 +94,9 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="KPW-Qg-yRm" secondAttribute="trailing" constant="16" id="zuk-LQ-nEu"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="KPW-Qg-yRm" id="Cw2-pe-bEh"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
