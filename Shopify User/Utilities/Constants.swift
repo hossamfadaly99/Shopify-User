@@ -17,3 +17,8 @@ class Constants {
     //Cell IDs
     static let CELL_ID_FAVOURITE = "Favourite_Cell"
 }
+let adminTokenKey = "X-Shopify-Access-Token"
+let adminTokenValue = "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"
+let dummyMail = "ddd@hhh.com"
+let secondDummyMail = "egnition_sample_81@egnition.com"
+
