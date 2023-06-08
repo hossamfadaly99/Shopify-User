@@ -9,8 +9,8 @@ import Foundation
 import Alamofire
 
 class Network {
-    static func postMethod(url:String, model:Customer) {
         
+    static func postMethod(url:String, model:Customer) {
         let myHeaders : HTTPHeaders = [
             "Content-Type" : "application/json",
             "X-Shopify-Access-Token" : "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" ]
@@ -52,8 +52,4 @@ class Network {
             }
         }
     }
-
-    
-    
-
 }

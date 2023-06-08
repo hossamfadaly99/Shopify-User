@@ -6,50 +6,75 @@
 //
 
 import UIKit
+import RxSwift
 
 class Signup_VC: UIViewController {
     @IBOutlet weak var email_TF: UITextField!
     @IBOutlet weak var firstName_TF: UITextField!
-    
     @IBOutlet weak var lastName_TF: UITextField!
-    
     @IBOutlet weak var password_TF: UITextField!
+    @IBOutlet weak var signupBtn: UIButton!
     
-override func viewDidLoad() {
+    let disposeBag = DisposeBag()
+    var viewModel = SignupViewModel()
+    var authManager = AuthenticationManager()
+    override func viewDidLoad() {
         super.viewDidLoad()
-    print("started")
-    email_TF.addPaddingToTF()
-    email_TF.layer.cornerRadius = 15.0
-    email_TF.layer.borderWidth = 2.0
-    email_TF.layer.borderColor = UIColor.lightGray.cgColor
-    
-    firstName_TF.addPaddingToTF()
-    firstName_TF.layer.cornerRadius = 15.0
-    firstName_TF.layer.borderWidth = 2.0
-    firstName_TF.layer.borderColor = UIColor.lightGray.cgColor
-
-    lastName_TF.addPaddingToTF()
-    lastName_TF.layer.cornerRadius = 15.0
-    lastName_TF.layer.borderWidth = 2.0
-    lastName_TF.layer.borderColor = UIColor.lightGray.cgColor
-    
-    password_TF.addPaddingToTF()
-    password_TF.layer.cornerRadius = 15.0
-    password_TF.layer.borderWidth = 2.0
-    password_TF.layer.borderColor = UIColor.lightGray.cgColor
-}
-    
-    
-    @IBAction func signin(_ sender: Any) {
-        var model = Customer()
-        model.lastName = lastName_TF.text ?? ""
-        model.firstName = firstName_TF.text ?? ""
-        model.email = email_TF.text ?? ""
-        model.tags = password_TF.text ?? ""
-        Network.postMethod(url:"https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json", model: model)
+        print("started")
+        email_TF.addPaddingToTF()
+        email_TF.layer.cornerRadius = 15.0
+        email_TF.layer.borderWidth = 2.0
+        email_TF.layer.borderColor = UIColor.lightGray.cgColor
+        
+        firstName_TF.addPaddingToTF()
+        firstName_TF.layer.cornerRadius = 15.0
+        firstName_TF.layer.borderWidth = 2.0
+        firstName_TF.layer.borderColor = UIColor.lightGray.cgColor
+        
+        lastName_TF.addPaddingToTF()
+        lastName_TF.layer.cornerRadius = 15.0
+        lastName_TF.layer.borderWidth = 2.0
+        lastName_TF.layer.borderColor = UIColor.lightGray.cgColor
+        
+        password_TF.addPaddingToTF()
+      //  password_TF.isSecureTextEntry = true
+        password_TF.layer.cornerRadius = 15.0
+        password_TF.layer.borderWidth = 2.0
+        password_TF.layer.borderColor = UIColor.lightGray.cgColor
+        
+        setupBindings()
     }
     
+    @IBAction func navigate(_ sender: Any) {
+    }
+    
+    func setupBindings() {
+        firstName_TF.rx.text.orEmpty
+            .bind(to: viewModel.firstname)
+            .disposed(by: disposeBag)
+        
+        lastName_TF.rx.text.orEmpty
+            .bind(to: viewModel.lastname)
+            .disposed(by: disposeBag)
+        
+        email_TF.rx.text.orEmpty
+            .bind(to: viewModel.email)
+            .disposed(by: disposeBag)
+        
+        password_TF.rx.text.orEmpty
+            .bind(to: viewModel.password)
+            .disposed(by: disposeBag)
+        
+        viewModel.isValid(authManager: authManager)
+            .bind(to: signupBtn.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        signupBtn.rx.tap
+            .subscribe(onNext: { [weak self] in self?.viewModel.signup() })
+            .disposed(by: disposeBag)
+    }
 }
+    
 extension UITextField{
     func addPaddingToTF(){
         let paddingView:UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: 8, height: 0))

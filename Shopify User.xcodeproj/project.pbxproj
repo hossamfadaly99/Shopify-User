@@ -17,6 +17,8 @@
 		0482A1792A2C7679007E5A7B /* Login_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0482A1782A2C7679007E5A7B /* Login_VC.swift */; };
 		0482A17B2A2C76A2007E5A7B /* Login_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */; };
 		0484B7222A31F87700304C32 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0484B7212A31F87700304C32 /* Customer.swift */; };
+		0484B7252A3224D700304C32 /* SignupViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0484B7242A3224D700304C32 /* SignupViewModel.swift */; };
+		0484B7272A323FCD00304C32 /* AuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0484B7262A323FCD00304C32 /* AuthenticationManager.swift */; };
 		04FF36BC2A2C84520058ACDF /* Signup_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FF36BB2A2C84520058ACDF /* Signup_VC.swift */; };
 		04FF36BE2A2C846B0058ACDF /* Signup_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */; };
 		9F598C8A2A27C58100C36A93 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F598C892A27C58100C36A93 /* AppDelegate.swift */; };
@@ -67,6 +69,8 @@
 		0482A1782A2C7679007E5A7B /* Login_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Login_VC.swift; sourceTree = "<group>"; };
 		0482A17A2A2C76A2007E5A7B /* Login_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login_SB.storyboard; sourceTree = "<group>"; };
 		0484B7212A31F87700304C32 /* Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
+		0484B7242A3224D700304C32 /* SignupViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupViewModel.swift; sourceTree = "<group>"; };
+		0484B7262A323FCD00304C32 /* AuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationManager.swift; sourceTree = "<group>"; };
 		04FF36BB2A2C84520058ACDF /* Signup_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signup_VC.swift; sourceTree = "<group>"; };
 		04FF36BD2A2C846B0058ACDF /* Signup_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Signup_SB.storyboard; sourceTree = "<group>"; };
 		365672AD4C21299D0D13AF44 /* Pods_Shopify_User.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Shopify_User.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -190,9 +194,18 @@
 			path = Login_Screen;
 			sourceTree = "<group>";
 		};
+		0484B7232A3224AC00304C32 /* SignupViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				0484B7242A3224D700304C32 /* SignupViewModel.swift */,
+			);
+			path = SignupViewModel;
+			sourceTree = "<group>";
+		};
 		04FF36BA2A2C84200058ACDF /* Signup_Screen */ = {
 			isa = PBXGroup;
 			children = (
+				0484B7232A3224AC00304C32 /* SignupViewModel */,
 				0480FD782A2D130C00C03B99 /* View */,
 			);
 			path = Signup_Screen;
@@ -345,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				9F598CCC2A27E3E700C36A93 /* Constants.swift */,
+				0484B7262A323FCD00304C32 /* AuthenticationManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -593,8 +607,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0484B7252A3224D700304C32 /* SignupViewModel.swift in Sources */,
 				9F598CCA2A27E39A00C36A93 /* DummyModel.swift in Sources */,
 				9F598C8E2A27C58100C36A93 /* ViewController.swift in Sources */,
+				0484B7272A323FCD00304C32 /* AuthenticationManager.swift in Sources */,
 				04816F7B2A31357000949265 /* Favourite_Cell.swift in Sources */,
 				04816F782A31351C00949265 /* Favourite_VC.swift in Sources */,
 				04816F842A31398600949265 /* Details_Cell.swift in Sources */,
