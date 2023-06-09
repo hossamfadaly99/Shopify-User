@@ -11,39 +11,16 @@ import RxCocoa
 import RxRelay
 
 class SignupViewModel{
+    
     let firstname = BehaviorRelay<String>(value: "")
     let lastname = BehaviorRelay<String>(value: "")
     let email = BehaviorRelay<String>(value: "")
     let password = BehaviorRelay<String>(value: "")
-   
-    let disposeBag = DisposeBag()
-
-    var CustomerData :PublishSubject<RootCustomer> = PublishSubject()
-    let reloadData = PublishSubject<Void>()
-    let isLoading : PublishSubject<Bool> = PublishSubject()
-    var isExist = false
-
-    func getCustomers (url:String){
-        isLoading.onNext(true)
-        let url = URL(string: url)
-        guard let urlFinal = url else { return }
-        let request = URLRequest(url: urlFinal)
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: request) { data, responce, error in
-            guard let data = data else{
-                return
-            }
-            do{
-                let result1 = try JSONDecoder().decode(RootCustomer.self, from: data)
-                self.isLoading.onNext(false)
-                self.CustomerData.onNext(result1)
-                print ("Date : \(result1.customers[1].firstName)")
-
-            }catch let error{
-                print (error.localizedDescription)
-            }
-        }
-        task.resume()
+    var bindDataToView:(([Customer]) -> ()) = { _ in }
+    var customersList: [Customer] = []{
+      didSet{
+          bindDataToView(self.customersList)
+      }
     }
     
     func isValid(authManager:AuthenticationManager) -> Observable<Bool> {
@@ -54,38 +31,40 @@ class SignupViewModel{
                 
                 return !firstname.isEmpty && !lastname.isEmpty && !email.isEmpty && !password.isEmpty && isValid }
     }
-    
-    func checkIfUserExist(model:Customer){
-        CustomerData.subscribe(onNext: { [weak self] customers in
-            for customer in customers.customers {
-                if (model.id == customer.id){
-                    self?.isExist = true
-                    break
-                }
-            }
-        })
-        .disposed(by: disposeBag)
+
+    func getcustomers(){
+      NetworkManager(url: "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json").fetchData{
+          (result: MyCustomer?) in
+          guard let items = result?.customers else{ return }
+          self.customersList = items
+      }
     }
     
     func signup() {
         print("signupFunc")
+        getcustomers()
+        var isExist = false
         var model = Customer()
-        model.firstName = self.firstname.value
-        model.lastName = self.lastname.value
+        model.first_name = self.firstname.value
+        model.last_name = self.lastname.value
         model.email = self.email.value
         model.tags = self.password.value
-       
-        checkIfUserExist(model:model)
-
-       // if(isValid){
-            Network.postMethod(url:"https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json", model: model)
-            print("reg done")
-            
-       // } else {
-            //print("faild to register")
-       // }
+        bindDataToView =
+        { mycustomers in
+            print("jjjj")
+            for customer in mycustomers {
+                
+                if (model.email == customer.email) && (model.tags == customer.tags){
+                    isExist = true
+                    break
+                }
+            }
+            if(isExist){
+                print("User Already exist")
+            } else {
+                Network.postMethod(url:"https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json", model: model)
+                print("reg done")
+            }
+        }
     }
-    
-  
-    
 }

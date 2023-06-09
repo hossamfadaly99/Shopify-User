@@ -44,8 +44,8 @@ class MonicaNetworkManager : NetworkService{
         "Content-Type" : "application/json",
         "X-Shopify-Access-Token" : "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" ]
       
-      let myParams: Parameters = ["customer": ["first_name": model.firstName,
-                                               "last_name" : model.lastName,
+        let myParams: Parameters = ["customer": ["first_name": model.first_name,
+                                                 "last_name" : model.last_name,
                                                "email": model.email,
                                                "tags": model.tags ] ]
       
@@ -82,4 +82,3 @@ class MonicaNetworkManager : NetworkService{
         }
     }
   }
-
