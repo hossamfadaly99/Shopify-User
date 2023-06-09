@@ -91,7 +91,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
             return cell
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "brand", for: indexPath) as! BrandCustomViewCell
-            var url = URL(string: brandsList[indexPath.row].image?.src ?? "")
+            let url = URL(string: brandsList[indexPath.row].image?.src ?? "")
             
             cell.brandImg.kf.setImage(
                 with: url,
