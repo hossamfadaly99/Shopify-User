@@ -34,7 +34,7 @@ class NetworkManager: NetworkServiceProtocol {
       case .success(let data):
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
-          print(json)
+         // print(json)
         } catch {
             print("errorMsg")
         }

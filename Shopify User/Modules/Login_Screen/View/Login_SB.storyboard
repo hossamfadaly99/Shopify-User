@@ -9,10 +9,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Signup_SB-->
+        <scene sceneID="CMt-GU-9eY">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Signup_SB" id="7fO-ih-w9u" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="doB-KK-z0d"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wai-E3-zBo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-640" y="-102"/>
+        </scene>
         <!--LoginVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="ID_Login" id="Y6W-OH-hqX" customClass="Login_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_Login" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="Login_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc" customClass="LottieAnimationView" customModule="Lottie">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -66,6 +76,9 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" weight="semibold"/>
                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="7fO-ih-w9u" kind="show" id="4SJ-HI-IFj"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XQd-PC-9pJ" userLabel="email">
                                 <rect key="frame" x="16" y="233" width="361" height="70"/>
@@ -113,6 +126,7 @@
                     </view>
                     <connections>
                         <outlet property="email_TF" destination="T8e-aC-AeR" id="BiM-wI-T7l"/>
+                        <outlet property="loginBtn" destination="xK4-Yb-bTN" id="Fxp-zM-qbd"/>
                         <outlet property="password_TF" destination="QDY-xI-3Dq" id="8o2-GH-aqq"/>
                     </connections>
                 </viewController>

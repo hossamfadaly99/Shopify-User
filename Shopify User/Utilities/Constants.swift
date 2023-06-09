@@ -16,6 +16,13 @@ class Constants {
     
     //Cell IDs
     static let CELL_ID_FAVOURITE = "Favourite_Cell"
+    
+    //User Defults
+    static let KEY_USER_FIRSTNAME = "UserFirstName"
+    static let KEY_USER_LASTNAME = "UserLastName"
+    static let KEY_USER_STATE = "State"
+    static let USER_STATE_LOGIN = "Login"
+    static let USER_STATE_LOGOUT = "Logout"
 }
 let adminTokenKey = "X-Shopify-Access-Token"
 let adminTokenValue = "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"
