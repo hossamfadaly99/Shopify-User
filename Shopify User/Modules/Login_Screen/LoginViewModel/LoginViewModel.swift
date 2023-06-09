@@ -10,8 +10,15 @@ import RxSwift
 import RxCocoa
 import RxRelay
 
+protocol ViewModelDelegate:AnyObject {
+    func didLoginSuccessfully()
+    func loginFailed()
+}
 
 class LoginViewModel{
+    
+    weak var delegate: ViewModelDelegate?
+    
     let email = BehaviorRelay<String>(value: "")
     let password = BehaviorRelay<String>(value: "")
     var bindDataToView:(([Customer]) -> ()) = { _ in }
@@ -46,10 +53,9 @@ class LoginViewModel{
         model.email = self.email.value
         model.tags = self.password.value
         bindDataToView =
-        { mycustomers in
+        { [self] mycustomers in
             print("jjjj")
             for customer in mycustomers {
-                
                 if (model.email == customer.email) && (model.tags == customer.tags){
                     model = customer
                     isExist = true
@@ -62,7 +68,9 @@ class LoginViewModel{
                 defaults.set(model.last_name, forKey: Constants.KEY_USER_LASTNAME)
                 defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
                 print("login done")
+                self.delegate?.didLoginSuccessfully()
             } else {
+                self.delegate?.loginFailed()
                 print("not registered")
             }
         }
