@@ -12,7 +12,7 @@
         <!--SignupVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="ID_Signup" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="Signup_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_Signup" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="Signup_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -136,7 +136,6 @@
                                         <buttonConfiguration key="configuration" style="plain" title="Already have account"/>
                                         <connections>
                                             <action selector="navigate:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="01C-te-S0R"/>
-                                            <segue destination="JVI-gM-GNq" kind="show" id="m5D-XQ-OVd"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or sign up with social account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RyG-UP-qcW">
@@ -202,16 +201,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="43.511450381679388" y="-27.464788732394368"/>
-        </scene>
-        <!--Login_SB-->
-        <scene sceneID="yOW-Af-Y5t">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Login_SB" id="JVI-gM-GNq" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="Sb0-4z-Iju"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="xoM-LW-TUw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="616" y="128"/>
         </scene>
     </scenes>
     <resources>

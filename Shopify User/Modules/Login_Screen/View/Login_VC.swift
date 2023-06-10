@@ -11,8 +11,9 @@ import RxSwift
 class Login_VC: UIViewController {
     @IBOutlet weak var email_TF: UITextField!
     @IBOutlet weak var password_TF: UITextField!
-    
     @IBOutlet weak var loginBtn: UIButton!
+    @IBOutlet weak var backBtn: UIButton!
+    
     let disposeBag = DisposeBag()
     var viewModel = LoginViewModel()
     var authManager = AuthenticationManager()
@@ -32,6 +33,12 @@ class Login_VC: UIViewController {
         password_TF.layer.borderWidth = 2.0
         password_TF.layer.borderColor = UIColor.lightGray.cgColor
         
+        backBtn.rx.tap.asObservable().subscribe(onNext: { _ in
+            let storyboard = UIStoryboard(name: "Signup_SB", bundle: nil) // Replace "Main" with your storyboard name
+            let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SIGNUP) as! Signup_VC
+            nextViewController.modalPresentationStyle = .fullScreen
+            self.present(nextViewController, animated: true, completion: nil)
+        }).disposed(by: disposeBag)
         setupBindings()
 
     }
@@ -59,10 +66,10 @@ class Login_VC: UIViewController {
 extension Login_VC:ViewModelDelegate{
     func didLoginSuccessfully() {
         print ("hi")
-//            let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
-//        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
-//            nextViewController.modalPresentationStyle = .fullScreen
-//            present(nextViewController, animated: true, completion: nil)
+            let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
+            nextViewController.modalPresentationStyle = .fullScreen
+            present(nextViewController, animated: true, completion: nil)
 
 //            navigationController?.pushViewController(nextViewController, animated: true)
     }

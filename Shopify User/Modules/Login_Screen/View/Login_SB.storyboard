@@ -12,7 +12,7 @@
         <!--LoginVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="ID_Login" modalTransitionStyle="flipHorizontal" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="Login_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_Login" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="Login_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc" customClass="LottieAnimationView" customModule="Lottie">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,6 +113,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="N0B-dv-oca"/>
                     <connections>
+                        <outlet property="backBtn" destination="8Tm-MM-S8T" id="J8j-b8-O5U"/>
                         <outlet property="email_TF" destination="T8e-aC-AeR" id="BiM-wI-T7l"/>
                         <outlet property="loginBtn" destination="xK4-Yb-bTN" id="Fxp-zM-qbd"/>
                         <outlet property="password_TF" destination="QDY-xI-3Dq" id="8o2-GH-aqq"/>
@@ -123,9 +124,6 @@
             <point key="canvasLocation" x="1026.7175572519084" y="-27.464788732394368"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="5EZ-qb-Rvc"/>
-    </designables>
     <resources>
         <image name="Facebook" width="108" height="80"/>
         <image name="Google" width="108" height="80"/>
