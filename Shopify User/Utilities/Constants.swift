@@ -23,6 +23,14 @@ class Constants {
     static let KEY_USER_STATE = "State"
     static let USER_STATE_LOGIN = "Login"
     static let USER_STATE_LOGOUT = "Logout"
+    
+    //CoreData
+    static let CD_ENTITY_NAME = "CDProduct"
+    static let ENTITY_ROW_TITLE = "title"
+    static let ENTITY_ROW_ID = "id"
+    static let ENTITY_ROW_IMAGE = "imageProduct"
+    static let ENTITY_ROW_PRICE = "price"
+    static let ENTITY_ROW_RATE = "rate"
 }
 let adminTokenKey = "X-Shopify-Access-Token"
 let adminTokenValue = "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"
