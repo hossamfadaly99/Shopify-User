@@ -16,6 +16,7 @@ class Constants {
     
     //Cell IDs
     static let CELL_ID_FAVOURITE = "Favourite_Cell"
+    static let CELL_ID_PODUCT_DETAILS = "Prouduct_Details_cell"
     
     //User Defults
     static let KEY_USER_FIRSTNAME = "UserFirstName"

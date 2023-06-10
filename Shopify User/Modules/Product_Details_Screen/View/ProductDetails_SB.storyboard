@@ -36,7 +36,7 @@
                                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
-                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="feG-7B-sAG" customClass="Details_Cell" customModule="Shopify_User" customModuleProvider="target">
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Prouduct_Details_cell" id="feG-7B-sAG" customClass="Details_Cell" customModule="Shopify_User" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="41" width="128" height="128"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="GDd-NP-Dna">
@@ -59,10 +59,6 @@
                                                         </connections>
                                                     </collectionViewCell>
                                                 </cells>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="jry-SL-brb"/>
-                                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="CLw-Uw-vn7"/>
-                                                </connections>
                                             </collectionView>
                                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="oYy-Bq-NKl">
                                                 <rect key="frame" x="0.0" y="221" width="393" height="26"/>
@@ -78,7 +74,7 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgs-kE-Mns" customClass="CosmosView" customModule="Cosmos">
+                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgs-kE-Mns" customClass="CosmosView" customModule="Cosmos">
                                                         <rect key="frame" x="8" y="104.33333333333331" width="124" height="24"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
@@ -258,11 +254,6 @@
             <point key="canvasLocation" x="46.564885496183201" y="-34.507042253521128"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="cgs-kE-Mns">
-            <size key="intrinsicContentSize" width="124" height="24"/>
-        </designable>
-    </designables>
     <resources>
         <image name="inactive" width="44" height="44"/>
         <systemColor name="systemBackgroundColor">
