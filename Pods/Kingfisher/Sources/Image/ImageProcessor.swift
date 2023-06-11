@@ -29,8 +29,6 @@ import CoreGraphics
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 import AppKit
-#else
-import UIKit
 #endif
 
 /// Represents an item which could be processed by an `ImageProcessor`.

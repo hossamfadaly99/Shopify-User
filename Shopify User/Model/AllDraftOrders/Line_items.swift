@@ -20,7 +20,7 @@ struct Line_items : Codable {
 	let variant_title : String?
 	let sku : String?
 	let vendor : String?
-	let quantity : Int?
+	var quantity : Int?
 	let requires_shipping : Bool?
 	let taxable : Bool?
 	let gift_card : Bool?

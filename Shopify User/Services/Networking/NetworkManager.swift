@@ -59,5 +59,44 @@ class NetworkManager: NetworkServiceProtocol {
 
   }
 
+  func uploadData<G: Codable, T: Codable>(object: G, compilitionHandler: @escaping (T?) -> Void) {
+    guard let finalURL = url else {
+      print("url error")
+      return
+    }
+
+    let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
+                                "Content-Type" : "application/json"]
+
+    AF.request(finalURL, method: .post, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
+      switch response.result {
+      case .success(let data):
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+          print(json)
+        } catch {
+            print("errorMsg")
+        }
+          do {
+              print("The count of data is : \(data.count)")
+
+              let result = try JSONDecoder().decode(T.self, from: data)
+
+              compilitionHandler(result)
+              print("Data Fetched Successfully...")
+          } catch {
+              print("Error When Parseing data from API :  \(error.localizedDescription)")
+              print(String(describing: error))
+
+              compilitionHandler(nil)
+          }
+      case .failure(let error):
+          print("Error When Featch data from API :  \(error.localizedDescription)")
+          compilitionHandler(nil)
+      }
+    }
+
+  }
+
 
 }

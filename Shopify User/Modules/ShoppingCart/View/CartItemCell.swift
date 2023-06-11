@@ -18,6 +18,29 @@ class CartItemCell: UITableViewCell {
   @IBOutlet weak var priceLabel: UILabel!
 
   var counter: Int = 0
+  var availableQuantity = 1
+  var minQuantity = 1
+  var maxQuantity: Int {
+    if ((availableQuantity / 3) > 0) {
+      return availableQuantity / 3
+    }
+    else{
+      return 1
+    }
+  }
+  var price = 0.00
+  var itemPrice: Double {
+    return price * Double(counter)
+  }
+  var getTotalPrice: ()->() = {}
+  var initialTotalPrice = 0.0
+  var totalPrice: Double = 0
+  var isPriceChanged: Bool = false  {
+    didSet{
+      print("ay haga in cell")
+      getTotalPrice()
+    }
+  }
 
   override func awakeFromNib() {
         super.awakeFromNib()
@@ -50,20 +73,52 @@ class CartItemCell: UITableViewCell {
   }
 
   func loadData(item: Line_items){
-    counter = Int(counterLabel.text ?? "0") ?? 0
+    counter = item.quantity ?? 0
+    price = Double(item.price ?? "1.00") ?? 1.00
+    availableQuantity = Int(item.properties?[1].value ?? "1") ?? 1
+
     titleLabel.text = item.name
-    priceLabel.text = "$\(item.price ?? "0")"
+    priceLabel.text = "$\(price * Double(item.quantity ?? 1))"
     counterLabel.text = "\(counter)"
-    photoImage.image = UIImage(named: "product_placeholder")
+    photoImage.kf.setImage(with: URL(string: item.properties?.first?.value ?? "product_placeholder"))
+    manageQuantity()
+
   }
   @IBAction func plusBtnClick(_ sender: Any) {
+    initialTotalPrice = totalPrice - itemPrice
     counter += 1
-    counterLabel.text = "\(counter)"
+    totalPrice = initialTotalPrice + itemPrice
+    isPriceChanged.toggle()
   }
 
   @IBAction func minusBtnClick(_ sender: Any) {
-    counter += -1
-    counterLabel.text = "\(counter)"
+    initialTotalPrice = totalPrice - itemPrice
+    counter -= 1
+//    counterLabel.text = "\(counter)"
+//    priceLabel.text = "$\(itemPrice)"
+    totalPrice = initialTotalPrice + itemPrice
+//    print("zzzz")
+//    manageQuantity()
+    isPriceChanged.toggle()
+
+  }
+
+  func manageQuantity(){
+    print(counter)
+    print(minQuantity)
+    if counter == minQuantity{
+      print("btn - off")
+      minusBtn.isEnabled = false
+      print("btn - off")
+    } else {
+      minusBtn.isEnabled = true
+    }
+
+    if counter == maxQuantity{
+      addBtn.isEnabled = false
+    } else {
+      addBtn.isEnabled = true
+    }
   }
 
 }
