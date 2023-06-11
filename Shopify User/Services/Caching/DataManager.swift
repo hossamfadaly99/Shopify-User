@@ -12,8 +12,6 @@ import UIKit
 class DataManager : DataManagerProtocol{
     
     var manager : NSManagedObjectContext!
-    var recipeToBeDeleted : NSManagedObject?
-    
     static let sharedInstance = DataManager()
     
     private init(){
@@ -70,7 +68,7 @@ class DataManager : DataManagerProtocol{
     
     func deleteFavProduct(myProduct: Product) {
         let fetch = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
-        fetch.predicate = NSPredicate(format: "id == %@", myProduct.id ?? "")
+        fetch.predicate = NSPredicate(format: "title == %@", myProduct.title ?? "")
         do {
             let items = try manager?.fetch(fetch)
             if let itemToDelete = items?.first {
@@ -84,19 +82,23 @@ class DataManager : DataManagerProtocol{
     }
     
     func isProductExist(myProduct: Product) -> Bool {
-        let fetch = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
-        fetch.predicate = NSPredicate(format: "id == %@", myProduct.id ?? "")
+        let fetchRequest = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
+        fetchRequest.predicate = NSPredicate(format: "title == %@", myProduct.title ?? "" )
         do {
-            let myFavouriteList = try manager?.fetch(fetch)
-            guard let favourite = myFavouriteList else {
+            let myFavouriteList = try manager?.fetch(fetchRequest)
+            guard let myFavouriteList = myFavouriteList else {
                 return false
             }
-            return (favourite.count != 0) ?  true :  false
-           // if(favourite.count != 0){ return true }else{ return false }
-        }catch{
-            print("error in product is exist function")
+            if(myFavouriteList.count != 0){
+                print(myFavouriteList.count)
+                return true
+            }else{
+                return false
+            }
+        } catch {
+            print("Error in isProductExist function: \(error)")
             return false
         }
-        
     }
+
 }

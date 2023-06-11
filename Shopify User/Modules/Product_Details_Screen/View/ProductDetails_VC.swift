@@ -22,21 +22,23 @@ class ProductDetails_VC: UIViewController {
     @IBOutlet weak var review3: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var addToFav: UIImageView!
-    
+    var product_VC : Product = Product()
     var photosArray:[ProductImage]?
     var timer:Timer?
     var currentIndex = 0
     let viewModel = ProductsDetailsViewModel()
-    let tapGesture = UITapGestureRecognizer(target: ProductDetails_VC.self, action: #selector(imageTapped(_:)))
+    let dataManager = DataManager.sharedInstance
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did load")
         let reviews = Reviews()
         let reviewsList = reviews.getReviews(numberOfReviews: 3)
-        addToFav.addGestureRecognizer(tapGesture)
-        addToFav.isUserInteractionEnabled = true
         pageController.numberOfPages = photosArray?.count ?? 0
         viewModel.bindDataToView = { [weak self] product in
             DispatchQueue.main.async {
+                print("API Product ID :\(product.id ?? 0)")
+                self?.product_VC = product
                 self?.photosArray = product.images
                 self?.pageController.numberOfPages = self?.photosArray?.count ?? 0
                 self?.myCollectionView.reloadData()
@@ -52,9 +54,37 @@ class ProductDetails_VC: UIViewController {
         viewModel.getProductData(url: "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json?ids=8355419586852")
     }
     @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
-          guard let index = gesture.view?.tag else { return }
-         // imageTapped(at: index)
-      }
+        print("My Product ID :\(product_VC.id ?? 0)")
+        let is_Exist = dataManager.isProductExist(myProduct: product_VC)
+        if(is_Exist){
+            print("product already saved")
+        }else{
+            dataManager.insertFavProduct(myProduct: product_VC, productRate: 2.5)
+            addToFav.image = UIImage(named: "activated")
+            print("Product Saved !")
+        
+       // dataManager.deleteFavProduct(myProduct: product_VC)
+        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        print("view did appear")
+
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
+        addToFav.addGestureRecognizer(tapGesture)
+        addToFav.isUserInteractionEnabled = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("view will appear")
+        let is_Exist2 = dataManager.isProductExist(myProduct: product_VC)
+        print(is_Exist2)
+
+        if(is_Exist2){
+            print("hiii")
+            addToFav.image = UIImage(named: "activated")
+        }
+    }
+    
     @IBAction func showMoreReviews(_ sender: Any) {
     }
     

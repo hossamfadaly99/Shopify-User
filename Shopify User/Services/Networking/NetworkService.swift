@@ -12,9 +12,7 @@ protocol NetworkService{
     func loadData<T: Decodable>(url:String,param :Parameters,header : HTTPHeaders ,compilitionHandler: @escaping (T?, Error?) -> Void)
 }
 class MonicaNetworkManager : NetworkService{
-  
   func loadData<T: Decodable>(url:String,param :Parameters,header : HTTPHeaders,compilitionHandler: @escaping (T?, Error?) -> Void){
-    
     AF.request(url,parameters: param,headers: header).responseDecodable(of: T.self){ response in
       debugPrint(response)
       
@@ -37,6 +35,7 @@ class MonicaNetworkManager : NetworkService{
     }
   }
 }
+
   class Network {
     
     static func postMethod(url:String, model:Customer) {
@@ -44,10 +43,15 @@ class MonicaNetworkManager : NetworkService{
         "Content-Type" : "application/json",
         "X-Shopify-Access-Token" : "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" ]
       
-        let myParams: Parameters = ["customer": ["first_name": model.first_name,
-                                                 "last_name" : model.last_name,
-                                               "email": model.email,
-                                               "tags": model.tags ] ]
+        let myParams: Parameters =
+        [
+            "customer": [
+                "first_name": model.first_name,
+                "last_name" : model.last_name,
+                "email": model.email,
+                "tags": model.tags
+            ]
+        ]
       
       AF.request(url, method: .post, parameters:myParams , encoding: JSONEncoding.default, headers:myHeaders)
         .validate(statusCode: 200 ..< 299).responseData { response in
