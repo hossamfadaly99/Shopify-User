@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PassKit
 
 class CheckoutViewController: UIViewController {
 
@@ -27,6 +28,24 @@ class CheckoutViewController: UIViewController {
     */
 
   @IBAction func purchaseBtnClick(_ sender: Any) {
-    
+      // TODO: make it
+    var paymentStrategy = ApplePaymentStrategy()
+    let paymentcontext = PaymentContext(pyamentStrategy: paymentStrategy)
+
+    //paymentcontext.setPaymentStrategy(paymentStrategy: <#T##PaymentStrategy#>)
+
+    let controller = PKPaymentAuthorizationViewController(paymentRequest: paymentStrategy.getPaymentReq())
+    controller?.delegate = self
+    present(controller!, animated: true){
+      print("presented")
+    }
+
+    let isPaymentSuccessful = paymentcontext.makePayment(amount: 135.0)
+
+    if isPaymentSuccessful {
+      print("successful purshase")
+    } else {
+      print("failed purshase")
+    }
   }
 }
