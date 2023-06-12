@@ -64,6 +64,9 @@
                                 <buttonConfiguration key="configuration" style="filled" title="Checkout" cornerStyle="capsule">
                                     <color key="baseBackgroundColor" name="main_green"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <segue destination="cDG-vm-VXv" kind="show" id="lf0-4K-JN3"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your coupon here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bqo-wB-SQt">
                                 <rect key="frame" x="16" y="669" width="316" height="34"/>
@@ -102,6 +105,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="54.198473282442748" y="-34.507042253521128"/>
+        </scene>
+        <!--CheckoutStoryboard-->
+        <scene sceneID="Bxv-gv-qwI">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CheckoutStoryboard" id="cDG-vm-VXv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="hcV-Uw-ZnU"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0vi-fn-EOo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="560" y="375"/>
         </scene>
     </scenes>
     <resources>
