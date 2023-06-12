@@ -269,6 +269,54 @@
             </objects>
             <point key="canvasLocation" x="46.564885496183201" y="-34.507042253521128"/>
         </scene>
+        <!--ReviewsVC-->
+        <scene sceneID="gId-VL-DNT">
+            <objects>
+                <viewController storyboardIdentifier="ID_Reviews" id="YWW-z8-KAB" customClass="Reviews_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qWD-8S-ht8">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7SG-aH-mEd">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <items>
+                                    <barButtonItem style="plain" id="LQZ-RH-LaU">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="qLS-HV-oqV">
+                                            <rect key="frame" x="16" y="3" width="50" height="38"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="back_btn_icon"/>
+                                        </button>
+                                    </barButtonItem>
+                                    <barButtonItem id="dBo-Zw-CjA"/>
+                                </items>
+                            </toolbar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SKx-j5-cke">
+                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="YWW-z8-KAB" id="Qon-Gj-5FY"/>
+                                    <outlet property="delegate" destination="YWW-z8-KAB" id="bdw-cf-bab"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="QfR-Gd-vE3"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="SKx-j5-cke" firstAttribute="top" secondItem="7SG-aH-mEd" secondAttribute="bottom" id="0U8-Le-gtH"/>
+                            <constraint firstItem="7SG-aH-mEd" firstAttribute="trailing" secondItem="QfR-Gd-vE3" secondAttribute="trailing" id="7DZ-RJ-GIT"/>
+                            <constraint firstItem="QfR-Gd-vE3" firstAttribute="bottom" secondItem="SKx-j5-cke" secondAttribute="bottom" id="D7W-Zi-KNq"/>
+                            <constraint firstItem="7SG-aH-mEd" firstAttribute="top" secondItem="QfR-Gd-vE3" secondAttribute="top" id="Zeq-eV-YPs"/>
+                            <constraint firstItem="SKx-j5-cke" firstAttribute="leading" secondItem="QfR-Gd-vE3" secondAttribute="leading" id="nlx-FP-b9H"/>
+                            <constraint firstItem="QfR-Gd-vE3" firstAttribute="trailing" secondItem="SKx-j5-cke" secondAttribute="trailing" id="twW-zI-79K"/>
+                            <constraint firstItem="7SG-aH-mEd" firstAttribute="leading" secondItem="QfR-Gd-vE3" secondAttribute="leading" id="yYB-9m-SNQ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mtx-it-Gfc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="922.90076335877859" y="-35.211267605633807"/>
+        </scene>
     </scenes>
     <designables>
         <designable name="cgs-kE-Mns">
@@ -276,6 +324,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="back_btn_icon" width="24" height="24"/>
         <image name="inactive" width="44" height="44"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

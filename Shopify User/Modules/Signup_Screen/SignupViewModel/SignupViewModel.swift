@@ -11,7 +11,8 @@ import RxCocoa
 import RxRelay
 
 class SignupViewModel{
-    
+    weak var delegate: ViewModelDelegate?
+
     let firstname = BehaviorRelay<String>(value: "")
     let lastname = BehaviorRelay<String>(value: "")
     let email = BehaviorRelay<String>(value: "")
@@ -61,8 +62,10 @@ class SignupViewModel{
             }
             if(isExist){
                 print("User Already exist")
+                self.delegate?.loginFailed()
             } else {
                 Network.postMethod(url:"https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json", model: model)
+                self.delegate?.didLoginSuccessfully()
                 print("reg done")
             }
         }

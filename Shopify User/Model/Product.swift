@@ -7,6 +7,14 @@
 
 import Foundation
 
+struct NadaProduct:Codable{
+    var id: Int?
+    var title: String?
+    var rate: Double?
+    var price: String?
+    var Pimage: String?
+}
+
 struct ProductResponse: Codable {
     var products: [Product]?
 }

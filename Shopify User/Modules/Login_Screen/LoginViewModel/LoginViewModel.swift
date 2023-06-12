@@ -67,6 +67,12 @@ class LoginViewModel{
                 defaults.set(model.first_name, forKey: Constants.KEY_USER_FIRSTNAME)
                 defaults.set(model.last_name, forKey: Constants.KEY_USER_LASTNAME)
                 defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
+                defaults.set(model.id, forKey: Constants.KEY_USER_ID)
+                if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) {
+                    print("Welcome back, \(customer_id)!")
+                } else {
+                    print("No username found.")
+                }
                 print("login done")
                 self.delegate?.didLoginSuccessfully()
             } else {

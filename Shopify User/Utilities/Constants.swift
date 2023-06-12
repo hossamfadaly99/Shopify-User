@@ -12,7 +12,9 @@ class Constants {
     static let SCREEN_ID_FAVOURITE = "ID_Favourie"
     static let SCREEN_ID_LOGIN = "ID_Login"
     static let SCREEN_ID_SIGNUP = "ID_Signup"
+    static let SCREEN_ID_REVIEWS = "ID_Reviews"
     static let SCREEN_ID_PRODUCTSDETAILS = "ID_Products_Details"
+    static let SCREEN_ID_HOME = "ID_Home"
     
     //Cell IDs
     static let CELL_ID_FAVOURITE = "Favourite_Cell"
@@ -21,6 +23,7 @@ class Constants {
     //User Defults
     static let KEY_USER_FIRSTNAME = "UserFirstName"
     static let KEY_USER_LASTNAME = "UserLastName"
+    static let KEY_USER_ID = "UserID"
     static let KEY_USER_STATE = "State"
     static let USER_STATE_LOGIN = "Login"
     static let USER_STATE_LOGOUT = "Logout"

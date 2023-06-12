@@ -16,10 +16,10 @@ class FavouritViewModel{
     init( dataManager: DataManagerProtocol!) {
         self.dataManager = dataManager
     }
-    func isExist(product:Product)->Bool{
-        return dataManager.isProductExist(myProduct: product)
-    }
-    func fetchDataFromDB()->[Product]?{
+//    func isExist(product:Product)->Bool{
+//        return dataManager.isProductExist(myProduct: NadaProduct)
+//    }
+    func fetchDataFromDB()->[NadaProduct]?{
        return
         dataManager.getStoredProducts()
     }

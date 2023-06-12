@@ -79,7 +79,24 @@ class Signup_VC: UIViewController {
             .disposed(by: disposeBag)
     }
 }
+
+extension Signup_VC:ViewModelDelegate{
+    func didLoginSuccessfully() {
+        print ("hi")
+            let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME) as! HomeViewController
+            nextViewController.modalPresentationStyle = .fullScreen
+            present(nextViewController, animated: true, completion: nil)
+
+//            navigationController?.pushViewController(nextViewController, animated: true)
+    }
     
+    func loginFailed() {
+        //toast or alert
+        print("failed to login")
+    }
+
+}
 extension UITextField{
     func addPaddingToTF(){
         let paddingView:UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: 8, height: 0))

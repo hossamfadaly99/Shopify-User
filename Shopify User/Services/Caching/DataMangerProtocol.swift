@@ -9,8 +9,8 @@
 import Foundation
 
 protocol DataManagerProtocol {
-    func insertFavProduct(myProduct: Product,productRate:Double) 
-    func getStoredProducts() -> [Product]
+    func insertFavProduct(myProduct: NadaProduct,productRate:Double)
+    func getStoredProducts() -> [NadaProduct]
     func deleteFavProduct(myProduct : Product)
-    func isProductExist(myProduct : Product) -> Bool
+    func isProductExist(myProduct : NadaProduct) -> Bool
 }

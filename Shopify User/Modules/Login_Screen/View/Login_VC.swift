@@ -66,8 +66,9 @@ class Login_VC: UIViewController {
 extension Login_VC:ViewModelDelegate{
     func didLoginSuccessfully() {
         print ("hi")
-            let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
+            let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME)
+       // as! HomeViewController
             nextViewController.modalPresentationStyle = .fullScreen
             present(nextViewController, animated: true, completion: nil)
 
