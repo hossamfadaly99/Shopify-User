@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -278,15 +279,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" name="main_green"/>
                     </tabBar>
                     <connections>
                         <segue destination="Y6W-OH-hqX" kind="relationship" relationship="viewControllers" id="s0q-YK-pzc"/>
                         <segue destination="PlE-GH-uVV" kind="relationship" relationship="viewControllers" id="JAC-YO-m83"/>
+                        <segue destination="xEn-bf-cXU" kind="relationship" relationship="viewControllers" id="Vl7-gf-Wlw"/>
+                        <segue destination="1i7-aD-T43" kind="relationship" relationship="viewControllers" id="SJX-tU-V8C"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vyE-Py-KGx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="927.48091603053433" y="-27.464788732394368"/>
+        </scene>
+        <!--CartStoryboard-->
+        <scene sceneID="CDy-VB-AE8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CartStoryboard" id="xEn-bf-cXU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="n8h-sF-MO1"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wE0-yd-kC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="473"/>
+        </scene>
+        <!--Favourite_SB-->
+        <scene sceneID="8XT-bf-CHz">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Favourite_SB" id="1i7-aD-T43" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="WL2-T8-UVv"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jVF-qm-eyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1282" y="465"/>
         </scene>
         <!--Item-->
         <scene sceneID="1p3-SI-LZB">
@@ -318,6 +342,9 @@
         <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="plus" catalog="system" width="128" height="113"/>
+        <namedColor name="main_green">
+            <color red="0.039215686274509803" green="0.58039215686274515" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

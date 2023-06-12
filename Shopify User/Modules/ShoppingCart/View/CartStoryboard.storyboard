@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cart View Controller-->
+        <!--Cart-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="CartViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
@@ -27,7 +27,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="KPW-Qg-yRm">
-                                <rect key="frame" x="16" y="178" width="361" height="475"/>
+                                <rect key="frame" x="16" y="178" width="361" height="426"/>
                                 <color key="backgroundColor" name="bg_gray"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="yFE-bB-IHE"/>
@@ -35,7 +35,7 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2wL-Ta-WUf">
-                                <rect key="frame" x="340" y="667.66666666666663" width="37" height="37"/>
+                                <rect key="frame" x="340" y="618.66666666666663" width="37" height="37"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" image="arrow.right" catalog="system" cornerStyle="capsule">
                                     <directionalEdgeInsets key="contentInsets" top="8" leading="8" bottom="8" trailing="8"/>
@@ -43,19 +43,19 @@
                                 </buttonConfiguration>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total amount:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tgc-Oh-sQ6">
-                                <rect key="frame" x="16" y="719" width="88" height="17"/>
+                                <rect key="frame" x="16" y="670" width="88" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" name="gray_9B"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vH-k7-XNA">
-                                <rect key="frame" x="377" y="727.66666666666663" width="0.0" height="0.0"/>
+                                <rect key="frame" x="377" y="678.66666666666663" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" name="black_22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JD9-vq-hdl">
-                                <rect key="frame" x="16" y="760" width="361" height="42"/>
+                                <rect key="frame" x="16" y="711" width="361" height="42"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="nxd-bP-mWQ"/>
                                 </constraints>
@@ -69,7 +69,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your coupon here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bqo-wB-SQt">
-                                <rect key="frame" x="16" y="669" width="316" height="34"/>
+                                <rect key="frame" x="16" y="620" width="316" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -97,6 +97,8 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="KPW-Qg-yRm" secondAttribute="trailing" constant="16" id="zuk-LQ-nEu"/>
                         </constraints>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Cart" image="shopping_cart" id="G1C-yE-bFN"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="KPW-Qg-yRm" id="Cw2-pe-bEh"/>
                         <outlet property="totalPriceLabel" destination="6vH-k7-XNA" id="YjY-TL-M8O"/>
@@ -119,6 +121,7 @@
     </scenes>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="shopping_cart" width="25" height="25"/>
         <namedColor name="bg_gray">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
