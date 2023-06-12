@@ -46,6 +46,11 @@ class Signup_VC: UIViewController {
     }
     
     @IBAction func navigate(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Login_SB", bundle: nil) // Replace "Main" with your storyboard name
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
+
     }
     
     func setupBindings() {

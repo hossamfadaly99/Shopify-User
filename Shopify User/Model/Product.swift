@@ -12,24 +12,24 @@ struct ProductResponse: Codable {
 }
 
 struct Product: Codable {
-    let id: Int?
-    let title: String?
-    let description: String?
-    let vendor: String?
-    let productType: String?
-    let createdAt: String?
-    let handle: String?
-    let updatedAt: String?
-    let publishedAt: String?
-    let templateSuffix: String?
-    let status: String?
-    let publishedScope: String?
-    let tags: String?
-    let adminGraphqlApiId: String?
-    let variants: [ProductVariant]?
-    let options: [ProductOption]?
-    let images: [ProductImage]?
-    let image: ProductImage?
+    var id: Int?
+    var title: String?
+    var description: String?
+    var vendor: String?
+    var productType: String?
+    var createdAt: String?
+    var handle: String?
+    var updatedAt: String?
+    var publishedAt: String?
+    var templateSuffix: String?
+    var status: String?
+    var publishedScope: String?
+    var tags: String?
+    var adminGraphqlApiId: String?
+    var variants: [ProductVariant]?
+    var options: [ProductOption]?
+    var images: [ProductImage]?
+    var image: ProductImage?
     
     private enum CodingKeys: String, CodingKey {
         case id, title, vendor, tags, variants, options, images, image
@@ -46,7 +46,7 @@ struct ProductVariant: Codable {
     let id: Int?
     let productId: Int?
     let title: String?
-    let price: String?
+    var price: String?
     let sku: String?
     let position: Int?
     let inventoryPolicy: String?
@@ -109,7 +109,7 @@ struct ProductImage: Codable {
     let alt: String?
     let width: Int?
     let height: Int?
-    let src: String?
+    var src: String?
     let variantIds: [Int]?
     let adminGraphqlApiId: String?
     

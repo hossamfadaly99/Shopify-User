@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -12,7 +13,7 @@
         <!--LoginVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController storyboardIdentifier="ID_Login" id="Y6W-OH-hqX" customClass="Login_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_Login" modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" customClass="Login_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc" customClass="LottieAnimationView" customModule="Lottie">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -111,14 +112,17 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                     </view>
+                    <navigationItem key="navigationItem" id="N0B-dv-oca"/>
                     <connections>
+                        <outlet property="backBtn" destination="8Tm-MM-S8T" id="J8j-b8-O5U"/>
                         <outlet property="email_TF" destination="T8e-aC-AeR" id="BiM-wI-T7l"/>
+                        <outlet property="loginBtn" destination="xK4-Yb-bTN" id="Fxp-zM-qbd"/>
                         <outlet property="password_TF" destination="QDY-xI-3Dq" id="8o2-GH-aqq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="100" y="-27.464788732394368"/>
+            <point key="canvasLocation" x="1026.7175572519084" y="-27.464788732394368"/>
         </scene>
     </scenes>
     <designables>

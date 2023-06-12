@@ -1,8 +1,8 @@
 //
-//  SignupViewModel.swift
+//  LoginViewModel.swift
 //  Shopify User
 //
-//  Created by MAC on 08/06/2023.
+//  Created by MAC on 09/06/2023.
 //
 
 import Foundation
@@ -10,10 +10,15 @@ import RxSwift
 import RxCocoa
 import RxRelay
 
-class SignupViewModel{
+protocol ViewModelDelegate:AnyObject {
+    func didLoginSuccessfully()
+    func loginFailed()
+}
+
+class LoginViewModel{
     
-    let firstname = BehaviorRelay<String>(value: "")
-    let lastname = BehaviorRelay<String>(value: "")
+    weak var delegate: ViewModelDelegate?
+    
     let email = BehaviorRelay<String>(value: "")
     let password = BehaviorRelay<String>(value: "")
     var bindDataToView:(([Customer]) -> ()) = { _ in }
@@ -24,12 +29,12 @@ class SignupViewModel{
     }
     
     func isValid(authManager:AuthenticationManager) -> Observable<Bool> {
-        return Observable.combineLatest(firstname.asObservable(),lastname.asObservable(), email.asObservable(), password.asObservable())
-            .map { firstname, lastname, email, password in
+        return Observable.combineLatest(email.asObservable(), password.asObservable())
+            .map { email, password in
                 
-                let isValid = authManager.isEmailValid(email) &&                authManager.isUsernameValid(firstname) && authManager.isUsernameValid(lastname) && authManager.isPasswordValid(password)
+                let isValid = authManager.isEmailValid(email) &&                 authManager.isPasswordValid(password)
                 
-                return !firstname.isEmpty && !lastname.isEmpty && !email.isEmpty && !password.isEmpty && isValid }
+                return !email.isEmpty && !password.isEmpty && isValid }
     }
 
     func getcustomers(){
@@ -40,30 +45,33 @@ class SignupViewModel{
       }
     }
     
-    func signup() {
+    func login() {
         print("signupFunc")
         getcustomers()
         var isExist = false
         var model = Customer()
-        model.first_name = self.firstname.value
-        model.last_name = self.lastname.value
         model.email = self.email.value
         model.tags = self.password.value
         bindDataToView =
-        { mycustomers in
+        { [self] mycustomers in
             print("jjjj")
             for customer in mycustomers {
-                
                 if (model.email == customer.email) && (model.tags == customer.tags){
+                    model = customer
                     isExist = true
                     break
                 }
             }
             if(isExist){
-                print("User Already exist")
+                let defaults = UserDefaults.standard
+                defaults.set(model.first_name, forKey: Constants.KEY_USER_FIRSTNAME)
+                defaults.set(model.last_name, forKey: Constants.KEY_USER_LASTNAME)
+                defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
+                print("login done")
+                self.delegate?.didLoginSuccessfully()
             } else {
-                Network.postMethod(url:"https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json", model: model)
-                print("reg done")
+                self.delegate?.loginFailed()
+                print("not registered")
             }
         }
     }
