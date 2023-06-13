@@ -12,6 +12,7 @@ target 'Shopify User' do
     pod 'Cosmos'
     pod 'RxSwift'
     pod 'RxCocoa'
+    pod 'DropDown'
 
   # Pods for Shopify User
 
