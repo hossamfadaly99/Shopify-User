@@ -34,7 +34,7 @@ class Login_VC: UIViewController {
         password_TF.layer.borderColor = UIColor.lightGray.cgColor
         
         backBtn.rx.tap.asObservable().subscribe(onNext: { _ in
-            let storyboard = UIStoryboard(name: "Signup_SB", bundle: nil) // Replace "Main" with your storyboard name
+            let storyboard = UIStoryboard(name: "Signup_SB", bundle: nil)
             let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SIGNUP) as! Signup_VC
             nextViewController.modalPresentationStyle = .fullScreen
             self.present(nextViewController, animated: true, completion: nil)
@@ -42,9 +42,7 @@ class Login_VC: UIViewController {
         setupBindings()
 
     }
-    
     func setupBindings() {
-        
         email_TF.rx.text.orEmpty
             .bind(to: viewModel.email)
             .disposed(by: disposeBag)
@@ -53,19 +51,30 @@ class Login_VC: UIViewController {
             .bind(to: viewModel.password)
             .disposed(by: disposeBag)
         
-        viewModel.isValid(authManager: authManager)
-            .bind(to: loginBtn.rx.isEnabled)
-            .disposed(by: disposeBag)
+       // viewModel.isValid(authManager: authManager)
+        //    .bind(to: loginBtn.rx.isEnabled)
+         //   .disposed(by: disposeBag)
                 
+//        loginBtn.rx.tap
+//            .subscribe(onNext: { [weak self] in self?.viewModel.login() })
+//            .disposed(by: disposeBag)
+//
         loginBtn.rx.tap
-            .subscribe(onNext: { [weak self] in self?.viewModel.login() })
-            .disposed(by: disposeBag)
+                .subscribe(onNext: { [weak self] in
+                    guard let self = self else { return }
+                    if self.email_TF.text?.isEmpty == true || self.password_TF.text?.isEmpty == true {
+                        AlertCreator.showAlert(title: "Alert", message: "Please fill in alh fields.", viewController: self)
+                    } else {
+                        self.viewModel.login()
+                    }
+                })
+                .disposed(by: disposeBag)
     }
-    
+
 }
+
 extension Login_VC:ViewModelDelegate{
     func didLoginSuccessfully() {
-        print ("hi")
         let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME)
         nextViewController.modalPresentationStyle = .fullScreen
@@ -73,8 +82,9 @@ extension Login_VC:ViewModelDelegate{
     }
     
     func loginFailed() {
-        //toast or alert
         print("failed to login")
+        AlertCreator.showAlert(title: "Alert", message: "Please enter right data.", viewController: self)
+        
     }
 
 }

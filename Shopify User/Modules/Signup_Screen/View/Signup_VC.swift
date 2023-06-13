@@ -20,9 +20,7 @@ class Signup_VC: UIViewController {
     var authManager = AuthenticationManager()
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("started")
         viewModel.delegate = self
-
         email_TF.addPaddingToTF()
         email_TF.layer.cornerRadius = 15.0
         email_TF.layer.borderWidth = 2.0
@@ -43,7 +41,6 @@ class Signup_VC: UIViewController {
         password_TF.layer.borderWidth = 2.0
         password_TF.layer.borderColor = UIColor.lightGray.cgColor
         
-        
         setupBindings()
     }
     
@@ -52,7 +49,7 @@ class Signup_VC: UIViewController {
         
     }
     @IBAction func navigate(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Login_SB", bundle: nil) // Replace "Main" with your storyboard name
+        let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
         nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: true, completion: nil)
@@ -76,15 +73,83 @@ class Signup_VC: UIViewController {
             .bind(to: viewModel.password)
             .disposed(by: disposeBag)
         
-        signupBtn.rx.tap
-            .subscribe(onNext: { [weak self] in self?.viewModel.signup() })
+        firstName_TF.rx.controlEvent([.editingDidEnd])
+            .subscribe(onNext: { [weak self] in
+                self?.validateText(textField: (self?.firstName_TF)!)
+            })
             .disposed(by: disposeBag)
+        
+        lastName_TF.rx.controlEvent([.editingDidEnd])
+            .subscribe(onNext: { [weak self] in
+                self?.validateText(textField:(self?.lastName_TF)!)
+            })
+            .disposed(by: disposeBag)
+        
+        email_TF.rx.controlEvent([.editingDidEnd])
+            .subscribe(onNext: { [weak self] in
+                self?.validateEmail()
+            })
+            .disposed(by: disposeBag)
+        
+        password_TF.rx.controlEvent([.editingDidEnd])
+            .subscribe(onNext: { [weak self] in
+                self?.validatePassword()
+            })
+            .disposed(by: disposeBag)
+        
+        signupBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else { return }
+                if self.email_TF.text?.isEmpty == true || self.password_TF.text?.isEmpty == true
+                    || self.firstName_TF.text?.isEmpty == true || self.lastName_TF.text?.isEmpty == true
+                {
+                    AlertCreator.showAlert(title: "Alert", message: "Please fill in alh fields.", viewController: self)
+                } else {
+                    if self.authManager.isUsernameValid(self.firstName_TF.text!) &&
+                        self.authManager.isUsernameValid(self.lastName_TF.text!) &&
+                        self.authManager.isPasswordValid(self.password_TF.text!) &&
+                        self.authManager.isEmailValid(self.email_TF.text!)
+                    {
+                        self.viewModel.signup()
+                    }else {
+                        AlertCreator.showAlert(title: "Unvalid Data Alert", message: "Please check your fields", viewController: self)
+                    }
+                }
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func validateText(textField :UITextField) {
+            guard let text = textField.text else { return }
+            
+        if authManager.isUsernameValid(text) {
+                textField.layer.borderColor = UIColor.lightGray.cgColor
+            } else {
+                textField.layer.borderColor = UIColor.red.cgColor
+            }
+    }
+    func validatePassword() {
+            guard let text = password_TF.text else { return }
+            
+        if authManager.isPasswordValid(text) {
+                password_TF.layer.borderColor = UIColor.lightGray.cgColor
+            } else {
+                password_TF.layer.borderColor = UIColor.red.cgColor
+            }
+    }
+    func validateEmail( ) {
+            guard let text = email_TF.text else { return }
+            
+        if authManager.isEmailValid(text) {
+                email_TF.layer.borderColor = UIColor.lightGray.cgColor
+            } else {
+                email_TF.layer.borderColor = UIColor.red.cgColor
+            }
     }
 }
 
 extension Signup_VC:ViewModelDelegate{
     func didLoginSuccessfully() {
-        print ("hi")
         let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME)
         nextViewController.modalPresentationStyle = .fullScreen
@@ -92,10 +157,11 @@ extension Signup_VC:ViewModelDelegate{
     }
     
     func loginFailed() {
-        //toast or alert
         print("failed to login")
+        AlertCreator.showAlert(title: "Alert", message: "Register Failed.", viewController: self)
     }
 
+   
 }
 extension UITextField{
     func addPaddingToTF(){

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		041A646C2A391FB3002BE516 /* AlertCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041A646B2A391FB3002BE516 /* AlertCreator.swift */; };
 		042D1DD12A349B1500633EF5 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1DD02A349B1500633EF5 /* DataManager.swift */; };
 		042D1DD32A34B65900633EF5 /* ProductsDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D1DD22A34B65900633EF5 /* ProductsDetailsViewModel.swift */; };
 		042F5A842A36EE5A00BEA9BB /* FavouriteViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042F5A832A36EE5A00BEA9BB /* FavouriteViewModel.swift */; };
@@ -111,6 +112,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		041A646B2A391FB3002BE516 /* AlertCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCreator.swift; sourceTree = "<group>"; };
 		042D1DD02A349B1500633EF5 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		042D1DD22A34B65900633EF5 /* ProductsDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsDetailsViewModel.swift; sourceTree = "<group>"; };
 		042F5A832A36EE5A00BEA9BB /* FavouriteViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouriteViewModel.swift; sourceTree = "<group>"; };
@@ -685,6 +687,7 @@
 				0484B7262A323FCD00304C32 /* AuthenticationManager.swift */,
 				9FE8433A2A2CD590004FE9D8 /* Utilities.swift */,
 				9F3F116C2A31E2680032BEE2 /* UrlCreator.swift */,
+				041A646B2A391FB3002BE516 /* AlertCreator.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -994,6 +997,7 @@
 				048813A22A2D228200B41CA4 /* ProductsViewController.swift in Sources */,
 				04E44F102A2C82C40006B9E4 /* HomeViewController.swift in Sources */,
 				9F598C8C2A27C58100C36A93 /* SceneDelegate.swift in Sources */,
+				041A646C2A391FB3002BE516 /* AlertCreator.swift in Sources */,
 				0459E5E12A33C382002E92D2 /* CategoryViewModel.swift in Sources */,
 				9F3F11712A31EB110032BEE2 /* NetworkManager.swift in Sources */,
 				9F598CC72A27E36A00C36A93 /* Home.swift in Sources */,

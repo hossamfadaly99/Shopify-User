@@ -25,4 +25,9 @@ class URLCreator {
         endPoint = "products"
         return baseURL + endPoint + jsontype + "?ids=" + id
     }
+    func getCustomersURL() -> String{
+        //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json
+        endPoint = "customers"
+        return baseURL + endPoint + jsontype
+    }
 }

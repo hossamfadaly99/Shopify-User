@@ -38,7 +38,7 @@ class LoginViewModel{
     }
 
     func getcustomers(){
-      NetworkManager(url: "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json").fetchData{
+        NetworkManager(url:URLCreator().getCustomersURL()).fetchData{
           (result: RootCustomer?) in
           guard let items = result?.customers else{ return }
           self.customersList = items
@@ -46,7 +46,6 @@ class LoginViewModel{
     }
     
     func login() {
-        print("signupFunc")
         getcustomers()
         var isExist = false
         var model = Customer()
@@ -54,7 +53,6 @@ class LoginViewModel{
         model.tags = self.password.value
         bindDataToView =
         { [self] mycustomers in
-            print("jjjj")
             for customer in mycustomers {
                 if (model.email == customer.email) && (model.tags == customer.tags){
                     model = customer

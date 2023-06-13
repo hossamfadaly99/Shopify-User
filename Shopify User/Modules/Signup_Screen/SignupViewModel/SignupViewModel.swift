@@ -25,17 +25,17 @@ class SignupViewModel{
       }
     }
     
-    func isValid(authManager:AuthenticationManager) -> Observable<Bool> {
-        return Observable.combineLatest(firstname.asObservable(),lastname.asObservable(), email.asObservable(), password.asObservable())
-            .map { firstname, lastname, email, password in
-                
-                let isValid = authManager.isEmailValid(email) &&                authManager.isUsernameValid(firstname) && authManager.isUsernameValid(lastname) && authManager.isPasswordValid(password)
-                
-                return !firstname.isEmpty && !lastname.isEmpty && !email.isEmpty && !password.isEmpty && isValid }
-    }
+//    func isValid(authManager:AuthenticationManager) -> Observable<Bool> {
+//        return Observable.combineLatest(firstname.asObservable(),lastname.asObservable(), email.asObservable(), password.asObservable())
+//            .map { firstname, lastname, email, password in
+//
+//                let isValid = authManager.isEmailValid(email) &&                authManager.isUsernameValid(firstname) && authManager.isUsernameValid(lastname) && authManager.isPasswordValid(password)
+//
+//                return !firstname.isEmpty && !lastname.isEmpty && !email.isEmpty && !password.isEmpty && isValid }
+//    }
 
     func getcustomers(){
-      NetworkManager(url: "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json").fetchData{
+        NetworkManager(url:URLCreator().getCustomersURL()).fetchData{
           (result: RootCustomer?) in
           guard let items = result?.customers else{ return }
           self.customersList = items
@@ -43,7 +43,6 @@ class SignupViewModel{
     }
     
     func signup() {
-        print("signupFunc")
         getcustomers()
         var isExist = false
         var model = Customer()
@@ -60,12 +59,12 @@ class SignupViewModel{
                 }
             }
             if(isExist){
-                print("User Already exist")
                 self.delegate?.loginFailed()
             } else {
-                Network.postMethod(url:"https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json", model: model)
+                Network.postMethod(url:URLCreator().getCustomersURL(), model: model)
                 { customer in
-                    print("Post Responce :\(customer?.customer) ")
+                    print("We Have responce")
+
                     let defaults = UserDefaults.standard
                     defaults.set(customer?.customer?.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
                     defaults.set(customer?.customer?.lastName, forKey: Constants.KEY_USER_LASTNAME)
