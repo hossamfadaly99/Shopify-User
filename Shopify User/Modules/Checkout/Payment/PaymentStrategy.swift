@@ -8,6 +8,5 @@
 import Foundation
 import PassKit
 protocol PaymentStrategy{
-  func pay(amount: Double) -> Bool
-  func getPaymentReq() -> PKPaymentRequest
+  func pay(amount: Double, vc: UIViewController) -> (Bool, String)
 }

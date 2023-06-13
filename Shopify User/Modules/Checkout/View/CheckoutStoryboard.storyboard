@@ -24,6 +24,9 @@
                                     <navigationItem title="Checkout" id="8yx-3X-deM">
                                         <barButtonItem key="leftBarButtonItem" image="back_btn_icon" id="27A-wc-Pol">
                                             <color key="tintColor" name="black_22"/>
+                                            <connections>
+                                                <action selector="backBtnClick:" destination="Y6W-OH-hqX" id="bry-XH-H2h"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -107,8 +110,8 @@
                                 <color key="textColor" name="gray_9B"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcr-x8-WOt">
-                                <rect key="frame" x="345.66666666666669" y="683.66666666666663" width="31.333333333333314" height="21.666666666666629"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcr-x8-WOt">
+                                <rect key="frame" x="343" y="683.66666666666663" width="34" height="21.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" name="black_22"/>
                                 <nil key="highlightedColor"/>
@@ -173,6 +176,11 @@
                             <constraint firstItem="Zcr-x8-WOt" firstAttribute="centerY" secondItem="rcF-Ru-zpq" secondAttribute="centerY" id="z14-P8-iol"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="deliveryAmountLabel" destination="Zcr-x8-WOt" id="v2J-6s-7QJ"/>
+                        <outlet property="orderAmountLabel" destination="r47-Zs-IGX" id="8vw-0e-HTF"/>
+                        <outlet property="summaryAmountLabel" destination="Woh-vj-l44" id="F9U-Nf-b2b"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -210,7 +218,7 @@
                                                         <constraint firstAttribute="height" constant="32" id="fOY-gx-acY"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-Qs-SGn">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="x8m-Qs-SGn">
                                                     <rect key="frame" x="317" y="3.3333333333333304" width="28" height="26.666666666666664"/>
                                                     <color key="tintColor" name="main_green"/>
                                                     <constraints>
@@ -250,7 +258,7 @@
                                                         <constraint firstAttribute="width" constant="32" id="v4C-uS-RcC"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gmE-2y-RhL">
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gmE-2y-RhL">
                                                     <rect key="frame" x="317" y="3.3333333333333304" width="28" height="26.666666666666664"/>
                                                     <color key="tintColor" name="main_green"/>
                                                     <constraints>
