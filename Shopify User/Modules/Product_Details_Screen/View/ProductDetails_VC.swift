@@ -16,45 +16,58 @@ class ProductDetails_VC: UIViewController {
     @IBOutlet weak var pageController: UIPageControl!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
-    @IBOutlet weak var productDescription: UILabel!
-    @IBOutlet weak var review1: UILabel!
-    @IBOutlet weak var review2: UILabel!
-    @IBOutlet weak var review3: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var addToFav: UIImageView!
-    var product_VC : Product!
+    @IBOutlet weak var size: UILabel!
+    
+    @IBOutlet weak var reviewsTable: UITableView!
+   
+    @IBOutlet weak var labeldes: UILabel!
+    
+    var ID_Product_VC : Int!
+    var product_VC :Product = Product()
     var photosArray:[ProductImage]?
     var timer:Timer?
     var currentIndex = 0
     let viewModel = ProductsDetailsViewModel()
     let dataManager = DataManager.sharedInstance
-    var reviewsList :[String] = []
+    var reviewsList :[(String,String,String)] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("view did load")
         let reviews = Reviews()
-        reviewsList = reviews.getReviews(numberOfReviews: 3)
-        photosArray = product_VC.images
-        pageController.numberOfPages = photosArray?.count ?? 0
-        myCollectionView.reloadData()
-        startTimer()
-        productName.text = product_VC.title
-        productPrice.text = product_VC.variants?[0].price
-        productDescription.text = product_VC.description
-        review1.text = reviewsList[0]
-        review2.text = reviewsList[1]
-        review3.text = reviewsList[2]
+        self.reviewsList = reviews.getReviews(numberOfReviews: 3)
+        reviewsTable.register(UINib(nibName: "reviewCell", bundle: nil), forCellReuseIdentifier: "reviewCell")
+        print("view did load")
+       // print(ID_Product_VC)
+        viewModel.bindDataToView = { product in
+            self.product_VC = product
+            self.photosArray = self.product_VC.images
+            self.pageController.numberOfPages = self.photosArray?.count ?? 0
+            self.startTimer()
+            self.productName.text = self.product_VC.title
+            self.productPrice.text = self.product_VC.variants?[0].price
+            
+            //self.size.text = self.product_VC.variants
+            self.labeldes.text = self.product_VC.description
+//            self.review1.text = self.reviewsList[0].0
+//            self.review2.text = self.reviewsList[1].0
+//            self.review3.text = self.reviewsList[2].0
+            self.myCollectionView.reloadData()
+            
+        }
+        let pid = String(ID_Product_VC)
+        viewModel.getProductData(url:URLCreator().getProductURL(id: pid) )
     }
     @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
-        //let p = NadaProduct(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
+        let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
         print("My p  :\(product_VC)")
-        let is_Exist = dataManager.isProductExist(myProduct: product_VC)
+        let is_Exist = dataManager.isProductExist(myProduct: coreData)
         if(is_Exist){
             print("product already saved")
         }else{
-            guard let myProduct = product_VC else{return}
-            print("product to be inserted\(myProduct)")
-            dataManager.insertFavProduct(myProduct: product_VC, productRate: 2.5)
+          //  guard let myProduct = coreData else{return}
+            print("product to be inserted\(coreData)")
+            dataManager.insertFavProduct(myProduct: coreData, productRate: 2.5)
             addToFav.image = UIImage(named: "activated")
             print("Product Saved !")
         }
@@ -67,9 +80,9 @@ class ProductDetails_VC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       // let p = NadaProduct(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
+        let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
         print("view will appear")
-        let is_Exist2 = dataManager.isProductExist(myProduct: product_VC)
+        let is_Exist2 = dataManager.isProductExist(myProduct: coreData)
         print(is_Exist2)
 
         if(is_Exist2){
@@ -90,8 +103,28 @@ class ProductDetails_VC: UIViewController {
     
     
 }
+
+extension ProductDetails_VC:UITableViewDelegate,UITableViewDataSource{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CGFloat(80)
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as!reviewCell
+        cell.reviewLabel.text = reviewsList[indexPath.row].0
+        cell.name.text = reviewsList[indexPath.row].1
+        cell.img?.layer.cornerRadius = (cell.img?.frame.size.width ?? 70) / 2
+        cell.img?.clipsToBounds = true
+        cell.img.image = UIImage(named: reviewsList[indexPath.row].2)
+        return cell
+    }
+    
+}
 extension ProductDetails_VC :
-   UITableViewDelegate
+   UICollectionViewDelegate
 ,UICollectionViewDataSource,
 UICollectionViewDelegateFlowLayout
 {
@@ -129,3 +162,4 @@ UICollectionViewDelegateFlowLayout
     }
   
 }
+

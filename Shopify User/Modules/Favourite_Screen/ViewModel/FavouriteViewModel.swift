@@ -11,7 +11,7 @@ class FavouritViewModel{
     
     var bindResultToView : (()->()) = {}
     
-    var favArray:[Product]!
+    var favArray:[ProductCoreData]!
     
     init( dataManager: DataManagerProtocol!) {
         self.dataManager = dataManager
@@ -19,12 +19,12 @@ class FavouritViewModel{
 //    func isExist(product:Product)->Bool{
 //        return dataManager.isProductExist(myProduct: NadaProduct)
 //    }
-    func fetchDataFromDB()->[Product]?{
+    func fetchDataFromDB()->[ProductCoreData]?{
        return
         dataManager.getStoredProducts()
     }
     
-    func deleteFromDB(product:Product){
+    func deleteFromDB(product:ProductCoreData){
         dataManager.deleteFavProduct(myProduct:product)
     }
 }

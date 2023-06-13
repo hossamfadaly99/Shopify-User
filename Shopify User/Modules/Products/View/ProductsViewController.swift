@@ -73,9 +73,9 @@ class ProductsViewController: UIViewController , UICollectionViewDelegate, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
-    let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
         //nextViewController.modalPresentationStyle = .fullScreen
-        nextViewController.product_VC = productsList[indexPath.row]
+        nextViewController.ID_Product_VC = productsList[indexPath.row].id
         present(nextViewController, animated: true, completion: nil)
         
     }

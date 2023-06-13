@@ -19,26 +19,26 @@ class DataManager : DataManagerProtocol{
         manager = appDelegate.persistentContainer.viewContext
     }
     
-    func insertFavProduct(myProduct: Product,productRate:Double) {
+    func insertFavProduct(myProduct: ProductCoreData,productRate:Double) {
         let entity = NSEntityDescription.entity(forEntityName: Constants.CD_ENTITY_NAME, in: manager)
         let product = NSManagedObject(entity: entity ?? NSEntityDescription(), insertInto: manager)
         product.setValue(myProduct.title, forKey: Constants.ENTITY_ROW_TITLE)
         product.setValue(myProduct.id, forKey: Constants.ENTITY_ROW_ID)
-        product.setValue(myProduct.variants?[0].price, forKey: Constants.ENTITY_ROW_PRICE)
+        product.setValue(myProduct.price, forKey: Constants.ENTITY_ROW_PRICE)
         product.setValue(productRate, forKey: Constants.ENTITY_ROW_RATE)
-        product.setValue(myProduct.image?.src, forKey: Constants.ENTITY_ROW_IMAGE)
+        product.setValue(myProduct.Pimage, forKey: Constants.ENTITY_ROW_IMAGE)
         do{
             try manager.save()
-            print("inserted product : \(product)")
+            print("inserted product : \(myProduct)")
             print("product Saved!")
         }catch let error{
             print(error.localizedDescription)
         }
     }
     
-    func getStoredProducts() -> [Product] {
+    func getStoredProducts() -> [ProductCoreData] {
         var productsArray : [CDProduct]?
-        var myProducts = [Product]()
+        var myProducts = [ProductCoreData]()
         let fetch = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
 
         do{
@@ -49,12 +49,12 @@ class DataManager : DataManagerProtocol{
             }
             
             for item in productsArray{
-                var myProduct = Product()
+                var myProduct = ProductCoreData()
                 myProduct.title = item.value(forKey: Constants.ENTITY_ROW_TITLE) as? String
                 myProduct.id = item.value(forKey: Constants.ENTITY_ROW_ID) as? Int
-                myProduct.variants?[0].price = item.value(forKey: Constants.ENTITY_ROW_PRICE) as? String
-                myProduct.image?.src = item.value(forKey: Constants.ENTITY_ROW_IMAGE) as? String
-                print("coraData Image :\(myProduct.image?.src)")
+                myProduct.price = item.value(forKey: Constants.ENTITY_ROW_PRICE) as? String
+                myProduct.Pimage = item.value(forKey: Constants.ENTITY_ROW_IMAGE) as? String
+                print("coraData Image :\(myProduct.Pimage)")
                 myProducts.append(myProduct)
                 print("Fetched products:\(myProduct)")
             }
@@ -67,7 +67,7 @@ class DataManager : DataManagerProtocol{
     }
 
     
-    func deleteFavProduct(myProduct: Product) {
+    func deleteFavProduct(myProduct: ProductCoreData) {
         let fetch = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
         fetch.predicate = NSPredicate(format: "title == %@", myProduct.title ?? "")
         do {
@@ -82,7 +82,7 @@ class DataManager : DataManagerProtocol{
         }
     }
     
-    func isProductExist(myProduct: Product) -> Bool {
+    func isProductExist(myProduct: ProductCoreData) -> Bool {
         let fetchRequest = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
         fetchRequest.predicate = NSPredicate(format: "title == %@", myProduct.title ?? "" )
         do {

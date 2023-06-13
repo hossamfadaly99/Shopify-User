@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct NadaProduct:Codable{
+struct ProductCoreData:Codable{
     var id: Int?
     var title: String?
     var rate: Double?

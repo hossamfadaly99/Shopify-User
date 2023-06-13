@@ -8,7 +8,10 @@
 import UIKit
 
 class reviewCell: UITableViewCell {
-
+    @IBOutlet weak var img: UIImageView!
+    
+    @IBOutlet weak var name: UILabel!
+  
     @IBOutlet weak var reviewLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

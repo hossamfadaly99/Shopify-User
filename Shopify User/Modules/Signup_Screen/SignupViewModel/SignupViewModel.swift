@@ -17,10 +17,6 @@ class SignupViewModel{
     let lastname = BehaviorRelay<String>(value: "")
     let email = BehaviorRelay<String>(value: "")
     let password = BehaviorRelay<String>(value: "")
-    let phone = BehaviorRelay<String>(value: "")
-    let zip = BehaviorRelay<String>(value: "")
-    let cityName = BehaviorRelay<String>(value: "")
-    let countryName = BehaviorRelay<String>(value: "")
     
     var bindDataToView:(([Customer]) -> ()) = { _ in }
     var customersList: [Customer] = []{
@@ -30,12 +26,12 @@ class SignupViewModel{
     }
     
     func isValid(authManager:AuthenticationManager) -> Observable<Bool> {
-        return Observable.combineLatest(firstname.asObservable(),lastname.asObservable(), email.asObservable(), password.asObservable(),phone.asObservable(),zip.asObservable(),cityName.asObservable(),countryName.asObservable())
-            .map { firstname, lastname, email, password, phone, zip ,city ,country in
+        return Observable.combineLatest(firstname.asObservable(),lastname.asObservable(), email.asObservable(), password.asObservable())
+            .map { firstname, lastname, email, password in
                 
                 let isValid = authManager.isEmailValid(email) &&                authManager.isUsernameValid(firstname) && authManager.isUsernameValid(lastname) && authManager.isPasswordValid(password)
                 
-                return !firstname.isEmpty && !lastname.isEmpty && !email.isEmpty && !password.isEmpty && !phone.isEmpty && !city.isEmpty && !zip.isEmpty && !country.isEmpty && isValid }
+                return !firstname.isEmpty && !lastname.isEmpty && !email.isEmpty && !password.isEmpty && isValid }
     }
 
     func getcustomers(){
@@ -57,9 +53,7 @@ class SignupViewModel{
         model.tags = self.password.value
         bindDataToView =
         { mycustomers in
-            //print("jjjj")
             for customer in mycustomers {
-                
                 if (model.email == customer.email) && (model.tags == customer.tags){
                     isExist = true
                     break
@@ -77,7 +71,8 @@ class SignupViewModel{
                     defaults.set(customer?.customer?.lastName, forKey: Constants.KEY_USER_LASTNAME)
                     defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
                     defaults.set(customer?.customer?.id, forKey: Constants.KEY_USER_ID)
-                    if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) {
+                    if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
+                    {
                         print("Welcome back, \(customer_id)!")
                     } else {
                         print("No username found.")

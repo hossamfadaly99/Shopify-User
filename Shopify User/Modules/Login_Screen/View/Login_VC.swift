@@ -66,13 +66,10 @@ class Login_VC: UIViewController {
 extension Login_VC:ViewModelDelegate{
     func didLoginSuccessfully() {
         print ("hi")
-            let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME)
-       // as! HomeViewController
-            nextViewController.modalPresentationStyle = .fullScreen
-            present(nextViewController, animated: true, completion: nil)
-
-//            navigationController?.pushViewController(nextViewController, animated: true)
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
     }
     
     func loginFailed() {

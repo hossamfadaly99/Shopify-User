@@ -10,7 +10,7 @@ import UIKit
 class Reviews_VC: UIViewController {
     @IBOutlet weak var myTableView: UITableView!
     let reviewManager = Reviews()
-    var reviewArray :[String] = []
+    var reviewArray :[(String,String,String)] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         myTableView.register(UINib(nibName: "reviewCell", bundle: nil), forCellReuseIdentifier: "reviewCell")
@@ -31,7 +31,9 @@ extension Reviews_VC:UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "reviewCell", for: indexPath) as!reviewCell
-        cell.reviewLabel.text = reviewArray[indexPath.row]
+        cell.reviewLabel.text = reviewArray[indexPath.row].0
+        cell.name.text = reviewArray[indexPath.row].1
+        cell.img.image = UIImage(named: reviewArray[indexPath.row].2)
         return cell
     }
 }
