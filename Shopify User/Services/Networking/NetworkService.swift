@@ -38,21 +38,19 @@ class MonicaNetworkManager : NetworkService{
 
   class Network {
     
-    static func postMethod(url:String, model:Customer) {
+    static func postMethod(url:String, model:Customer, handler: @escaping (PostCustomer?) -> Void) {
       let myHeaders : HTTPHeaders = [
         "Content-Type" : "application/json",
         "X-Shopify-Access-Token" : "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" ]
-      
         let myParams: Parameters =
         [
             "customer": [
-                "first_name": model.first_name,
-                "last_name" : model.last_name,
+                "first_name": model.firstName,
+                "last_name" : model.lastName,
                 "email": model.email,
                 "tags": model.tags
             ]
         ]
-      
       AF.request(url, method: .post, parameters:myParams , encoding: JSONEncoding.default, headers:myHeaders)
         .validate(statusCode: 200 ..< 299).responseData { response in
           switch response.result {
@@ -70,18 +68,18 @@ class MonicaNetworkManager : NetworkService{
                 print("Error: Could print JSON in String")
                 return
               }
-              
-              print(prettyPrintedJson)
-              
-              let result = try JSONDecoder().decode(Customer.self,from: data)
-              print("saved custumer: \(result)")
-              
+                print(prettyPrintedJson)
+                let result = try JSONDecoder().decode(PostCustomer.self,from: data)
+                handler(result)
+                print("saved custumer: \(result)")
             } catch {
-              print("Error: Trying to convert JSON data to string")
+                handler(nil)
+                print("Error: Trying to convert JSON data to string")
               return
             }
           case .failure(let error):
-            print(error)
+              handler(nil)
+              print(error)
           }
         }
     }

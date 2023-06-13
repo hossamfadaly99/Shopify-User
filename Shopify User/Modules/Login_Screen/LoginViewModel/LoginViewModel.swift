@@ -39,7 +39,7 @@ class LoginViewModel{
 
     func getcustomers(){
       NetworkManager(url: "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json").fetchData{
-          (result: MyCustomer?) in
+          (result: RootCustomer?) in
           guard let items = result?.customers else{ return }
           self.customersList = items
       }
@@ -64,8 +64,8 @@ class LoginViewModel{
             }
             if(isExist){
                 let defaults = UserDefaults.standard
-                defaults.set(model.first_name, forKey: Constants.KEY_USER_FIRSTNAME)
-                defaults.set(model.last_name, forKey: Constants.KEY_USER_LASTNAME)
+                defaults.set(model.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
+                defaults.set(model.lastName, forKey: Constants.KEY_USER_LASTNAME)
                 defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
                 defaults.set(model.id, forKey: Constants.KEY_USER_ID)
                 if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) {

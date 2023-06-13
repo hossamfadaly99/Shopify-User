@@ -51,32 +51,32 @@ struct Product: Codable {
 }
 
 struct ProductVariant: Codable {
-    let id: Int?
-    let productId: Int?
-    let title: String?
+    var id: Int?
+    var productId: Int?
+    var title: String?
     var price: String?
-    let sku: String?
-    let position: Int?
-    let inventoryPolicy: String?
-    let compareAtPrice: String?
-    let fulfillmentService: String?
-    let inventoryManagement: String?
-    let option1: String?
-    let option2: String?
-    let option3: String?
-    let createdAt: String?
-    let updatedAt: String?
-    let taxable: Bool?
-    let barcode: String?
-    let grams: Double?
-    let imageId: Int?
-    let weight: Double?
-    let weightUnit: String?
-    let inventoryItemId: Int?
-    let inventoryQuantity: Int?
-    let oldInventoryQuantity: Int?
-    let requiresShipping: Bool?
-    let adminGraphqlApiId: String?
+    var sku: String?
+    var position: Int?
+    var inventoryPolicy: String?
+    var compareAtPrice: String?
+    var fulfillmentService: String?
+    var inventoryManagement: String?
+    var option1: String?
+    var option2: String?
+    var option3: String?
+    var createdAt: String?
+    var updatedAt: String?
+    var taxable: Bool?
+    var barcode: String?
+    var grams: Double?
+    var imageId: Int?
+    var weight: Double?
+    var weightUnit: String?
+    var inventoryItemId: Int?
+    var inventoryQuantity: Int?
+    var oldInventoryQuantity: Int?
+    var requiresShipping: Bool?
+    var adminGraphqlApiId: String?
     
     private enum CodingKeys: String, CodingKey {
         case id, title, price, sku, position, taxable, barcode, grams, weight, imageId, weightUnit
@@ -96,11 +96,11 @@ struct ProductVariant: Codable {
 }
 
 struct ProductOption: Codable {
-    let id: Int?
-    let productId: Int?
-    let name: String?
-    let position: Int?
-    let values: [String]?
+    var id: Int?
+    var productId: Int?
+    var name: String?
+    var position: Int?
+    var values: [String]?
     
     private enum CodingKeys: String, CodingKey {
         case id, name, position, values
@@ -109,17 +109,17 @@ struct ProductOption: Codable {
 }
 
 struct ProductImage: Codable {
-    let id: Int?
-    let productId: Int?
-    let position: Int?
-    let createdAt: String?
-    let updatedAt: String?
-    let alt: String?
-    let width: Int?
-    let height: Int?
+    var id: Int?
+    var productId: Int?
+    var position: Int?
+    var createdAt: String?
+    var updatedAt: String?
+    var alt: String?
+    var width: Int?
+    var height: Int?
     var src: String?
-    let variantIds: [Int]?
-    let adminGraphqlApiId: String?
+    var variantIds: [Int]?
+    var adminGraphqlApiId: String?
     
     private enum CodingKeys: String, CodingKey {
         case id, position, alt, width, height, src, variantIds

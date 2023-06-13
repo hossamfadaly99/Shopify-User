@@ -46,7 +46,7 @@ class NetworkManager: NetworkServiceProtocol {
               compilitionHandler(result)
               print("Data Fetched Successfully...")
           } catch {
-              print("Error When Parseing data from API :  \(error.localizedDescription)")
+              print("fetch func Error When Parseing data from API :  \(error.localizedDescription)")
               print(String(describing: error))
 
               compilitionHandler(nil)
@@ -58,6 +58,45 @@ class NetworkManager: NetworkServiceProtocol {
     }
 
   }
+//    
+//    func customerfetchData(compilitionHandler: @escaping (RootCustomer?) -> Void)  {
+//      guard let finalURL = url else {
+//        print("url error")
+//        return
+//      }
+//
+//      let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
+//                                  "Content-Type" : "application/json"]
+//
+//      AF.request(finalURL, headers: headers).responseData{ response in
+//        switch response.result {
+//        case .success(let data):
+//          do {
+//              let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+//           // print(json)
+//          } catch {
+//              print("errorMsg")
+//          }
+//            do {
+//                print("The count of data is : \(data.count)")
+//
+//                let result = try JSONDecoder().decode(RootCustomer.self, from: data)
+//
+//                compilitionHandler(result)
+//                print("Data Fetched Successfully...")
+//            } catch {
+//                print("fetch func Error When Parseing data from API :  \(error.localizedDescription)")
+//                print(String(describing: error))
+//
+//                compilitionHandler(nil)
+//            }
+//        case .failure(let error):
+//            print("Error When Featch data from API :  \(error.localizedDescription)")
+//            compilitionHandler(nil)
+//        }
+//      }
+//
+//    }
 
   func uploadData<G: Codable, T: Codable>(object: G, compilitionHandler: @escaping (T?) -> Void) {
     guard let finalURL = url else {
@@ -85,7 +124,7 @@ class NetworkManager: NetworkServiceProtocol {
               compilitionHandler(result)
               print("Data Fetched Successfully...")
           } catch {
-              print("Error When Parseing data from API :  \(error.localizedDescription)")
+              print("error When Parseing data from API :  \(error.localizedDescription)")
               print(String(describing: error))
 
               compilitionHandler(nil)
