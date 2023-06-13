@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFJ-bd-Hpm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFJ-bd-Hpm">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -25,18 +26,18 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem image="magnifyingglass" catalog="system" id="e1O-Kh-CmN">
-                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <color key="tintColor" name="main_green"/>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="3cc-8q-33E"/>
                                     <barButtonItem title="Home" id="G25-u7-f2R">
-                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <color key="tintColor" name="main_green"/>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DzA-SC-0mr"/>
                                     <barButtonItem image="cart.fill" catalog="system" id="VMB-Kh-TMP">
-                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <color key="tintColor" name="main_green"/>
                                     </barButtonItem>
                                     <barButtonItem image="heart.fill" catalog="system" id="65e-bY-RUs">
-                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <color key="tintColor" name="main_green"/>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -44,21 +45,21 @@
                                 <rect key="frame" x="0.0" y="94" width="393" height="675"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HQ1-fK-JYi">
-                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="itemSize" width="381" height="139"/>
                                     <size key="headerReferenceSize" width="50" height="50"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="NUG-3m-aCJ">
-                                        <rect key="frame" x="90" y="50" width="213" height="138"/>
+                                        <rect key="frame" x="6" y="50" width="381" height="139"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="28G-uy-kcs">
-                                            <rect key="frame" x="0.0" y="0.0" width="213" height="138"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="381" height="139"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football" translatesAutoresizingMaskIntoConstraints="NO" id="kme-z2-5zJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="213" height="138"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="football" translatesAutoresizingMaskIntoConstraints="NO" id="kme-z2-5zJ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="381" height="139"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
@@ -68,7 +69,7 @@
                                                 <constraint firstAttribute="trailing" secondItem="kme-z2-5zJ" secondAttribute="trailing" id="n6J-l2-AqW"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="213" height="138"/>
+                                        <size key="customSize" width="381" height="139"/>
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SectionHeader" id="pNq-3Z-vFs" customClass="SectionHeader" customModule="Shopify_User" customModuleProvider="target">
@@ -112,7 +113,9 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="dWC-Ve-nHd" secondAttribute="bottom" id="uDy-oX-q4d"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="gmP-FS-Utf"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="gmP-FS-Utf">
+                        <color key="badgeColor" name="main_green"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" id="dLs-r1-W22"/>
                     <connections>
                         <outlet property="collectionView" destination="dWC-Ve-nHd" id="dCU-hf-NwZ"/>
@@ -120,7 +123,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1885" y="-27"/>
+            <point key="canvasLocation" x="1884.7328244274809" y="-27.464788732394368"/>
         </scene>
         <!--Category-->
         <scene sceneID="Dze-ww-t7a">
@@ -131,7 +134,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="sCN-SS-sxq">
-                                <rect key="frame" x="0.0" y="103" width="393" height="32"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="13"/>
                                 <segments>
                                     <segment title="Male"/>
                                     <segment title="Female"/>
@@ -143,7 +146,7 @@
                                 </connections>
                             </segmentedControl>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="qwN-Db-BaF">
-                                <rect key="frame" x="0.0" y="134" width="393" height="635"/>
+                                <rect key="frame" x="0.0" y="123" width="393" height="646"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="lt5-mJ-YF6">
                                     <size key="itemSize" width="128" height="128"/>
@@ -166,36 +169,34 @@
                                     <outlet property="delegate" destination="PlE-GH-uVV" id="IY3-td-kKK"/>
                                 </connections>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3LF-Qo-fpX">
-                                <rect key="frame" x="317" y="717" width="47" height="35"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noItemFound" id="cT2-8D-qQG">
+                                <rect key="frame" x="0.0" y="265" width="393" height="327"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" image="plus" catalog="system">
-                                    <color key="baseForegroundColor" systemColor="systemGreenColor"/>
-                                </buttonConfiguration>
-                            </button>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Ays-Tu-KWK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sCN-SS-sxq" firstAttribute="leading" secondItem="LFc-cX-IEI" secondAttribute="leading" id="3Fm-2G-TwX"/>
                             <constraint firstAttribute="trailing" secondItem="sCN-SS-sxq" secondAttribute="trailing" id="7Ky-4d-V0d"/>
+                            <constraint firstItem="cT2-8D-qQG" firstAttribute="top" secondItem="sCN-SS-sxq" secondAttribute="bottom" constant="150" id="IHF-P3-qRz"/>
                             <constraint firstItem="qwN-Db-BaF" firstAttribute="leading" secondItem="Ays-Tu-KWK" secondAttribute="leading" id="PST-84-5Du"/>
                             <constraint firstItem="Ays-Tu-KWK" firstAttribute="bottom" secondItem="qwN-Db-BaF" secondAttribute="bottom" id="XZC-up-Vj0"/>
                             <constraint firstItem="sCN-SS-sxq" firstAttribute="top" secondItem="Ays-Tu-KWK" secondAttribute="top" id="bUQ-6V-ShC"/>
                             <constraint firstItem="Ays-Tu-KWK" firstAttribute="trailing" secondItem="qwN-Db-BaF" secondAttribute="trailing" id="eoB-ys-udu"/>
-                            <constraint firstItem="qwN-Db-BaF" firstAttribute="top" secondItem="sCN-SS-sxq" secondAttribute="bottom" id="hEM-Oi-YIW"/>
+                            <constraint firstItem="qwN-Db-BaF" firstAttribute="top" secondItem="sCN-SS-sxq" secondAttribute="bottom" constant="8" id="hEM-Oi-YIW"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Category" image="list.bullet.clipboard" catalog="system" id="XRD-01-lx0"/>
                     <connections>
                         <outlet property="categorySegment" destination="sCN-SS-sxq" id="bKm-x6-8a5"/>
                         <outlet property="collectionView" destination="qwN-Db-BaF" id="BnL-So-lgE"/>
+                        <outlet property="noItemFoundImg" destination="cT2-8D-qQG" id="5Hk-QM-yKt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cob-4O-uoK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1831" y="703"/>
+            <point key="canvasLocation" x="1829.7709923664122" y="702.11267605633805"/>
         </scene>
         <!--Products View Controller-->
         <scene sceneID="qoz-Gq-TOp">
@@ -212,19 +213,19 @@
                                 </constraints>
                                 <items>
                                     <barButtonItem image="arrow.left" catalog="system" id="vkm-bA-5bJ">
-                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <color key="tintColor" name="main_green"/>
                                         <connections>
                                             <action selector="backBtn:" destination="IgK-7z-38D" id="WCG-I7-vmH"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MEE-XK-hIg"/>
                                     <barButtonItem image="line.3.horizontal.decrease.circle" catalog="system" id="sb0-bN-co6">
-                                        <color key="tintColor" systemColor="systemGreenColor"/>
+                                        <color key="tintColor" name="main_green"/>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2Do-nz-cOp">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="111" width="393" height="707"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6yf-ea-mmw">
                                     <size key="itemSize" width="128" height="128"/>
@@ -247,6 +248,10 @@
                                     <outlet property="delegate" destination="IgK-7z-38D" id="BYg-gK-Wko"/>
                                 </connections>
                             </collectionView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="noItemFound" id="VaT-he-Lfc">
+                                <rect key="frame" x="0.0" y="246" width="393" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WF0-3f-8es"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -256,17 +261,19 @@
                             <constraint firstItem="ibN-vz-rJJ" firstAttribute="trailing" secondItem="WF0-3f-8es" secondAttribute="trailing" id="Pvx-Wo-7pT"/>
                             <constraint firstItem="WF0-3f-8es" firstAttribute="bottom" secondItem="2Do-nz-cOp" secondAttribute="bottom" id="UjY-1K-7TR"/>
                             <constraint firstItem="2Do-nz-cOp" firstAttribute="leading" secondItem="WF0-3f-8es" secondAttribute="leading" id="ZPM-cg-RYo"/>
-                            <constraint firstItem="2Do-nz-cOp" firstAttribute="top" secondItem="ibN-vz-rJJ" secondAttribute="bottom" id="lgV-wC-95H"/>
+                            <constraint firstItem="VaT-he-Lfc" firstAttribute="top" secondItem="ibN-vz-rJJ" secondAttribute="bottom" constant="150" id="keF-D5-Wal"/>
+                            <constraint firstItem="2Do-nz-cOp" firstAttribute="top" secondItem="ibN-vz-rJJ" secondAttribute="bottom" constant="8" id="lgV-wC-95H"/>
                             <constraint firstItem="ibN-vz-rJJ" firstAttribute="top" secondItem="WF0-3f-8es" secondAttribute="top" id="v4I-BK-f4v"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="2Do-nz-cOp" id="jHG-2A-F5J"/>
+                        <outlet property="noItemFoundImg" destination="VaT-he-Lfc" id="ULs-XJ-1j5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UFi-kI-oLS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3028" y="-39"/>
+            <point key="canvasLocation" x="3026.7175572519081" y="-39.436619718309863"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="nx6-xA-mHZ">
@@ -340,15 +347,12 @@
         <image name="line.3.horizontal.decrease.circle" catalog="system" width="128" height="123"/>
         <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
-        <image name="plus" catalog="system" width="128" height="113"/>
+        <image name="noItemFound" width="276" height="182"/>
         <namedColor name="main_green">
             <color red="0.039215686274509803" green="0.58039215686274515" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

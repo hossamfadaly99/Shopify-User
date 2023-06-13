@@ -12,11 +12,13 @@ class ProductsViewController: UIViewController , UICollectionViewDelegate, UICol
     var productsList : [Product] = []
     var viewModel : GetProductsViewModel?
     var brandName : String?
+    @IBOutlet weak var noItemFoundImg: UIImageView!
     @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+        noItemFoundImg.isHidden = true
         let  nib = UINib(nibName: "ProductCustomViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "product")
         // Do any additional setup after loading the view.
@@ -29,6 +31,11 @@ class ProductsViewController: UIViewController , UICollectionViewDelegate, UICol
             [weak self] in
             DispatchQueue.main.async {
                 self?.productsList = self?.viewModel?.result ?? []
+                if self?.productsList.count == 0{
+                    self?.noItemFoundImg.isHidden = false
+                }else{
+                    self?.noItemFoundImg.isHidden = true
+                }
                 self?.collectionView.reloadData()
             }
         }
@@ -63,7 +70,7 @@ class ProductsViewController: UIViewController , UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width/3-10), height: 200)
+        return CGSize(width: (UIScreen.main.bounds.width/2-10), height: 200)
     }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
