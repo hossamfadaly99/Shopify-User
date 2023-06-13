@@ -19,7 +19,7 @@ class FavouritViewModel{
 //    func isExist(product:Product)->Bool{
 //        return dataManager.isProductExist(myProduct: NadaProduct)
 //    }
-    func fetchDataFromDB()->[NadaProduct]?{
+    func fetchDataFromDB()->[Product]?{
        return
         dataManager.getStoredProducts()
     }

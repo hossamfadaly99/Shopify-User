@@ -11,7 +11,7 @@ class Favourite_VC: UIViewController {
 
     @IBOutlet weak var mytable: UITableView!
     var viewModel : FavouritViewModel!
-    var favourieList:[NadaProduct]?=[]
+    var favourieList:[Product]?=[]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,9 +42,9 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "Favourite_Cell", for: indexPath) as!Favourite_Cell
         //cell.imgBG.layer.cornerRadius = 9
        // print(favourieList?[indexPath.row].images?[0].src)
-        cell.pImg?.kf.setImage(with:URL(string: favourieList?[indexPath.row].Pimage ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB3yIFU8Dx5iqV6fxsmrxvzkDYbgQaxIp19SRyR9DQ&s") )
+        cell.pImg?.kf.setImage(with:URL(string: favourieList?[indexPath.row].image?.src ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB3yIFU8Dx5iqV6fxsmrxvzkDYbgQaxIp19SRyR9DQ&s") )
         cell.pName.text = favourieList?[indexPath.row].title ?? "Title"
-        cell.pPrice.text = favourieList?[indexPath.row].price ?? "00.00"
+        cell.pPrice.text = favourieList?[indexPath.row].variants?[0].price ?? "00.00"
         
         return cell
     }
@@ -53,10 +53,10 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
         return CGFloat(120)
     }
     
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
-//        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
-//        nextViewController.product_VC = favourieList?[indexPath.row]
-//        present(nextViewController, animated: true, completion: nil)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
+        nextViewController.product_VC = favourieList?[indexPath.row]
+        present(nextViewController, animated: true, completion: nil)
+    }
 }

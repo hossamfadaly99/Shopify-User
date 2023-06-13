@@ -19,14 +19,14 @@ class DataManager : DataManagerProtocol{
         manager = appDelegate.persistentContainer.viewContext
     }
     
-    func insertFavProduct(myProduct: NadaProduct,productRate:Double) {
+    func insertFavProduct(myProduct: Product,productRate:Double) {
         let entity = NSEntityDescription.entity(forEntityName: Constants.CD_ENTITY_NAME, in: manager)
         let product = NSManagedObject(entity: entity ?? NSEntityDescription(), insertInto: manager)
         product.setValue(myProduct.title, forKey: Constants.ENTITY_ROW_TITLE)
         product.setValue(myProduct.id, forKey: Constants.ENTITY_ROW_ID)
-        product.setValue(myProduct.price, forKey: Constants.ENTITY_ROW_PRICE)
+        product.setValue(myProduct.variants?[0].price, forKey: Constants.ENTITY_ROW_PRICE)
         product.setValue(productRate, forKey: Constants.ENTITY_ROW_RATE)
-        product.setValue(myProduct.Pimage, forKey: Constants.ENTITY_ROW_IMAGE)
+        product.setValue(myProduct.image?.src, forKey: Constants.ENTITY_ROW_IMAGE)
         do{
             try manager.save()
             print("inserted product : \(product)")
@@ -36,9 +36,9 @@ class DataManager : DataManagerProtocol{
         }
     }
     
-    func getStoredProducts() -> [NadaProduct] {
+    func getStoredProducts() -> [Product] {
         var productsArray : [CDProduct]?
-        var myProducts = [NadaProduct]()
+        var myProducts = [Product]()
         let fetch = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
 
         do{
@@ -49,12 +49,12 @@ class DataManager : DataManagerProtocol{
             }
             
             for item in productsArray{
-                var myProduct = NadaProduct()
+                var myProduct = Product()
                 myProduct.title = item.value(forKey: Constants.ENTITY_ROW_TITLE) as? String
                 myProduct.id = item.value(forKey: Constants.ENTITY_ROW_ID) as? Int
-                myProduct.price = item.value(forKey: Constants.ENTITY_ROW_PRICE) as? String
-                myProduct.Pimage = item.value(forKey: Constants.ENTITY_ROW_IMAGE) as? String
-                print("coraData Image :\(myProduct.Pimage)")
+                myProduct.variants?[0].price = item.value(forKey: Constants.ENTITY_ROW_PRICE) as? String
+                myProduct.image?.src = item.value(forKey: Constants.ENTITY_ROW_IMAGE) as? String
+                print("coraData Image :\(myProduct.image?.src)")
                 myProducts.append(myProduct)
                 print("Fetched products:\(myProduct)")
             }
@@ -82,7 +82,7 @@ class DataManager : DataManagerProtocol{
         }
     }
     
-    func isProductExist(myProduct: NadaProduct) -> Bool {
+    func isProductExist(myProduct: Product) -> Bool {
         let fetchRequest = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
         fetchRequest.predicate = NSPredicate(format: "title == %@", myProduct.title ?? "" )
         do {

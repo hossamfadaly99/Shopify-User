@@ -46,15 +46,15 @@ class ProductDetails_VC: UIViewController {
         review3.text = reviewsList[2]
     }
     @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
-        let p = NadaProduct(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
-        print("My p  :\(p )")
-        let is_Exist = dataManager.isProductExist(myProduct: p)
+        //let p = NadaProduct(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
+        print("My p  :\(product_VC)")
+        let is_Exist = dataManager.isProductExist(myProduct: product_VC)
         if(is_Exist){
             print("product already saved")
         }else{
             guard let myProduct = product_VC else{return}
             print("product to be inserted\(myProduct)")
-            dataManager.insertFavProduct(myProduct: p, productRate: 2.5)
+            dataManager.insertFavProduct(myProduct: product_VC, productRate: 2.5)
             addToFav.image = UIImage(named: "activated")
             print("Product Saved !")
         }
@@ -67,9 +67,9 @@ class ProductDetails_VC: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        let p = NadaProduct(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
+       // let p = NadaProduct(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
         print("view will appear")
-        let is_Exist2 = dataManager.isProductExist(myProduct: p)
+        let is_Exist2 = dataManager.isProductExist(myProduct: product_VC)
         print(is_Exist2)
 
         if(is_Exist2){
