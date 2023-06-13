@@ -8,12 +8,13 @@
 import Foundation
 import PassKit
 class CashPaymentStrategy: PaymentStrategy{
-  func getPaymentReq() -> PKPaymentRequest {
-    return PKPaymentRequest()
-  }
 
-  func pay(amount: Double) -> Bool {
-    print("done payment with cash")
-    return true
+  func pay(amount: Double, vc: UIViewController) -> (Bool, String) {
+    if amount < 30_000 {
+      return (true, "Purchased successfully")
+    } else {
+      return (false, "The total amount is so big, please choose another payment method!")
+    }
+
   }
 }

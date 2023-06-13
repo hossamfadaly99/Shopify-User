@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 class PaymentContext{
   private var paymentStrategy: PaymentStrategy
 
@@ -17,7 +18,7 @@ class PaymentContext{
     self.paymentStrategy = paymentStrategy
   }
 
-  func makePayment(amount: Double) -> Bool{
-    return paymentStrategy.pay(amount: amount)
+  func makePayment(amount: Double, vc: UIViewController) -> (Bool, String){
+    return paymentStrategy.pay(amount: amount, vc: vc)
   }
 }
