@@ -44,18 +44,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Rp-Rh-Evy">
-                                <rect key="frame" x="62" y="715" width="132" height="94"/>
+                                <rect key="frame" x="114" y="715" width="132" height="94"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="Google">
                                     <backgroundConfiguration key="background"/>
                                 </buttonConfiguration>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BVJ-yo-ACy">
-                                <rect key="frame" x="202" y="715" width="132" height="94"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="Facebook"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Tm-MM-S8T">
                                 <rect key="frame" x="3" y="60" width="41" height="35"/>
@@ -124,11 +118,7 @@
             <point key="canvasLocation" x="1026.7175572519084" y="-27.464788732394368"/>
         </scene>
     </scenes>
-    <designables>
-        <designable name="5EZ-qb-Rvc"/>
-    </designables>
     <resources>
-        <image name="Facebook" width="108" height="80"/>
         <image name="Google" width="108" height="80"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>
         <systemColor name="systemGray6Color">

@@ -79,7 +79,7 @@
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cgs-kE-Mns" customClass="CosmosView" customModule="Cosmos">
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cgs-kE-Mns" customClass="CosmosView" customModule="Cosmos">
                                                         <rect key="frame" x="8" y="104.33333333333331" width="124" height="24"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
@@ -316,6 +316,11 @@
             <point key="canvasLocation" x="922.90076335877859" y="-35.211267605633807"/>
         </scene>
     </scenes>
+    <designables>
+        <designable name="cgs-kE-Mns">
+            <size key="intrinsicContentSize" width="124" height="24"/>
+        </designable>
+    </designables>
     <resources>
         <image name="back_btn_icon" width="24" height="24"/>
         <image name="inactive" width="44" height="44"/>
