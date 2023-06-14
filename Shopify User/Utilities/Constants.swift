@@ -29,6 +29,9 @@ class Constants {
     static let USER_STATE_LOGIN = "Login"
     static let USER_STATE_LOGOUT = "Logout"
     
+    //Search
+    static let HOME_SEARCH_ICON = "homeSearchIcon"
+
     //CoreData
     static let CD_ENTITY_NAME = "CDProduct"
     static let ENTITY_ROW_TITLE = "title"
@@ -41,4 +44,5 @@ let adminTokenKey = "X-Shopify-Access-Token"
 let adminTokenValue = "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"
 let dummyMail = "ddd@hhh.com"
 let secondDummyMail = "egnition_sample_81@egnition.com"
+
 

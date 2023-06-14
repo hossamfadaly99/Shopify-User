@@ -21,20 +21,19 @@
                                 <color key="backgroundColor" red="0.44653505090000001" green="0.40814262629999998" blue="0.39414164419999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <items>
                                     <barButtonItem style="plain" id="rsw-el-nkK">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ThK-lx-pUO">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="ThK-lx-pUO">
                                             <rect key="frame" x="16" y="3" width="48" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" image="back_btn_icon"/>
                                         </button>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" id="H0B-h1-865">
-                                        <textField key="customView" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="search" textAlignment="natural" minimumFontSize="17" clearButtonMode="always" id="ry2-Bq-0vD">
-                                            <rect key="frame" x="84" y="5" width="292" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <textInputTraits key="textInputTraits" spellCheckingType="yes"/>
-                                        </textField>
+                                    <barButtonItem style="plain" id="dVU-Zw-QpV">
+                                        <searchBar key="customView" contentMode="redraw" text="" id="j1H-XD-V0b">
+                                            <rect key="frame" x="69" y="0.0" width="307" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                            <textInputTraits key="textInputTraits"/>
+                                        </searchBar>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -42,8 +41,7 @@
                                 <rect key="frame" x="8" y="105" width="377" height="713"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
-                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="9cD-SQ-J7G"/>
-                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="tdz-kq-a1c"/>
+                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="4nI-gd-D79"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -59,6 +57,11 @@
                             <constraint firstItem="vdk-os-y4h" firstAttribute="top" secondItem="fiH-cY-zRl" secondAttribute="bottom" constant="2" id="ezE-wq-xJQ"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backBtn" destination="ThK-lx-pUO" id="vc2-4C-re8"/>
+                        <outlet property="myTable" destination="vdk-os-y4h" id="NaY-VJ-FEK"/>
+                        <outlet property="searchBar" destination="j1H-XD-V0b" id="Rp4-RP-cNv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
