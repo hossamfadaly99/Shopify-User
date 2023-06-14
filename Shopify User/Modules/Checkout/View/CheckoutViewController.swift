@@ -9,43 +9,82 @@ import UIKit
 import PassKit
 
 class CheckoutViewController: UIViewController {
+  var amount: Double = 0.0
+  var totalAmountWithDelivery: Double {
+    return amount + 20.0
+  }
 
-    override func viewDidLoad() {
+  @IBOutlet weak var summaryAmountLabel: UILabel!
+  @IBOutlet weak var deliveryAmountLabel: UILabel!
+  @IBOutlet weak var orderAmountLabel: UILabel!
+
+  override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+      self.navigationController?.navigationBar.isHidden = true
+    orderAmountLabel.text = "$\(amount)"
+    deliveryAmountLabel.text = "$20"
+    summaryAmountLabel.text = "$\(totalAmountWithDelivery)"
     }
-    
 
-    /*
-    // MARK: - Navigation
+  @IBAction func backBtnClick(_ sender: Any) {
+    self.navigationController?.popViewController(animated: true)
+  }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+  func isCardMethodSelected() -> Bool {
+    if let cardImage = self.view.viewWithTag(2) as? UIImageView{
+      if !cardImage.isHidden{
+        return true
+      }else {
+        return false
+      }
     }
-    */
-
+    return false
+  }
   @IBAction func purchaseBtnClick(_ sender: Any) {
-      // TODO: make it
-    var paymentStrategy = ApplePaymentStrategy()
-    let paymentcontext = PaymentContext(pyamentStrategy: paymentStrategy)
 
-    //paymentcontext.setPaymentStrategy(paymentStrategy: <#T##PaymentStrategy#>)
+    let paymentcontext = PaymentContext(pyamentStrategy: CashPaymentStrategy())
 
-    let controller = PKPaymentAuthorizationViewController(paymentRequest: paymentStrategy.getPaymentReq())
-    controller?.delegate = self
-    present(controller!, animated: true){
-      print("presented")
+    if isCardMethodSelected(){
+      paymentcontext.setPaymentStrategy(paymentStrategy: ApplePaymentStrategy())
     }
 
-    let isPaymentSuccessful = paymentcontext.makePayment(amount: 135.0)
+    let isPaymentSuccessful = paymentcontext.makePayment(amount: self.totalAmountWithDelivery, vc: self)
 
-    if isPaymentSuccessful {
-      print("successful purshase")
+    if isPaymentSuccessful.0 {
+      if isPaymentSuccessful.1 == "Purchased successfully"{
+        //handle server side to make it order
+        self.navigationController?.popViewController(animated: true)
+
+      }
+      print(isPaymentSuccessful.1)
     } else {
-      print("failed purshase")
+      print(isPaymentSuccessful.1)
     }
   }
+}
+
+
+
+
+extension CheckoutViewController: PKPaymentAuthorizationViewControllerDelegate{
+  func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
+    controller.dismiss(animated: true)
+  }
+
+  func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
+
+    let paymentAuthorizationResult = PKPaymentAuthorizationResult(status: .success, errors: nil)
+    completion(paymentAuthorizationResult)
+    if paymentAuthorizationResult.status == .failure{
+      print("failed")
+    }
+
+    if paymentAuthorizationResult.status == .success{
+      print("success")
+      controller.dismiss(animated: true)
+      self.navigationController?.popViewController(animated: true)
+      // TODO: make the cart empty and send server req for payment
+    }
+  }
+
 }
