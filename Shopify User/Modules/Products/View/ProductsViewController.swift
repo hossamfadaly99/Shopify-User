@@ -7,20 +7,20 @@
 
 import UIKit
 
-class ProductsViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ProductsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
     
     var productsList : [Product] = []
     var viewModel : GetProductsViewModel?
     var brandName : String?
     @IBOutlet weak var noItemFoundImg: UIImageView!
-    @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         noItemFoundImg.isHidden = true
-        let  nib = UINib(nibName: "ProductCustomViewCell", bundle: nil)
-        collectionView.register(nib, forCellWithReuseIdentifier: "product")
+        let  nib = UINib(nibName: "ProductsTableCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "product")
         // Do any additional setup after loading the view.
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -36,30 +36,26 @@ class ProductsViewController: UIViewController , UICollectionViewDelegate, UICol
                 }else{
                     self?.noItemFoundImg.isHidden = true
                 }
-                self?.collectionView.reloadData()
+                self?.tableView.reloadData()
             }
         }
         viewModel?.getItems()
     }
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return productsList.count
     }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "product", for: indexPath) as! ProductCustomViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath) as! ProductsTableCell
         
-        cell.productLabelName.text = productsList[indexPath.row].variants?[0].price
+        cell.productPriceLabel.text = (productsList[indexPath.row].variants?[0].price ?? "0") + " EGP"
+        cell.productTitleLabel.text = productsList[indexPath.row].title
+        cell.productTypeLabel.text = productsList[indexPath.row].productType
         
         let url = URL(string: productsList[indexPath.row].image?.src ?? "")
         
         cell.productImg.kf.setImage(
             with: url,
-            placeholder: UIImage(named: "team1"),
-            options: [
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
+            placeholder: UIImage(named: "team1"))
         
         cell.productImg.frame = cell.productImg.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
         cell.productImg.layer.borderWidth = 2
@@ -68,24 +64,20 @@ class ProductsViewController: UIViewController , UICollectionViewDelegate, UICol
         
         return cell
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (UIScreen.main.bounds.width/2-10), height: 200)
-    }
     @IBAction func backBtn(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
     // -----try to show product details
-    
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
     let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
         //nextViewController.modalPresentationStyle = .fullScreen
         nextViewController.product_VC = productsList[indexPath.row]
         present(nextViewController, animated: true, completion: nil)
-        
     }
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
 
 }
