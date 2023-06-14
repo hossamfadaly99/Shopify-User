@@ -13,7 +13,7 @@ target 'Shopify User' do
     pod 'RxSwift'
     pod 'RxCocoa'
     pod 'DropDown'
-
+	pod'GoogleSignIn'
   # Pods for Shopify User
 
   target 'Shopify UserTests' do
