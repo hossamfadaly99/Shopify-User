@@ -15,6 +15,7 @@ class Constants {
     static let SCREEN_ID_REVIEWS = "ID_Reviews"
     static let SCREEN_ID_PRODUCTSDETAILS = "ID_Products_Details"
     static let SCREEN_ID_HOME = "ID_Home"
+    static let SCREEN_ID_SEARCH = "ID_Search"
     
     //Cell IDs
     static let CELL_ID_FAVOURITE = "Favourite_Cell"

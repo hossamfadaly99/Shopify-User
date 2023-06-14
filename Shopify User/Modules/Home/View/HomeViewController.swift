@@ -43,6 +43,15 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         // Do any additional setup after loading the view.
         startTimer()
     }
+    
+    @IBAction func navigateSearch(_ sender: Any) {
+        print("jjjjjjjj")
+         let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
+         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH)
+         nextViewController.modalPresentationStyle = .fullScreen
+         present(nextViewController, animated: true, completion: nil)
+    }
+    
     func registerCells(){
         var  nib = UINib(nibName: "AdsCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "ads")
