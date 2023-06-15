@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Favorites-->
+        <!--FavouriteVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="ID_Favourie" id="Y6W-OH-hqX" customClass="Favourite_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
@@ -17,37 +16,53 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xY7-PC-KQH">
-                                <rect key="frame" x="0.0" y="59" width="393" height="710"/>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="200" verticalHuggingPriority="240" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XN3-JZ-zGq">
+                                <rect key="frame" x="10" y="59" width="48" height="38"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="back_btn_icon"/>
+                                <connections>
+                                    <action selector="backBtn:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="6CR-EY-lCL"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="232" verticalCompressionResistancePriority="760" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xY7-PC-KQH">
+                                <rect key="frame" x="5" y="99" width="393" height="738"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Y6W-OH-hqX" id="9xk-Pz-aQu"/>
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="6lk-mM-Bot"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="247" verticalCompressionResistancePriority="773" image="noItemFound" translatesAutoresizingMaskIntoConstraints="NO" id="XQa-zx-yVk">
+                                <rect key="frame" x="58.666666666666657" y="335" width="276" height="182"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="xY7-PC-KQH" secondAttribute="bottom" id="LQT-uZ-etw"/>
-                            <constraint firstItem="xY7-PC-KQH" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="bG5-mM-hJ4"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="xY7-PC-KQH" secondAttribute="trailing" id="cmq-UB-OQy"/>
-                            <constraint firstItem="xY7-PC-KQH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="n7v-62-YrS"/>
+                            <constraint firstItem="XQa-zx-yVk" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="AHd-ly-d7P"/>
+                            <constraint firstItem="xY7-PC-KQH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="5" id="MZw-cx-gTM"/>
+                            <constraint firstItem="XQa-zx-yVk" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Nyq-WI-4aH"/>
+                            <constraint firstItem="xY7-PC-KQH" firstAttribute="top" secondItem="XN3-JZ-zGq" secondAttribute="bottom" constant="2" id="Xfk-Gh-jzL"/>
+                            <constraint firstAttribute="bottom" secondItem="xY7-PC-KQH" secondAttribute="bottom" constant="15" id="bqM-Iq-FuZ"/>
+                            <constraint firstItem="XN3-JZ-zGq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="gLf-S2-4Vx"/>
+                            <constraint firstItem="xY7-PC-KQH" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="5" id="hgM-tA-1Ic"/>
+                            <constraint firstItem="XN3-JZ-zGq" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="teF-yV-fsI"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favorites" image="favorites_icon" id="ylc-3b-6GE"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mytable" destination="xY7-PC-KQH" id="CXR-LW-wz9"/>
+                        <outlet property="noItemImg" destination="XQa-zx-yVk" id="BDT-N2-q5d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="112" y="-34"/>
+            <point key="canvasLocation" x="110.68702290076335" y="-34.507042253521128"/>
         </scene>
     </scenes>
     <resources>
-        <image name="favorites_icon" width="30" height="30"/>
+        <image name="back_btn_icon" width="24" height="24"/>
+        <image name="noItemFound" width="276" height="182"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -64,6 +64,7 @@ class SignupViewModel{
                     let defaults = UserDefaults.standard
                     defaults.set(customer?.customer?.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
                     defaults.set(customer?.customer?.lastName, forKey: Constants.KEY_USER_LASTNAME)
+                    defaults.set(customer?.customer?.email, forKey: Constants.KEY_USER_EMAIL)
                     defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
                     defaults.set(customer?.customer?.id, forKey: Constants.KEY_USER_ID)
                     if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
@@ -106,6 +107,8 @@ class SignupViewModel{
                     let defaults = UserDefaults.standard
                     defaults.set(customer?.customer?.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
                     defaults.set(customer?.customer?.lastName, forKey: Constants.KEY_USER_LASTNAME)
+                    defaults.set(customer?.customer?.email, forKey: Constants.KEY_USER_EMAIL)
+
                     defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
                     defaults.set(customer?.customer?.id, forKey: Constants.KEY_USER_ID)
                     if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)

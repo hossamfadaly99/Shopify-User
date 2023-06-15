@@ -9,8 +9,8 @@ class SearchViewModel {
     var allProducts: [Product] = [] // Array to store all products
     
     // Fetch products and populate the allProducts array
-    func getProducts() {
-        NetworkManager(url: URLCreator().getProductsURL()).fetchData { [weak self] (result: ProductResponse?) in
+    func getProducts(urlString : String) {
+        NetworkManager(url: urlString).fetchData { [weak self] (result: ProductResponse?) in
             guard let items = result?.products else { return }
             self?.allProducts = items
             
@@ -23,7 +23,7 @@ class SearchViewModel {
 
     private func filterProducts() -> [Product] {
         guard !searchQuery.isEmpty else {
-            return allProducts // Return all products if search query is empty
+            return allProducts // Return all products if search text is empty
         }
         
         let filteredProducts = allProducts.filter { product in

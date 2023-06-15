@@ -17,7 +17,8 @@ class Search_VC: UIViewController {
     
     var viewModel = SearchViewModel()
     let disposeBag = DisposeBag()
-
+    var brand :String = ""
+    
     var destination :String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,10 +28,22 @@ class Search_VC: UIViewController {
         backBtn.rx.tap.asObservable().subscribe(onNext: { _ in
             self.dismiss(animated: true,completion: nil)
         }).disposed(by: disposeBag)
-        setUpTableView()
-        getData()
+        switch destination {
+        case Constants.HOME_SEARCH_ICON :
+          //  var brandProducts = viewModel.products.asObserver()
+            setUpTableView()
+            getData(url: URLCreator().getProductsURL())
+            searchFunctionality()
+            break
+        case Constants.SCREEN_ID_BRAND :
+            setUpTableView()
+            getData(url: URLCreator().getBrandProducts(brandName: brand))
+            searchFunctionality()
+            break
+        default:
+            print("")
+        }
         
-        searchFunctionality()
     }
     func searchFunctionality() {
         searchBar.rx.text.orEmpty
@@ -65,41 +78,30 @@ class Search_VC: UIViewController {
         
             }
             .disposed(by: disposeBag)
+        
+        myTable.rx.modelSelected(Product.self)
+                .subscribe(onNext: { [weak self] product in
+                    // Handle selected item here
+                    self?.handleItemSelected(product)
+                })
+                .disposed(by: disposeBag)
     }
+    func handleItemSelected(_ product: Product) {
+      //  print("Selected product: \(product.title)")
+        let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
+        //nextViewController.modalPresentationStyle = .fullScreen
+        nextViewController.ID_Product_VC = product.id
+        present(nextViewController, animated: true, completion: nil)    }
     
-    func getData(){
-        viewModel.getProducts()
+    func getData(url:String){
+        viewModel.getProducts(urlString: url)
     }
 }
+
+
 extension Search_VC :UITableViewDelegate{
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath) as! ProductsTableCell
-//
-//        cell.productPriceLabel.text = (productsList[indexPath.row].variants?[0].price ?? "0") + " EGP"
-//        cell.productTitleLabel.text = productsList[indexPath.row].title
-//        cell.productTypeLabel.text = productsList[indexPath.row].productType
-//
-//        let url = URL(string: productsList[indexPath.row].image?.src ?? "")
-//
-//        cell.productImg.kf.setImage(
-//            with: url,
-//            placeholder: UIImage(named: "team1"))
-//
-//        cell.productImg.frame = cell.productImg.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
-//        cell.productImg.layer.borderWidth = 2
-//        cell.productImg.layer.borderColor = UIColor.black.cgColor
-//        cell.productImg.layer.cornerRadius = 25
-//
-//        return cell
-//    }
-//
-//
 }

@@ -23,6 +23,20 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
         tableView.register(nib, forCellReuseIdentifier: "product")
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func navigateToSearch(_ sender: Any) {
+        print("Navigate to search_VC From Products")
+         let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
+         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
+         nextViewController.destination = Constants.SCREEN_ID_BRAND
+         nextViewController.brand = brandName ?? ""
+        
+         nextViewController.modalPresentationStyle = .fullScreen
+         present(nextViewController, animated: true, completion: nil)
+    }
+    
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         viewModel=GetProductsViewModel()
         viewModel?.brandName = brandName
@@ -41,6 +55,9 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
         }
         viewModel?.getItems()
     }
+    
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return productsList.count
     }

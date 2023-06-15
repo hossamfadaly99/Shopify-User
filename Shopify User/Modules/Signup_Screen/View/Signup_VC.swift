@@ -59,20 +59,12 @@ class Signup_VC: UIViewController {
                    return
                 }
                  print("hi gooogle")
-//            guard let user = signInResult?.user,
-//                       let idToken = user.idToken else {
-//                print("error id token is ")
-//                return
-//            }
-//            print("id token is \(idToken)")
             guard let signInResult = signInResult else { return }
-            
                 let user = signInResult.user
                 let emailAddress = user.profile?.email
                 let fullName = user.profile?.name
                 let givenName = user.profile?.givenName
                 let familyName = user.profile?.familyName
-            //print(emailAddress )
 
               //  let profilePicUrl = user.profile?.imageURL(withDimension: 320)
             var googleUser = Customer()
@@ -81,9 +73,9 @@ class Signup_VC: UIViewController {
             googleUser.email = emailAddress ?? ""
             googleUser.tags = emailAddress ?? ""
             self.viewModel.googleSignUp(model: googleUser)
-                // Use the credential to authenticate with Firebase
           }
     }
+    
     @IBAction func navigate(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
@@ -141,7 +133,7 @@ class Signup_VC: UIViewController {
                 {
                     AlertCreator.showAlert(title: "Alert", message: "Please fill in alh fields.", viewController: self)
                 } else {
-                    if self.authManager.isUsernameValid(self.firstName_TF.text!) &&
+                    if  self.authManager.isUsernameValid(self.firstName_TF.text!) &&
                         self.authManager.isUsernameValid(self.lastName_TF.text!) &&
                         self.authManager.isPasswordValid(self.password_TF.text!) &&
                         self.authManager.isEmailValid(self.email_TF.text!)

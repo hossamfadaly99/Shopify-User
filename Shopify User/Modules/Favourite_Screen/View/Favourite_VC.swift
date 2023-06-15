@@ -8,13 +8,15 @@
 import UIKit
 
 class Favourite_VC: UIViewController {
-
+    @IBOutlet weak var noItemImg: UIImageView!
+    
     @IBOutlet weak var mytable: UITableView!
     var viewModel : FavouritViewModel!
     var favourieList:[ProductCoreData]?=[]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+      //  self.navigationController?.navigationBar.isHidden = true
         mytable.register(UINib(nibName: Constants.CELL_ID_FAVOURITE, bundle: nil), forCellReuseIdentifier: Constants.CELL_ID_FAVOURITE)
         viewModel = FavouritViewModel(dataManager: DataManager.sharedInstance)
         favourieList = viewModel?.fetchDataFromDB() ?? []
@@ -25,11 +27,16 @@ class Favourite_VC: UIViewController {
         if(viewModel?.fetchDataFromDB()?.count != 0){
             favourieList = viewModel?.fetchDataFromDB() ?? []
             mytable.reloadData()
-         //Lottie.isHidden = true
+            noItemImg.isHidden = true
         }else{
-            //Lottie.isHidden = false
+            noItemImg.isHidden = false
         }
      }
+    
+    @IBAction func backBtn(_ sender: Any) {
+        print("'baccccck'")
+        dismiss(animated: true ,completion: nil)
+    }
     
 }
 extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{

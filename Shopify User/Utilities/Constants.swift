@@ -15,6 +15,7 @@ class Constants {
     static let SCREEN_ID_REVIEWS = "ID_Reviews"
     static let SCREEN_ID_PRODUCTSDETAILS = "ID_Products_Details"
     static let SCREEN_ID_HOME = "ID_Home"
+    static let SCREEN_ID_BRAND = "ID_Brand"
     static let SCREEN_ID_SEARCH = "ID_Search"
     
     //Cell IDs
@@ -24,6 +25,7 @@ class Constants {
     //User Defults
     static let KEY_USER_FIRSTNAME = "UserFirstName"
     static let KEY_USER_LASTNAME = "UserLastName"
+    static let KEY_USER_EMAIL = "UserEmail"
     static let KEY_USER_ID = "UserID"
     static let KEY_USER_STATE = "State"
     static let USER_STATE_LOGIN = "Login"

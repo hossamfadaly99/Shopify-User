@@ -34,4 +34,9 @@ class URLCreator {
         endPoint = "customers"
         return baseURL + endPoint + jsontype
     }
+    func getBrandProducts(brandName:String) -> String{
+        //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json?vendor=ADIDAS
+        endPoint = "products"
+        return baseURL + endPoint + jsontype + "?vendor=" + brandName
+    }
 }

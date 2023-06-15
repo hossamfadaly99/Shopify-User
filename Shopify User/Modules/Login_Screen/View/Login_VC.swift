@@ -7,6 +7,9 @@
 
 import UIKit
 import RxSwift
+import GoogleSignIn
+import Firebase
+
 
 class Login_VC: UIViewController {
     @IBOutlet weak var email_TF: UITextField!
@@ -42,6 +45,37 @@ class Login_VC: UIViewController {
         setupBindings()
 
     }
+    
+    @IBAction func googleLogin(_ sender: Any) {
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+                
+        let config = GIDConfiguration(clientID: clientID)
+
+        GIDSignIn.sharedInstance.configuration = config
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            if error != nil {
+                print("error gooogle\(error?.localizedDescription)")
+
+                   return
+                }
+                 print("hi gooogle")
+            guard let signInResult = signInResult else { return }
+                let user = signInResult.user
+                let emailAddress = user.profile?.email
+                let fullName = user.profile?.name
+                let givenName = user.profile?.givenName
+                let familyName = user.profile?.familyName
+
+              //  let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            var googleUser = Customer()
+            googleUser.firstName = fullName ?? ""
+            googleUser.lastName = familyName ?? ""
+            googleUser.email = emailAddress ?? ""
+            googleUser.tags = emailAddress ?? ""
+            self.viewModel.googleLogin( myModel: googleUser)
+          }
+    }
+    
     func setupBindings() {
         email_TF.rx.text.orEmpty
             .bind(to: viewModel.email)
@@ -50,15 +84,7 @@ class Login_VC: UIViewController {
         password_TF.rx.text.orEmpty
             .bind(to: viewModel.password)
             .disposed(by: disposeBag)
-        
-       // viewModel.isValid(authManager: authManager)
-        //    .bind(to: loginBtn.rx.isEnabled)
-         //   .disposed(by: disposeBag)
-                
-//        loginBtn.rx.tap
-//            .subscribe(onNext: { [weak self] in self?.viewModel.login() })
-//            .disposed(by: disposeBag)
-//
+
         loginBtn.rx.tap
                 .subscribe(onNext: { [weak self] in
                     guard let self = self else { return }
@@ -84,7 +110,6 @@ extension Login_VC:ViewModelDelegate{
     func loginFailed() {
         print("failed to login")
         AlertCreator.showAlert(title: "Alert", message: "Please enter right data.", viewController: self)
-        
     }
 
 }

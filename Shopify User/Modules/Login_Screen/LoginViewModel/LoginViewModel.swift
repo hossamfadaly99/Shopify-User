@@ -45,6 +45,40 @@ class LoginViewModel{
       }
     }
     
+    func googleLogin(myModel:Customer){
+        getcustomers()
+        var isExist = false
+        var model = myModel
+        bindDataToView =
+        { [self] mycustomers in
+            for customer in mycustomers {
+                if (model.email == customer.email) && (model.tags == customer.tags){
+                    model = customer
+                    isExist = true
+                    break
+                }
+            }
+            if(isExist){
+                let defaults = UserDefaults.standard
+                defaults.set(model.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
+                defaults.set(model.lastName, forKey: Constants.KEY_USER_LASTNAME)
+                defaults.set(model.email, forKey: Constants.KEY_USER_EMAIL)
+                defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
+                defaults.set(model.id, forKey: Constants.KEY_USER_ID)
+                if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) {
+                    print("Welcome back, \(customer_id)!")
+                } else {
+                    print("No username found.")
+                }
+                print("login done")
+                self.delegate?.didLoginSuccessfully()
+            } else {
+                self.delegate?.loginFailed()
+                print("not registered")
+            }
+        }
+    }
+    
     func login() {
         getcustomers()
         var isExist = false
@@ -64,6 +98,8 @@ class LoginViewModel{
                 let defaults = UserDefaults.standard
                 defaults.set(model.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
                 defaults.set(model.lastName, forKey: Constants.KEY_USER_LASTNAME)
+                defaults.set(model.email, forKey: Constants.KEY_USER_EMAIL)
+
                 defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
                 defaults.set(model.id, forKey: Constants.KEY_USER_ID)
                 if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) {

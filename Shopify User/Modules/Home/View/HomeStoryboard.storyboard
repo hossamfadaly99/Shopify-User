@@ -10,6 +10,16 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Favourite_SB-->
+        <scene sceneID="hit-az-T9k">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Favourite_SB" id="6GI-0m-CyA" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="P6d-wC-tvP"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6FI-qA-ATb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2392" y="-297"/>
+        </scene>
         <!--Home-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
@@ -45,8 +55,18 @@
                                     <barButtonItem image="cart.fill" catalog="system" id="VMB-Kh-TMP">
                                         <color key="tintColor" name="main_green"/>
                                     </barButtonItem>
-                                    <barButtonItem image="heart.fill" catalog="system" id="65e-bY-RUs">
-                                        <color key="tintColor" name="main_green"/>
+                                    <barButtonItem style="plain" id="RJF-9A-QNc">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="pBM-0I-BH7">
+                                            <rect key="frame" x="319" y="5" width="58" height="34.333333333333336"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system">
+                                                <color key="baseForegroundColor" name="main_green"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="navigateToFavourite:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="pR1-JX-As6"/>
+                                            </connections>
+                                        </button>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -249,6 +269,19 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MEE-XK-hIg"/>
+                                    <barButtonItem title="Item" style="plain" id="xcf-Vs-JJR">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="RsB-Uj-uYa">
+                                            <rect key="frame" x="271.33333333333331" y="5" width="75" height="34.333333333333336"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" image="magnifyingglass" catalog="system">
+                                                <color key="baseForegroundColor" name="main_green"/>
+                                            </buttonConfiguration>
+                                            <connections>
+                                                <action selector="navigateToSearch:" destination="IgK-7z-38D" eventType="touchUpInside" id="qG4-4X-bxL"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
                                     <barButtonItem image="line.3.horizontal.decrease.circle" catalog="system" id="sb0-bN-co6">
                                         <color key="tintColor" name="main_green"/>
                                     </barButtonItem>
@@ -332,10 +365,10 @@
             </objects>
             <point key="canvasLocation" x="900" y="473"/>
         </scene>
-        <!--Favourite_SB-->
+        <!--Profile-->
         <scene sceneID="8XT-bf-CHz">
             <objects>
-                <viewControllerPlaceholder storyboardName="Favourite_SB" id="1i7-aD-T43" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Profile" id="1i7-aD-T43" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="WL2-T8-UVv"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jVF-qm-eyn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
