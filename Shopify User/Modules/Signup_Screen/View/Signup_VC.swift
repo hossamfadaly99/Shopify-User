@@ -7,6 +7,8 @@
 
 import UIKit
 import RxSwift
+import GoogleSignIn
+import Firebase
 
 class Signup_VC: UIViewController {
     @IBOutlet weak var email_TF: UITextField!
@@ -45,8 +47,42 @@ class Signup_VC: UIViewController {
     }
     
     @IBAction func signWithGoogle(_ sender: Any) {
-        
-        
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+                
+        let config = GIDConfiguration(clientID: clientID)
+
+        GIDSignIn.sharedInstance.configuration = config
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            if error != nil {
+                print("error gooogle\(error?.localizedDescription)")
+
+                   return
+                }
+                 print("hi gooogle")
+//            guard let user = signInResult?.user,
+//                       let idToken = user.idToken else {
+//                print("error id token is ")
+//                return
+//            }
+//            print("id token is \(idToken)")
+            guard let signInResult = signInResult else { return }
+            
+                let user = signInResult.user
+                let emailAddress = user.profile?.email
+                let fullName = user.profile?.name
+                let givenName = user.profile?.givenName
+                let familyName = user.profile?.familyName
+            //print(emailAddress )
+
+              //  let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            var googleUser = Customer()
+            googleUser.firstName = fullName ?? ""
+            googleUser.lastName = familyName ?? ""
+            googleUser.email = emailAddress ?? ""
+            googleUser.tags = emailAddress ?? ""
+            self.viewModel.googleSignUp(model: googleUser)
+                // Use the credential to authenticate with Firebase
+          }
     }
     @IBAction func navigate(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
@@ -158,7 +194,7 @@ extension Signup_VC:ViewModelDelegate{
     
     func loginFailed() {
         print("failed to login")
-        AlertCreator.showAlert(title: "Alert", message: "Register Failed.", viewController: self)
+        AlertCreator.showAlert(title: "Alert", message: "Register Failed. Already User Exist.", viewController: self)
     }
 
    

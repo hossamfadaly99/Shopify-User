@@ -32,8 +32,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func checkLoginState() -> Bool {
-        let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_FIRSTNAME)
-        if let customer_id = customer_id, customer_id.isEmpty {
+        let name =
+        UserDefaults.standard.string(forKey: Constants.KEY_USER_FIRSTNAME)
+        guard let name = name else {return false}
+        if name == "guest" {
             return false
         }else{
             return true
