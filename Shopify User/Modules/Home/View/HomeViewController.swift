@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import Reachability
 
 class HomeViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -37,8 +38,8 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         
         self.collectionView.setCollectionViewLayout(layout, animated: true)
         
-//        pageControl.numberOfPages = adsImagesArray.count
-//        print(adsImagesArray.count)
+        //        pageControl.numberOfPages = adsImagesArray.count
+        //        print(adsImagesArray.count)
         
         // Do any additional setup after loading the view.
         startTimer()
@@ -60,22 +61,39 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
             currentCellIndex = 0
         }
         collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
-       // pageControl.currentPage = currentCellIndex
+        // pageControl.currentPage = currentCellIndex
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel=HomeViewModel()
+        let indicator = UIActivityIndicatorView(style: .large)
+                indicator.center = self.view.center
+                self.view.addSubview(indicator)
+        indicator.color = UIColor(named: "main_green")
+                indicator.startAnimating()
         
-        viewModel?.bindResultToViewController={
-            [weak self] in
-            DispatchQueue.main.async {
-                self?.brandsList = self?.viewModel?.result ?? []
-                self?.collectionView.reloadData()
+        let reachability = try! Reachability()
+        if reachability.connection != .unavailable{
+            viewModel=HomeViewModel()
+            
+            viewModel?.bindResultToViewController={
+                [weak self] in
+                DispatchQueue.main.async {
+                    self?.brandsList = self?.viewModel?.result ?? []
+                    indicator.stopAnimating()
+                    self?.collectionView.reloadData()
+                }
             }
+            viewModel?.getItems()
         }
-        viewModel?.getItems()
+        else{
+            let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+            indicator.stopAnimating()
+            self.present(alert, animated: true, completion: nil)
+            
+        }
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0{
@@ -161,14 +179,12 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
         if let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "SectionHeader", for: indexPath) as? SectionHeader{
             if indexPath.section == 0{
                 sectionHeader.sectionHeaderLabel.text = "Ads"
             }else{
                 sectionHeader.sectionHeaderLabel.text = "Brands"
             }
-            
             return sectionHeader
         }
         return UICollectionReusableView()
@@ -176,10 +192,18 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Click")
         if indexPath.section == 1{
-            
-            let products = self.storyboard?.instantiateViewController(withIdentifier: "products") as! ProductsViewController
-            products.brandName = brandsList[indexPath.row].rules?[0].condition
-            self.navigationController?.pushViewController(products, animated: true)
+            let reachability = try! Reachability()
+            if reachability.connection != .unavailable{
+                let products = self.storyboard?.instantiateViewController(withIdentifier: "products") as! ProductsViewController
+                products.brandName = brandsList[indexPath.row].rules?[0].condition
+                self.navigationController?.pushViewController(products, animated: true)
+            }
+            else{
+                let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }

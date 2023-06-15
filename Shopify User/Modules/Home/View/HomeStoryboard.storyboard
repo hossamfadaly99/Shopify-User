@@ -240,13 +240,16 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="MEE-XK-hIg"/>
-                                    <barButtonItem image="line.3.horizontal.decrease.circle" catalog="system" id="sb0-bN-co6">
+                                    <barButtonItem image="line.3.horizontal.decrease.circle" catalog="system" width="67.666666666666686" id="sb0-bN-co6">
                                         <color key="tintColor" name="main_green"/>
+                                        <connections>
+                                            <action selector="filterBtnAcion:" destination="IgK-7z-38D" id="uns-JF-EOi"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="klf-5W-0yp">
-                                <rect key="frame" x="8" y="111" width="377" height="707"/>
+                                <rect key="frame" x="8" y="178" width="377" height="640"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="6yI-J5-HPw">
@@ -267,6 +270,19 @@
                                 <rect key="frame" x="0.0" y="246" width="393" height="400"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="WbG-YY-i19">
+                                <rect key="frame" x="6" y="140" width="381" height="31"/>
+                                <color key="minimumTrackTintColor" name="main_green"/>
+                                <connections>
+                                    <action selector="priceSlider:" destination="IgK-7z-38D" eventType="valueChanged" id="UlU-7B-zSf"/>
+                                </connections>
+                            </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vLO-0Q-8t3">
+                                <rect key="frame" x="8" y="111" width="377" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="WF0-3f-8es"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -274,15 +290,24 @@
                             <constraint firstItem="klf-5W-0yp" firstAttribute="leading" secondItem="WF0-3f-8es" secondAttribute="leading" constant="8" id="107-Tt-CYd"/>
                             <constraint firstItem="WF0-3f-8es" firstAttribute="trailing" secondItem="klf-5W-0yp" secondAttribute="trailing" constant="8" id="5wm-H7-uvr"/>
                             <constraint firstItem="ibN-vz-rJJ" firstAttribute="leading" secondItem="WF0-3f-8es" secondAttribute="leading" id="77H-sq-3j7"/>
+                            <constraint firstItem="klf-5W-0yp" firstAttribute="top" secondItem="WbG-YY-i19" secondAttribute="bottom" constant="8" id="L3v-M5-1t2"/>
                             <constraint firstItem="ibN-vz-rJJ" firstAttribute="trailing" secondItem="WF0-3f-8es" secondAttribute="trailing" id="Pvx-Wo-7pT"/>
+                            <constraint firstItem="WbG-YY-i19" firstAttribute="top" secondItem="vLO-0Q-8t3" secondAttribute="bottom" constant="8" id="ahZ-0B-Kp0"/>
+                            <constraint firstItem="WbG-YY-i19" firstAttribute="leading" secondItem="WF0-3f-8es" secondAttribute="leading" constant="8" id="e2A-ry-hjN"/>
                             <constraint firstItem="WF0-3f-8es" firstAttribute="bottom" secondItem="klf-5W-0yp" secondAttribute="bottom" id="eri-3V-OHE"/>
-                            <constraint firstItem="klf-5W-0yp" firstAttribute="top" secondItem="ibN-vz-rJJ" secondAttribute="bottom" constant="8" id="huz-Ne-yQu"/>
+                            <constraint firstItem="vLO-0Q-8t3" firstAttribute="leading" secondItem="WF0-3f-8es" secondAttribute="leading" constant="8" id="gSb-8W-fLv"/>
+                            <constraint firstItem="WF0-3f-8es" firstAttribute="trailing" secondItem="WbG-YY-i19" secondAttribute="trailing" constant="8" id="i4q-nx-bmd"/>
                             <constraint firstItem="VaT-he-Lfc" firstAttribute="top" secondItem="ibN-vz-rJJ" secondAttribute="bottom" constant="150" id="keF-D5-Wal"/>
+                            <constraint firstItem="WF0-3f-8es" firstAttribute="trailing" secondItem="vLO-0Q-8t3" secondAttribute="trailing" constant="8" id="urb-wJ-DUn"/>
                             <constraint firstItem="ibN-vz-rJJ" firstAttribute="top" secondItem="WF0-3f-8es" secondAttribute="top" id="v4I-BK-f4v"/>
+                            <constraint firstItem="vLO-0Q-8t3" firstAttribute="top" secondItem="ibN-vz-rJJ" secondAttribute="bottom" constant="8" id="ycB-cT-Ac5"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="filterBtn" destination="sb0-bN-co6" id="EG7-gM-VBm"/>
                         <outlet property="noItemFoundImg" destination="VaT-he-Lfc" id="ULs-XJ-1j5"/>
+                        <outlet property="priceFilterLabel" destination="vLO-0Q-8t3" id="9cG-En-bXA"/>
+                        <outlet property="priceSliderOutlet" destination="WbG-YY-i19" id="RNe-nX-LZF"/>
                         <outlet property="tableView" destination="klf-5W-0yp" id="T4p-Wr-dlt"/>
                     </connections>
                 </viewController>

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class CategoryViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
     
@@ -19,14 +20,12 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
     @IBOutlet weak var noItemFoundImg: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.navigationController?.navigationBar.isHidden = true
         noItemFoundImg.isHidden = true
-
         setupFloatingActionButton()
         registerNibFile()
         getCategories()
-        
-        // Do any additional setup after loading the view.
     }
     
     func registerNibFile(){
@@ -64,29 +63,46 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
             floaty.centerXAnchor.constraint(equalTo: view.trailingAnchor,constant: -16),
             floaty.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
             floaty.widthAnchor.constraint(equalToConstant: 100),
-            floaty.heightAnchor.constraint(equalToConstant: 50)
-        ]
+            floaty.heightAnchor.constraint(equalToConstant: 50)]
         
         NSLayoutConstraint.activate(constraints)
     }
     
     func getCategories(){
         print("get categories")
-        viewModel=CategoryViewModel()
         
-        viewModel?.bindResultToViewController={
-            [weak self] in
-            DispatchQueue.main.async {
-                self?.categoriesList = self?.viewModel?.customCollectionResult ?? []
-                self?.getProducts()
-                self?.tableView.reloadData()
-                for i in 0...3{
-                    self?.categorySegment.setTitle(self?.categoriesList[i+1].handle?.capitalized, forSegmentAt: i)
+        let indicator = UIActivityIndicatorView(style: .large)
+        indicator.center = self.view.center
+        self.view.addSubview(indicator)
+        indicator.color = UIColor(named: "main_green")
+        indicator.startAnimating()
+        
+        let reachability = try! Reachability()
+        if reachability.connection != .unavailable{
+            viewModel=CategoryViewModel()
+            
+            viewModel?.bindResultToViewController={
+                [weak self] in
+                DispatchQueue.main.async {
+                    self?.categoriesList = self?.viewModel?.customCollectionResult ?? []
+                    self?.getProducts()
+                    indicator.stopAnimating()
+                    self?.tableView.reloadData()
+                    for i in 0...3{
+                        self?.categorySegment.setTitle(self?.categoriesList[i+1].handle?.capitalized, forSegmentAt: i)
+                    }
                 }
             }
+            viewModel?.getCustomCollection()
         }
-        viewModel?.getCustomCollection()
+        else{
+            let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+            indicator.stopAnimating()
+            self.present(alert, animated: true, completion: nil)
+        }
     }
+    
     func getProducts(){
         print("get products")
         viewModel?.categoryID = categoriesList[categorySegment.selectedSegmentIndex+1].id
@@ -100,11 +116,12 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
             }
         }
         viewModel?.getItems()
-        
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if productsList.count == 0{
             noItemFoundImg.isHidden = false
@@ -138,6 +155,7 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
     @IBAction func segmentControlValueChanged(_ sender: UISegmentedControl) {
         getCategories()
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
