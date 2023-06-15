@@ -13,6 +13,11 @@ class CartViewController: UIViewController {
 
   @IBOutlet weak var totalPriceLabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+
+    viewModel.loadCartItems()
+  }
   override func viewDidLoad() {
         super.viewDidLoad()
     //TODO save cart id in the customer
@@ -72,11 +77,13 @@ extension CartViewController: UITableViewDataSource{
 
     cell.totalPrice = Double(self.totalPriceLabel.text?.dropFirst() ?? "0") ?? 0
     cell.getTotalPrice = {
-      self.viewModel.subTotalPrice = cell.totalPrice
-      self.viewModel.cartArray[indexPath.row].quantity = (cell.counter)
+//      self.viewModel.subTotalPrice = cell.totalPrice
+//      self.viewModel.cartArray[indexPath.row].quantity = (cell.counter)
+      print("krbtkuygeksreykvbuyj2222 \(cell.counter)")
+      self.viewModel.cartUpdated.draftOrder?.lineItems[indexPath.row].quantity = cell.counter
       self.totalPriceLabel.text = "$\(self.viewModel.subTotalPrice)"
-      self.viewModel.transferCartData()
-      self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated!)
+
+      self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated)
     }
     makeTableCellCornerRadius(cell: cell)
     cell.setupUI()

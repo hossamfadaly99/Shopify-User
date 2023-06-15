@@ -10,12 +10,13 @@ class CartViewModel{
   var bindDataToView: ()->() = {}
   var bindEmptyListToView: ()->() = {}
   var networkManager: NetworkServiceProtocol
-  var cartUpdated: DraftOrderEdited?
+  var cartUpdated: DraftOrderEdited = DraftOrderEdited(draftOrder: DraftOrder(lineItems: []))
   var craftId: Int = 0
   var subTotalPrice = 0.0
 
   var cartArray: [Line_items] = []{
     didSet{
+      transferCartData()
       DispatchQueue.main.async {
         self.bindDataToView()
       }
@@ -58,31 +59,27 @@ class CartViewModel{
   }
 
   func transferCartData(){
-    cartUpdated = DraftOrderEdited(draftOrder: DraftOrder(lineItems: []))
+    cartUpdated.draftOrder?.lineItems = []
     for item in cartArray {
       let property = Property(name: "img_url", value: item.properties?.first?.value)
       let lineItem = LineItem(variantID: item.variant_id, quantity: item.quantity, properties: [property])
-      cartUpdated?.draftOrder?.lineItems.append(lineItem)
-      print(item.name)
-      print(cartUpdated?.draftOrder?.lineItems.count)
+      cartUpdated.draftOrder?.lineItems.append(lineItem)
     }
-    print("touuuuu")
-    print(cartUpdated?.draftOrder?.lineItems.count)
-
   }
 
   func updateCartItem(cartItem: DraftOrderEdited){
     networkManager.setURL(URLCreator().getEditCartURL(id: String(describing: self.craftId)))
 
-//    networkManager.uploadData(object: cartItem){ [weak self] (result: Draft_orders?) in
     networkManager.uploadData(object: cartItem){ [weak self] (result: EditedDraftOrderResponse?) in
+
       print("krbtkuygeksreykvbuyj")
 //      print("result: \(result)")
-      print("krbtkuygeksreykvbuyj2222")
-      print(result?.draft_order?.line_items?.first?.quantity)
-//      print(result?.line_items?.first?.quantity ?? -111)
-//      print(result?.line_items?.first?.quantity ?? -111)
 
+      self?.subTotalPrice = Double(result?.draft_order?.subtotal_price ?? "0.0") ?? 0.0
+      self?.cartArray = result?.draft_order?.line_items ?? []
+
+      print("krbtkuygeksreykvbuyj2222")
+      print(self?.cartArray.first?.quantity)
     }
   }
 

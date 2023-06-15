@@ -14,5 +14,8 @@ struct EditedDraftOrderResponse : Codable {
 
 struct EditedDraftOrder : Codable {
   let line_items : [Line_items]?
+  let total_price: String?
+  let subtotal_price: String?
+  let total_tax: String?
 }
 
