@@ -75,6 +75,8 @@ extension CartViewController: UITableViewDataSource{
       self.viewModel.subTotalPrice = cell.totalPrice
       self.viewModel.cartArray[indexPath.row].quantity = (cell.counter)
       self.totalPriceLabel.text = "$\(self.viewModel.subTotalPrice)"
+      self.viewModel.transferCartData()
+      self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated!)
     }
     makeTableCellCornerRadius(cell: cell)
     cell.setupUI()

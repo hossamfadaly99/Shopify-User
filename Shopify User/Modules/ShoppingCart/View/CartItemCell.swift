@@ -75,7 +75,9 @@ class CartItemCell: UITableViewCell {
   func loadData(item: Line_items){
     counter = item.quantity ?? 0
     price = Double(item.price ?? "1.00") ?? 1.00
-    availableQuantity = Int(item.properties?[1].value ?? "1") ?? 1
+    print("krgkyrktktr")
+    print(item.properties?.count)
+    availableQuantity = 30//Int(item.properties?[1].value ?? "1") ?? 1
 
     titleLabel.text = item.name
     priceLabel.text = "$\(price * Double(item.quantity ?? 1))"

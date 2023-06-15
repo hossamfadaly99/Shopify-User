@@ -107,11 +107,12 @@ class NetworkManager: NetworkServiceProtocol {
     let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
                                 "Content-Type" : "application/json"]
 
-    AF.request(finalURL, method: .post, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
+    AF.request(finalURL, method: .put, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
       switch response.result {
       case .success(let data):
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+          print("kjkjkjjkjkkjkjkjkjkjkjkj")
           print(json)
         } catch {
             print("errorMsg")

@@ -30,7 +30,7 @@ struct Draft_orders : Codable {
 	let billing_address : Billing_address?
 	let invoice_url : String?
 	let applied_discount : Applied_discount?
-	let order_id : String?
+	let order_id : Int?
 	let shipping_line : String?
 	let tax_lines : [TaxLine]?
 	let tags : String?

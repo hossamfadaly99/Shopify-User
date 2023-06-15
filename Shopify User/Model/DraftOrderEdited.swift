@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Welcome
 struct DraftOrderEdited: Codable {
-    let draftOrder: DraftOrder?
+    var draftOrder: DraftOrder?
 
     enum CodingKeys: String, CodingKey {
         case draftOrder = "draft_order"
@@ -18,28 +18,27 @@ struct DraftOrderEdited: Codable {
 
 // MARK: - DraftOrder
 struct DraftOrder: Codable {
-    let id: Int?
-    let lineItems: [LineItem]?
+//    let id: Int?
+  var lineItems: [LineItem] = []
 
     enum CodingKeys: String, CodingKey {
-        case id
+//        case id
         case lineItems = "line_items"
     }
 }
 
 // MARK: - LineItem
 struct LineItem: Codable {
-    let variantID, quantity: Int?
-    let note: String?
-    let properties: [Property]?
+  var variantID, quantity: Int?
+  var properties: [Property] = []
 
     enum CodingKeys: String, CodingKey {
         case variantID = "variant_id"
-        case quantity, note, properties
+        case quantity, properties
     }
 }
 
 // MARK: - Property
 struct Property: Codable {
-    let name, value: String?
+  var name, value: String?
 }
