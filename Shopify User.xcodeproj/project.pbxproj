@@ -45,6 +45,8 @@
 		048813A52A2D257800B41CA4 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048813A42A2D257800B41CA4 /* ProductsViewModel.swift */; };
 		048813A82A2D26AB00B41CA4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048813A72A2D26AB00B41CA4 /* Product.swift */; };
 		0499FB7C2A339A09008CE298 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499FB7B2A339A09008CE298 /* LoginViewModel.swift */; };
+		04BFB2152A3ABE5500E23851 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BFB2142A3ABE5500E23851 /* Profile.storyboard */; };
+		04BFB2172A3ABE7900E23851 /* Profile_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFB2162A3ABE7900E23851 /* Profile_VC.swift */; };
 		04E039572A2CA6E700B2EF9D /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E039552A2CA6E700B2EF9D /* AdsCollectionViewCell.swift */; };
 		04E039582A2CA6E700B2EF9D /* AdsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04E039562A2CA6E700B2EF9D /* AdsCollectionViewCell.xib */; };
 		04E44F0E2A2C817A0006B9E4 /* SectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E44F0D2A2C817A0006B9E4 /* SectionHeader.swift */; };
@@ -161,6 +163,8 @@
 		048813A42A2D257800B41CA4 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		048813A72A2D26AB00B41CA4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		0499FB7B2A339A09008CE298 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		04BFB2142A3ABE5500E23851 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		04BFB2162A3ABE7900E23851 /* Profile_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile_VC.swift; sourceTree = "<group>"; };
 		04E039552A2CA6E700B2EF9D /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
 		04E039562A2CA6E700B2EF9D /* AdsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdsCollectionViewCell.xib; sourceTree = "<group>"; };
 		04E44F0D2A2C817A0006B9E4 /* SectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeader.swift; sourceTree = "<group>"; };
@@ -449,6 +453,23 @@
 			path = LoginViewModel;
 			sourceTree = "<group>";
 		};
+		04BFB2122A3ABE2400E23851 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				04BFB2132A3ABE3700E23851 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		04BFB2132A3ABE3700E23851 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04BFB2142A3ABE5500E23851 /* Profile.storyboard */,
+				04BFB2162A3ABE7900E23851 /* Profile_VC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		04E44F0A2A2C75AB0006B9E4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -673,6 +694,7 @@
 		9F598CBC2A27E23C00C36A93 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				04BFB2122A3ABE2400E23851 /* Profile */,
 				04FB57772A39DDC30066EAD5 /* Search_Screen */,
 				0459E5D82A33BF6D002E92D2 /* Category */,
 				9F17A8D62A365C4A00C3DA87 /* Checkout */,
@@ -887,6 +909,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				04FF36BE2A2C846B0058ACDF /* Signup_SB.storyboard in Resources */,
+				04BFB2152A3ABE5500E23851 /* Profile.storyboard in Resources */,
 				046588102A37DA97009BA6A8 /* reviewCell.xib in Resources */,
 				9F17A8DA2A365C7400C3DA87 /* CheckoutStoryboard.storyboard in Resources */,
 				04816F7C2A31357000949265 /* Favourite_Cell.xib in Resources */,
@@ -1077,6 +1100,7 @@
 				9F3F11772A3219F50032BEE2 /* CartViewModel.swift in Sources */,
 				04FECD3A2A37BA7A00846E3F /* FloatyWindow.swift in Sources */,
 				9F243AA32A2C744800F93088 /* CartViewController.swift in Sources */,
+				04BFB2172A3ABE7900E23851 /* Profile_VC.swift in Sources */,
 				9F598CC12A27E28A00C36A93 /* DataMangerProtocol.swift in Sources */,
 				9F1914442A323B6700FDBD2F /* Line_items.swift in Sources */,
 				9FE8433B2A2CD590004FE9D8 /* Utilities.swift in Sources */,
