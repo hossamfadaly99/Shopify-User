@@ -34,7 +34,14 @@ class NetworkManager: NetworkServiceProtocol {
       case .success(let data):
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
-         // print(json)
+          let prettyJsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                  let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8)!
+
+          print("jenvkbektbvk1")
+          print(prettyPrintedJson)
+          print("jenvkbektbvk")
+
+          print(json)
         } catch {
             print("errorMsg")
         }
@@ -42,6 +49,8 @@ class NetworkManager: NetworkServiceProtocol {
               print("The count of data is : \(data.count)")
 
               let result = try JSONDecoder().decode(T.self, from: data)
+            print(result)
+            print("liruhgiurtiuniutnbiutdyiobno \(T.self)")
 
               compilitionHandler(result)
               print("Data Fetched Successfully...")
@@ -112,6 +121,11 @@ class NetworkManager: NetworkServiceProtocol {
       case .success(let data):
         do {
             let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+          let prettyJsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                  let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8)!
+
+          print(prettyPrintedJson)
+          print("jenvkbektbvk")
           print("kjkjkjjkjkkjkjkjkjkjkjkj")
           print(json)
         } catch {
@@ -121,6 +135,7 @@ class NetworkManager: NetworkServiceProtocol {
               print("The count of data is : \(data.count)")
 
               let result = try JSONDecoder().decode(T.self, from: data)
+
 
               compilitionHandler(result)
               print("Data Fetched Successfully...")

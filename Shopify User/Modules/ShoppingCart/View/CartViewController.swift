@@ -24,8 +24,8 @@ class CartViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
     //TODO save cart id in the customer
-
-    viewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getCreateCartURL()))
+//1116224225572
+    viewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getEditCartURL(id: "1116224225572")))
 
     viewModel.bindDataToView = {
       HUD.hide(animated: true)
@@ -53,7 +53,7 @@ class CartViewController: UIViewController {
 
 
 
-    viewModel.loadCartItems()
+//    viewModel.loadCartItems()
 
     }
     
@@ -88,7 +88,7 @@ extension CartViewController: UITableViewDataSource{
 //      self.viewModel.subTotalPrice = cell.totalPrice
 //      self.viewModel.cartArray[indexPath.row].quantity = (cell.counter)
       print("krbtkuygeksreykvbuyj2222 \(cell.counter)")
-      self.viewModel.cartUpdated.draftOrder?.lineItems[indexPath.row].quantity = cell.counter
+      self.viewModel.cartUpdated.draft_order?.line_items?[indexPath.row].quantity = cell.counter
       self.totalPriceLabel.text = "$\(self.viewModel.subTotalPrice)"
 
       self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated)
@@ -117,18 +117,18 @@ extension CartViewController: UITableViewDataSource{
 
   func handleDeletion(index: Int){
     let alert = UIAlertController(title: "Watch out!", message: "Are you sure you want to delete this item from the cart?", preferredStyle: .alert)
-    let yesAction = UIAlertAction(title: "Yes", style: .default, handler: {_ in
+    let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
       HUD.show(.progress)
-      if self.viewModel.cartUpdated.draftOrder?.lineItems.count ?? 1 > 1{
-        self.viewModel.cartUpdated.draftOrder?.lineItems.remove(at: index)
+      if self.viewModel.cartUpdated.draft_order?.line_items?.count ?? 1 > 1{
+        self.viewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
       } else {
         print("hghghghgghhg")
-        self.viewModel.cartUpdated.draftOrder?.lineItems.remove(at: index)
-        print(self.viewModel.cartUpdated.draftOrder?.lineItems.count)
-        self.viewModel.cartUpdated.draftOrder?.lineItems.append(LineItem( variantID: 45504355696932, quantity: 1))
-        print(self.viewModel.cartUpdated.draftOrder?.lineItems.count)
+        self.viewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
+        print(self.viewModel.cartUpdated.draft_order?.line_items?.count)
+        self.viewModel.cartUpdated.draft_order?.line_items?.append(Line_items( variant_id: 45505132626212, quantity: 1))
+        print(self.viewModel.cartUpdated.draft_order?.line_items?.count)
 //        self.viewModel.cartUpdated.draftOrder?.lineItems[0].title = "dummy for ward"
-        print(self.viewModel.cartUpdated.draftOrder?.lineItems.first?.title)
+        print(self.viewModel.cartUpdated.draft_order?.line_items?.first?.title)
       }
       print(self.viewModel.cartUpdated)
       self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated)

@@ -13,37 +13,37 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct Line_items : Codable {
-	let id : Int?
-	let variant_id : Int?
-	let product_id : Int?
-	let title : String?
-	let variant_title : String?
-	let sku : String?
-	let vendor : String?
+	var id : Int?
+	var variant_id : Int?
+	var product_id : Int?
+	var title : String?
+	var variant_title : String?
+	var sku : String?
+	var vendor : String?
 	var quantity : Int?
-	let requires_shipping : Bool?
-	let taxable : Bool?
-	let gift_card : Bool?
-	let fulfillment_service : String?
-	let grams : Int?
-	let tax_lines : [TaxLine]?
-	let applied_discount : String?
-	let name : String?
-	let properties : [Properties]?
-	let custom : Bool?
-	let price : String?
-	let admin_graphql_api_id : String?
+	var requires_shipping : Bool?
+	var taxable : Bool?
+	var gift_card : Bool?
+	var fulfillment_service : String?
+	var grams : Int?
+	var tax_lines : [TaxLine]?
+	var applied_discount : String?
+	var name : String?
+	var properties : [Properties]?
+	var custom : Bool?
+	var price : String?
+	var admin_graphql_api_id : String?
 
 }
 
 struct TaxLine: Codable {
-    let rate: Double?
-    let title, price: String?
+    var rate: Double?
+    var title, price: String?
 }
 
 struct Properties: Codable {
 
-  let name  : String?
-  let value : String?
+  var name  : String?
+  var value : String?
 
 }
