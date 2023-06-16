@@ -13,8 +13,6 @@ class SearchViewModel {
         NetworkManager(url: urlString).fetchData { [weak self] (result: ProductResponse?) in
             guard let items = result?.products else { return }
             self?.allProducts = items
-            
-            // Filter products based on the search query
             let filteredProducts = self?.filterProducts() ?? []
             
             self?.products.onNext(filteredProducts)

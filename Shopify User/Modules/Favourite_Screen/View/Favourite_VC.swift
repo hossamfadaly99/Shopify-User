@@ -23,14 +23,19 @@ class Favourite_VC: UIViewController {
         mytable.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
+//
+//        if(viewModel?.fetchDataFromDB()?.count != 0){
+//            favourieList = viewModel?.fetchDataFromDB() ?? []
+//            mytable.reloadData()
+//            noItemImg.isHidden = true
+//        }else{
+//            noItemImg.isHidden = false
+//        }
+        
+        favourieList = viewModel?.fetchDataFromDB() ?? []
+        mytable.reloadData()
+        hideFavouritesImage(list: favourieList ?? [], img: noItemImg)
 
-        if(viewModel?.fetchDataFromDB()?.count != 0){
-            favourieList = viewModel?.fetchDataFromDB() ?? []
-            mytable.reloadData()
-            noItemImg.isHidden = true
-        }else{
-            noItemImg.isHidden = false
-        }
      }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -43,6 +48,14 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("hi")
         return favourieList?.count ?? 0
+    }
+    
+    func hideFavouritesImage(list:[ProductCoreData],img:UIImageView){
+        if list.count != 0{
+            noItemImg.isHidden = true
+        } else {
+            noItemImg.isHidden = false
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -66,5 +79,20 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
         //nextViewController.modalPresentationStyle = .fullScreen
         nextViewController.ID_Product_VC = favourieList?[indexPath.row].id
         present(nextViewController, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+
+            let alert = UIAlertController(title: "Deletion Alert", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
+                self.viewModel.deleteFromDB(product: (self.favourieList?[indexPath.row])!)
+                self.favourieList?.remove(at: indexPath.row)
+                tableView.reloadData()
+                self.hideFavouritesImage(list: self.favourieList ?? [], img: self.noItemImg)
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+               present(alert, animated: true, completion: nil)
+        }
     }
 }
