@@ -81,7 +81,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="148" id="CbN-ss-iYz"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>

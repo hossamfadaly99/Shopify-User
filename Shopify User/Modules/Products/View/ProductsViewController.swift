@@ -37,7 +37,7 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
     
     func setupDropDownMenu(){
         //dropDown.dataSource = ["By bestseller", "By A-Z","By Price"]
-        dropDown.dataSource = ["Filter From A to Z","Filter By Price"]
+        dropDown.dataSource = ["Sort From A to Z","Sort By Price"]
         
         dropDown.anchorView = filterBtn// Replace 'yourButton' with the appropriate reference to your button
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
