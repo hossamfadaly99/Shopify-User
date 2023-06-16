@@ -18,13 +18,12 @@ class ProductDetails_VC: UIViewController {
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
     @IBOutlet weak var addToFav: UIImageView!
-    @IBOutlet weak var size: UILabel!
-    
     @IBOutlet weak var reviewsTable: UITableView!
-   
     @IBOutlet weak var labeldes: UILabel!
+    @IBOutlet weak var popUpBtn: UIButton!
     
     var ID_Product_VC : Int!
+    var sizes : [String]?
     var product_VC :Product = Product()
     var photosArray:[ProductImage]?
     var timer:Timer?
@@ -37,43 +36,44 @@ class ProductDetails_VC: UIViewController {
         let reviews = Reviews()
         self.reviewsList = reviews.getReviews(numberOfReviews: 3)
         reviewsTable.register(UINib(nibName: "reviewCell", bundle: nil), forCellReuseIdentifier: "reviewCell")
-        print("view did load")
-       // print(ID_Product_VC)
+
         viewModel.bindDataToView = { product in
             self.product_VC = product
+            guard let variants = self.product_VC.variants else { return }
+            //print("sizes : \(variants.count)")
+            self.sizes = []
+               for item in variants {
+                   self.sizes?.append(item.title ?? "No sizes")
+                 //  print("sizes : \(item.title)")
+               }
+            self.setPopUpButton()
             self.photosArray = self.product_VC.images
             self.pageController.numberOfPages = self.photosArray?.count ?? 0
             self.startTimer()
             self.productName.text = self.product_VC.title
             self.productPrice.text = self.product_VC.variants?[0].price
-            
-            //self.size.text = self.product_VC.variants
             self.labeldes.text = self.product_VC.description
-//            self.review1.text = self.reviewsList[0].0
-//            self.review2.text = self.reviewsList[1].0
-//            self.review3.text = self.reviewsList[2].0
             self.myCollectionView.reloadData()
-            
         }
         let pid = String(ID_Product_VC)
         viewModel.getProductData(url:URLCreator().getProductURL(id: pid) )
     }
     @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
         let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
-        print("My p  :\(product_VC)")
+        //print("My p  :\(product_VC)")
         let is_Exist = dataManager.isProductExist(myProduct: coreData)
         if(is_Exist){
-            print("product already saved")
+            //print("product already saved")
         }else{
           //  guard let myProduct = coreData else{return}
-            print("product to be inserted\(coreData)")
+           // print("product to be inserted\(coreData)")
             dataManager.insertFavProduct(myProduct: coreData, productRate: 2.5)
             addToFav.image = UIImage(named: "activated")
-            print("Product Saved !")
+           // print("Product Saved !")
         }
     }
     override func viewDidAppear(_ animated: Bool) {
-        print("view did appear")
+        //print("view did appear")
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
         addToFav.addGestureRecognizer(tapGesture)
         addToFav.isUserInteractionEnabled = true
@@ -81,12 +81,12 @@ class ProductDetails_VC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
-        print("view will appear")
+      //  print("view will appear")
         let is_Exist2 = dataManager.isProductExist(myProduct: coreData)
         print(is_Exist2)
 
         if(is_Exist2){
-            print("hiii")
+            //print("hiii")
             addToFav.image = UIImage(named: "activated")
         }
     }
@@ -163,3 +163,27 @@ UICollectionViewDelegateFlowLayout
   
 }
 
+extension ProductDetails_VC  {
+    func setPopUpButton(){
+        var action :[UIAction] = []
+        let optionSelected = {(action : UIAction) in
+            //show selected size title
+            print(action.title)
+        }
+        guard let sizes = sizes else {return}
+        if (sizes.isEmpty){
+            action.append( UIAction(title: "Sizes", handler: optionSelected) )
+        } else {
+            action = []
+            for item in sizes{
+                action.append( UIAction(title: item, handler: optionSelected))
+                //action.state = .on
+               // print("func :")
+            }
+            
+        }
+        popUpBtn.menu = UIMenu(children: action)
+        popUpBtn.showsMenuAsPrimaryAction = true
+        popUpBtn.changesSelectionAsPrimaryAction = true
+    }
+}

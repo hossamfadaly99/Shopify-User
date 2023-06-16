@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Me-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController id="Y6W-OH-hqX" customClass="Profile_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reviewer10" translatesAutoresizingMaskIntoConstraints="NO" id="jqP-qp-LIl">
+                                <rect key="frame" x="96.666666666666686" y="59" width="200" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="ePS-EL-xXC"/>
+                                    <constraint firstAttribute="width" constant="200" id="mKb-uz-YjQ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ipq-YN-FZN">
+                                <rect key="frame" x="74" y="309" width="285" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIC-bp-LAQ">
+                                <rect key="frame" x="74" y="410" width="285" height="27.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ril-4g-qNE">
+                                <rect key="frame" x="16" y="305.66666666666669" width="40" height="37.333333333333314"/>
+                                <color key="tintColor" name="main_green"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="204-00-o4I"/>
+                                    <constraint firstAttribute="height" constant="40" id="gX3-If-GiY"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dMB-Fy-C8e">
+                                <rect key="frame" x="16" y="405.66666666666669" width="40" height="37"/>
+                                <color key="tintColor" name="main_green"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="C5y-n2-CHE"/>
+                                    <constraint firstAttribute="width" constant="40" id="vWu-nx-sEg"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BM-Gg-3qN">
+                                <rect key="frame" x="16" y="504" width="120" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="n8A-7N-PZq"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.backward" catalog="system" title="  LogOut" imagePadding="1">
+                                    <backgroundConfiguration key="background" cornerRadius="11">
+                                        <color key="backgroundColor" name="main_green"/>
+                                    </backgroundConfiguration>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="logout:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bWk-u4-D3G"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="5BM-Gg-3qN" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="DKb-Xy-1Pv"/>
+                            <constraint firstItem="Ipq-YN-FZN" firstAttribute="leading" secondItem="ril-4g-qNE" secondAttribute="trailing" constant="18" id="Kz2-M0-ZXO"/>
+                            <constraint firstItem="jqP-qp-LIl" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="M15-WZ-eSA"/>
+                            <constraint firstItem="oIC-bp-LAQ" firstAttribute="top" secondItem="Ipq-YN-FZN" secondAttribute="bottom" constant="73" id="Pty-ly-mLP"/>
+                            <constraint firstItem="dMB-Fy-C8e" firstAttribute="top" secondItem="ril-4g-qNE" secondAttribute="bottom" constant="60" id="Xr5-jE-7nO"/>
+                            <constraint firstItem="oIC-bp-LAQ" firstAttribute="leading" secondItem="Ipq-YN-FZN" secondAttribute="leading" id="b4Q-M3-adB"/>
+                            <constraint firstItem="dMB-Fy-C8e" firstAttribute="top" secondItem="ril-4g-qNE" secondAttribute="bottom" constant="60" id="c0H-nU-VI0"/>
+                            <constraint firstItem="ril-4g-qNE" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="dTB-cZ-myg"/>
+                            <constraint firstItem="5BM-Gg-3qN" firstAttribute="top" secondItem="dMB-Fy-C8e" secondAttribute="bottom" constant="60" id="f2H-7G-a75"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Ipq-YN-FZN" secondAttribute="trailing" constant="34" id="iZN-Iy-1Fj"/>
+                            <constraint firstItem="jqP-qp-LIl" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="kxm-Pu-9Lx"/>
+                            <constraint firstItem="dMB-Fy-C8e" firstAttribute="leading" secondItem="ril-4g-qNE" secondAttribute="leading" id="q42-EB-L0a"/>
+                            <constraint firstItem="Ipq-YN-FZN" firstAttribute="top" secondItem="jqP-qp-LIl" secondAttribute="bottom" constant="50" id="ugf-Ux-kFf"/>
+                            <constraint firstItem="ril-4g-qNE" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="245" id="vIK-4d-AYt"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oIC-bp-LAQ" secondAttribute="trailing" constant="34" id="ySc-2q-ax9"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Me" image="person.circle" catalog="system" id="ZOk-sq-Inz">
+                        <color key="badgeColor" name="main_green"/>
+                    </tabBarItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="img" destination="jqP-qp-LIl" id="UuZ-a8-mAx"/>
+                        <outlet property="mail" destination="oIC-bp-LAQ" id="cww-Mb-yTb"/>
+                        <outlet property="name" destination="Ipq-YN-FZN" id="ppe-lu-64O"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="11.450381679389313" y="-34.507042253521128"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="arrowshape.backward" catalog="system" width="128" height="104"/>
+        <image name="mail" catalog="system" width="128" height="93"/>
+        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="person.circle" catalog="system" width="128" height="123"/>
+        <image name="reviewer10" width="225" height="225"/>
+        <namedColor name="main_green">
+            <color red="0.039215686274509803" green="0.58039215686274515" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -15,6 +15,8 @@ class Constants {
     static let SCREEN_ID_REVIEWS = "ID_Reviews"
     static let SCREEN_ID_PRODUCTSDETAILS = "ID_Products_Details"
     static let SCREEN_ID_HOME = "ID_Home"
+    static let SCREEN_ID_BRAND = "ID_Brand"
+    static let SCREEN_ID_SEARCH = "ID_Search"
     
     //Cell IDs
     static let CELL_ID_FAVOURITE = "Favourite_Cell"
@@ -23,11 +25,15 @@ class Constants {
     //User Defults
     static let KEY_USER_FIRSTNAME = "UserFirstName"
     static let KEY_USER_LASTNAME = "UserLastName"
+    static let KEY_USER_EMAIL = "UserEmail"
     static let KEY_USER_ID = "UserID"
     static let KEY_USER_STATE = "State"
     static let USER_STATE_LOGIN = "Login"
     static let USER_STATE_LOGOUT = "Logout"
     
+    //Search
+    static let HOME_SEARCH_ICON = "homeSearchIcon"
+
     //CoreData
     static let CD_ENTITY_NAME = "CDProduct"
     static let ENTITY_ROW_TITLE = "title"
@@ -40,4 +46,5 @@ let adminTokenKey = "X-Shopify-Access-Token"
 let adminTokenValue = "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"
 let dummyMail = "ddd@hhh.com"
 let secondDummyMail = "egnition_sample_81@egnition.com"
+
 

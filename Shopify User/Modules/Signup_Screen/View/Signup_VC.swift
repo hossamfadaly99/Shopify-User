@@ -7,6 +7,8 @@
 
 import UIKit
 import RxSwift
+import GoogleSignIn
+import Firebase
 
 class Signup_VC: UIViewController {
     @IBOutlet weak var email_TF: UITextField!
@@ -45,9 +47,35 @@ class Signup_VC: UIViewController {
     }
     
     @IBAction func signWithGoogle(_ sender: Any) {
-        
-        
+        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+                
+        let config = GIDConfiguration(clientID: clientID)
+
+        GIDSignIn.sharedInstance.configuration = config
+        GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
+            if error != nil {
+                print("error gooogle\(error?.localizedDescription)")
+
+                   return
+                }
+                 print("hi gooogle")
+            guard let signInResult = signInResult else { return }
+                let user = signInResult.user
+                let emailAddress = user.profile?.email
+                let fullName = user.profile?.name
+                let givenName = user.profile?.givenName
+                let familyName = user.profile?.familyName
+
+              //  let profilePicUrl = user.profile?.imageURL(withDimension: 320)
+            var googleUser = Customer()
+            googleUser.firstName = fullName ?? ""
+            googleUser.lastName = familyName ?? ""
+            googleUser.email = emailAddress ?? ""
+            googleUser.tags = emailAddress ?? ""
+            self.viewModel.googleSignUp(model: googleUser)
+          }
     }
+    
     @IBAction func navigate(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
@@ -105,7 +133,7 @@ class Signup_VC: UIViewController {
                 {
                     AlertCreator.showAlert(title: "Alert", message: "Please fill in alh fields.", viewController: self)
                 } else {
-                    if self.authManager.isUsernameValid(self.firstName_TF.text!) &&
+                    if  self.authManager.isUsernameValid(self.firstName_TF.text!) &&
                         self.authManager.isUsernameValid(self.lastName_TF.text!) &&
                         self.authManager.isPasswordValid(self.password_TF.text!) &&
                         self.authManager.isEmailValid(self.email_TF.text!)
@@ -158,7 +186,7 @@ extension Signup_VC:ViewModelDelegate{
     
     func loginFailed() {
         print("failed to login")
-        AlertCreator.showAlert(title: "Alert", message: "Register Failed.", viewController: self)
+        AlertCreator.showAlert(title: "Alert", message: "Register Failed. Already User Exist.", viewController: self)
     }
 
    

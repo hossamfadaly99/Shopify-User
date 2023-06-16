@@ -21,9 +21,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     var currentCellIndex = 0
     //@IBOutlet weak var pageControl: UIPageControl!
     
+  
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = true
         registerCells()
         
         self.collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeader ")
@@ -44,6 +45,23 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         // Do any additional setup after loading the view.
         startTimer()
     }
+    
+    @IBAction func navigateToFavourite(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Favourite_SB", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_FAVOURITE) as! Favourite_VC
+       nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
+    }
+    
+    @IBAction func navigateSearch(_ sender: Any) {
+        //print("Navigate to search_VC From HOme")
+         let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
+         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
+        nextViewController.destination = Constants.HOME_SEARCH_ICON
+        nextViewController.modalPresentationStyle = .fullScreen
+         present(nextViewController, animated: true, completion: nil)
+    }
+    
     func registerCells(){
         var  nib = UINib(nibName: "AdsCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "ads")

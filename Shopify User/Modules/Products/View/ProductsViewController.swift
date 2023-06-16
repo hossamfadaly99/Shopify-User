@@ -34,6 +34,16 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
         
         setupDropDownMenu()
     }
+     @IBAction func navigateToSearch(_ sender: Any) {
+        print("Navigate to search_VC From Products")
+         let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
+         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
+         nextViewController.destination = Constants.SCREEN_ID_BRAND
+         nextViewController.brand = brandName ?? ""
+        
+         nextViewController.modalPresentationStyle = .fullScreen
+         present(nextViewController, animated: true, completion: nil)
+    }
     
     func setupDropDownMenu(){
         //dropDown.dataSource = ["By bestseller", "By A-Z","By Price"]
@@ -84,13 +94,22 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
+        viewModel=GetProductsViewModel()
+        viewModel?.brandName = brandName
         let indicator = UIActivityIndicatorView(style: .large)
                 indicator.center = self.view.center
                 self.view.addSubview(indicator)
         indicator.color = UIColor(named: "main_green")
                 indicator.startAnimating()
         
+        viewModel?.bindResultToViewController={
+            [weak self] in
+            DispatchQueue.main.async {
+                self?.productsList = self?.viewModel?.result ?? []
+                if self?.productsList.count == 0{
+                    self?.noItemFoundImg.isHidden = false
+                }else{
+                    self?.noItemFoundImg.isHidden = true
         let reachability = try! Reachability()
         if reachability.connection != .unavailable{
             viewModel=GetProductsViewModel()
@@ -106,6 +125,7 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
                     self?.setupSlider()
                     self?.tableView.reloadData()
                 }
+                self?.tableView.reloadData()
             }
             viewModel?.getItems()
         }
@@ -115,6 +135,7 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
             indicator.stopAnimating()
             self.present(alert, animated: true, completion: nil)
         }
+        viewModel?.getItems()
     }
     
     func setupSlider() {
@@ -189,4 +210,3 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
         productsList = productsList.filter({ Float($0.variants?[0].price ?? "0") ?? 0 <= sender.value})
         tableView.reloadData()
     }
-}
