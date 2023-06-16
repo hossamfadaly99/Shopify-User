@@ -424,6 +424,7 @@
 		9E40676D52B532A4D44116F3952182A7 /* First.swift in Sources */ = {isa = PBXBuildFile; fileRef = E055E41B6FC16E75F5057B06EE379D7E /* First.swift */; };
 		9E8BA4FB802EDCD492DAF618CA7BFCE8 /* SharedSequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B693FFD81221FD85E29BD484FB5B365 /* SharedSequence.swift */; };
 		9F21D92B53EF1498ACC1FA3BA6CCF260 /* Lock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F751A2E359DFA5D0A6C6186E08872B13 /* Lock.swift */; };
+		9F22F9AB2A3B9C9E000EE4AE /* PKHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 9F22F9AA2A3B9C9E000EE4AE /* PKHUD */; };
 		9F370B3928A333AD7E41680A29B1F051 /* RxCollectionViewReactiveArrayDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 31ECFBDB26ABC9CF0E9EA2B0047F3AC7 /* RxCollectionViewReactiveArrayDataSource.swift */; };
 		9F5FE22DA95B66B8DC21CB13BE25EC9B /* WKInterfaceImage+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AE053DA56782A808067D2520AC61F53 /* WKInterfaceImage+Kingfisher.swift */; };
 		A0208B623442A26CB9157F193CBB4A7F /* Platform.Linux.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAC67C2A868F1E7EE8A38B2B28CD32C /* Platform.Linux.swift */; };
@@ -1591,6 +1592,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F22F9AB2A3B9C9E000EE4AE /* PKHUD in Frameworks */,
 				D7BCBE1EB4A638403C265CE2199EFF1B /* CFNetwork.framework in Frameworks */,
 				8E85763AE29BEF0A46EE875B8F069E8E /* Foundation.framework in Frameworks */,
 			);
@@ -2917,6 +2919,9 @@
 			dependencies = (
 			);
 			name = Alamofire;
+			packageProductDependencies = (
+				9F22F9AA2A3B9C9E000EE4AE /* PKHUD */,
+			);
 			productName = Alamofire;
 			productReference = 5D797E9A5C5782CE845840781FA1CC81 /* Alamofire.framework */;
 			productType = "com.apple.product-type.framework";
@@ -2966,6 +2971,9 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			packageReferences = (
+				9F22F9A92A3B9C9E000EE4AE /* XCRemoteSwiftPackageReference "PKHUD" */,
+			);
 			productRefGroup = 3B16B982E84A53841896FBC1B9445D7B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -5012,6 +5020,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9F22F9A92A3B9C9E000EE4AE /* XCRemoteSwiftPackageReference "PKHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pkluz/PKHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9F22F9AA2A3B9C9E000EE4AE /* PKHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F22F9A92A3B9C9E000EE4AE /* XCRemoteSwiftPackageReference "PKHUD" */;
+			productName = PKHUD;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 }

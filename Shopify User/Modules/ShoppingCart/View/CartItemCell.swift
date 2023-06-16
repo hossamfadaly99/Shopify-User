@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import PKHUD
 
 class CartItemCell: UITableViewCell {
 
@@ -41,6 +42,9 @@ class CartItemCell: UITableViewCell {
       getTotalPrice()
     }
   }
+  var isLastItem: Bool = false
+  var deleteThisItem: ()->() = {}
+  var vc: UIViewController!
 
   override func awakeFromNib() {
         super.awakeFromNib()
@@ -79,41 +83,57 @@ class CartItemCell: UITableViewCell {
     print(item.properties?.count)
     availableQuantity = 30//Int(item.properties?[1].value ?? "1") ?? 1
 
-    titleLabel.text = item.name
-    priceLabel.text = "$\(price * Double(item.quantity ?? 1))"
+    titleLabel.text = item.name?.components(separatedBy: "-").first
+    priceLabel.text = String(format: "$%.2f", price * Double(item.quantity ?? 1))
+//    priceLabel.text = "$\(price * Double(item.quantity ?? 1))"
     counterLabel.text = "\(counter)"
     photoImage.kf.setImage(with: URL(string: item.properties?.first?.value ?? "product_placeholder"))
     manageQuantity()
+    HUD.hide(animated: true)
 
   }
   @IBAction func plusBtnClick(_ sender: Any) {
-    initialTotalPrice = totalPrice - itemPrice
-    counter += 1
-    totalPrice = initialTotalPrice + itemPrice
-    isPriceChanged.toggle()
+    changeQuantity(operation: "+")
   }
 
   @IBAction func minusBtnClick(_ sender: Any) {
-    initialTotalPrice = totalPrice - itemPrice
-    counter -= 1
-//    counterLabel.text = "\(counter)"
-//    priceLabel.text = "$\(itemPrice)"
-    totalPrice = initialTotalPrice + itemPrice
-//    print("zzzz")
-//    manageQuantity()
-    isPriceChanged.toggle()
+    if isLastItem{
 
+      self.deleteThisItem()
+
+    } else {
+      changeQuantity(operation: "-")
+    }
+  }
+
+  func changeQuantity(operation: String){
+    HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+    initialTotalPrice = totalPrice - itemPrice
+    if operation == "+" {counter += 1} else { counter -= 1 }
+    totalPrice = initialTotalPrice + itemPrice
+    isPriceChanged.toggle()
   }
 
   func manageQuantity(){
     print(counter)
     print(minQuantity)
     if counter == minQuantity{
-      print("btn - off")
-      minusBtn.isEnabled = false
-      print("btn - off")
+//      print("btn - off")
+//      minusBtn.isEnabled = false
+      let imggg = UIImage(systemName: "trash")?.withTintColor(.red, renderingMode: .alwaysOriginal)
+      minusBtn.setImage(imggg!.withConfiguration(UIImage.SymbolConfiguration(scale: .medium)) , for: .normal)
+      isLastItem = true
+//      minusBtn.tintColor = .red
+//      minusBtn.tintColor = .red
+//      minusBtn.setImageTintColor(.red)
+//      print("btn - off")
     } else {
-      minusBtn.isEnabled = true
+//      minusBtn.isEnabled = true
+      let imggg = UIImage(systemName: "minus")?.withTintColor(UIColor(named: "gray_9B")!)
+      minusBtn.setImage(imggg!.withConfiguration(UIImage.SymbolConfiguration(scale: .medium)) , for: .normal)
+      isLastItem = false
+//      minusBtn.tintColor = UIColor(named: "gray_9B")
+//      minusBtn
     }
 
     if counter == maxQuantity{
@@ -122,5 +142,15 @@ class CartItemCell: UITableViewCell {
       addBtn.isEnabled = true
     }
   }
+
+}
+
+extension UIButton{
+
+    func setImageTintColor(_ color: UIColor) {
+        let tintedImage = self.imageView?.image?.withRenderingMode(.alwaysTemplate)
+        self.setImage(tintedImage, for: .normal)
+        self.tintColor = color
+    }
 
 }

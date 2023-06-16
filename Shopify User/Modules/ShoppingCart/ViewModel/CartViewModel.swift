@@ -16,6 +16,7 @@ class CartViewModel{
 
   var cartArray: [Line_items] = []{
     didSet{
+      print("aaa2222")
       transferCartData()
       DispatchQueue.main.async {
         self.bindDataToView()
@@ -43,13 +44,22 @@ class CartViewModel{
       self?.craftId = result?.draft_orders?.filter({ $0.email == dummyMail && $0.note == "cart" }).first?.id ?? 0
       self?.subTotalPrice = Double(result?.draft_orders?.filter({ $0.email == dummyMail && $0.note == "cart" }).first?.subtotal_price ?? "0.0") ?? 0
 
-
+//      print(result?.draft_orders)
+//      if result?.draft_orders == nil { self?.isEmptyList = true; self?.cartArray = []}
       if let items = result?.draft_orders?.filter({ $0.email == dummyMail && $0.note == "cart" }).first?.line_items{
 
+
         print(self?.craftId ?? -1)
-        if items.count == 1 && items.first?.title == "dummy for ward"{
+        print("kejbfbejhfbrhjebhj")
+        if items.count == 1 && items.first?.title == "empty product" {
+          print("a")
+          print(items.count)
+          print(items.first?.title)
           self?.isEmptyList = true
         }else {
+          print("b")
+          print(items.count)
+          print(items.first?.variant_id)
           self?.isEmptyList = false
           self?.cartArray = items
         }
@@ -61,8 +71,8 @@ class CartViewModel{
   func transferCartData(){
     cartUpdated.draftOrder?.lineItems = []
     for item in cartArray {
-      let property = Property(name: "img_url", value: item.properties?.first?.value)
-      let lineItem = LineItem(variantID: item.variant_id, quantity: item.quantity, properties: [property])
+      var property = Property(name: "img_url", value: item.properties?.first?.value)
+      var lineItem = LineItem(variantID: item.variant_id, quantity: item.quantity, properties: [property])
       cartUpdated.draftOrder?.lineItems.append(lineItem)
     }
   }
@@ -77,6 +87,20 @@ class CartViewModel{
 
       self?.subTotalPrice = Double(result?.draft_order?.subtotal_price ?? "0.0") ?? 0.0
       self?.cartArray = result?.draft_order?.line_items ?? []
+      let items = result!.draft_order!.line_items!
+      if items.count == 1 && items.first?.title == "empty product" {
+        print("a")
+        print(items.count)
+        print(items.first?.title)
+        self?.isEmptyList = true
+      }else {
+        print("b")
+        print(items.count)
+        print(items.first?.variant_id)
+        self?.isEmptyList = false
+        self?.cartArray = items
+      }
+
 
       print("krbtkuygeksreykvbuyj2222")
       print(self?.cartArray.first?.quantity)

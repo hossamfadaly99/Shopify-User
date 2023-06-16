@@ -29,12 +29,15 @@ struct DraftOrder: Codable {
 
 // MARK: - LineItem
 struct LineItem: Codable {
-  var variantID, quantity: Int?
+  var variantID : Int?
+  var title: String? = ""
+  var price: Double?
+  var quantity: Int?
   var properties: [Property] = []
 
     enum CodingKeys: String, CodingKey {
         case variantID = "variant_id"
-        case quantity, properties
+        case quantity, properties, title
     }
 }
 
