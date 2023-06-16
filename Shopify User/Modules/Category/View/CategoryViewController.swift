@@ -10,8 +10,8 @@ import Reachability
 
 class CategoryViewController: UIViewController , UITableViewDelegate, UITableViewDataSource{
     
-    var productsList : [CategoryProduct] = []
-    var productsListCopy : [CategoryProduct] = []
+    var productsList : [Product] = []
+    var productsListCopy : [Product] = []
     var categoriesList : [CustomCollection] = []
     var viewModel : CategoryViewModel?
     @IBOutlet weak var categorySegment: UISegmentedControl!
@@ -136,7 +136,7 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         
         cell.productTitleLabel.text = productsList[indexPath.row].title
         cell.productTypeLabel.text = productsList[indexPath.row].productType
-        cell.productPriceLabel.text = productsList[indexPath.row].vendor
+        cell.productPriceLabel.text = (productsList[indexPath.row].variants?[0].price ?? "0") + " EGP"
         
         let url = URL(string: productsList[indexPath.row].image?.src ?? "")
         

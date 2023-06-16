@@ -16,7 +16,7 @@ class CategoryViewModel{
             bindResultToViewController()
         }
     }
-    var categoryResult : [CategoryProduct]!{
+    var categoryResult : [Product]!{
         didSet{
             bindResultToViewController()
         }
@@ -36,15 +36,17 @@ class CategoryViewModel{
         }
     }
     
+    
+    
     func getItems(){
         let headers: HTTPHeaders = [
             HTTPHeader(name: "X-Shopify-Access-Token", value: "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")
                ]
+               let param = ["collection_id": categoryID ?? 0]
         
-        let url = "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/collections/\(categoryID ?? 0)/products.json"
-        MonicaNetworkManager().loadData(url : url, param: Parameters(), header: headers) { [weak self] (result : CategoryProductResponse? ,error) in
+        let url = "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json"
+        MonicaNetworkManager().loadData(url : url, param: param, header: headers) { [weak self] (result : ProductResponse? ,error) in
             self?.categoryResult = result?.products
-            
         }
     }
 
