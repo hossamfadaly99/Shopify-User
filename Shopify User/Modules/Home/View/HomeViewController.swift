@@ -26,9 +26,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
         registerCells()
-        
         self.collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeader ")
-        
         let layout = UICollectionViewCompositionalLayout{ index, environment in
             if(index == 0){
                 return self.drawTheTopSection()
@@ -36,13 +34,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
                 return self.drawTheBottomSection()
             }
         }
-        
         self.collectionView.setCollectionViewLayout(layout, animated: true)
-        
-        //        pageControl.numberOfPages = adsImagesArray.count
-        //        print(adsImagesArray.count)
-        
-        // Do any additional setup after loading the view.
         startTimer()
     }
     
@@ -78,7 +70,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         }else{
             currentCellIndex = 0
         }
-        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
+        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -190,7 +182,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 16, trailing: 0)
         let section = NSCollectionLayoutSection(group: group)
-        //section.orthogonalScrollingBehavior = .continuous
+        section.orthogonalScrollingBehavior = .continuous
         section.contentInsets = NSDirectionalEdgeInsets(top: 16, leading: 0, bottom: 16, trailing: 0)
         section.boundarySupplementaryItems = [.init(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(60)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)]
         return section

@@ -34,15 +34,15 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
         
         setupDropDownMenu()
     }
-     @IBAction func navigateToSearch(_ sender: Any) {
+    @IBAction func navigateToSearch(_ sender: Any) {
         print("Navigate to search_VC From Products")
-         let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
-         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
-         nextViewController.destination = Constants.SCREEN_ID_BRAND
-         nextViewController.brand = brandName ?? ""
+        let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
+        nextViewController.destination = Constants.SCREEN_ID_BRAND
+        nextViewController.brand = brandName ?? ""
         
-         nextViewController.modalPresentationStyle = .fullScreen
-         present(nextViewController, animated: true, completion: nil)
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
     }
     
     func setupDropDownMenu(){
@@ -52,7 +52,7 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
         dropDown.anchorView = filterBtn// Replace 'yourButton' with the appropriate reference to your button
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             // Handle selection here
-           if index == 0{
+            if index == 0{
                 self?.filterByA_Z()
             }else{
                 self?.filterByPrice()
@@ -60,11 +60,11 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
         }
     }
     
-//    func filterByBestSeller(){
-//        productsList = productsListCopy
-//        productsListCopyForPrice = productsList
-//        tableView.reloadData()
-//    }
+    //    func filterByBestSeller(){
+    //        productsList = productsListCopy
+    //        productsListCopyForPrice = productsList
+    //        tableView.reloadData()
+    //    }
     
     func filterByA_Z(){
         productsList = productsListCopy
@@ -77,7 +77,7 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
     
     func filterByPrice(){
         productsList = productsListCopy
-
+        
         productsList.sort{
             if ($0.variants?[0].price)! == ($1.variants?[0].price)!{
                 return ($0.title)! < ($1.title)!
@@ -94,119 +94,110 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        viewModel=GetProductsViewModel()
-        viewModel?.brandName = brandName
-        let indicator = UIActivityIndicatorView(style: .large)
-                indicator.center = self.view.center
-                self.view.addSubview(indicator)
-        indicator.color = UIColor(named: "main_green")
-                indicator.startAnimating()
-        
-        viewModel?.bindResultToViewController={
-            [weak self] in
-            DispatchQueue.main.async {
-                self?.productsList = self?.viewModel?.result ?? []
-                if self?.productsList.count == 0{
-                    self?.noItemFoundImg.isHidden = false
-                }else{
-                    self?.noItemFoundImg.isHidden = true
-        let reachability = try! Reachability()
-        if reachability.connection != .unavailable{
-            viewModel=GetProductsViewModel()
-            viewModel?.brandName = brandName
+            let indicator = UIActivityIndicatorView(style: .large)
+                    indicator.center = self.view.center
+                    self.view.addSubview(indicator)
+            indicator.color = UIColor(named: "main_green")
+                    indicator.startAnimating()
             
-            viewModel?.bindResultToViewController={
-                [weak self] in
-                DispatchQueue.main.async {
-                    self?.productsList = self?.viewModel?.result ?? []
-                    self?.productsListCopy = self?.viewModel?.result ?? []
-                    self?.productsListCopyForPrice = self?.viewModel?.result ?? []
-                    indicator.stopAnimating()
-                    self?.setupSlider()
-                    self?.tableView.reloadData()
+            let reachability = try! Reachability()
+            if reachability.connection != .unavailable{
+                viewModel=GetProductsViewModel()
+                viewModel?.brandName = brandName
+                
+                viewModel?.bindResultToViewController={
+                    [weak self] in
+                    DispatchQueue.main.async {
+                        self?.productsList = self?.viewModel?.result ?? []
+                        self?.productsListCopy = self?.viewModel?.result ?? []
+                        self?.productsListCopyForPrice = self?.viewModel?.result ?? []
+                        indicator.stopAnimating()
+                        self?.setupSlider()
+                        self?.tableView.reloadData()
+                    }
                 }
-                self?.tableView.reloadData()
+                viewModel?.getItems()
             }
-            viewModel?.getItems()
+            else{
+                let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+                indicator.stopAnimating()
+                self.present(alert, animated: true, completion: nil)
+            }
         }
-        else{
-            let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
-            indicator.stopAnimating()
-            self.present(alert, animated: true, completion: nil)
+    
+            func setupSlider() {
+                for i in self.productsList {
+                    self.productsPricesList.append(Float(i.variants?[0].price ?? "0") ?? 0)
+                    self.productsTitlesList.append(i.title ?? "No Title")
+                    print("Price: \(i.variants?[0].price ?? "0")")
+                }
+                priceSliderOutlet.minimumValue = 0
+                priceSliderOutlet.maximumValue = productsPricesList.max() ?? 0
+                priceSliderOutlet.value = productsPricesList.max() ?? 0
+            }
+            
+            func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+                if productsList.count == 0{
+                    noItemFoundImg.isHidden = false
+                }else{
+                    noItemFoundImg.isHidden = true
+                }
+                return productsList.count
+            }
+            
+            func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+                let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath) as! ProductsTableCell
+                
+                cell.productPriceLabel.text = (productsList[indexPath.row].variants?[0].price ?? "0") + " EGP"
+                cell.productTitleLabel.text = productsList[indexPath.row].title
+                cell.productTypeLabel.text = productsList[indexPath.row].productType
+                
+                let url = URL(string: productsList[indexPath.row].image?.src ?? "")
+                
+                cell.productImg.kf.setImage(
+                    with: url,
+                    placeholder: UIImage(named: "team1"))
+                
+                cell.productImg.frame = cell.productImg.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
+                cell.productImg.layer.borderWidth = 2
+                cell.productImg.layer.borderColor = UIColor.black.cgColor
+                cell.productImg.layer.cornerRadius = 25
+                
+                return cell
+            }
+            
+            @IBAction func backBtn(_ sender: Any) {
+                self.navigationController?.popViewController(animated: true)
+            }
+            
+            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+                
+                let reachability = try! Reachability()
+                if reachability.connection != .unavailable{
+                    let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
+                    let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
+                    //nextViewController.modalPresentationStyle = .fullScreen
+                    nextViewController.ID_Product_VC = productsList[indexPath.row].id
+                    present(nextViewController, animated: true, completion: nil)
+                }
+                else{
+                    let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
+            func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+                return 120
+            }
+            
+            @IBAction func priceSlider(_ sender: UISlider) {
+                priceFilterLabel.text = "From : \(Int(sender.minimumValue)) To \(Int(sender.value))"
+                productsList = productsListCopyForPrice
+                productsList = productsList.filter({ Float($0.variants?[0].price ?? "0") ?? 0 <= sender.value})
+                tableView.reloadData()
+            }
+            
         }
-        viewModel?.getItems()
-    }
     
-    func setupSlider() {
-        for i in self.productsList {
-            self.productsPricesList.append(Float(i.variants?[0].price ?? "0") ?? 0)
-            self.productsTitlesList.append(i.title ?? "No Title")
-            print("Price: \(i.variants?[0].price ?? "0")")
-        }
-        priceSliderOutlet.minimumValue = 0
-        priceSliderOutlet.maximumValue = productsPricesList.max() ?? 0
-        priceSliderOutlet.value = productsPricesList.max() ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if productsList.count == 0{
-            noItemFoundImg.isHidden = false
-        }else{
-            noItemFoundImg.isHidden = true
-        }
-        return productsList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath) as! ProductsTableCell
-        
-        cell.productPriceLabel.text = (productsList[indexPath.row].variants?[0].price ?? "0") + " EGP"
-        cell.productTitleLabel.text = productsList[indexPath.row].title
-        cell.productTypeLabel.text = productsList[indexPath.row].productType
-        
-        let url = URL(string: productsList[indexPath.row].image?.src ?? "")
-        
-        cell.productImg.kf.setImage(
-            with: url,
-            placeholder: UIImage(named: "team1"))
-        
-        cell.productImg.frame = cell.productImg.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
-        cell.productImg.layer.borderWidth = 2
-        cell.productImg.layer.borderColor = UIColor.black.cgColor
-        cell.productImg.layer.cornerRadius = 25
-        
-        return cell
-    }
-    
-    @IBAction func backBtn(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        let reachability = try! Reachability()
-        if reachability.connection != .unavailable{
-            let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
-            let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
-            //nextViewController.modalPresentationStyle = .fullScreen
-            nextViewController.ID_Product_VC = productsList[indexPath.row].id
-            present(nextViewController, animated: true, completion: nil)
-        }
-        else{
-            let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
-            self.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
-    }
-    
-    @IBAction func priceSlider(_ sender: UISlider) {
-        priceFilterLabel.text = "From : \(Int(sender.minimumValue)) To \(Int(sender.value))"
-        productsList = productsListCopyForPrice
-        productsList = productsList.filter({ Float($0.variants?[0].price ?? "0") ?? 0 <= sender.value})
-        tableView.reloadData()
-    }
