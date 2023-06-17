@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -22,6 +23,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                                 <items>
                                     <navigationItem title="Addresses" id="kaZ-lb-94E">
+                                        <barButtonItem key="leftBarButtonItem" image="back_btn_icon" id="bZi-wL-NOs"/>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="sWW-3F-QJi">
                                             <color key="tintColor" name="black_22"/>
                                         </barButtonItem>
@@ -57,8 +59,106 @@
             </objects>
             <point key="canvasLocation" x="132" y="-34"/>
         </scene>
+        <!--Address Details View Controller-->
+        <scene sceneID="Fc1-HO-fqC">
+            <objects>
+                <viewController id="Xjn-vA-UJi" customClass="AddressDetailsViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1AK-ef-plQ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X12-5h-m0y">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <items>
+                                    <navigationItem title="Adding Address" id="zNQ-rE-a4d">
+                                        <barButtonItem key="leftBarButtonItem" image="back_btn_icon" id="S2W-R1-Zmp"/>
+                                        <barButtonItem key="rightBarButtonItem" id="TRE-KL-YLw">
+                                            <imageReference key="image" image="checkmark" catalog="system" symbolScale="default"/>
+                                            <color key="tintColor" name="black_22"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ev-px-Qug">
+                                <rect key="frame" x="8" y="111" width="377" height="106"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KV1-YO-Kw5">
+                                        <rect key="frame" x="8" y="8" width="71.333333333333329" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address 1" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3ME-o6-rxm">
+                                        <rect key="frame" x="8" y="30" width="361" height="68"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="3XP-EI-YzW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-line1"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="3ME-o6-rxm" firstAttribute="leading" secondItem="8ev-px-Qug" secondAttribute="leading" constant="8" id="CwG-9w-Cvd"/>
+                                    <constraint firstItem="KV1-YO-Kw5" firstAttribute="top" secondItem="8ev-px-Qug" secondAttribute="top" constant="8" id="Ehw-zv-LHj"/>
+                                    <constraint firstItem="3ME-o6-rxm" firstAttribute="top" secondItem="KV1-YO-Kw5" secondAttribute="bottom" constant="4" id="QvP-Xp-nOk"/>
+                                    <constraint firstItem="KV1-YO-Kw5" firstAttribute="leading" secondItem="8ev-px-Qug" secondAttribute="leading" constant="8" id="W7b-rg-TZD"/>
+                                    <constraint firstAttribute="height" constant="106" id="j9v-cu-OzX"/>
+                                    <constraint firstAttribute="trailing" secondItem="3ME-o6-rxm" secondAttribute="trailing" constant="8" id="lLd-Gk-BCw"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kim-IS-mrA">
+                                <rect key="frame" x="8" y="225" width="377" height="106"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address 2:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vym-0n-nZB">
+                                        <rect key="frame" x="8" y="8" width="73.333333333333329" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address 1" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="TbD-Lt-qWs">
+                                        <rect key="frame" x="8" y="30" width="361" height="68"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="XQK-1J-Ydw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-line1"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="106" id="1CA-Wm-2WI"/>
+                                    <constraint firstItem="TbD-Lt-qWs" firstAttribute="leading" secondItem="Kim-IS-mrA" secondAttribute="leading" constant="8" id="9tE-2a-KIc"/>
+                                    <constraint firstItem="TbD-Lt-qWs" firstAttribute="top" secondItem="Vym-0n-nZB" secondAttribute="bottom" constant="4" id="RXp-cF-Dlx"/>
+                                    <constraint firstItem="Vym-0n-nZB" firstAttribute="top" secondItem="Kim-IS-mrA" secondAttribute="top" constant="8" id="col-rv-crY"/>
+                                    <constraint firstAttribute="trailing" secondItem="TbD-Lt-qWs" secondAttribute="trailing" constant="8" id="lSy-fi-POD"/>
+                                    <constraint firstItem="Vym-0n-nZB" firstAttribute="leading" secondItem="Kim-IS-mrA" secondAttribute="leading" constant="8" id="qEl-0P-YdY"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="89x-gO-BO8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="X12-5h-m0y" firstAttribute="top" secondItem="89x-gO-BO8" secondAttribute="top" id="1VA-KQ-a95"/>
+                            <constraint firstItem="Kim-IS-mrA" firstAttribute="top" secondItem="8ev-px-Qug" secondAttribute="bottom" constant="8" id="D19-qY-5Qe"/>
+                            <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="Kim-IS-mrA" secondAttribute="trailing" constant="8" id="JL4-Nw-L8V"/>
+                            <constraint firstItem="8ev-px-Qug" firstAttribute="top" secondItem="X12-5h-m0y" secondAttribute="bottom" constant="8" id="aRl-GN-OEB"/>
+                            <constraint firstItem="Kim-IS-mrA" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="8" id="fYY-Rr-Csl"/>
+                            <constraint firstItem="X12-5h-m0y" firstAttribute="trailing" secondItem="89x-gO-BO8" secondAttribute="trailing" id="jBC-pC-dpK"/>
+                            <constraint firstItem="8ev-px-Qug" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="8" id="o5p-wb-0qG"/>
+                            <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="8ev-px-Qug" secondAttribute="trailing" constant="8" id="s8G-B1-ejt"/>
+                            <constraint firstItem="X12-5h-m0y" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" id="utc-md-8xJ"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PZl-FD-j4S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="906" y="-35"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="back_btn_icon" width="24" height="24"/>
+        <image name="checkmark" catalog="system" width="128" height="114"/>
         <namedColor name="black_22">
             <color red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
