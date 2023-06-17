@@ -25,15 +25,6 @@ class SignupViewModel{
         }
     }
     
-    //    func isValid(authManager:AuthenticationManager) -> Observable<Bool> {
-    //        return Observable.combineLatest(firstname.asObservable(),lastname.asObservable(), email.asObservable(), password.asObservable())
-    //            .map { firstname, lastname, email, password in
-    //
-    //                let isValid = authManager.isEmailValid(email) &&                authManager.isUsernameValid(firstname) && authManager.isUsernameValid(lastname) && authManager.isPasswordValid(password)
-    //
-    //                return !firstname.isEmpty && !lastname.isEmpty && !email.isEmpty && !password.isEmpty && isValid }
-    //    }
-    
     func getcustomers(){
         NetworkManager(url:URLCreator().getCustomersURL()).fetchData{
             (result: RootCustomer?) in
@@ -102,21 +93,9 @@ class SignupViewModel{
             } else {
                 Network.postMethod(url:URLCreator().getCustomersURL(), model: model)
                 { customer in
-                    print("We Have responce")
-
-                    let defaults = UserDefaults.standard
-                    defaults.set(customer?.customer?.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
-                    defaults.set(customer?.customer?.lastName, forKey: Constants.KEY_USER_LASTNAME)
-                    defaults.set(customer?.customer?.email, forKey: Constants.KEY_USER_EMAIL)
-
-                    defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
-                    defaults.set(customer?.customer?.id, forKey: Constants.KEY_USER_ID)
-                    if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
-                    {
-                        print("Welcome back, \(customer_id)!")
-                    } else {
-                        print("No username found.")
-                    }
+                    guard let singleCustomer = customer?.customer else{return}
+                    self.setUserDefaults(customer: singleCustomer)
+                    self.cresteWishList(mycustomer: singleCustomer)
                     self.delegate?.didLoginSuccessfully()
                     print("reg done")
                 }
@@ -124,4 +103,28 @@ class SignupViewModel{
             }
         }
     }
+    func setUserDefaults(customer:Customer){
+        let defaults = UserDefaults.standard
+        defaults.set(customer.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
+        defaults.set(customer.lastName, forKey: Constants.KEY_USER_LASTNAME)
+        defaults.set(customer.email, forKey: Constants.KEY_USER_EMAIL)
+        defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
+        defaults.set(customer.id, forKey: Constants.KEY_USER_ID)
+        if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
+        {
+            print("Welcome back, \(customer_id)!")
+        } else {
+            print("No username found.")
+        }
+    }
+    func cresteWishList(mycustomer:Customer){
+        var myModel = Draft_orders()
+        myModel.note = "wishList"
+        myModel.customer?.id = mycustomer.id
+        Network.postDraftOrder(url: URLCreator().getCreateCartURL(), model: myModel) { draftOrder in
+            print("draft response: \(draftOrder?.draft_order?.note)")
+            print("draft response: \(draftOrder?.draft_order?.id)")
+        }
+    }
+    func createCart(mycustomer:Customer){}
 }

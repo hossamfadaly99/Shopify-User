@@ -20,6 +20,8 @@ class URLCreator {
         endPoint = "draft_orders"
         return baseURL + endPoint + jsontype
     }
+    
+    
     func getProductsURL()->String{
         endPoint = "products"
         return baseURL + endPoint + jsontype
@@ -33,6 +35,11 @@ class URLCreator {
         //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers.json
         endPoint = "customers"
         return baseURL + endPoint + jsontype
+    }
+    func getCustomer(customer_id : String) -> String {
+        //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers/6954207117604.json
+        endPoint = "customers"
+        return baseURL + endPoint + "/" + customer_id + jsontype
     }
     func getBrandProducts(brandName:String) -> String{
         //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json?vendor=ADIDAS

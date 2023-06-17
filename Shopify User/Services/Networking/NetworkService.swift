@@ -37,11 +37,64 @@ class MonicaNetworkManager : NetworkService{
 }
 
   class Network {
-    
-    static func postMethod(url:String, model:Customer, handler: @escaping (PostCustomer?) -> Void) {
-      let myHeaders : HTTPHeaders = [
+     static let myHeaders : HTTPHeaders = [
         "Content-Type" : "application/json",
         "X-Shopify-Access-Token" : "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" ]
+      
+      static func postDraftOrder(url:String, model:Draft_orders, handler: @escaping (DraftOrderr?) -> Void) {
+          let myParams: Parameters =
+          [
+              "draft_order": [
+                "note": model.note,
+                  "line_items": [
+                      [
+                          "title": "dummy for ward",
+                          "price": "500",
+                          "quantity": 1
+                      ]
+                      
+                  ],
+                  "customer": [
+                    "id": model.customer?.id
+                  ],
+                  "use_customer_default_address": true
+              ]
+          ]
+          
+        AF.request(url, method: .post, parameters:myParams , encoding: JSONEncoding.default, headers:myHeaders)
+          .validate(statusCode: 200 ..< 299).responseData { response in
+            switch response.result {
+            case .success(let data):
+              do {
+                guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                  print("Error: Cannot convert data to JSON object")
+                  return
+                }
+                guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                  print("Error: Cannot convert JSON object to Pretty JSON data")
+                  return
+                }
+                guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                  print("Error: Could print JSON in String")
+                  return
+                }
+                  print(prettyPrintedJson)
+                  let result = try JSONDecoder().decode(DraftOrderr.self,from: data)
+                  handler(result)
+                  print("saved custumer: \(result)")
+              } catch {
+                  handler(nil)
+                  print("Error: Trying to convert JSON data to string")
+                return
+              }
+            case .failure(let error):
+                handler(nil)
+                print(error)
+            }
+          }
+      }
+      
+    static func postMethod(url:String, model:Customer, handler: @escaping (PostCustomer?) -> Void) {
         let myParams: Parameters =
         [
             "customer": [

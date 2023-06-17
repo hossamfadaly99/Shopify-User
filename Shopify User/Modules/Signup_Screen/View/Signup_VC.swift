@@ -54,11 +54,11 @@ class Signup_VC: UIViewController {
         GIDSignIn.sharedInstance.configuration = config
         GIDSignIn.sharedInstance.signIn(withPresenting: self) { signInResult, error in
             if error != nil {
-                print("error gooogle\(error?.localizedDescription)")
+               // print("error gooogle\(error?.localizedDescription)")
 
                    return
                 }
-                 print("hi gooogle")
+               //  print("hi gooogle")
             guard let signInResult = signInResult else { return }
                 let user = signInResult.user
                 let emailAddress = user.profile?.email
@@ -185,7 +185,7 @@ extension Signup_VC:ViewModelDelegate{
     }
     
     func loginFailed() {
-        print("failed to login")
+      //  print("failed to login")
         AlertCreator.showAlert(title: "Alert", message: "Register Failed. Already User Exist.", viewController: self)
     }
 
