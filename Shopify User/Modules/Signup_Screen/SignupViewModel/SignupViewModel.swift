@@ -122,9 +122,30 @@ class SignupViewModel{
         myModel.note = "wishList"
         myModel.customer?.id = mycustomer.id
         Network.postDraftOrder(url: URLCreator().getCreateCartURL(), model: myModel) { draftOrder in
-            print("draft response: \(draftOrder?.draft_order?.note)")
-            print("draft response: \(draftOrder?.draft_order?.id)")
+            guard let myWishList = draftOrder?.draft_order else {return}
+        //    print("draft response: \(myWishList.note)")
+        //    print("draft response: \(myWishList.id)")
+            self.assignWishListToUser(whishList: myWishList, mycustomer: mycustomer)
         }
     }
-    func createCart(mycustomer:Customer){}
+    func createCart(mycustomer:Customer){
+        var myModel = Draft_orders()
+        myModel.note = "cart"
+        myModel.customer?.id = mycustomer.id
+        Network.postDraftOrder(url: URLCreator().getCreateCartURL(), model: myModel) { draftOrder in
+           // print("draft response: \(draftOrder?.draft_order?.note)")
+           // print("draft response: \(draftOrder?.draft_order?.id)")
+        }
+    }
+    func assignWishListToUser(whishList:Draft_orders,mycustomer:Customer){
+        // try to update with just custumor id in params 
+        Network.updateCustomer(url: URLCreator().getCustomer(customer_id: String(mycustomer.id ?? 0)), model: whishList) { response in
+           // print("Updated Customer : \(response?.customer?.note)")
+        }
+    }
+//    func assignCartToUser(whishList:Draft_orders,mycustomer:Customer){
+//        Network.updateCustomer(url: URLCreator().getCustomer(customer_id: String(mycustomer.id ?? 0)), model: whishList) { response in
+//           // print("Updated Customer : \(response?.customer?.note)")
+//        }
+//    }
 }

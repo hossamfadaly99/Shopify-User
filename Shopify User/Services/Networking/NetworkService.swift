@@ -136,4 +136,44 @@ class MonicaNetworkManager : NetworkService{
           }
         }
     }
+      
+    static func updateCustomer(url: String, model:Draft_orders, handler: @escaping (PostCustomer?) -> Void) {
+          let myParams: Parameters =
+          [
+              "customer": [
+                "note": model.id
+              ]
+          ]
+          AF.request(url, method: .put, parameters:myParams , encoding: JSONEncoding.default, headers:myHeaders)
+            .validate(statusCode: 200 ..< 299).responseData { response in
+              switch response.result {
+              case .success(let data):
+                do {
+                  guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                    print("Error: Cannot convert data to JSON object")
+                    return
+                  }
+                  guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                    print("Error: Cannot convert JSON object to Pretty JSON data")
+                    return
+                  }
+                  guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                    print("Error: Could print JSON in String")
+                    return
+                  }
+                    print(prettyPrintedJson)
+                    let result = try JSONDecoder().decode(PostCustomer.self,from: data)
+                    handler(result)
+                    print("draft custumer: \(result)")
+                } catch {
+                    handler(nil)
+                    print("Error: Trying to convert JSON data to string")
+                  return
+                }
+              case .failure(let error):
+                  handler(nil)
+                  print(error)
+              }
+            }
+      }
   }

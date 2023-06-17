@@ -99,7 +99,6 @@ class LoginViewModel{
                 defaults.set(model.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
                 defaults.set(model.lastName, forKey: Constants.KEY_USER_LASTNAME)
                 defaults.set(model.email, forKey: Constants.KEY_USER_EMAIL)
-
                 defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
                 defaults.set(model.id, forKey: Constants.KEY_USER_ID)
                 if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) {
