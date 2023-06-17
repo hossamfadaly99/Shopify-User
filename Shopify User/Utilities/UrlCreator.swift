@@ -34,4 +34,8 @@ class URLCreator {
         endPoint = "customers"
         return baseURL + endPoint + jsontype
     }
+  func getAddressURL(customerId: String, addressId: String = "") -> String{
+      endPoint = "customers/\(customerId)/addresses"
+    return baseURL + endPoint + jsontype + "/\(addressId)"
+  }
 }

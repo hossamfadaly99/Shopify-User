@@ -9,7 +9,11 @@ import UIKit
 
 class AddressCell: UITableViewCell {
 
-    override func awakeFromNib() {
+  @IBOutlet weak var mainAddressLabel: UILabel!
+  @IBOutlet weak var SecondAddressLabel: UILabel!
+  @IBOutlet weak var mobileLabel: UILabel!
+
+  override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
@@ -19,5 +23,14 @@ class AddressCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
+  func loadAddressData(_ address: Address_){
+    self.mainAddressLabel.text = address.address1
+    self.SecondAddressLabel.text = "\(address.address2 ?? ""), \(address.city ?? ""), \(address.province ?? ""), \(address.country ?? "")"
+    self.mobileLabel.text = address.phone
+  }
+  @IBAction func editBtnClick(_ sender: Any) {
+    //navigate to edit
+  }
+
 }
