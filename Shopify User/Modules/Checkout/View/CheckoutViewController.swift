@@ -21,9 +21,9 @@ class CheckoutViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
       self.navigationController?.navigationBar.isHidden = true
-    orderAmountLabel.text = "$\(amount)"
-    deliveryAmountLabel.text = "$20"
-    summaryAmountLabel.text = "$\(totalAmountWithDelivery)"
+    orderAmountLabel.text = "\(amount)$"
+    deliveryAmountLabel.text = "20$"
+    summaryAmountLabel.text = "\(totalAmountWithDelivery)$"
     }
 
   @IBAction func backBtnClick(_ sender: Any) {
@@ -61,6 +61,8 @@ class CheckoutViewController: UIViewController {
       print(isPaymentSuccessful.1)
     }
   }
+  
+
 }
 
 

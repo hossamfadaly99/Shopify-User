@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct DraftOrders : Codable {
-	let draft_orders : [Draft_orders]?
+struct DraftOrderr : Codable {
+	var draft_order : Draft_orders?
 
 }
