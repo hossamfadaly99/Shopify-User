@@ -11,7 +11,7 @@ class AddressDetailsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+      self.navigationController?.navigationBar.isHidden = true
         // Do any additional setup after loading the view.
     }
     
@@ -25,5 +25,8 @@ class AddressDetailsViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+  @IBAction func navigateBack(_ sender: UIBarButtonItem) {
+    self.navigationController?.popViewController(animated: true)
+  }
 
 }

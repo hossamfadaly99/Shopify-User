@@ -31,6 +31,7 @@ class AddressCell: UITableViewCell {
   }
   @IBAction func editBtnClick(_ sender: Any) {
     //navigate to edit
+
   }
 
 }

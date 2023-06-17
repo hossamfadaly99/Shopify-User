@@ -37,7 +37,16 @@ class AddressViewController: UIViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
 
-    // MARK: - Table view data source
+  @IBAction func navigateToDetails(_ sender: Any) {
+    let detailsVC = (self.storyboard?.instantiateViewController(identifier: "AddressDetailsViewController"))!
+    self.navigationController?.pushViewController(detailsVC, animated: true)
+  }
+  @IBAction func navigateBack(_ sender: UIBarButtonItem) {
+    self.navigationController?.popViewController(animated: true)
+  }
+
+
+  // MARK: - Table view data source
 
 
 
