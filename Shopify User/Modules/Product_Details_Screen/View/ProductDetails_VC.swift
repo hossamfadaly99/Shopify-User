@@ -10,6 +10,7 @@ import RxSwift
 import RxRelay
 import RxCocoa
 import Cosmos
+import Alamofire
 
 class ProductDetails_VC: UIViewController {
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -21,7 +22,8 @@ class ProductDetails_VC: UIViewController {
     @IBOutlet weak var reviewsTable: UITableView!
     @IBOutlet weak var labeldes: UILabel!
     @IBOutlet weak var popUpBtn: UIButton!
-    
+    let defaults = UserDefaults.standard
+
     var ID_Product_VC : Int!
     var sizes : [String]?
     var product_VC :Product = Product()
@@ -58,12 +60,30 @@ class ProductDetails_VC: UIViewController {
         let pid = String(ID_Product_VC)
         viewModel.getProductData(url:URLCreator().getProductURL(id: pid) )
     }
+    func addToWishList(){
+        guard let draftid = UserDefaults.standard.string(forKey: Constants.USER_WISHLIST) else{return}
+
+        let myParams: Parameters =
+        [
+            "draft_order": [
+              "line_items":[
+                [
+                "title": "dummy for Nada"
+                ]
+              ]
+            ]
+        ]
+        Network.updateDraft(url: URLCreator().getEditCartURL(id: draftid), myParams: myParams, responseType: DraftOrderr.self) { response in
+            print("response :\(response?.draft_order)")
+        }
+    }
+    
     @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
         let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
-        //print("My p  :\(product_VC)")
+        addToWishList()
         let is_Exist = dataManager.isProductExist(myProduct: coreData)
         if(is_Exist){
-            //print("product already saved")
+            print("product already saved")
         }else{
           //  guard let myProduct = coreData else{return}
            // print("product to be inserted\(coreData)")
@@ -81,13 +101,13 @@ class ProductDetails_VC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
-      //  print("view will appear")
-        let is_Exist2 = dataManager.isProductExist(myProduct: coreData)
-        print(is_Exist2)
-
-        if(is_Exist2){
-            //print("hiii")
+        //print("My p  :\(product_VC)")
+        let is_Exist = dataManager.isProductExist(myProduct: coreData)
+        if(is_Exist){
             addToFav.image = UIImage(named: "activated")
+            print("product already saved")
+        }else{
+            addToFav.image = UIImage(named: "inactive")
         }
     }
     

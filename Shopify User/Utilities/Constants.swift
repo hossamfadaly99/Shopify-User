@@ -26,6 +26,8 @@ class Constants {
     static let KEY_USER_FIRSTNAME = "UserFirstName"
     static let KEY_USER_LASTNAME = "UserLastName"
     static let KEY_USER_EMAIL = "UserEmail"
+    static let USER_WISHLIST = "WishList"
+    static let USER_CART = "Cart"
     static let KEY_USER_ID = "UserID"
     static let KEY_USER_STATE = "State"
     static let USER_STATE_LOGIN = "Login"

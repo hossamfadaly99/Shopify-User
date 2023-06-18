@@ -12,7 +12,7 @@ import RxRelay
 
 class SignupViewModel{
     weak var delegate: ViewModelDelegate?
-    
+    let defaults = UserDefaults.standard
     let firstname = BehaviorRelay<String>(value: "")
     let lastname = BehaviorRelay<String>(value: "")
     let email = BehaviorRelay<String>(value: "")
@@ -104,7 +104,6 @@ class SignupViewModel{
         }
     }
     func setUserDefaults(customer:Customer){
-        let defaults = UserDefaults.standard
         defaults.set(customer.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
         defaults.set(customer.lastName, forKey: Constants.KEY_USER_LASTNAME)
         defaults.set(customer.email, forKey: Constants.KEY_USER_EMAIL)
@@ -126,6 +125,7 @@ class SignupViewModel{
         //    print("draft response: \(myWishList.note)")
         //    print("draft response: \(myWishList.id)")
             self.assignWishListToUser(whishList: myWishList, mycustomer: mycustomer)
+            self.defaults.set(myWishList.id, forKey: Constants.USER_WISHLIST)
         }
     }
     func createCart(mycustomer:Customer){

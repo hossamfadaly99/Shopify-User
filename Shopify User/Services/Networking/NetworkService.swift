@@ -176,4 +176,76 @@ class MonicaNetworkManager : NetworkService{
               }
             }
       }
-  }
+      static func updateDraft<T: Decodable>(url: String, myParams: Parameters, responseType: T.Type, handler: @escaping (T?) -> Void) {
+          AF.request(url, method: .put, parameters: myParams, encoding: JSONEncoding.default, headers: myHeaders)
+              .validate(statusCode: 200 ..< 299).responseData { response in
+                  switch response.result {
+                  case .success(let data):
+                      do {
+                          guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+                              print("Error: Cannot convert data to JSON object")
+                              handler(nil)
+                              return
+                          }
+                          guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+                              print("Error: Cannot convert JSON object to Pretty JSON data")
+                              handler(nil)
+                              return
+                          }
+                          guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+                              print("Error: Could print JSON in String")
+                              handler(nil)
+                              return
+                          }
+                          print(prettyPrintedJson)
+                          let result = try JSONDecoder().decode(T.self, from: data)
+                          handler(result)
+                          print("Result: \(result)")
+                      } catch {
+                          handler(nil)
+                          print("Error: Trying to convert JSON data to string")
+                      }
+                  case .failure(let error):
+                      handler(nil)
+                      print(error)
+                  }
+          }
+      }
+
+      }
+
+      
+//      static func updateDraft(url: String, myParams:Parameters, handler: @escaping (DraftOrderr?) -> Void) {
+//            AF.request(url, method: .put, parameters:myParams , encoding: JSONEncoding.default, headers:myHeaders)
+//              .validate(statusCode: 200 ..< 299).responseData { response in
+//                switch response.result {
+//                case .success(let data):
+//                  do {
+//                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+//                      print("Error: Cannot convert data to JSON object")
+//                      return
+//                    }
+//                    guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+//                      print("Error: Cannot convert JSON object to Pretty JSON data")
+//                      return
+//                    }
+//                    guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+//                      print("Error: Could print JSON in String")
+//                      return
+//                    }
+//                      print(prettyPrintedJson)
+//                      let result = try JSONDecoder().decode(DraftOrderr.self,from: data)
+//                      handler(result)
+//                      print("draft custumer: \(result)")
+//                  } catch {
+//                      handler(nil)
+//                      print("Error: Trying to convert JSON data to string")
+//                    return
+//                  }
+//                case .failure(let error):
+//                    handler(nil)
+//                    print(error)
+//                }
+//              }
+//        }
+  
