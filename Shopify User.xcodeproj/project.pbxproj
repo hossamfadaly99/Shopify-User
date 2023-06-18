@@ -44,6 +44,8 @@
 		048813A52A2D257800B41CA4 /* ProductsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048813A42A2D257800B41CA4 /* ProductsViewModel.swift */; };
 		048813A82A2D26AB00B41CA4 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048813A72A2D26AB00B41CA4 /* Product.swift */; };
 		0499FB7C2A339A09008CE298 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499FB7B2A339A09008CE298 /* LoginViewModel.swift */; };
+		04B18D6E2A3F006100EDE265 /* Fav_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B18D6C2A3F006100EDE265 /* Fav_Cell.swift */; };
+		04B18D6F2A3F006100EDE265 /* Fav_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B18D6D2A3F006100EDE265 /* Fav_Cell.xib */; };
 		04BFB2152A3ABE5500E23851 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04BFB2142A3ABE5500E23851 /* Profile.storyboard */; };
 		04BFB2172A3ABE7900E23851 /* Profile_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BFB2162A3ABE7900E23851 /* Profile_VC.swift */; };
 		04E039572A2CA6E700B2EF9D /* AdsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E039552A2CA6E700B2EF9D /* AdsCollectionViewCell.swift */; };
@@ -168,6 +170,8 @@
 		048813A42A2D257800B41CA4 /* ProductsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsViewModel.swift; sourceTree = "<group>"; };
 		048813A72A2D26AB00B41CA4 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		0499FB7B2A339A09008CE298 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		04B18D6C2A3F006100EDE265 /* Fav_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fav_Cell.swift; sourceTree = "<group>"; };
+		04B18D6D2A3F006100EDE265 /* Fav_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Fav_Cell.xib; sourceTree = "<group>"; };
 		04BFB2142A3ABE5500E23851 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		04BFB2162A3ABE7900E23851 /* Profile_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile_VC.swift; sourceTree = "<group>"; };
 		04E039552A2CA6E700B2EF9D /* AdsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -377,6 +381,8 @@
 				04816F792A31357000949265 /* Favourite_Cell.swift */,
 				04816F7A2A31357000949265 /* Favourite_Cell.xib */,
 				04816F7D2A31359C00949265 /* Favourite_SB.storyboard */,
+				04B18D6C2A3F006100EDE265 /* Fav_Cell.swift */,
+				04B18D6D2A3F006100EDE265 /* Fav_Cell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -983,6 +989,7 @@
 				042B104D2A3A6A78004793D3 /* GoogleService-Info.plist in Resources */,
 				04816F862A3139A000949265 /* ProductDetails_SB.storyboard in Resources */,
 				04816F7E2A31359C00949265 /* Favourite_SB.storyboard in Resources */,
+				04B18D6F2A3F006100EDE265 /* Fav_Cell.xib in Resources */,
 				04E44F142A2C87AD0006B9E4 /* BrandCustomViewCell.xib in Resources */,
 				9F598C912A27C58100C36A93 /* Main.storyboard in Resources */,
 				9FE843392A2CA968004FE9D8 /* CartItemCell.xib in Resources */,
@@ -1135,6 +1142,7 @@
 				042D1DD32A34B65900633EF5 /* ProductsDetailsViewModel.swift in Sources */,
 				04FECD382A37BA7A00846E3F /* Floaty.swift in Sources */,
 				9F3F116F2A31EA970032BEE2 /* InternetConnectivity.swift in Sources */,
+				04B18D6E2A3F006100EDE265 /* Fav_Cell.swift in Sources */,
 				9F23F1572A34420700E4FD15 /* DraftOrderEdited.swift in Sources */,
 				9F1C8CC62A36E8D30026D45E /* PaymentStrategy.swift in Sources */,
 				9F19143F2A323B6700FDBD2F /* Shipping_address.swift in Sources */,
@@ -1189,7 +1197,6 @@
 				0488139E2A2D0C7800B41CA4 /* HomeViewModel.swift in Sources */,
 				9F1914412A323B6700FDBD2F /* Billing_address.swift in Sources */,
 				9F598CCD2A27E3E700C36A93 /* Constants.swift in Sources */,
-				0459E5E32A33C5C2002E92D2 /* CategoryProduct.swift in Sources */,
 				9F22F9622A3AEBB2000EE4AE /* EditedDraftOrder.swift in Sources */,
 				04816F822A31396000949265 /* ProductDetails_VC.swift in Sources */,
 				04FECD362A37BA7A00846E3F /* FloatyItem.swift in Sources */,

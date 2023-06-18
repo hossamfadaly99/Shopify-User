@@ -9,54 +9,62 @@ import Foundation
 import RxRelay
 import RxCocoa
 import RxSwift
+import Alamofire
 
 class ProductsDetailsViewModel{
-//    var myProduct :PublishSubject<Product> = PublishSubject()
-//    let reloadData = PublishSubject<Void>()
-//    let isLoading : PublishSubject<Bool> = PublishSubject()
-   
+    var bindCartData: ()->() = {}
+    var networkManager: NetworkServiceProtocol
+    let defaults = UserDefaults.standard
     var bindDataToView:((Product) -> ()) = { _ in }
     var myproduct: Product = Product(){
       didSet{
           bindDataToView(self.myproduct)
       }
     }
+    var isEmptyList: Bool = true
+    var wishListArray: [Line_items] = []{
+      didSet{
+        DispatchQueue.main.async {
+        }
+      }
+    }
+    init(networkManager: NetworkServiceProtocol) {
+      self.networkManager = networkManager
+    }
     
-    
-  func getProductData (url:String){
-      NetworkManager(url: url).fetchData{
-          (result: ProductResponse?) in
-          guard let item = result?.products?.first else{ return }
-          self.myproduct = item
+    func loadWishListItems(){
+    guard let wishlist_id = UserDefaults.standard.string(forKey: Constants.USER_WISHLIST) else {return}
+      networkManager.fetchData{ [weak self] (result: DraftOrderr?) in
+        if let items = result?.draft_order?.line_items{
+        //  print(wishlist_id ?? -1)
+          print("kejbfbejhfbrhjebhj")
+          if items.count == 1 && items.first?.title == "dummy" {
+            print("a")
+            print(items.count)
+       //     print(items.first?.title)
+            self?.isEmptyList = true
+          }else {
+            print("b")
+            print(items.count)
+         //   print(items.first?.variant_id)
+            self?.isEmptyList = false
+            self?.wishListArray = items
+          }
+        }
+          
       }
     }
     
+  func getProductData (url:String){
+      networkManager.setURL(url)
+      networkManager.fetchData(compilitionHandler: {
+          (result: ProductResponse?) in
+          guard let item = result?.products?.first else{ return }
+          self.myproduct = item
+      })
+    }
     
-//
-//    func getProductData(url: String) {
-//        isLoading.onNext(true)
-//        guard let urlFinal = URL(string: url) else { return }
-//
-//        var request = URLRequest(url: urlFinal)
-//        request.allHTTPHeaderFields = [
-//            //"Content-Type": "application/json",
-//            "X-Shopify-Access-Token": "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"
-//        ]
-//        request.httpMethod = "GET"
-//        let session = URLSession.shared
-//        let task = session.dataTask(with: request) { data, response, error in
-//            guard let data = data else { return }
-//            print(data)
-//            do {
-//                let result = try JSONDecoder().decode(ProductResponse.self, from: data)
-//                self.isLoading.onNext(false)
-//                self.myProduct.onNext(result.products?.first ?? Product())
-//                print("My Product ID From API: \(result.products?[0].id ?? 0)")
-//            } catch let error {
-//                print(error.localizedDescription)
-//            }
-//        }
-//        task.resume()
-//    }
-
+    func updateWishList (url:String,myParams:Parameters){
+       
+    }
 }

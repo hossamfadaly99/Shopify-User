@@ -27,6 +27,7 @@ class DataManager : DataManagerProtocol{
         product.setValue(myProduct.price, forKey: Constants.ENTITY_ROW_PRICE)
         product.setValue(productRate, forKey: Constants.ENTITY_ROW_RATE)
         product.setValue(myProduct.Pimage, forKey: Constants.ENTITY_ROW_IMAGE)
+        product.setValue(myProduct.user_id, forKey: Constants.ENTITY_ROW_USER_ID)
         do{
             try manager.save()
             print("inserted product : \(myProduct)")
@@ -36,10 +37,11 @@ class DataManager : DataManagerProtocol{
         }
     }
     
-    func getStoredProducts() -> [ProductCoreData] {
+    func getStoredProducts(user_id:String) -> [ProductCoreData] {
         var productsArray : [CDProduct]?
         var myProducts = [ProductCoreData]()
         let fetch = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
+        fetch.predicate = NSPredicate(format: "user_id == %@",user_id )
 
         do{
             productsArray = try manager.fetch(fetch)
@@ -54,6 +56,7 @@ class DataManager : DataManagerProtocol{
                 myProduct.id = item.value(forKey: Constants.ENTITY_ROW_ID) as? Int
                 myProduct.price = item.value(forKey: Constants.ENTITY_ROW_PRICE) as? String
                 myProduct.Pimage = item.value(forKey: Constants.ENTITY_ROW_IMAGE) as? String
+                myProduct.user_id = item.value(forKey: Constants.ENTITY_ROW_USER_ID) as? String
                 print("coraData Image :\(myProduct.Pimage)")
                 myProducts.append(myProduct)
                 print("Fetched products:\(myProduct)")
@@ -69,7 +72,7 @@ class DataManager : DataManagerProtocol{
     
     func deleteFavProduct(myProduct: ProductCoreData) {
         let fetch = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
-        fetch.predicate = NSPredicate(format: "title == %@", myProduct.title ?? "")
+        fetch.predicate = NSPredicate(format: "title == %@ and user_id == %@", myProduct.title ?? "",myProduct.user_id ?? "" )
         do {
             let items = try manager?.fetch(fetch)
             if let itemToDelete = items?.first {
@@ -84,7 +87,7 @@ class DataManager : DataManagerProtocol{
     
     func isProductExist(myProduct: ProductCoreData) -> Bool {
         let fetchRequest = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
-        fetchRequest.predicate = NSPredicate(format: "title == %@", myProduct.title ?? "" )
+        fetchRequest.predicate = NSPredicate(format: "title == %@ and user_id == %@", myProduct.title ?? "",myProduct.user_id ?? "" )
         do {
             let myFavouriteList = try manager?.fetch(fetchRequest)
             guard let myFavouriteList = myFavouriteList else {

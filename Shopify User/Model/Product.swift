@@ -13,6 +13,7 @@ struct ProductCoreData:Codable{
     var rate: Double?
     var price: String?
     var Pimage: String?
+    var user_id:String?
 }
 
 struct ProductResponse: Codable {

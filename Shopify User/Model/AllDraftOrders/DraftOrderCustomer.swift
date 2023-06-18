@@ -13,7 +13,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 
 import Foundation
 struct DraftOrderCustomer : Codable {
-	let id : Int?
+	var id : Int?
 	let email : String?
 	let accepts_marketing : Bool?
 	let created_at : String?

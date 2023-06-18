@@ -19,17 +19,20 @@ class Constants {
     static let SCREEN_ID_SEARCH = "ID_Search"
     
     //Cell IDs
-    static let CELL_ID_FAVOURITE = "Favourite_Cell"
+    static let CELL_ID_FAVOURITE = "Fav_Cell"
     static let CELL_ID_PODUCT_DETAILS = "Prouduct_Details_cell"
     
     //User Defults
-    static let KEY_USER_FIRSTNAME = "UserFirstName"
-    static let KEY_USER_LASTNAME = "UserLastName"
-    static let KEY_USER_EMAIL = "UserEmail"
-    static let KEY_USER_ID = "UserID"
-    static let KEY_USER_STATE = "State"
-    static let USER_STATE_LOGIN = "Login"
-    static let USER_STATE_LOGOUT = "Logout"
+        static let KEY_USER_FIRSTNAME = "UserFirstName"
+        static let KEY_USER_LASTNAME = "UserLastName"
+        static let KEY_USER_EMAIL = "UserEmail"
+        static let USER_WISHLIST = "WishList"
+        static let USER_CART = "Cart"
+        static let KEY_USER_ID = "UserID"
+        static let KEY_USER_STATE = "State"
+        static let USER_STATE_LOGIN = "Login"
+        static let USER_STATE_LOGOUT = "Logout"
+        
     
     //Search
     static let HOME_SEARCH_ICON = "homeSearchIcon"
@@ -38,6 +41,7 @@ class Constants {
     static let CD_ENTITY_NAME = "CDProduct"
     static let ENTITY_ROW_TITLE = "title"
     static let ENTITY_ROW_ID = "id"
+    static let ENTITY_ROW_USER_ID = "user_id"
     static let ENTITY_ROW_IMAGE = "imageProduct"
     static let ENTITY_ROW_PRICE = "price"
     static let ENTITY_ROW_RATE = "rate"

@@ -19,9 +19,9 @@ class FavouritViewModel{
 //    func isExist(product:Product)->Bool{
 //        return dataManager.isProductExist(myProduct: NadaProduct)
 //    }
-    func fetchDataFromDB()->[ProductCoreData]?{
+    func fetchDataFromDB(user_ID:String)->[ProductCoreData]?{
        return
-        dataManager.getStoredProducts()
+        dataManager.getStoredProducts(user_id: user_ID)
     }
     
     func deleteFromDB(product:ProductCoreData){

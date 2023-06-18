@@ -113,8 +113,8 @@ class NetworkManager: NetworkServiceProtocol {
       return
     }
 
-    let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
-                                "Content-Type" : "application/json"]
+      let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
+                                  "Content-Type" : "application/json"]
 
     AF.request(finalURL, method: .put, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
       switch response.result {

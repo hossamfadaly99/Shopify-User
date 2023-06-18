@@ -16,9 +16,8 @@ protocol ViewModelDelegate:AnyObject {
 }
 
 class LoginViewModel{
-    
+    let defaults = UserDefaults.standard
     weak var delegate: ViewModelDelegate?
-    
     let email = BehaviorRelay<String>(value: "")
     let password = BehaviorRelay<String>(value: "")
     var bindDataToView:(([Customer]) -> ()) = { _ in }
@@ -32,7 +31,8 @@ class LoginViewModel{
         return Observable.combineLatest(email.asObservable(), password.asObservable())
             .map { email, password in
                 
-                let isValid = authManager.isEmailValid(email) &&                 authManager.isPasswordValid(password)
+                let isValid = authManager.isEmailValid(email) &&
+                authManager.isPasswordValid(password)
                 
                 return !email.isEmpty && !password.isEmpty && isValid }
     }
@@ -59,18 +59,10 @@ class LoginViewModel{
                 }
             }
             if(isExist){
-                let defaults = UserDefaults.standard
-                defaults.set(model.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
-                defaults.set(model.lastName, forKey: Constants.KEY_USER_LASTNAME)
-                defaults.set(model.email, forKey: Constants.KEY_USER_EMAIL)
-                defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
-                defaults.set(model.id, forKey: Constants.KEY_USER_ID)
-                if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) {
-                    print("Welcome back, \(customer_id)!")
-                } else {
-                    print("No username found.")
-                }
+                setUserDefaults(customer: model)
+                seperate(complexSrt: model.note ?? "")
                 print("login done")
+                print("Model : \(model)")
                 self.delegate?.didLoginSuccessfully()
             } else {
                 self.delegate?.loginFailed()
@@ -95,24 +87,36 @@ class LoginViewModel{
                 }
             }
             if(isExist){
-                let defaults = UserDefaults.standard
-                defaults.set(model.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
-                defaults.set(model.lastName, forKey: Constants.KEY_USER_LASTNAME)
-                defaults.set(model.email, forKey: Constants.KEY_USER_EMAIL)
-
-                defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
-                defaults.set(model.id, forKey: Constants.KEY_USER_ID)
-                if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) {
-                    print("Welcome back, \(customer_id)!")
-                } else {
-                    print("No username found.")
-                }
+                setUserDefaults(customer: model)
+                seperate(complexSrt: model.note ?? "")
                 print("login done")
+                print("Model : \(model)")
+
                 self.delegate?.didLoginSuccessfully()
             } else {
                 self.delegate?.loginFailed()
                 print("not registered")
             }
+        }
+    }
+    
+    func seperate(complexSrt:String){
+        let array = complexSrt.components(separatedBy: ",")
+        defaults.set(array[0], forKey: Constants.USER_CART)
+        defaults.set(array[1], forKey: Constants.USER_WISHLIST)
+    }
+    
+    func setUserDefaults(customer:Customer){
+        defaults.set(customer.firstName, forKey: Constants.KEY_USER_FIRSTNAME)
+        defaults.set(customer.lastName, forKey: Constants.KEY_USER_LASTNAME)
+        defaults.set(customer.email, forKey: Constants.KEY_USER_EMAIL)
+        defaults.set(Constants.USER_STATE_LOGIN, forKey: Constants.KEY_USER_STATE)
+        defaults.set(customer.id, forKey: Constants.KEY_USER_ID)
+        if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
+        {
+            print("Welcome back, \(customer_id)!")
+        } else {
+            print("No username found.")
         }
     }
 }

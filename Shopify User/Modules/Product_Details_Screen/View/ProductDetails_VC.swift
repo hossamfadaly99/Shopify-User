@@ -22,15 +22,17 @@ class ProductDetails_VC: UIViewController {
     @IBOutlet weak var labeldes: UILabel!
     @IBOutlet weak var popUpBtn: UIButton!
     
+    var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
     var ID_Product_VC : Int!
     var sizes : [String]?
     var product_VC :Product = Product()
     var photosArray:[ProductImage]?
     var timer:Timer?
     var currentIndex = 0
-    let viewModel = ProductsDetailsViewModel()
+    let viewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""))
     let dataManager = DataManager.sharedInstance
     var reviewsList :[(String,String,String)] = []
+  
     override func viewDidLoad() {
         super.viewDidLoad()
         let reviews = Reviews()
@@ -54,22 +56,20 @@ class ProductDetails_VC: UIViewController {
             self.productPrice.text = self.product_VC.variants?[0].price
             self.labeldes.text = self.product_VC.description
             self.myCollectionView.reloadData()
+            self.colorHeart()
         }
         let pid = String(ID_Product_VC)
         viewModel.getProductData(url:URLCreator().getProductURL(id: pid) )
     }
+    
     @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
-        let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
-        //print("My p  :\(product_VC)")
+        let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src,user_id: customer_id)
         let is_Exist = dataManager.isProductExist(myProduct: coreData)
         if(is_Exist){
             //print("product already saved")
         }else{
-          //  guard let myProduct = coreData else{return}
-           // print("product to be inserted\(coreData)")
             dataManager.insertFavProduct(myProduct: coreData, productRate: 2.5)
             addToFav.image = UIImage(named: "activated")
-           // print("Product Saved !")
         }
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -79,16 +79,16 @@ class ProductDetails_VC: UIViewController {
         addToFav.isUserInteractionEnabled = true
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src)
-      //  print("view will appear")
-        let is_Exist2 = dataManager.isProductExist(myProduct: coreData)
-        print(is_Exist2)
-
-        if(is_Exist2){
-            //print("hiii")
-            addToFav.image = UIImage(named: "activated")
-        }
+    func colorHeart(){
+        let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src,user_id: customer_id)
+                //print("My p  :\(product_VC)")
+                let is_Exist = dataManager.isProductExist(myProduct: coreData)
+                if(is_Exist){
+                    addToFav.image = UIImage(named: "activated")
+                    print("product already saved")
+                }else{
+                    addToFav.image = UIImage(named: "inactive")
+                }
     }
     
     @IBAction func showMoreReviews(_ sender: Any) {
