@@ -78,6 +78,8 @@
 		9F1914432A323B6700FDBD2F /* Draft_orders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1914392A323B5200FDBD2F /* Draft_orders.swift */; };
 		9F1914442A323B6700FDBD2F /* Line_items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F19143A2A323B5E00FDBD2F /* Line_items.swift */; };
 		9F1914452A323B6700FDBD2F /* Sms_marketing_consent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F19143B2A323B6700FDBD2F /* Sms_marketing_consent.swift */; };
+		9F1925672A3FC21800AA58C1 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1925662A3FC21800AA58C1 /* SettingsViewController.swift */; };
+		9F1925692A3FCA3A00AA58C1 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1925682A3FCA3A00AA58C1 /* SettingsTableViewController.swift */; };
 		9F1C8CBF2A36E1120026D45E /* PaymentMethodTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C8CBE2A36E1120026D45E /* PaymentMethodTableViewController.swift */; };
 		9F1C8CC12A36E55B0026D45E /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C8CC02A36E55B0026D45E /* CheckoutViewController.swift */; };
 		9F1C8CC62A36E8D30026D45E /* PaymentStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C8CC52A36E8D30026D45E /* PaymentStrategy.swift */; };
@@ -214,6 +216,8 @@
 		9F1914392A323B5200FDBD2F /* Draft_orders.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Draft_orders.swift; sourceTree = "<group>"; };
 		9F19143A2A323B5E00FDBD2F /* Line_items.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Line_items.swift; sourceTree = "<group>"; };
 		9F19143B2A323B6700FDBD2F /* Sms_marketing_consent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sms_marketing_consent.swift; sourceTree = "<group>"; };
+		9F1925662A3FC21800AA58C1 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		9F1925682A3FCA3A00AA58C1 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		9F1C8CBE2A36E1120026D45E /* PaymentMethodTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewController.swift; sourceTree = "<group>"; };
 		9F1C8CC02A36E55B0026D45E /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
 		9F1C8CC32A36E6CA0026D45E /* Shopify User.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Shopify User.entitlements"; sourceTree = "<group>"; };
@@ -688,6 +692,8 @@
 			isa = PBXGroup;
 			children = (
 				9F46CDA52A3F621500B387E7 /* SettingsStoryboard.storyboard */,
+				9F1925662A3FC21800AA58C1 /* SettingsViewController.swift */,
+				9F1925682A3FCA3A00AA58C1 /* SettingsTableViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1167,6 +1173,7 @@
 				042D1DD12A349B1500633EF5 /* DataManager.swift in Sources */,
 				0484B7272A323FCD00304C32 /* AuthenticationManager.swift in Sources */,
 				9F38573E2A3E676D00ED3012 /* AddressDetailsViewController.swift in Sources */,
+				9F1925692A3FCA3A00AA58C1 /* SettingsTableViewController.swift in Sources */,
 				9F4FD3AF2A3DEB790002F878 /* AddressViewController.swift in Sources */,
 				0459E5DF2A33C082002E92D2 /* CategoryViewController.swift in Sources */,
 				04816F7B2A31357000949265 /* Favourite_Cell.swift in Sources */,
@@ -1184,6 +1191,7 @@
 				04FECD382A37BA7A00846E3F /* Floaty.swift in Sources */,
 				9F3F116F2A31EA970032BEE2 /* InternetConnectivity.swift in Sources */,
 				04B18D6E2A3F006100EDE265 /* Fav_Cell.swift in Sources */,
+				9F1925672A3FC21800AA58C1 /* SettingsViewController.swift in Sources */,
 				9F23F1572A34420700E4FD15 /* DraftOrderEdited.swift in Sources */,
 				9F1C8CC62A36E8D30026D45E /* PaymentStrategy.swift in Sources */,
 				9F19143F2A323B6700FDBD2F /* Shipping_address.swift in Sources */,
