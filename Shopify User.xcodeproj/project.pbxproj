@@ -94,6 +94,8 @@
 		9F3F11772A3219F50032BEE2 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F11762A3219F50032BEE2 /* CartViewModel.swift */; };
 		9F46CD9F2A3EFA9900B387E7 /* CustomerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F46CD9E2A3EFA9900B387E7 /* CustomerAddress.swift */; };
 		9F46CDA12A3F128B00B387E7 /* AddressDetailsProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F46CDA02A3F128B00B387E7 /* AddressDetailsProtocol.swift */; };
+		9F46CDA62A3F621500B387E7 /* SettingsStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F46CDA52A3F621500B387E7 /* SettingsStoryboard.storyboard */; };
+		9F46CDA82A3F622000B387E7 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F46CDA72A3F622000B387E7 /* SettingsViewModel.swift */; };
 		9F4FD3A72A3DD3E70002F878 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4FD3A62A3DD3E70002F878 /* Address.swift */; };
 		9F4FD3A92A3DD4A50002F878 /* AddressStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F4FD3A82A3DD4A50002F878 /* AddressStoryboard.storyboard */; };
 		9F4FD3AC2A3DD5E20002F878 /* AddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F4FD3AA2A3DD5E20002F878 /* AddressCell.swift */; };
@@ -227,6 +229,8 @@
 		9F3F11762A3219F50032BEE2 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		9F46CD9E2A3EFA9900B387E7 /* CustomerAddress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAddress.swift; sourceTree = "<group>"; };
 		9F46CDA02A3F128B00B387E7 /* AddressDetailsProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressDetailsProtocol.swift; sourceTree = "<group>"; };
+		9F46CDA52A3F621500B387E7 /* SettingsStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsStoryboard.storyboard; sourceTree = "<group>"; };
+		9F46CDA72A3F622000B387E7 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		9F4FD3A62A3DD3E70002F878 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		9F4FD3A82A3DD4A50002F878 /* AddressStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddressStoryboard.storyboard; sourceTree = "<group>"; };
 		9F4FD3AA2A3DD5E20002F878 /* AddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressCell.swift; sourceTree = "<group>"; };
@@ -665,6 +669,31 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		9F46CDA22A3F61F400B387E7 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				9F46CDA42A3F620500B387E7 /* ViewModel */,
+				9F46CDA32A3F61FF00B387E7 /* View */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		9F46CDA32A3F61FF00B387E7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9F46CDA52A3F621500B387E7 /* SettingsStoryboard.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9F46CDA42A3F620500B387E7 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9F46CDA72A3F622000B387E7 /* SettingsViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		9F4FD3A22A3DCFA80002F878 /* address_screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -769,6 +798,7 @@
 		9F598CBC2A27E23C00C36A93 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				9F46CDA22A3F61F400B387E7 /* Settings */,
 				04BFB2122A3ABE2400E23851 /* Profile */,
 				9F4FD3A22A3DCFA80002F878 /* address_screen */,
 				04FB57772A39DDC30066EAD5 /* Search_Screen */,
@@ -985,6 +1015,7 @@
 				0408D5DB2A391B6400796C4D /* ProductsTableCell.xib in Resources */,
 				9F598C992A27C58300C36A93 /* LaunchScreen.storyboard in Resources */,
 				04E039582A2CA6E700B2EF9D /* AdsCollectionViewCell.xib in Resources */,
+				9F46CDA62A3F621500B387E7 /* SettingsStoryboard.storyboard in Resources */,
 				0459E5D72A33B888002E92D2 /* HomeStoryboard.storyboard in Resources */,
 				04FB577B2A39DE530066EAD5 /* Search_SB.storyboard in Resources */,
 				9F598C962A27C58300C36A93 /* Assets.xcassets in Resources */,
@@ -1176,6 +1207,7 @@
 				9F243AA32A2C744800F93088 /* CartViewController.swift in Sources */,
 				04BFB2172A3ABE7900E23851 /* Profile_VC.swift in Sources */,
 				9F598CC12A27E28A00C36A93 /* DataMangerProtocol.swift in Sources */,
+				9F46CDA82A3F622000B387E7 /* SettingsViewModel.swift in Sources */,
 				9F1914442A323B6700FDBD2F /* Line_items.swift in Sources */,
 				9FE8433B2A2CD590004FE9D8 /* Utilities.swift in Sources */,
 				0408D5DA2A391B6400796C4D /* ProductsTableCell.swift in Sources */,
