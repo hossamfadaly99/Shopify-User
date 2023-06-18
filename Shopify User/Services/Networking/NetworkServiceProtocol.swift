@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Alamofire
 protocol NetworkServiceProtocol{
   func setURL(_ url: String)
   func fetchData<T: Codable>(compilitionHandler: @escaping (T?) -> Void)
-  func uploadData<G: Codable, T: Codable>(object: G, compilitionHandler: @escaping (T?) -> Void)
+  func uploadData<G: Codable, T: Codable>(object: G, method: HTTPMethod, compilitionHandler: @escaping (T?) -> Void)
+  func updateData<G: Codable, T: Codable>(object: G, method: HTTPMethod, compilitionHandler: @escaping (T?) -> Void)
 }

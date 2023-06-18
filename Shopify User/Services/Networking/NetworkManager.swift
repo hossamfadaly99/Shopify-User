@@ -107,7 +107,7 @@ class NetworkManager: NetworkServiceProtocol {
 //
 //    }
 
-  func uploadData<G: Codable, T: Codable>(object: G, compilitionHandler: @escaping (T?) -> Void) {
+  func uploadData<G: Codable, T: Codable>(object: G, method: HTTPMethod, compilitionHandler: @escaping (T?) -> Void) {
     guard let finalURL = url else {
       print("url error")
       return
@@ -116,6 +116,56 @@ class NetworkManager: NetworkServiceProtocol {
       let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
                                   "Content-Type" : "application/json"]
 
+    print(method)
+    AF.request(finalURL, method: method, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
+      switch response.result {
+      case .success(let data):
+        do {
+            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+          let prettyJsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+                  let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8)!
+
+          print(prettyPrintedJson)
+//          print(method)
+          print("jenvkbektbvk")
+          print("kjkjkjjkjkkjkjkjkjkjkjkj")
+          print(json)
+        } catch {
+            print("errorMsg")
+        }
+          do {
+              print("The count of data is : \(data.count)")
+
+              let result = try JSONDecoder().decode(T.self, from: data)
+
+
+              compilitionHandler(result)
+              print("Data Fetched Successfully...")
+          } catch {
+              print("error When Parseing data from API :  \(error.localizedDescription)")
+              print(String(describing: error))
+
+              compilitionHandler(nil)
+          }
+      case .failure(let error):
+          print("Error When Featch data from API :  \(error.localizedDescription)")
+          compilitionHandler(nil)
+      }
+    }
+
+  }
+
+  func updateData<G: Codable, T: Codable>(object: G, method: HTTPMethod, compilitionHandler: @escaping (T?) -> Void) {
+    guard let finalURL = url else {
+      print("url error")
+      return
+    }
+
+    print("this is update")
+    let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
+                                "Content-Type" : "application/json"]
+
+    print(method)
     AF.request(finalURL, method: .put, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
       switch response.result {
       case .success(let data):
@@ -125,11 +175,15 @@ class NetworkManager: NetworkServiceProtocol {
                   let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8)!
 
           print(prettyPrintedJson)
+//          print(method)
           print("jenvkbektbvk")
           print("kjkjkjjkjkkjkjkjkjkjkjkj")
           print(json)
         } catch {
             print("errorMsg")
+          print("error When Parseing data from API :  \(error.localizedDescription)")
+          print(String(describing: error))
+          print("wwwwwwwwww")
         }
           do {
               print("The count of data is : \(data.count)")
