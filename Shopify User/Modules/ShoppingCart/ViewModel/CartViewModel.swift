@@ -46,7 +46,7 @@ class CartViewModel{
 //        self?.isEmptyList = true
 //      }
 
-      self?.craftId = 1116224225572 //result?.draft_orders?.filter({ $0.email == dummyMail && $0.note == "cart" }).first?.id ?? 0
+      self?.craftId = 1116795633956 //result?.draft_orders?.filter({ $0.email == dummyMail && $0.note == "cart" }).first?.id ?? 0
       self?.subTotalPrice = Double(result?.draft_order?.subtotal_price ?? "0.0") ?? 0
 
 //      print(result?.draft_orders)
@@ -86,7 +86,7 @@ class CartViewModel{
   func updateCartItem(cartItem: DraftOrderr){
     networkManager.setURL(URLCreator().getEditCartURL(id: String(describing: self.craftId)))
 
-    networkManager.uploadData(object: cartItem){ [weak self] (result: DraftOrderr?) in
+    networkManager.uploadData(object: cartItem, method: .put){ [weak self] (result: DraftOrderr?) in
 
       print("krbtkuygeksreykvbuyj")
       print("result: \(result)")

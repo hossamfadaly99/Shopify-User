@@ -12,6 +12,10 @@ struct Addresses: Codable {
     var addresses: [Address_]?
 }
 
+struct AddressRequest: Codable {
+    var address: Address_?
+}
+
 // MARK: - Address
 struct Address_: Codable {
     var id, customerID: Int?

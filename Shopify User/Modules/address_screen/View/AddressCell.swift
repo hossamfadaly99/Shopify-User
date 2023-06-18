@@ -12,6 +12,9 @@ class AddressCell: UITableViewCell {
   @IBOutlet weak var mainAddressLabel: UILabel!
   @IBOutlet weak var SecondAddressLabel: UILabel!
   @IBOutlet weak var mobileLabel: UILabel!
+  var address: Address_!
+
+  var addressDetailsProtocol: AddressDetailsProtocol!
 
   override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,13 +28,16 @@ class AddressCell: UITableViewCell {
     }
 
   func loadAddressData(_ address: Address_){
+    self.address = address
     self.mainAddressLabel.text = address.address1
     self.SecondAddressLabel.text = "\(address.address2 ?? ""), \(address.city ?? ""), \(address.province ?? ""), \(address.country ?? "")"
     self.mobileLabel.text = address.phone
   }
   @IBAction func editBtnClick(_ sender: Any) {
     //navigate to edit
-
+    addressDetailsProtocol.navigateToDetails(address: self.address)
   }
 
 }
+
+

@@ -38,7 +38,8 @@ class AddressViewController: UIViewController {
     }
 
   @IBAction func navigateToDetails(_ sender: Any) {
-    let detailsVC = (self.storyboard?.instantiateViewController(identifier: "AddressDetailsViewController"))!
+    let detailsVC = (self.storyboard?.instantiateViewController(identifier: "AddressDetailsViewController")) as! AddressDetailsViewController
+//    detailsVC.isExistingAddress = false
     self.navigationController?.pushViewController(detailsVC, animated: true)
   }
   @IBAction func navigateBack(_ sender: UIBarButtonItem) {
@@ -114,6 +115,7 @@ extension AddressViewController: UITableViewDataSource{
     let cell = tableView.dequeueReusableCell(withIdentifier: "AddressCell", for: indexPath) as! AddressCell
 
   cell.loadAddressData(viewModel.addressList[indexPath.row])
+    cell.addressDetailsProtocol = self
     return cell
   }
 
@@ -122,3 +124,16 @@ extension AddressViewController: UITableViewDataSource{
 }
 
 
+extension AddressViewController: AddressDetailsProtocol{
+  func navigateToDetails(address: Address_) {
+    let detailsVC = self.storyboard?.instantiateViewController(identifier: "AddressDetailsViewController") as! AddressDetailsViewController
+//    detailsVC.viewModel.addressRequest.address = address
+    detailsVC.address = address
+    print("aaaaaa \(address)")
+    detailsVC.isExistingAddress = true
+    self.navigationController?.pushViewController(detailsVC, animated: true)
+    
+  }
+
+
+}

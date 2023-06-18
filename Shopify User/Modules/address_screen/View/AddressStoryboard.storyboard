@@ -88,6 +88,9 @@
                                         <barButtonItem key="rightBarButtonItem" id="TRE-KL-YLw">
                                             <imageReference key="image" image="checkmark" catalog="system" symbolScale="default"/>
                                             <color key="tintColor" name="black_22"/>
+                                            <connections>
+                                                <action selector="confirmAddress:" destination="Xjn-vA-UJi" id="HVP-fU-5o3"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -99,7 +102,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address 1" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dDs-kp-sGt">
-                                <rect key="frame" x="16" y="161" width="361" height="34"/>
+                                <rect key="frame" x="16" y="153" width="361" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="lP8-gs-IQL"/>
                                 </constraints>
@@ -107,13 +110,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="address-line1"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address 2:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYh-12-8Wm">
-                                <rect key="frame" x="16" y="219" width="73.333333333333329" height="18"/>
+                                <rect key="frame" x="16" y="211" width="73.333333333333329" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address 2" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yqd-dY-dyB">
-                                <rect key="frame" x="16" y="253" width="361" height="34"/>
+                                <rect key="frame" x="16" y="237" width="361" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="egL-9N-dX1"/>
                                 </constraints>
@@ -121,13 +124,13 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-line2"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6B-qh-6Eo">
-                                <rect key="frame" x="15.999999999999998" y="311" width="31.333333333333329" height="18"/>
+                                <rect key="frame" x="15.999999999999998" y="295" width="31.333333333333329" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mjk-jn-1DZ">
-                                <rect key="frame" x="16" y="345" width="361" height="34"/>
+                                <rect key="frame" x="16" y="321" width="361" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Mzh-kU-Xy2"/>
                                 </constraints>
@@ -135,13 +138,13 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-level2"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyX-ZX-9oT">
-                                <rect key="frame" x="15.999999999999996" y="403" width="47.666666666666657" height="18"/>
+                                <rect key="frame" x="15.999999999999996" y="379" width="47.666666666666657" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your phone" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nh7-C1-N1a">
-                                <rect key="frame" x="16" y="437" width="361" height="34"/>
+                                <rect key="frame" x="16" y="405" width="361" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="m8f-NE-NMX"/>
                                 </constraints>
@@ -149,7 +152,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="tel"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ooq-7b-fcB">
-                                <rect key="frame" x="16" y="495" width="361" height="60"/>
+                                <rect key="frame" x="16" y="463" width="361" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DhX-sC-8Mx">
                                         <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="60"/>
@@ -194,11 +197,11 @@
                             <constraint firstItem="fyX-ZX-9oT" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="53f-op-NM1"/>
                             <constraint firstItem="yqd-dY-dyB" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="5RZ-d2-9tH"/>
                             <constraint firstItem="nh7-C1-N1a" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="DFx-IN-R8x"/>
-                            <constraint firstItem="yqd-dY-dyB" firstAttribute="top" secondItem="DYh-12-8Wm" secondAttribute="bottom" constant="16" id="DUq-n4-15N"/>
+                            <constraint firstItem="yqd-dY-dyB" firstAttribute="top" secondItem="DYh-12-8Wm" secondAttribute="bottom" constant="8" id="DUq-n4-15N"/>
                             <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="dDs-kp-sGt" secondAttribute="trailing" constant="16" id="HII-IH-Ybk"/>
-                            <constraint firstItem="mjk-jn-1DZ" firstAttribute="top" secondItem="N6B-qh-6Eo" secondAttribute="bottom" constant="16" id="K0r-aX-yvD"/>
+                            <constraint firstItem="mjk-jn-1DZ" firstAttribute="top" secondItem="N6B-qh-6Eo" secondAttribute="bottom" constant="8" id="K0r-aX-yvD"/>
                             <constraint firstItem="N6B-qh-6Eo" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="Mo0-FD-0W4"/>
-                            <constraint firstItem="nh7-C1-N1a" firstAttribute="top" secondItem="fyX-ZX-9oT" secondAttribute="bottom" constant="16" id="Mof-AV-rk7"/>
+                            <constraint firstItem="nh7-C1-N1a" firstAttribute="top" secondItem="fyX-ZX-9oT" secondAttribute="bottom" constant="8" id="Mof-AV-rk7"/>
                             <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="mjk-jn-1DZ" secondAttribute="trailing" constant="16" id="P5c-op-hGd"/>
                             <constraint firstItem="DYh-12-8Wm" firstAttribute="top" secondItem="dDs-kp-sGt" secondAttribute="bottom" constant="24" id="SGE-5v-6IC"/>
                             <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="nh7-C1-N1a" secondAttribute="trailing" constant="16" id="TMH-zZ-MCQ"/>
@@ -213,11 +216,19 @@
                             <constraint firstItem="Ooq-7b-fcB" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="prb-lJ-Ll7"/>
                             <constraint firstItem="dDs-kp-sGt" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="rai-aU-Vnt"/>
                             <constraint firstItem="X12-5h-m0y" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" id="utc-md-8xJ"/>
-                            <constraint firstItem="dDs-kp-sGt" firstAttribute="top" secondItem="cHr-rL-bgp" secondAttribute="bottom" constant="16" id="xXf-M9-g1O"/>
+                            <constraint firstItem="dDs-kp-sGt" firstAttribute="top" secondItem="cHr-rL-bgp" secondAttribute="bottom" constant="8" id="xXf-M9-g1O"/>
                             <constraint firstItem="fyX-ZX-9oT" firstAttribute="top" secondItem="mjk-jn-1DZ" secondAttribute="bottom" constant="24" id="yQb-nE-ifW"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gYb-e3-7NG"/>
+                    <connections>
+                        <outlet property="address1TF" destination="dDs-kp-sGt" id="NVv-J5-IRz"/>
+                        <outlet property="address2TF" destination="yqd-dY-dyB" id="Gnl-Rx-kXv"/>
+                        <outlet property="cityTF" destination="mjk-jn-1DZ" id="NHd-Ho-jnK"/>
+                        <outlet property="countryTF" destination="R2x-EP-TRs" id="rD0-Q3-F6K"/>
+                        <outlet property="phoneTF" destination="nh7-C1-N1a" id="10T-hA-AjI"/>
+                        <outlet property="provinceTF" destination="Bi5-IQ-0dB" id="l0v-Cu-fsx"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PZl-FD-j4S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
