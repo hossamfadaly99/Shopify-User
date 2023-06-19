@@ -14,6 +14,7 @@ class Favourite_VC: UIViewController {
     var viewModel : FavouritViewModel!
     var favourieList:[ProductCoreData]?=[]
     var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
+    let favViewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +88,16 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
 
             let alert = UIAlertController(title: "Deletion Alert", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
+                favViewModel.bindCartData = { [weak self] in
+                    var myDraft = self?.favViewModel.wishListArray
+                    var arr = myDraft?.line_items
+//                    for item in arr {
+//                        //if(item)
+//                    }
+                   // myDraft?.line_items? = arr ?? []
+                    self?.favViewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+                }
+                favViewModel.loadWishListItems()
                 self.viewModel.deleteFromDB(product: (self.favourieList?[indexPath.row])!)
                 self.favourieList?.remove(at: indexPath.row)
                 tableView.reloadData()
@@ -95,5 +106,9 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
                present(alert, animated: true, completion: nil)
         }
+    }
+    
+    func deleteFromApi(index:Int){
+        
     }
 }

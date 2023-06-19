@@ -17,6 +17,7 @@ class Constants {
     static let SCREEN_ID_HOME = "ID_Home"
     static let SCREEN_ID_BRAND = "ID_Brand"
     static let SCREEN_ID_SEARCH = "ID_Search"
+    static let SCREEN_ID_PROFILE = "ID_Profile"
     
     //Cell IDs
     static let CELL_ID_FAVOURITE = "Fav_Cell"
@@ -45,6 +46,22 @@ class Constants {
     static let ENTITY_ROW_IMAGE = "imageProduct"
     static let ENTITY_ROW_PRICE = "price"
     static let ENTITY_ROW_RATE = "rate"
+    
+    func mapProductToLineItems(product : Product) ->Line_items{
+        var property = Properties(name: "img_url", value: product.image?.src)
+        var result = Line_items()
+        result.title = product.title
+        result.price = product.variants?[0].price
+        result.properties = [property]
+        result.quantity = 1
+        result.variant_id = product.variants?[0].id
+        result.name = product.title
+        result.grams = 0
+        result.taxable = true
+        result.gift_card = false
+        result.custom = true
+        return result
+    }
 }
 let adminTokenKey = "X-Shopify-Access-Token"
 let adminTokenValue = "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"

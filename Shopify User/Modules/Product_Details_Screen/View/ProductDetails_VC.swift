@@ -70,6 +70,15 @@ class ProductDetails_VC: UIViewController {
         }else{
             dataManager.insertFavProduct(myProduct: coreData, productRate: 2.5)
             addToFav.image = UIImage(named: "activated")
+            viewModel.bindCartData = { [weak self] in
+                var myDraft = self?.viewModel.wishListArray
+                var arr = myDraft?.line_items
+                let pro = Constants().mapProductToLineItems(product: self?.product_VC ?? Product())
+                arr?.append(pro)
+                myDraft?.line_items? = arr ?? []
+                self?.viewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+            }
+            viewModel.loadWishListItems()
         }
     }
     override func viewDidAppear(_ animated: Bool) {

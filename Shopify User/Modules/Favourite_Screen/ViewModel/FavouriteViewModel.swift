@@ -16,15 +16,13 @@ class FavouritViewModel{
     init( dataManager: DataManagerProtocol!) {
         self.dataManager = dataManager
     }
-//    func isExist(product:Product)->Bool{
-//        return dataManager.isProductExist(myProduct: NadaProduct)
-//    }
     func fetchDataFromDB(user_ID:String)->[ProductCoreData]?{
        return
         dataManager.getStoredProducts(user_id: user_ID)
     }
-    
     func deleteFromDB(product:ProductCoreData){
         dataManager.deleteFavProduct(myProduct:product)
     }
+    
+    
 }

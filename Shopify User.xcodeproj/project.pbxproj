@@ -27,6 +27,8 @@
 		047655A02A3A85B4005115D5 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 0476559F2A3A85B4005115D5 /* GoogleSignIn */; };
 		047655A22A3A85B4005115D5 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 047655A12A3A85B4005115D5 /* GoogleSignInSwift */; };
 		0478DCF12A361F610073F530 /* Reviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0478DCF02A361F610073F530 /* Reviews.swift */; };
+		04810E632A3FEA5D008CDC37 /* Me_SB.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04810E622A3FEA5D008CDC37 /* Me_SB.storyboard */; };
+		04810E652A3FEA7B008CDC37 /* Me_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04810E642A3FEA7B008CDC37 /* Me_VC.swift */; };
 		04816F782A31351C00949265 /* Favourite_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04816F772A31351C00949265 /* Favourite_VC.swift */; };
 		04816F7B2A31357000949265 /* Favourite_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04816F792A31357000949265 /* Favourite_Cell.swift */; };
 		04816F7C2A31357000949265 /* Favourite_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04816F7A2A31357000949265 /* Favourite_Cell.xib */; };
@@ -158,6 +160,8 @@
 		0465880E2A37DA97009BA6A8 /* reviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = reviewCell.xib; sourceTree = "<group>"; };
 		0468A6D72A3A01C200508260 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		0478DCF02A361F610073F530 /* Reviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews.swift; sourceTree = "<group>"; };
+		04810E622A3FEA5D008CDC37 /* Me_SB.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Me_SB.storyboard; sourceTree = "<group>"; };
+		04810E642A3FEA7B008CDC37 /* Me_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Me_VC.swift; sourceTree = "<group>"; };
 		04816F772A31351C00949265 /* Favourite_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite_VC.swift; sourceTree = "<group>"; };
 		04816F792A31357000949265 /* Favourite_Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favourite_Cell.swift; sourceTree = "<group>"; };
 		04816F7A2A31357000949265 /* Favourite_Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Favourite_Cell.xib; sourceTree = "<group>"; };
@@ -373,6 +377,31 @@
 				0482A1782A2C7679007E5A7B /* Login_VC.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		04810E5F2A3FEA18008CDC37 /* Me_Screen */ = {
+			isa = PBXGroup;
+			children = (
+				04810E612A3FEA45008CDC37 /* ViewModel */,
+				04810E602A3FEA37008CDC37 /* View */,
+			);
+			path = Me_Screen;
+			sourceTree = "<group>";
+		};
+		04810E602A3FEA37008CDC37 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				04810E622A3FEA5D008CDC37 /* Me_SB.storyboard */,
+				04810E642A3FEA7B008CDC37 /* Me_VC.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		04810E612A3FEA45008CDC37 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		04816F752A3134C500949265 /* Favourite_Screen */ = {
@@ -804,6 +833,7 @@
 		9F598CBC2A27E23C00C36A93 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				04810E5F2A3FEA18008CDC37 /* Me_Screen */,
 				9F46CDA22A3F61F400B387E7 /* Settings */,
 				04BFB2122A3ABE2400E23851 /* Profile */,
 				9F4FD3A22A3DCFA80002F878 /* address_screen */,
@@ -1032,6 +1062,7 @@
 				04B18D6F2A3F006100EDE265 /* Fav_Cell.xib in Resources */,
 				04E44F142A2C87AD0006B9E4 /* BrandCustomViewCell.xib in Resources */,
 				9F598C912A27C58100C36A93 /* Main.storyboard in Resources */,
+				04810E632A3FEA5D008CDC37 /* Me_SB.storyboard in Resources */,
 				9FE843392A2CA968004FE9D8 /* CartItemCell.xib in Resources */,
 				9F243AA12A2C742D00F93088 /* CartStoryboard.storyboard in Resources */,
 			);
@@ -1185,6 +1216,7 @@
 				9F3F116F2A31EA970032BEE2 /* InternetConnectivity.swift in Sources */,
 				04B18D6E2A3F006100EDE265 /* Fav_Cell.swift in Sources */,
 				9F23F1572A34420700E4FD15 /* DraftOrderEdited.swift in Sources */,
+				04810E652A3FEA7B008CDC37 /* Me_VC.swift in Sources */,
 				9F1C8CC62A36E8D30026D45E /* PaymentStrategy.swift in Sources */,
 				9F19143F2A323B6700FDBD2F /* Shipping_address.swift in Sources */,
 				9F598C8E2A27C58100C36A93 /* ViewController.swift in Sources */,
