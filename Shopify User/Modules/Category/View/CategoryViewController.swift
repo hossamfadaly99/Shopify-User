@@ -159,4 +159,10 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+    @IBAction func navigateToFav(_ sender: UIBarButtonItem) {
+        let storyboard = UIStoryboard(name: "Favourite_SB", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_FAVOURITE) as! Favourite_VC
+       nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
+    }
 }
