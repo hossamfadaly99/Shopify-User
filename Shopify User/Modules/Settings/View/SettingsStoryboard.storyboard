@@ -6,6 +6,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -68,7 +69,7 @@
                             </tableViewSection>
                             <tableViewSection id="nTp-ct-iP3">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="VtO-dy-glX">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="VtO-dy-glX">
                                         <rect key="frame" x="0.0" y="171.66666793823242" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VtO-dy-glX" id="q98-kH-65c">
@@ -101,8 +102,11 @@
                                                 <constraint firstItem="KUU-J1-IOX" firstAttribute="leading" secondItem="q98-kH-65c" secondAttribute="leading" constant="16" id="xmQ-qt-ehn"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="q5L-7f-yiI" kind="show" id="5JW-1b-kDU"/>
+                                        </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="522-oW-LVG">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="522-oW-LVG">
                                         <rect key="frame" x="0.0" y="215.33333587646484" width="393" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="522-oW-LVG" id="ViO-0Y-JdB">
@@ -135,6 +139,11 @@
                                                 <constraint firstItem="EaI-bV-K5g" firstAttribute="leading" secondItem="d6m-gl-RFK" secondAttribute="trailing" constant="16" id="plJ-ka-kAo"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="8fU-ef-rd8" kind="popoverPresentation" popoverAnchorView="522-oW-LVG" id="Hfs-c5-bo3">
+                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                            </segue>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -152,6 +161,60 @@
             </objects>
             <point key="canvasLocation" x="884" y="-18"/>
         </scene>
+        <!--AddressStoryboard-->
+        <scene sceneID="rAs-2j-9IU">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddressStoryboard" id="q5L-7f-yiI" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="f2T-J1-kwG"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mtg-3S-39V" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1676" y="-246"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="xei-wx-VWw">
+            <objects>
+                <viewController id="8fU-ef-rd8" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7tO-hc-6iF">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q39-N9-pTs">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                <items>
+                                    <navigationItem title="About Us" id="fCZ-5o-7Nk"/>
+                                </items>
+                            </navigationBar>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9EK-kj-H8d">
+                                <rect key="frame" x="8" y="64" width="377" height="770"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <string key="text">At Shopify, we're a team of four passionate individuals dedicated to bringing you the best shopping experience on your mobile device.
+
+Our team consists of Hossam Fadaly, Monica Moheb, Nada Elsayed, and Yousef Elbatat.
+
+Copyright © 2023 Shopify. All rights reserved.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0YK-0C-lDZ"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="9EK-kj-H8d" firstAttribute="top" secondItem="q39-N9-pTs" secondAttribute="bottom" constant="8" id="EEK-fq-Vwr"/>
+                            <constraint firstItem="q39-N9-pTs" firstAttribute="trailing" secondItem="0YK-0C-lDZ" secondAttribute="trailing" id="HJ7-5w-8lR"/>
+                            <constraint firstItem="9EK-kj-H8d" firstAttribute="leading" secondItem="0YK-0C-lDZ" secondAttribute="leading" constant="8" id="I1p-hR-35l"/>
+                            <constraint firstItem="0YK-0C-lDZ" firstAttribute="trailing" secondItem="9EK-kj-H8d" secondAttribute="trailing" constant="8" id="Ych-M6-lGf"/>
+                            <constraint firstItem="q39-N9-pTs" firstAttribute="top" secondItem="0YK-0C-lDZ" secondAttribute="top" id="q0X-bA-Rd3"/>
+                            <constraint firstItem="0YK-0C-lDZ" firstAttribute="bottom" secondItem="9EK-kj-H8d" secondAttribute="bottom" constant="8" id="xkW-ii-TAv"/>
+                            <constraint firstItem="q39-N9-pTs" firstAttribute="leading" secondItem="0YK-0C-lDZ" secondAttribute="leading" id="ygf-TY-FBh"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5xc-lh-hU0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839" y="245"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
@@ -163,6 +226,9 @@
         <namedColor name="gray_9B">
             <color red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
