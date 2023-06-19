@@ -83,7 +83,16 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         let reachability = try! Reachability()
         if reachability.connection != .unavailable{
             viewModel=HomeViewModel()
-            
+
+          viewModel?.showCouponAlert = {
+            print("kejvbjhwrhtbvj")
+            UserDefaults.standard.setValue(self.viewModel?.couponsLists.first?.first?.code, forKey: Constants.USER_COUPON)
+            let alert : UIAlertController = UIAlertController(title: "Congratulations", message: "You can use coupon: \(self.viewModel?.couponsLists.first?.first?.code ?? "")", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+            indicator.stopAnimating()
+            self.present(alert, animated: true, completion: nil)
+
+          }
             viewModel?.bindResultToViewController={
                 [weak self] in
                 DispatchQueue.main.async {
@@ -201,8 +210,21 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Click")
+      let reachability = try! Reachability()
+      if indexPath.section == 0{
+        if reachability.connection != .unavailable{
+          //viewmodel make network call
+          viewModel?.getCoupons()
+        } else{
+          let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
+
+          alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+          self.present(alert, animated: true, completion: nil)
+      }
+
+      }
         if indexPath.section == 1{
-            let reachability = try! Reachability()
+
             if reachability.connection != .unavailable{
                 let products = self.storyboard?.instantiateViewController(withIdentifier: "products") as! ProductsViewController
                 products.brandName = brandsList[indexPath.row].rules?[0].condition

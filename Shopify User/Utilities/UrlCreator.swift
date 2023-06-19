@@ -53,4 +53,14 @@ class URLCreator {
   func getCurrencyURL()-> String{
     return CURRENCY_API
   }
+  func getAllPriceRulesURL()->String{
+    endPoint = "price_rules"
+    return baseURL + endPoint + jsontype
+  }
+
+  func getCouponsURL(priceRuleId: String)->String{
+    endPoint = "price_rules/\(priceRuleId)/discount_codes"
+    return baseURL + endPoint + jsontype
+  }
+  
 }

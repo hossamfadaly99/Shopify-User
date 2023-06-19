@@ -32,6 +32,7 @@ class Constants {
         static let KEY_USER_STATE = "State"
         static let USER_STATE_LOGIN = "Login"
         static let USER_STATE_LOGOUT = "Logout"
+        static let USER_COUPON = "coupon"
         
     
     //Search
