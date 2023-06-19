@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         self.window = UIWindow(windowScene: windowScene)
         
-        let homeStoryboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+        let homeStoryboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
         let rootHomeVC = homeStoryboard.instantiateInitialViewController()
         
         let signupStoryboard = UIStoryboard(name: "Signup_SB", bundle: nil)

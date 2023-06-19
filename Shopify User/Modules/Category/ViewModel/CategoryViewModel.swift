@@ -32,7 +32,6 @@ class CategoryViewModel{
         let url = "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/custom_collections.json"
         MonicaNetworkManager().loadData(url : url, param: Parameters(), header: headers) { [weak self] (result : CategoryResponse? ,error) in
             self?.customCollectionResult = result?.customCollections
-            print("category \(result?.customCollections)")
         }
     }
     

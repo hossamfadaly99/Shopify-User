@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFJ-bd-Hpm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFJ-bd-Hpm">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -156,6 +157,9 @@
                                     </barButtonItem>
                                     <barButtonItem image="heart.fill" catalog="system" id="l2Q-4i-niy">
                                         <color key="tintColor" name="main_green"/>
+                                        <connections>
+                                            <action selector="navigateToFav:" destination="PlE-GH-uVV" id="gax-mC-tsd"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -223,6 +227,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cob-4O-uoK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1829.7709923664122" y="702.11267605633805"/>
+        </scene>
+        <!--Order View Controller-->
+        <scene sceneID="y5X-4O-MmR">
+            <objects>
+                <viewController id="Be5-lt-CJW" customClass="OrderViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y8T-xR-hl0">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QhF-7u-H9R">
+                                <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="kLC-fP-T0p"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="back_btn_icon" id="7gV-yY-SbX"/>
+                                </items>
+                            </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="All Orders" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2U5-ma-UpA">
+                                <rect key="frame" x="125" y="70" width="148" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" name="main_green"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="CK8-z7-beI">
+                                <rect key="frame" x="8" y="103" width="377" height="715"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="order" id="MUS-pQ-chR">
+                                        <rect key="frame" x="0.0" y="50" width="377" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="MUS-pQ-chR" id="UV1-ys-z8O">
+                                            <rect key="frame" x="0.0" y="0.0" width="377" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="o6W-02-7up"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CK8-z7-beI" firstAttribute="leading" secondItem="o6W-02-7up" secondAttribute="leading" constant="8" id="85l-vU-Hbf"/>
+                            <constraint firstItem="QhF-7u-H9R" firstAttribute="top" secondItem="o6W-02-7up" secondAttribute="top" id="BXa-BB-rAS"/>
+                            <constraint firstItem="QhF-7u-H9R" firstAttribute="trailing" secondItem="o6W-02-7up" secondAttribute="trailing" id="KjZ-hU-tsV"/>
+                            <constraint firstItem="o6W-02-7up" firstAttribute="bottom" secondItem="CK8-z7-beI" secondAttribute="bottom" id="RTJ-Nz-WQe"/>
+                            <constraint firstItem="CK8-z7-beI" firstAttribute="top" secondItem="QhF-7u-H9R" secondAttribute="bottom" id="Vsl-fJ-P5L"/>
+                            <constraint firstItem="o6W-02-7up" firstAttribute="trailing" secondItem="CK8-z7-beI" secondAttribute="trailing" constant="8" id="swQ-RK-QjQ"/>
+                            <constraint firstItem="QhF-7u-H9R" firstAttribute="leading" secondItem="o6W-02-7up" secondAttribute="leading" id="xH4-1g-pop"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="CK8-z7-beI" id="1Ql-9F-qF7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ynj-0T-kTi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2812.9770992366412" y="1017.6056338028169"/>
         </scene>
         <!--Products View Controller-->
         <scene sceneID="qoz-Gq-TOp">
@@ -391,6 +454,7 @@
     </scenes>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="95"/>
+        <image name="back_btn_icon" width="24" height="24"/>
         <image name="cart.fill" catalog="system" width="128" height="102"/>
         <image name="football" width="278" height="182"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
