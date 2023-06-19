@@ -11,6 +11,26 @@ import Foundation
 struct OrderResponse: Codable {
     var orders: [Order]?
 }
+struct OrderResponsePost: Codable {
+    var order: OrderPost?
+}
+
+struct OrderPost : Codable{
+    var lineItems: [LineItem]?
+    var customer: OrderCustomer?
+    var shippingAddress: OrderAddress?
+    var financialStatus: String?
+    var discountCodes: [DiscountCode]?
+
+  enum CodingKeys: String, CodingKey {
+    case lineItems = "line_items"
+    case customer
+    case shippingAddress = "shipping_address"
+    case financialStatus = "financial_status"
+    case discountCodes = "discount_codes"
+  }
+
+}
 
 // MARK: - Order
 struct Order: Codable {
@@ -36,7 +56,7 @@ struct Order: Codable {
     var currentTotalTax: String?
     var currentTotalTaxSet: OrderSet?
     var customerLocale, deviceID: String?
-    var discountCodes: [String]?
+    var discountCodes: [DiscountCode]?
     var email: String?
     var estimatedTaxes: Bool?
     var financialStatus: String?
@@ -166,7 +186,10 @@ struct Order: Codable {
         case shippingLines = "shipping_lines"
     }
 }
-
+// MARK: - DiscountCode
+struct DiscountCode: Codable {
+    var code, amount, type: String?
+}
 // MARK: - Address
 struct OrderAddress: Codable {
     var firstName, address1, phone, city: String?
@@ -293,7 +316,7 @@ struct LineItem: Codable {
     var totalDiscountSet: OrderSet?
     var variantID: Int?
     var variantInventoryManagement, variantTitle, vendor: String?
-    var taxLines, duties, discountAllocations: [String]?
+    var taxLines, duties: [String]?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -317,6 +340,6 @@ struct LineItem: Codable {
         case vendor
         case taxLines = "tax_lines"
         case duties
-        case discountAllocations = "discount_allocations"
+//        case discountAllocations = "discount_allocations"
     }
 }

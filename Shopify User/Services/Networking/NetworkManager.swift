@@ -108,6 +108,7 @@ class NetworkManager: NetworkServiceProtocol {
 //    }
 
   func uploadData<G: Codable, T: Codable>(object: G, method: HTTPMethod, compilitionHandler: @escaping (T?) -> Void) {
+      print("entered")
     guard let finalURL = url else {
       print("url error")
       return
@@ -127,7 +128,7 @@ class NetworkManager: NetworkServiceProtocol {
 
           print(prettyPrintedJson)
 //          print(method)
-          print("jenvkbektbvk")
+          print("jenvkbektbvkmonica")
           print("kjkjkjjkjkkjkjkjkjkjkjkj")
           print(json)
         } catch {
