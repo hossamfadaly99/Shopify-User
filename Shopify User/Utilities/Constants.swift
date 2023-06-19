@@ -33,6 +33,8 @@ class Constants {
         static let USER_STATE_LOGIN = "Login"
         static let USER_STATE_LOGOUT = "Logout"
         static let USER_COUPON = "coupon"
+        static let CURRENCY_KEY = "CURRENCY_KEY"
+        static let CURRENCY_VALUE = "CURRENCY_VALUE"
         
     
     //Search
@@ -55,3 +57,12 @@ let BASE_CURRENCY_API = "https://api.apilayer.com/exchangerates_data/latest?base
 let CURRENCY_API_KEY =  "Qflgr2kG5V3sQQ92JoP8zUe38qGZZlFg"
 let CURRENCY_API = BASE_CURRENCY_API + CURRENCY_API_KEY
 
+var currencySymbol: String {
+  return UserDefaults.standard.string(forKey: Constants.CURRENCY_KEY) ?? "USD"
+}
+
+var currencyValue: Double {
+  var value = UserDefaults.standard.double(forKey: Constants.CURRENCY_KEY)
+  if value == 0.0 { value = 1.0 }
+  return value
+}

@@ -10,11 +10,11 @@ extension CheckoutViewController{
     func createOrder(){
         
         var orderRequest: OrderResponsePost = OrderResponsePost()
-        var lineItems: [LineItem] = Array<LineItem>()
-        var lineItem: LineItem = LineItem()
-        lineItem.variantID = 45372849226020
-        lineItem.quantity = 1
-        lineItems.append(lineItem)
+      var lineItems: [LineItem] = self.viewModel?.lineItems ?? []
+//        var lineItem: LineItem = LineItem()
+//        lineItem.variantID = 45372849226020
+//        lineItem.quantity = 1
+//        lineItems.append(lineItem)
 
         var customer = OrderCustomer()
         customer.id = 6959049769252

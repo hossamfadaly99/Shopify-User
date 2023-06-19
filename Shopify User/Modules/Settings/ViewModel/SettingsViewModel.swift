@@ -23,8 +23,8 @@ class SettingsViewModel{
 
   func loadLatestCurrency(chosenCurrency: String){
     networkManager.fetchData{ [weak self] (result: Currency?) in
-      self?.defaults.set(chosenCurrency, forKey: "currency_key")
-      self?.defaults.set(result?.rates?[chosenCurrency], forKey: "currency_value")
+      self?.defaults.set(chosenCurrency, forKey: Constants.CURRENCY_KEY)
+      self?.defaults.set(result?.rates?[chosenCurrency], forKey: Constants.CURRENCY_VALUE)
       self?.isCurrencyUpdated.toggle()
 
     }

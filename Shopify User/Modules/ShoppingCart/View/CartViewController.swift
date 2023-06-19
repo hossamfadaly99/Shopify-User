@@ -15,6 +15,7 @@ class CartViewController: UIViewController {
   @IBOutlet weak var noItemsImage: UIImageView!
   @IBOutlet weak var totalPriceLabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
+  let defaults = UserDefaults.standard
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
 
@@ -58,11 +59,23 @@ class CartViewController: UIViewController {
     }
     
 
+  @IBAction func navigateToCheckout(_ sender: Any) {
+    let storyboard = UIStoryboard(name: "CheckoutStoryboard", bundle: nil)
+    let checkoutVC = storyboard.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-      let checkoutVC = segue.destination as! CheckoutViewController
-      checkoutVC.amount = Double(totalPriceLabel.text?.dropFirst() ?? "0.0") ?? 0.0
+    var totalPrice = Double(totalPriceLabel.text?.dropFirst() ?? "0.0") ?? 0.0
+
+    checkoutVC.line_Items = viewModel.cartArray
+    checkoutVC.emptyCartProtocol = self
+    checkoutVC.amount = totalPrice
+
+    if totalPrice > 0.0 {
+      self.navigationController?.pushViewController(checkoutVC, animated: true)
+    } else {
+      AlertCreator.showAlert(title: "Add Items!", message: "The amount should be at least \(currencySymbol) \(10 * currencyValue)", viewController: self)
     }
+  }
+
 
 
 }
@@ -125,7 +138,7 @@ extension CartViewController: UITableViewDataSource{
         print("hghghghgghhg")
         self.viewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
         print(self.viewModel.cartUpdated.draft_order?.line_items?.count)
-        self.viewModel.cartUpdated.draft_order?.line_items?.append(Line_items( variant_id: 45505132626212, quantity: 1))
+        self.viewModel.cartUpdated.draft_order?.line_items?.append(Line_items( variant_id: 45543065256228, quantity: 1))
         print(self.viewModel.cartUpdated.draft_order?.line_items?.count)
 //        self.viewModel.cartUpdated.draftOrder?.lineItems[0].title = "dummy for ward"
         print(self.viewModel.cartUpdated.draft_order?.line_items?.first?.title)
@@ -141,4 +154,12 @@ extension CartViewController: UITableViewDataSource{
   }
 
 
+}
+
+extension CartViewController: EmptyCartProtocol{
+  func makeCartEmpty(){
+    print("kjhbsrkjbhrtj")
+    self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( variant_id: 45543065256228, quantity: 1)]
+    self.viewModel.updateCartItem(cartItem: viewModel.cartUpdated)
+  }
 }

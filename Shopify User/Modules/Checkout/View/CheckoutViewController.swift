@@ -12,6 +12,8 @@ class CheckoutViewController: UIViewController {
   var amount: Double = 0.0
     
     var viewModel : CheckoutViewModel?
+    var line_Items: [Line_items] = []
+    var emptyCartProtocol: EmptyCartProtocol!
     var totalAmountWithDelivery: Double {
     return amount + 20.0
   }
@@ -26,9 +28,9 @@ class CheckoutViewController: UIViewController {
     orderAmountLabel.text = "\(amount)$"
     deliveryAmountLabel.text = "20$"
     summaryAmountLabel.text = "\(totalAmountWithDelivery)$"
-      viewModel = CheckoutViewModel(networkManager: NetworkManager(url: URLCreator().getCreateOrder()))
-      
-      self.createOrder()
+    viewModel = CheckoutViewModel(networkManager: NetworkManager(url: URLCreator().getCreateOrder()))
+    viewModel?.transferObject(items: line_Items)
+
     }
 
   @IBAction func backBtnClick(_ sender: Any) {
@@ -58,6 +60,8 @@ class CheckoutViewController: UIViewController {
     if isPaymentSuccessful.0 {
       if isPaymentSuccessful.1 == "Purchased successfully"{
         //handle server side to make it order
+        self.createOrder()
+        self.emptyCartProtocol.makeCartEmpty()
         self.navigationController?.popViewController(animated: true)
 
       }
@@ -89,6 +93,8 @@ extension CheckoutViewController: PKPaymentAuthorizationViewControllerDelegate{
     if paymentAuthorizationResult.status == .success{
       print("success")
       controller.dismiss(animated: true)
+      self.createOrder()
+      self.emptyCartProtocol.makeCartEmpty()
       self.navigationController?.popViewController(animated: true)
       // TODO: make the cart empty and send server req for payment
     }
