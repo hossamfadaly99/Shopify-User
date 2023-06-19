@@ -16,11 +16,15 @@ class URLCreator {
         return baseURL + endPoint + id + jsontype
     }
     //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers/6948853350692/orders.json
-    func getCreateOrderURL(id: String) -> String{
+    func getAllOrderURL(id: String) -> String{
         endPoint = "/orders"
+        print(baseURL + "customers/" + id + endPoint + jsontype)
         return baseURL + "customers/" + id + endPoint + jsontype
     }
-    
+    func getCreateOrder()->String{
+        endPoint = "orders"
+        return baseURL + endPoint + jsontype
+      }
     func getCreateCartURL() -> String{
         endPoint = "draft_orders"
         return baseURL + endPoint + jsontype

@@ -10,7 +10,9 @@ import PassKit
 
 class CheckoutViewController: UIViewController {
   var amount: Double = 0.0
-  var totalAmountWithDelivery: Double {
+    
+    var viewModel : CheckoutViewModel?
+    var totalAmountWithDelivery: Double {
     return amount + 20.0
   }
 
@@ -24,6 +26,7 @@ class CheckoutViewController: UIViewController {
     orderAmountLabel.text = "\(amount)$"
     deliveryAmountLabel.text = "20$"
     summaryAmountLabel.text = "\(totalAmountWithDelivery)$"
+      viewModel = CheckoutViewModel(networkManager: NetworkManager(url: URLCreator().getCreateOrder()))
       
       self.createOrder()
     }
