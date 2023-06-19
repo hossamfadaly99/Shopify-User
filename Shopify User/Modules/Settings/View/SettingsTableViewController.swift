@@ -6,16 +6,24 @@
 //
 
 import UIKit
+import PKHUD
 
 class SettingsTableViewController: UITableViewController {
 
   var sizes: [String]? = ["EGP", "USD", "EUR"]
+  var viewModel: SettingsViewModel!
 
   @IBOutlet weak var popUpBtn: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+      viewModel = SettingsViewModel(networkManager: NetworkManager(url: URLCreator().getCurrencyURL()))
       setPopUpButton()
+
+      viewModel.stopAnimation = {
+        HUD.hide(animated: true)
+        print(UserDefaults.standard.string(forKey: "currency_value") ?? "1")
+      }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -25,16 +33,6 @@ class SettingsTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-//    override func numberOfSections(in tableView: UITableView) -> Int {
-//        // #warning Incomplete implementation, return the number of sections
-//        return 0
-//    }
-//
-//    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        // #warning Incomplete implementation, return the number of rows
-//        return 0
-//    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,19 +97,25 @@ extension SettingsTableViewController  {
         let optionSelected = {(action : UIAction) in
             //show selected size title
             print(action.title)
+          HUD.show(.labeledProgress(title: nil, subtitle: "loading"))
+          self.viewModel.loadLatestCurrency(chosenCurrency: action.title)
+
         }
         guard let sizes = sizes else {return}
         if (sizes.isEmpty){
             action.append( UIAction(title: "Sizes", handler: optionSelected) )
         } else {
             action = []
+          var latestChosen = UserDefaults.standard.string(forKey: "currency_key") ?? "USD"
+          action.append(UIAction(title: latestChosen, handler: optionSelected))
             for item in sizes{
+              if item != latestChosen{
                 action.append( UIAction(title: item, handler: optionSelected))
-                //action.state = .on
-               // print("func :")
+              }
             }
 
         }
+
         popUpBtn.menu = UIMenu(children: action)
         popUpBtn.showsMenuAsPrimaryAction = true
         popUpBtn.changesSelectionAsPrimaryAction = true

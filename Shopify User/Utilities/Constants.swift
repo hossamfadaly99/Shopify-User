@@ -50,5 +50,7 @@ let adminTokenKey = "X-Shopify-Access-Token"
 let adminTokenValue = "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"
 let dummyMail = "ddd@hhh.com"
 let secondDummyMail = "egnition_sample_81@egnition.com"
-
+let BASE_CURRENCY_API = "https://api.apilayer.com/exchangerates_data/latest?base=USD&apikey="
+let CURRENCY_API_KEY =  "Qflgr2kG5V3sQQ92JoP8zUe38qGZZlFg"
+let CURRENCY_API = BASE_CURRENCY_API + CURRENCY_API_KEY
 
