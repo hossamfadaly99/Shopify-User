@@ -24,6 +24,8 @@ class CheckoutViewController: UIViewController {
     orderAmountLabel.text = "\(amount)$"
     deliveryAmountLabel.text = "20$"
     summaryAmountLabel.text = "\(totalAmountWithDelivery)$"
+      
+      self.createOrder()
     }
 
   @IBAction func backBtnClick(_ sender: Any) {

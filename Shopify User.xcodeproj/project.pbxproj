@@ -19,6 +19,8 @@
 		042F5A8A2A37429C00BEA9BB /* Reviews_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042F5A892A37429C00BEA9BB /* Reviews_VC.swift */; };
 		042FE17C2A4038670063E932 /* OrderCustomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FE17A2A4038670063E932 /* OrderCustomCell.swift */; };
 		042FE17D2A4038670063E932 /* OrderCustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 042FE17B2A4038670063E932 /* OrderCustomCell.xib */; };
+		042FE17F2A4050D10063E932 /* CheckoutCreateOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FE17E2A4050D10063E932 /* CheckoutCreateOrder.swift */; };
+		042FE1812A4051A40063E932 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042FE1802A4051A40063E932 /* CheckoutViewModel.swift */; };
 		0459E5D72A33B888002E92D2 /* HomeStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0459E5D62A33B888002E92D2 /* HomeStoryboard.storyboard */; };
 		0459E5DD2A33C004002E92D2 /* CategoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459E5DC2A33C004002E92D2 /* CategoryResponse.swift */; };
 		0459E5DF2A33C082002E92D2 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0459E5DE2A33C082002E92D2 /* CategoryViewController.swift */; };
@@ -161,6 +163,8 @@
 		042F5A892A37429C00BEA9BB /* Reviews_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reviews_VC.swift; sourceTree = "<group>"; };
 		042FE17A2A4038670063E932 /* OrderCustomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderCustomCell.swift; sourceTree = "<group>"; };
 		042FE17B2A4038670063E932 /* OrderCustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OrderCustomCell.xib; sourceTree = "<group>"; };
+		042FE17E2A4050D10063E932 /* CheckoutCreateOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutCreateOrder.swift; sourceTree = "<group>"; };
+		042FE1802A4051A40063E932 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CheckoutViewModel.swift; path = "Shopify User/Modules/Checkout/View/CheckoutViewModel.swift"; sourceTree = SOURCE_ROOT; };
 		0459E5D62A33B888002E92D2 /* HomeStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = HomeStoryboard.storyboard; sourceTree = "<group>"; };
 		0459E5DC2A33C004002E92D2 /* CategoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryResponse.swift; sourceTree = "<group>"; };
 		0459E5DE2A33C082002E92D2 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -654,6 +658,7 @@
 				9F17A8D92A365C7400C3DA87 /* CheckoutStoryboard.storyboard */,
 				9F1C8CBE2A36E1120026D45E /* PaymentMethodTableViewController.swift */,
 				9F1C8CC02A36E55B0026D45E /* CheckoutViewController.swift */,
+				042FE17E2A4050D10063E932 /* CheckoutCreateOrder.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -661,6 +666,7 @@
 		9F17A8D82A365C5E00C3DA87 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				042FE1802A4051A40063E932 /* CheckoutViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1283,6 +1289,7 @@
 				04FECD372A37BA7A00846E3F /* FloatyViewController.swift in Sources */,
 				9F3F11732A31EB2F0032BEE2 /* NetworkServiceProtocol.swift in Sources */,
 				04FB577D2A39DE830066EAD5 /* Search_VC.swift in Sources */,
+				042FE1812A4051A40063E932 /* CheckoutViewModel.swift in Sources */,
 				9F3F116D2A31E2680032BEE2 /* UrlCreator.swift in Sources */,
 				9F3F11772A3219F50032BEE2 /* CartViewModel.swift in Sources */,
 				04FECD3A2A37BA7A00846E3F /* FloatyWindow.swift in Sources */,
@@ -1295,6 +1302,7 @@
 				0408D5DA2A391B6400796C4D /* ProductsTableCell.swift in Sources */,
 				9F19143D2A323B6700FDBD2F /* Applied_discount.swift in Sources */,
 				9F1C8CCA2A36EA1A0026D45E /* CashPaymentStrategy.swift in Sources */,
+				042FE17F2A4050D10063E932 /* CheckoutCreateOrder.swift in Sources */,
 				9F1C8CCC2A36EA3B0026D45E /* PaymentContext.swift in Sources */,
 				9F1914452A323B6700FDBD2F /* Sms_marketing_consent.swift in Sources */,
 				9F598C8A2A27C58100C36A93 /* AppDelegate.swift in Sources */,

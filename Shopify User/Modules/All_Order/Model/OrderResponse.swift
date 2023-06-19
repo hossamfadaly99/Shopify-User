@@ -11,6 +11,17 @@ import Foundation
 struct OrderResponse: Codable {
     var orders: [Order]?
 }
+struct OrderResponsePost: Codable {
+    var order: OrderPost?
+}
+
+struct OrderPost : Codable{
+    var lineItems: [LineItem]?
+    var customer: OrderCustomer?
+    var shippingAddress: OrderAddress?
+    var financialStatus: String?
+    var discountCodes: [DiscountCode]?
+}
 
 // MARK: - Order
 struct Order: Codable {
@@ -36,7 +47,7 @@ struct Order: Codable {
     var currentTotalTax: String?
     var currentTotalTaxSet: OrderSet?
     var customerLocale, deviceID: String?
-    var discountCodes: [String]?
+    var discountCodes: [DiscountCode]?
     var email: String?
     var estimatedTaxes: Bool?
     var financialStatus: String?
@@ -166,7 +177,10 @@ struct Order: Codable {
         case shippingLines = "shipping_lines"
     }
 }
-
+// MARK: - DiscountCode
+struct DiscountCode: Codable {
+    var code, amount, type: String?
+}
 // MARK: - Address
 struct OrderAddress: Codable {
     var firstName, address1, phone, city: String?
