@@ -88,19 +88,31 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
 
             let alert = UIAlertController(title: "Deletion Alert", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
-//                self.favViewModel.bindCartData = { [weak self] in
-//                    var myDraft = self?.favViewModel.wishListArray
-//                    var arr = myDraft?.line_items
-//                    for item in arr {
-//                        //if(item)
-//                    }
-//                    myDraft?.line_items? = arr ?? []
-//                    self?.favViewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
-//                }
+                self.favViewModel.bindCartData = { [weak self] in
+                    var myDraft = self?.favViewModel.wishListArray
+                    var arr = myDraft?.line_items
+                   
+                    guard var arr = arr else {return }
+                    print("Array before deletion \(arr)")
+                    var myId = self?.favourieList?[indexPath.row].id
+                    print("myId = \(myId)")
+
+                    for i in 0..<arr.count {
+                        var apiId = arr[i].product_id
+                        print("apiId = \(apiId)")
+                        if (apiId == myId){
+                            arr.remove(at: i)
+                            self?.viewModel.deleteFromDB(product: (self?.favourieList?[indexPath.row])!)
+                            self?.favourieList?.remove(at: indexPath.row)
+                            tableView.reloadData()
+                            break
+                        }
+                    }
+                    print("Array after deletion \(arr)")
+                    myDraft?.line_items = arr
+                    self?.favViewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+                }
                 self.favViewModel.loadWishListItems()
-                self.viewModel.deleteFromDB(product: (self.favourieList?[indexPath.row])!)
-                self.favourieList?.remove(at: indexPath.row)
-                tableView.reloadData()
                 self.hideFavouritesImage(list: self.favourieList ?? [], img: self.noItemImg)
             }))
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

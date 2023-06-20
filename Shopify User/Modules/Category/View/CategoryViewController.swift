@@ -174,6 +174,23 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let reachability = try! Reachability()
+        if reachability.connection != .unavailable{
+            let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
+            let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
+            //nextViewController.modalPresentationStyle = .fullScreen
+            nextViewController.ID_Product_VC = productsList[indexPath.row].id
+            present(nextViewController, animated: true, completion: nil)
+        }
+        else{
+            let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     @IBAction func segmentControlValueChanged(_ sender: UISegmentedControl) {
         getCategories()
     }

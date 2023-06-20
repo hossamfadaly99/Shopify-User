@@ -59,7 +59,7 @@ class NetworkManager: NetworkServiceProtocol {
                   let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8)!
 
           print("jenvkbektbvk1")
-          print(prettyPrintedJson)
+         // print(prettyPrintedJson)
           print("jenvkbektbvk")
 
           print(json)
@@ -67,17 +67,17 @@ class NetworkManager: NetworkServiceProtocol {
             print("errorMsg")
         }
           do {
-              print("The count of data is : \(data.count)")
+             // print("The count of data is : \(data.count)")
 
               let result = try JSONDecoder().decode(T.self, from: data)
-            print(result)
+           // print(result)
             print("liruhgiurtiuniutnbiutdyiobno \(T.self)")
 
               compilitionHandler(result)
               print("Data Fetched Successfully...")
           } catch {
               print("fetch func Error When Parseing data from API :  \(error.localizedDescription)")
-              print(String(describing: error))
+              //print(String(describing: error))
 
               compilitionHandler(nil)
           }

@@ -13,7 +13,7 @@ protocol NetworkService{
 class MonicaNetworkManager : NetworkService{
   func loadData<T: Decodable>(url:String,param :Parameters,header : HTTPHeaders,compilitionHandler: @escaping (T?, Error?) -> Void){
     AF.request(url,parameters: param,headers: header).responseDecodable(of: T.self){ response in
-      debugPrint(response)
+    //  debugPrint(response)
       
       guard response.data != nil else{
         compilitionHandler(nil , response.error)
@@ -36,9 +36,56 @@ class MonicaNetworkManager : NetworkService{
 }
 
   class Network {
+      
      static let myHeaders : HTTPHeaders = [
         "Content-Type" : "application/json",
         "X-Shopify-Access-Token" : "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" ]
+      
+     static func createDraftOrder(endPoint: String, model:MyDraftOrders, compilition: @escaping (MyDraftOrder?) -> Void) {
+         print("URL: \(endPoint)")
+         let myParams: Parameters = [
+                            "draft_order": [
+                              "note": model.note ,
+                                "line_items": [
+                                    [
+                                        "title": "dummy for fav",
+                                        "price": "1000",
+                                        "quantity": 1
+                                    ]
+                                    
+                                ],
+                                "customer": [
+                                  "id": model.customer?.id
+                                ],
+                                "use_customer_default_address": true
+                            ]
+                        ]
+
+
+
+          AF.request(endPoint, method: .post, parameters: myParams, encoding: JSONEncoding.default, headers: myHeaders).responseData{ response in
+              
+                  switch response.result {
+                      case .success(let data):
+
+                          do {
+                                  let jsonData = try JSONDecoder().decode(MyDraftOrder.self, from: data)
+                                  debugPrint("In Debug Print",jsonData)
+                                  compilition(jsonData)
+                            
+                          } catch {
+                              print("Error: Trying to convert JSON data to string")
+                              return
+                          }
+
+
+                      case .failure(let error):
+                      print("Errrrrrrr\(error)")
+                    
+                      compilition(nil)
+                  }
+              }
+          }
       
       static func postDraftOrder(url:String, model:Draft_orders, handler: @escaping (DraftOrderr?) -> Void) {
           let myParams: Parameters =
@@ -80,7 +127,7 @@ class MonicaNetworkManager : NetworkService{
                   print(prettyPrintedJson)
                   let result = try JSONDecoder().decode(DraftOrderr.self,from: data)
                   handler(result)
-                  print("saved custumer: \(result)")
+                  print("saved draft: \(result)")
               } catch {
                   handler(nil)
                   print("Error: Trying to convert JSON data to string")
@@ -123,7 +170,7 @@ class MonicaNetworkManager : NetworkService{
                 print(prettyPrintedJson)
                 let result = try JSONDecoder().decode(PostCustomer.self,from: data)
                 handler(result)
-                print("saved custumer: \(result)")
+               // print("saved custumer: \(result)")
             } catch {
                 handler(nil)
                 print("Error: Trying to convert JSON data to string")
@@ -163,7 +210,7 @@ class MonicaNetworkManager : NetworkService{
                     print(prettyPrintedJson)
                     let result = try JSONDecoder().decode(Customer.self,from: data)
                     handler(result)
-                    print("draft custumer: \(result)")
+                   // print("draft custumer: \(result)")
                 } catch {
                     handler(nil)
                     print("Error: Trying to convert JSON data to string")
@@ -171,78 +218,46 @@ class MonicaNetworkManager : NetworkService{
                 }
               case .failure(let error):
                   handler(nil)
-                  print(error)
+                  print("Errror : \(error)")
               }
             }
       }
-      static func updateDraft<T: Decodable>(url: String, myParams: Parameters, responseType: T.Type, handler: @escaping (T?) -> Void) {
-          AF.request(url, method: .put, parameters: myParams, encoding: JSONEncoding.default, headers: myHeaders)
-              .validate(statusCode: 200 ..< 299).responseData { response in
-                  switch response.result {
-                  case .success(let data):
-                      do {
-                          guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-                              print("Error: Cannot convert data to JSON object")
-                              handler(nil)
-                              return
-                          }
-                          guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
-                              print("Error: Cannot convert JSON object to Pretty JSON data")
-                              handler(nil)
-                              return
-                          }
-                          guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
-                              print("Error: Could print JSON in String")
-                              handler(nil)
-                              return
-                          }
-                          print(prettyPrintedJson)
-                          let result = try JSONDecoder().decode(T.self, from: data)
-                          handler(result)
-                          print("Result: \(result)")
-                      } catch {
-                          handler(nil)
-                          print("Error: Trying to convert JSON data to string")
-                      }
-                  case .failure(let error):
-                      handler(nil)
-                      print(error)
-                  }
-          }
-      }
-
-      }
-
-//      static func updateDraft(url: String, myParams:Parameters, handler: @escaping (DraftOrderr?) -> Void) {
-//            AF.request(url, method: .put, parameters:myParams , encoding: JSONEncoding.default, headers:myHeaders)
+      
+      
+//      static func updateDraft<T: Decodable>(url: String, myParams: Parameters, responseType: T.Type, handler: @escaping (T?) -> Void) {
+//          AF.request(url, method: .put, parameters: myParams, encoding: JSONEncoding.default, headers: myHeaders)
 //              .validate(statusCode: 200 ..< 299).responseData { response in
-//                switch response.result {
-//                case .success(let data):
-//                  do {
-//                    guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
-//                      print("Error: Cannot convert data to JSON object")
-//                      return
-//                    }
-//                    guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
-//                      print("Error: Cannot convert JSON object to Pretty JSON data")
-//                      return
-//                    }
-//                    guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
-//                      print("Error: Could print JSON in String")
-//                      return
-//                    }
-//                      print(prettyPrintedJson)
-//                      let result = try JSONDecoder().decode(DraftOrderr.self,from: data)
-//                      handler(result)
-//                      print("draft custumer: \(result)")
-//                  } catch {
+//                  switch response.result {
+//                  case .success(let data):
+//                      do {
+//                          guard let jsonObject = try JSONSerialization.jsonObject(with: data) as? [String: Any] else {
+//                              print("Error: Cannot convert data to JSON object")
+//                              handler(nil)
+//                              return
+//                          }
+//                          guard let prettyJsonData = try? JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted) else {
+//                              print("Error: Cannot convert JSON object to Pretty JSON data")
+//                              handler(nil)
+//                              return
+//                          }
+//                          guard let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8) else {
+//                              print("Error: Could print JSON in String")
+//                              handler(nil)
+//                              return
+//                          }
+//                          print(prettyPrintedJson)
+//                          let result = try JSONDecoder().decode(T.self, from: data)
+//                          handler(result)
+//                          print("Result: \(result)")
+//                      } catch {
+//                          handler(nil)
+//                          print("Error: Trying to convert JSON data to string")
+//                      }
+//                  case .failure(let error):
 //                      handler(nil)
-//                      print("Error: Trying to convert JSON data to string")
-//                    return
+//                      print(error)
 //                  }
-//                case .failure(let error):
-//                    handler(nil)
-//                    print(error)
-//                }
-//              }
-//        }
+//          }
+//      }
+
+      }

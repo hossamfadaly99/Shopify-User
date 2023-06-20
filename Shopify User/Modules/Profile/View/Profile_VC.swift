@@ -47,7 +47,9 @@ class Profile_VC: UIViewController {
         defaults.set("", forKey: Constants.KEY_USER_EMAIL)
         defaults.set(Constants.USER_STATE_LOGOUT, forKey: Constants.KEY_USER_STATE)
         defaults.set("", forKey: Constants.KEY_USER_ID)
-        
+        defaults.set("", forKey: Constants.USER_CART)
+        defaults.set("", forKey: Constants.USER_WISHLIST)
+        print("Loged out : \( UserDefaults.standard.string(forKey: Constants.USER_CART))")
         let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
         nextViewController.modalPresentationStyle = .fullScreen
