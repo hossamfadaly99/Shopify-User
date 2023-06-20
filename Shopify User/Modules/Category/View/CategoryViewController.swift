@@ -125,6 +125,19 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         return 1
     }
     
+    @IBAction func NavigateToSearch(_ sender: Any) {
+        print("Navigate to search_VC From Products")
+        let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
+        
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func navigateToCart(_ sender: Any) {
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if productsList.count == 0{
             noItemFoundImg.isHidden = false
