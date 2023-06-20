@@ -96,13 +96,13 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cHr-rL-bgp">
-                                <rect key="frame" x="16" y="127" width="71.333333333333329" height="18"/>
+                                <rect key="frame" x="16" y="211" width="71.333333333333329" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address 1" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="dDs-kp-sGt">
-                                <rect key="frame" x="16" y="153" width="361" height="34"/>
+                                <rect key="frame" x="16" y="237" width="361" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="lP8-gs-IQL"/>
                                 </constraints>
@@ -110,13 +110,13 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="address-line1"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address 2:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DYh-12-8Wm">
-                                <rect key="frame" x="16" y="211" width="73.333333333333329" height="18"/>
+                                <rect key="frame" x="16" y="295" width="73.333333333333329" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Address 2" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="yqd-dY-dyB">
-                                <rect key="frame" x="16" y="237" width="361" height="34"/>
+                                <rect key="frame" x="16" y="321" width="361" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="egL-9N-dX1"/>
                                 </constraints>
@@ -124,13 +124,13 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-line2"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="City:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N6B-qh-6Eo">
-                                <rect key="frame" x="15.999999999999998" y="295" width="31.333333333333329" height="18"/>
+                                <rect key="frame" x="15.999999999999998" y="379" width="31.333333333333329" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="City" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mjk-jn-1DZ">
-                                <rect key="frame" x="16" y="321" width="361" height="34"/>
+                                <rect key="frame" x="16" y="405" width="361" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Mzh-kU-Xy2"/>
                                 </constraints>
@@ -138,13 +138,13 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-level2"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Phone:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fyX-ZX-9oT">
-                                <rect key="frame" x="15.999999999999996" y="379" width="47.666666666666657" height="18"/>
+                                <rect key="frame" x="15.999999999999996" y="463" width="47.666666666666657" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your phone" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nh7-C1-N1a">
-                                <rect key="frame" x="16" y="405" width="361" height="34"/>
+                                <rect key="frame" x="16" y="489" width="361" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="m8f-NE-NMX"/>
                                 </constraints>
@@ -152,7 +152,7 @@
                                 <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="tel"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ooq-7b-fcB">
-                                <rect key="frame" x="16" y="463" width="361" height="60"/>
+                                <rect key="frame" x="16" y="547" width="361" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="DhX-sC-8Mx">
                                         <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="60"/>
@@ -188,6 +188,43 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="IqT-bB-ygn">
+                                <rect key="frame" x="16" y="127" width="361" height="60"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="hB4-An-moP">
+                                        <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TwN-sz-NMS">
+                                                <rect key="frame" x="0.0" y="0.0" width="172.66666666666666" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="7SC-b9-gmX">
+                                                <rect key="frame" x="0.0" y="26" width="172.66666666666666" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="address-level1"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3c3-Js-NtC">
+                                        <rect key="frame" x="188.66666666666663" y="0.0" width="172.33333333333337" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KS-Pa-hvJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="172.33333333333334" height="18"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="48o-cT-ICa">
+                                                <rect key="frame" x="0.0" y="26" width="172.33333333333334" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="country-name"/>
+                                            </textField>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="89x-gO-BO8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -196,6 +233,8 @@
                             <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="yqd-dY-dyB" secondAttribute="trailing" constant="16" id="4QJ-p8-rxf"/>
                             <constraint firstItem="fyX-ZX-9oT" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="53f-op-NM1"/>
                             <constraint firstItem="yqd-dY-dyB" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="5RZ-d2-9tH"/>
+                            <constraint firstItem="IqT-bB-ygn" firstAttribute="top" secondItem="X12-5h-m0y" secondAttribute="bottom" constant="24" id="7IJ-Q4-zok"/>
+                            <constraint firstItem="cHr-rL-bgp" firstAttribute="top" secondItem="IqT-bB-ygn" secondAttribute="bottom" constant="24" id="7ml-9Y-YvS"/>
                             <constraint firstItem="nh7-C1-N1a" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="DFx-IN-R8x"/>
                             <constraint firstItem="yqd-dY-dyB" firstAttribute="top" secondItem="DYh-12-8Wm" secondAttribute="bottom" constant="8" id="DUq-n4-15N"/>
                             <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="dDs-kp-sGt" secondAttribute="trailing" constant="16" id="HII-IH-Ybk"/>
@@ -206,9 +245,10 @@
                             <constraint firstItem="DYh-12-8Wm" firstAttribute="top" secondItem="dDs-kp-sGt" secondAttribute="bottom" constant="24" id="SGE-5v-6IC"/>
                             <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="nh7-C1-N1a" secondAttribute="trailing" constant="16" id="TMH-zZ-MCQ"/>
                             <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="Ooq-7b-fcB" secondAttribute="trailing" constant="16" id="Upl-Er-yIf"/>
+                            <constraint firstItem="89x-gO-BO8" firstAttribute="trailing" secondItem="IqT-bB-ygn" secondAttribute="trailing" constant="16" id="Vee-lj-nbP"/>
                             <constraint firstItem="mjk-jn-1DZ" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="WF7-Kn-5cs"/>
-                            <constraint firstItem="cHr-rL-bgp" firstAttribute="top" secondItem="X12-5h-m0y" secondAttribute="bottom" constant="24" id="eSb-LI-0d6"/>
                             <constraint firstItem="cHr-rL-bgp" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="fYQ-AR-UwH"/>
+                            <constraint firstItem="IqT-bB-ygn" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="h2A-5v-quv"/>
                             <constraint firstItem="X12-5h-m0y" firstAttribute="trailing" secondItem="89x-gO-BO8" secondAttribute="trailing" id="jBC-pC-dpK"/>
                             <constraint firstItem="DYh-12-8Wm" firstAttribute="leading" secondItem="89x-gO-BO8" secondAttribute="leading" constant="16" id="jzw-KZ-e2f"/>
                             <constraint firstItem="N6B-qh-6Eo" firstAttribute="top" secondItem="yqd-dY-dyB" secondAttribute="bottom" constant="24" id="mml-cB-eFu"/>
@@ -226,6 +266,8 @@
                         <outlet property="address2TF" destination="yqd-dY-dyB" id="Gnl-Rx-kXv"/>
                         <outlet property="cityTF" destination="mjk-jn-1DZ" id="NHd-Ho-jnK"/>
                         <outlet property="countryTF" destination="R2x-EP-TRs" id="rD0-Q3-F6K"/>
+                        <outlet property="firstNameTF" destination="7SC-b9-gmX" id="1CW-X5-JX8"/>
+                        <outlet property="lastNameTF" destination="48o-cT-ICa" id="iuf-s8-i7D"/>
                         <outlet property="phoneTF" destination="nh7-C1-N1a" id="10T-hA-AjI"/>
                         <outlet property="provinceTF" destination="Bi5-IQ-0dB" id="l0v-Cu-fsx"/>
                     </connections>

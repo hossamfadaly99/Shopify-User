@@ -22,9 +22,12 @@ class CheckoutViewModel{
     didSet{
       print("ksrhbvrjt")
       print(defaultAddress)
+      transferAddress()
       bindDefaultAddress()
+
     }
   }
+  var address = OrderAddress()
     
     init(networkManager: NetworkServiceProtocol) {
       self.networkManager = networkManager
@@ -39,8 +42,21 @@ class CheckoutViewModel{
       lineItem.quantity = item.quantity
       self.lineItems.append(lineItem)
     }
-    
   }
+
+  func transferAddress(){
+    self.address.firstName = self.defaultAddress?.firstName
+    self.address.lastName = self.defaultAddress?.lastName
+    self.address.address1 = self.defaultAddress?.address1
+    self.address.address2 = self.defaultAddress?.address2
+    self.address.city = self.defaultAddress?.city
+    self.address.country = self.defaultAddress?.country
+    self.address.province = self.defaultAddress?.province
+    self.address.id = self.defaultAddress?.id
+    self.address.customerID = self.defaultAddress?.customerID
+    self.address.phone = self.defaultAddress?.phone
+  }
+
   func getDefaultAddress(){
     networkManager.setURL(URLCreator().getAddressURL(customerId: "6947695657252"))
     print(URLCreator().getAddressURL(customerId: "6947695657252"))

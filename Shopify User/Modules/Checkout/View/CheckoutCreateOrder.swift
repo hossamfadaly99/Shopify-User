@@ -11,15 +11,18 @@ extension CheckoutViewController{
 
         var customer = OrderCustomer()
         customer.id = 6959049769252
-        var address = OrderAddress()
-        address.firstName = "Janeeee"
-//        address.lastName = "smith"
-        address.address1 = "123 Fake Street"
-        address.phone = "777-777-7777"
-        address.city = "Fakecity"
-        address.province = "Ontario"
-        address.country = "Canada"
-//        address.zip = "K2P 1L4"
+      var address = self.viewModel?.address
+      print("ekbjhbrbk")
+      print(self.viewModel?.address)
+////      var address = OrderAddress()
+//        address.firstName = "Janeeee"
+////        address.lastName = "smith"
+//        address.address1 = "123 Fake Street"
+//        address.phone = "777-777-7777"
+//        address.city = "Fakecity"
+//        address.province = "Ontario"
+//        address.country = "Canada"
+////        address.zip = "K2P 1L4"
         
         var discountCode = DiscountCode()
         discountCode.code = "FAKE30"
