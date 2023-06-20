@@ -120,6 +120,26 @@ extension AddressViewController: UITableViewDataSource{
   }
 
 
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+      if editingStyle == .delete {
+        let alert = UIAlertController(title: "Deletion Alert", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
+            //delete
+          self.viewModel.addressId = "\(self.viewModel.addressList[indexPath.row].id ?? 0)"
+          print("kgjfx")
+          print(self.viewModel.addressId)
+          print(self.viewModel.addressList[indexPath.row].id)
+          print(self.viewModel.addressList[indexPath.row])
+          print(self.viewModel.addressList.count)
+          self.viewModel.removeAddress()
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+           present(alert, animated: true, completion: nil)
+      } else if editingStyle == .insert {
+          // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+      }
+  }
+
   
 }
 

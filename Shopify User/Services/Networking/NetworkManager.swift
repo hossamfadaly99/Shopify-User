@@ -9,6 +9,27 @@ import Foundation
 import Alamofire
 
 class NetworkManager: NetworkServiceProtocol {
+  func deleteData<G>(object: G, compilitionHandler: @escaping () -> Void) where G : Decodable, G : Encodable {
+    guard let finalURL = url else {
+      print("url error")
+      return
+    }
+
+    print("this is update")
+    let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
+                                "Content-Type" : "application/json"]
+
+    AF.request(finalURL, method: .delete, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
+      if response.response!.statusCode >= 200 {
+        compilitionHandler()
+        print("deleted")
+      }
+
+    }
+  }
+
+
+
 
   private var url: URL!
 
@@ -171,42 +192,61 @@ class NetworkManager: NetworkServiceProtocol {
       switch response.result {
       case .success(let data):
         do {
-            let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+          let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
           let prettyJsonData = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
-                  let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8)!
+          let prettyPrintedJson = String(data: prettyJsonData, encoding: .utf8)!
 
           print(prettyPrintedJson)
-//          print(method)
+          //          print(method)
           print("jenvkbektbvk")
           print("kjkjkjjkjkkjkjkjkjkjkjkj")
           print(json)
         } catch {
-            print("errorMsg")
+          print("errorMsg")
           print("error When Parseing data from API :  \(error.localizedDescription)")
           print(String(describing: error))
           print("wwwwwwwwww")
         }
-          do {
-              print("The count of data is : \(data.count)")
+        do {
+          print("The count of data is : \(data.count)")
 
-              let result = try JSONDecoder().decode(T.self, from: data)
+          let result = try JSONDecoder().decode(T.self, from: data)
 
 
-              compilitionHandler(result)
-              print("Data Fetched Successfully...")
-          } catch {
-              print("error When Parseing data from API :  \(error.localizedDescription)")
-              print(String(describing: error))
+          compilitionHandler(result)
+          print("Data Fetched Successfully...")
+        } catch {
+          print("error When Parseing data from API :  \(error.localizedDescription)")
+          print(String(describing: error))
 
-              compilitionHandler(nil)
-          }
-      case .failure(let error):
-          print("Error When Featch data from API :  \(error.localizedDescription)")
           compilitionHandler(nil)
+        }
+      case .failure(let error):
+        print("Error When Featch data from API :  \(error.localizedDescription)")
+        compilitionHandler(nil)
       }
     }
 
+//    func deleteData<G>(object: G, compilitionHandler: @escaping () -> Void) where G : Decodable, G : Encodable {
+//
+//      guard let finalURL = url else {
+//        print("url error")
+//        return
+//      }
+//
+//      print("this is update")
+//      let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
+//                                  "Content-Type" : "application/json"]
+//
+//      print(method)
+//      AF.request(finalURL, method: .delete, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
+//        if response.response!.statusCode >= 200 {
+//          print("deleted")
+//        }
+//
+//      }
+//
+//    }
+
   }
-
-
 }

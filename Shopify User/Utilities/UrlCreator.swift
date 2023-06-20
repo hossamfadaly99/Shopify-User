@@ -57,8 +57,12 @@ class URLCreator {
     
     func getAddressURL(customerId: String, addressId: String = "") -> String{
         endPoint = "customers/\(customerId)/addresses"
-        return baseURL + endPoint + jsontype + "/\(addressId)"
+        return baseURL + endPoint + jsontype
     }
+  func getEditOrDeleteAddressURL(customerId: String, addressId: String = "") -> String{
+      endPoint = "customers/\(customerId)/addresses"
+      return baseURL + endPoint + "/\(addressId)" + jsontype
+  }
   func getCurrencyURL()-> String{
     return CURRENCY_API
   }

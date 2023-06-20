@@ -55,8 +55,8 @@ class AddressDetailsViewController: UIViewController {
   }
 
   @IBAction func confirmAddress(_ sender: Any) {
-    let address = Address_(address1: self.address1TF.text, address2: self.address2TF.text, city: self.cityTF.text, province: self.provinceTF.text, country: self.countryTF.text, phone: self.phoneTF.text)
-    viewModel.addressRequest.address = self.address
+    let address = Address_(id: self.address?.id, address1: self.address1TF.text, address2: self.address2TF.text, city: self.cityTF.text, province: self.provinceTF.text, country: self.countryTF.text, phone: self.phoneTF.text)
+    viewModel.addressRequest.address = address
     if !isExistingAddress{
       print("is existt: \(isExistingAddress)")
       viewModel.addAddress()
