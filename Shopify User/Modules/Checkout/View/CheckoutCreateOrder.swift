@@ -30,13 +30,17 @@ extension CheckoutViewController{
         discountCode.type = "percentage"
         
         var discountCodes = Array<DiscountCode>()
-        discountCodes.append(discountCode)
+//        discountCodes.append(discountCode)
         self.viewModel?.orderRequest.order = OrderPost()
         self.viewModel?.orderRequest.order?.lineItems = self.viewModel?.lineItems ?? []
         self.viewModel?.orderRequest.order?.customer = customer
         self.viewModel?.orderRequest.order?.shippingAddress = address
         self.viewModel?.orderRequest.order?.financialStatus = "paid"
-        self.viewModel?.orderRequest.order?.discountCodes = discountCodes
+//        self.viewModel?.orderRequest.order?.discountCodes = discountCodes
+      var codes = UserDefaults.standard.string(forKey: Constants.COUPON_NAME_OBJECT)
+      discountCode.amount = codes.code
+      discountCodes.append(discountCode)
+        self.viewModel?.orderRequest.order?.discountCodes = [codes]
         print("a333333aaaaaaaaa")
         print(self.viewModel?.orderRequest)
         

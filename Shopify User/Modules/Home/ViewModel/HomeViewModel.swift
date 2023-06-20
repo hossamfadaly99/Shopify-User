@@ -42,6 +42,8 @@ class HomeViewModel{
   func getCoupons(){
     networkManager.setURL(URLCreator().getAllPriceRulesURL())
     networkManager.fetchData{ [weak self] (result: PriceRuleResponse?) in
+      UserDefaults.standard.setValue(result?.priceRules.first?.value, forKey: Constants.COUPON_VALUE_OBJECT)
+      UserDefaults.standard.setValue(result?.priceRules.first?.valueType, forKey: Constants.COUPON_VALUE_TYPE_OBJECT)
       var initCouponsList: [[Coupon]] = []
       for priceRule in result?.priceRules ?? [] {
         self?.networkManager.setURL(URLCreator().getCouponsURL(priceRuleId: "\(priceRule.id ?? 0)"))
@@ -51,14 +53,16 @@ class HomeViewModel{
 //          print(result?.discountCodes)
 //          print("-------------------resssult--------------------------")
 //          initCouponsList.append(result?.discountCodes ?? [])
-          print("addingggggg")
-          print(result?.discountCodes)
-          print("-------------------to--------------------------")
+//          print("addingggggg")
+//          print(result?.discountCodes)
+//          print("-------------------to--------------------------")
           initCouponsList.append(result?.discountCodes ?? [])
-          print("initcouponsList00")
-          print(initCouponsList)
+//          print("initcouponsList00")
+//          print(initCouponsList)
+
           if !initCouponsList.isEmpty{
             self?.couponsLists = initCouponsList
+            UserDefaults.standard.setValue(initCouponsList.first?.first?.code, forKey: Constants.COUPON_NAME_OBJECT)
             self?.isCouponRetrieved.toggle()
             return
           }

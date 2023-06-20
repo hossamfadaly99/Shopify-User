@@ -47,7 +47,7 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         }
         floaty.addItem("Shirt",icon: UIImage(systemName: "tshirt.fill")){ item in
             self.productsList = self.productsListCopy
-            self.productsList = self.productsList.filter({ $0.productType == "SHIRT" })
+            self.productsList = self.productsList.filter({ $0.productType == "T-SHIRTS" })
             self.tableView.reloadData()
         }
         floaty.addItem("All",icon: UIImage(systemName: "list.bullet.clipboard")){ item in

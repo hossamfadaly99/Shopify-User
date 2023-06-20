@@ -36,6 +36,10 @@ class Constants {
         static let USER_COUPON = "coupon"
         static let CURRENCY_KEY = "CURRENCY_KEY"
         static let CURRENCY_VALUE = "CURRENCY_VALUE"
+        static let COUPON_VALUE_OBJECT = "COUPON_VALUE_OBJECT"
+        static let COUPON_VALUE_TYPE_OBJECT = "COUPON_VALUE_TYPE_OBJECT"
+        static let COUPON_NAME_OBJECT = "COUPON_NAME_OBJECT"
+
         
     
     //Search
