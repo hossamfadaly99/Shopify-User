@@ -214,6 +214,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressOneLabel" destination="Z2x-9a-REG" id="G9C-xE-9vv"/>
+                        <outlet property="addressTwoLabel" destination="DYv-ZT-yAJ" id="HX6-KH-ZqF"/>
                         <outlet property="deliveryAmountLabel" destination="Zcr-x8-WOt" id="v2J-6s-7QJ"/>
                         <outlet property="orderAmountLabel" destination="r47-Zs-IGX" id="8vw-0e-HTF"/>
                         <outlet property="summaryAmountLabel" destination="Woh-vj-l44" id="F9U-Nf-b2b"/>

@@ -283,4 +283,37 @@ class NetworkManager: NetworkServiceProtocol {
                     completionHandler(false)
                 }
         }
+
+
+
+
+  func updateDataa<T: Codable>(compilitionHandler: @escaping (T?) -> Void) {
+    guard let finalURL = url else {
+      print("url error")
+      return
+    }
+
+    let headers: HTTPHeaders = [adminTokenKey : adminTokenValue, "Content-Type" : "application/json"]
+
+    AF.request(finalURL, method: .put, headers: headers).responseData{ response in
+      switch response.result {
+      case .success(let data):
+        do {
+          let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String : Any]
+        } catch {
+          print("errorMsg")
+        }
+        do {
+          let result = try JSONDecoder().decode(T.self, from: data)
+          compilitionHandler(result)
+        } catch {
+          print("error When Parseing data from API :  \(error.localizedDescription)")
+          compilitionHandler(nil)
+        }
+      case .failure(let error):
+        print("Error When Featch data from API :  \(error.localizedDescription)")
+        compilitionHandler(nil)
+      }
+    }
+  }
 }

@@ -63,6 +63,10 @@ class URLCreator {
       endPoint = "customers/\(customerId)/addresses"
       return baseURL + endPoint + "/\(addressId)" + jsontype
   }
+  func setDefaultAddressURL(customerId: String, addressId: String = "") -> String{
+      endPoint = "customers/\(customerId)/addresses"
+      return baseURL + endPoint + "/\(addressId)" + "/default" + jsontype
+  }
   func getCurrencyURL()-> String{
     return CURRENCY_API
   }

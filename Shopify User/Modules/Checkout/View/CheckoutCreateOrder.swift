@@ -8,13 +8,6 @@
 import Foundation
 extension CheckoutViewController{
     func createOrder(){
-        
-        var orderRequest: OrderResponsePost = OrderResponsePost()
-      var lineItems: [LineItem] = self.viewModel?.lineItems ?? []
-//        var lineItem: LineItem = LineItem()
-//        lineItem.variantID = 45372849226020
-//        lineItem.quantity = 1
-//        lineItems.append(lineItem)
 
         var customer = OrderCustomer()
         customer.id = 6959049769252
@@ -35,16 +28,16 @@ extension CheckoutViewController{
         
         var discountCodes = Array<DiscountCode>()
         discountCodes.append(discountCode)
-        orderRequest.order = OrderPost()
-        orderRequest.order?.lineItems = lineItems
-        orderRequest.order?.customer = customer
-        orderRequest.order?.shippingAddress = address
-        orderRequest.order?.financialStatus = "paid"
-        orderRequest.order?.discountCodes = discountCodes
+        self.viewModel?.orderRequest.order = OrderPost()
+        self.viewModel?.orderRequest.order?.lineItems = self.viewModel?.lineItems ?? []
+        self.viewModel?.orderRequest.order?.customer = customer
+        self.viewModel?.orderRequest.order?.shippingAddress = address
+        self.viewModel?.orderRequest.order?.financialStatus = "paid"
+        self.viewModel?.orderRequest.order?.discountCodes = discountCodes
         print("a333333aaaaaaaaa")
-        print(orderRequest)
+        print(self.viewModel?.orderRequest)
         
-        self.viewModel?.createOrder(orderItem: orderRequest)
+      self.viewModel?.createOrder(orderItem: self.viewModel!.orderRequest)
     }
 }
 /*{

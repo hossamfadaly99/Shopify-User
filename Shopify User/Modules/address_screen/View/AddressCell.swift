@@ -12,6 +12,9 @@ class AddressCell: UITableViewCell {
   @IBOutlet weak var mainAddressLabel: UILabel!
   @IBOutlet weak var SecondAddressLabel: UILabel!
   @IBOutlet weak var mobileLabel: UILabel!
+
+  @IBOutlet weak var defaultBtn: UIButton!
+
   var address: Address_!
 
   var addressDetailsProtocol: AddressDetailsProtocol!
@@ -32,6 +35,12 @@ class AddressCell: UITableViewCell {
     self.mainAddressLabel.text = address.address1
     self.SecondAddressLabel.text = "\(address.address2 ?? ""), \(address.city ?? ""), \(address.province ?? ""), \(address.country ?? "")"
     self.mobileLabel.text = address.phone
+    if !(address.addressDefault ?? false) {
+      self.defaultBtn.isHidden = true
+    } else {
+      self.defaultBtn.isHidden = false
+
+    }
   }
   @IBAction func editBtnClick(_ sender: Any) {
     //navigate to edit

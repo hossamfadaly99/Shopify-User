@@ -17,11 +17,18 @@ class CheckoutViewController: UIViewController {
     var totalAmountWithDelivery: Double {
     return amount + 20.0
   }
+  @IBOutlet weak var addressOneLabel: UILabel!
+  @IBOutlet weak var addressTwoLabel: UILabel!
+
 
   @IBOutlet weak var summaryAmountLabel: UILabel!
   @IBOutlet weak var deliveryAmountLabel: UILabel!
   @IBOutlet weak var orderAmountLabel: UILabel!
 
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    viewModel?.getDefaultAddress()
+  }
   override func viewDidLoad() {
         super.viewDidLoad()
       self.navigationController?.navigationBar.isHidden = true
@@ -30,6 +37,12 @@ class CheckoutViewController: UIViewController {
     summaryAmountLabel.text = "\(totalAmountWithDelivery)$"
     viewModel = CheckoutViewModel(networkManager: NetworkManager(url: URLCreator().getCreateOrder()))
     viewModel?.transferObject(items: line_Items)
+    viewModel?.getDefaultAddress()
+    viewModel?.bindDefaultAddress = {
+      var address = self.viewModel?.defaultAddress
+      self.addressOneLabel.text = address?.address1
+      self.addressTwoLabel.text = "\(address?.address2 ?? ""), \(address?.city ?? ""), \(address?.province ?? ""), \(address?.country ?? "")"
+    }
 
     }
 

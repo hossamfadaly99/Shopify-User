@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,13 +20,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="D3p-89-e1f">
-                        <rect key="frame" x="16" y="24" width="232" height="29.333333333333329"/>
+                        <rect key="frame" x="16" y="24" width="255" height="29.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                         <color key="textColor" name="black_22"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="ITI building, Smart Village, Giza, Egypt" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9PX-g1-uOi">
-                        <rect key="frame" x="16" y="77.333333333333329" width="331" height="19.333333333333329"/>
+                        <rect key="frame" x="16" y="77.333333333333329" width="283" height="19.333333333333329"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" name="black_22"/>
                         <nil key="highlightedColor"/>
@@ -37,9 +38,9 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkK-m4-AUl">
-                        <rect key="frame" x="264" y="21.333333333333329" width="83" height="35"/>
+                        <rect key="frame" x="287" y="21.333333333333329" width="60" height="35"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="83" id="yTe-8m-mnC"/>
+                            <constraint firstAttribute="width" constant="60" id="yTe-8m-mnC"/>
                         </constraints>
                         <state key="normal" title="Button"/>
                         <buttonConfiguration key="configuration" style="plain" title="Edit">
@@ -58,26 +59,42 @@
                         <color key="textColor" name="black_22"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CcO-n8-g6e">
+                        <rect key="frame" x="307" y="110.33333333333331" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="5Yw-cW-dig"/>
+                            <constraint firstAttribute="height" constant="40" id="Hr8-d8-nSu"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="tinted" imagePlacement="trailing" cornerStyle="large">
+                            <imageReference key="image" image="checkmark.circle.fill" catalog="system" symbolScale="large"/>
+                            <color key="baseForegroundColor" name="main_green"/>
+                            <color key="baseBackgroundColor" name="main_green"/>
+                        </buttonConfiguration>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="FkK-m4-AUl" firstAttribute="centerY" secondItem="D3p-89-e1f" secondAttribute="centerY" id="6vm-g0-ixq"/>
-                    <constraint firstAttribute="trailing" secondItem="9PX-g1-uOi" secondAttribute="trailing" constant="16" id="7RL-kN-AGQ"/>
+                    <constraint firstAttribute="trailing" secondItem="9PX-g1-uOi" secondAttribute="trailing" constant="64" id="7RL-kN-AGQ"/>
                     <constraint firstItem="cnN-aw-WNW" firstAttribute="centerY" secondItem="22s-1m-ldA" secondAttribute="centerY" id="D3E-D9-5Xz"/>
                     <constraint firstItem="22s-1m-ldA" firstAttribute="top" secondItem="9PX-g1-uOi" secondAttribute="bottom" constant="24" id="IZC-Oy-xlI"/>
                     <constraint firstItem="FkK-m4-AUl" firstAttribute="leading" secondItem="D3p-89-e1f" secondAttribute="trailing" constant="16" id="SMX-9D-F7v"/>
                     <constraint firstItem="D3p-89-e1f" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="UdE-Om-kOA"/>
+                    <constraint firstItem="CcO-n8-g6e" firstAttribute="centerY" secondItem="22s-1m-ldA" secondAttribute="centerY" id="WfL-jB-Unc"/>
                     <constraint firstItem="D3p-89-e1f" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="bEH-04-q5Z"/>
                     <constraint firstAttribute="bottom" secondItem="22s-1m-ldA" secondAttribute="bottom" constant="24" id="bM9-Yi-TcD"/>
                     <constraint firstItem="9PX-g1-uOi" firstAttribute="leading" secondItem="D3p-89-e1f" secondAttribute="leading" id="iMJ-bC-MHm"/>
                     <constraint firstItem="22s-1m-ldA" firstAttribute="leading" secondItem="D3p-89-e1f" secondAttribute="leading" id="ioA-0o-cdG"/>
                     <constraint firstItem="9PX-g1-uOi" firstAttribute="top" secondItem="D3p-89-e1f" secondAttribute="bottom" constant="24" id="m5q-5L-XLq"/>
                     <constraint firstAttribute="trailing" secondItem="FkK-m4-AUl" secondAttribute="trailing" constant="16" id="mZj-RY-lR3"/>
+                    <constraint firstAttribute="trailing" secondItem="CcO-n8-g6e" secondAttribute="trailing" constant="16" id="pnU-Vo-YdB"/>
                     <constraint firstItem="cnN-aw-WNW" firstAttribute="leading" secondItem="22s-1m-ldA" secondAttribute="trailing" constant="16" id="wqa-YT-77B"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="SecondAddressLabel" destination="9PX-g1-uOi" id="Lo5-Xi-Fp0"/>
+                <outlet property="defaultBtn" destination="CcO-n8-g6e" id="JAe-Us-1C9"/>
                 <outlet property="mainAddressLabel" destination="D3p-89-e1f" id="1iV-eZ-2rh"/>
                 <outlet property="mobileLabel" destination="cnN-aw-WNW" id="JlG-pb-thn"/>
             </connections>
@@ -85,6 +102,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="black_22">
             <color red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -83,3 +83,9 @@ var currencyValue: Double {
   if value == 0.0 { value = 1.0 }
   return value
 }
+
+func isValidMobileNumber(_ mobileNumber: String) -> Bool {
+    let mobileNumberRegex = "^\\d{11}$"
+    let mobileNumberPredicate = NSPredicate(format: "SELF MATCHES %@", mobileNumberRegex)
+    return mobileNumberPredicate.evaluate(with: mobileNumber)
+}

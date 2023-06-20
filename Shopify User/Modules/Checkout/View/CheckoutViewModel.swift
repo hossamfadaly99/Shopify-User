@@ -9,13 +9,22 @@ import Foundation
 
 class CheckoutViewModel{
     var bindResultToViewController : (()->()) = {}
+    var bindDefaultAddress : (()->()) = {}
     var networkManager: NetworkServiceProtocol
     var orderResult : OrderPost!{
         didSet{
             bindResultToViewController()
         }
     }
+  var orderRequest: OrderResponsePost = OrderResponsePost()
   var lineItems: [LineItem] = []
+  var defaultAddress: Address_? {
+    didSet{
+      print("ksrhbvrjt")
+      print(defaultAddress)
+      bindDefaultAddress()
+    }
+  }
     
     init(networkManager: NetworkServiceProtocol) {
       self.networkManager = networkManager
@@ -31,6 +40,17 @@ class CheckoutViewModel{
       self.lineItems.append(lineItem)
     }
     
+  }
+  func getDefaultAddress(){
+    networkManager.setURL(URLCreator().getAddressURL(customerId: "6947695657252"))
+    print(URLCreator().getAddressURL(customerId: "6947695657252"))
+    networkManager.fetchData{[weak self] (result: Addresses?) in
+      print("oueungejn")
+      print(result)
+      self?.defaultAddress = result?.addresses?.filter{ $0.addressDefault == true}.first
+      print("oueungejn")
+      print(self?.defaultAddress)
+    }
   }
     //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers/6948853350692/orders.json
     

@@ -33,11 +33,14 @@ class AddressDetailsViewController: UIViewController {
       self.navigationController?.navigationBar.isHidden = true
         // Do any additional setup after loading the view.
 
-      viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL(customerId: "6938863698212")))
+      viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL(customerId: "6947695657252")))
       viewModel.addressRequest.address = address
       self.loadDetailsData()
       viewModel.changeAddressUI = {
         self.navigationController?.popViewController(animated: true)
+      }
+      viewModel.showErrorDialog = {
+        AlertCreator.showAlert(title: "Error", message: "invalid province, country, ot exisiting address", viewController: self)
       }
     }
 
@@ -57,6 +60,14 @@ class AddressDetailsViewController: UIViewController {
   @IBAction func confirmAddress(_ sender: Any) {
     let address = Address_(id: self.address?.id, address1: self.address1TF.text, address2: self.address2TF.text, city: self.cityTF.text, province: self.provinceTF.text, country: self.countryTF.text, phone: self.phoneTF.text)
     viewModel.addressRequest.address = address
+    if !isValidMobileNumber(self.phoneTF.text ?? ""){
+      AlertCreator.showAlert(title: nil, message: "Invalid Phone number!", viewController: self)
+      return
+    }
+    if (self.address1TF.text?.isEmpty ?? true || self.address2TF.text?.isEmpty ?? true || self.cityTF.text?.isEmpty ?? true ){
+      AlertCreator.showAlert(title: nil, message: "Missing data!", viewController: self)
+      return
+    }
     if !isExistingAddress{
       print("is existt: \(isExistingAddress)")
       viewModel.addAddress()
@@ -67,4 +78,12 @@ class AddressDetailsViewController: UIViewController {
     }
 
   }
+}
+
+extension AddressDetailsViewController: DataFetchDelegate{
+  func showAlert(with message: String) {
+    AlertCreator.showAlert(title: "Error", message: "invalid province, country, ot exisiting address", viewController: self)
+  }
+
+
 }

@@ -20,7 +20,7 @@ class AddressViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
       self.navigationController?.navigationBar.isHidden = true
-    viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL(customerId: "6938863698212")))
+    viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL(customerId: "6947695657252")))
 
     viewModel.changeAddressUI = {
       self.tableview.reloadData()
@@ -46,6 +46,12 @@ class AddressViewController: UIViewController {
     self.navigationController?.popViewController(animated: true)
   }
 
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+
+    self.viewModel.addressId = "\(self.viewModel.addressList[indexPath.row].id ?? 0)"
+    self.viewModel.makeAddressDefault()
+  }
 
   // MARK: - Table view data source
 
@@ -134,7 +140,11 @@ extension AddressViewController: UITableViewDataSource{
           self.viewModel.removeAddress()
         }))
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-           present(alert, animated: true, completion: nil)
+        if self.viewModel.addressList[indexPath.row].addressDefault ?? false {
+          AlertCreator.showAlert(title: nil, message: "can't delete default address, please add or switch to another address", viewController: self)
+        } else {
+          present(alert, animated: true, completion: nil)
+        }
       } else if editingStyle == .insert {
           // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
       }
