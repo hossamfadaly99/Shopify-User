@@ -249,4 +249,38 @@ class NetworkManager: NetworkServiceProtocol {
 //    }
 
   }
+
+    func editItem<T: Encodable>(item: T, endPoint: String, completionHandler: @escaping (Bool) -> Void) {
+                guard let urlFinal = url else {
+                    print("URL Error")
+                    completionHandler(false)
+                    return
+                }
+        let headers: HTTPHeaders = [adminTokenKey : adminTokenValue,
+                                    "Content-Type" : "application/json"]
+                do {
+                    let itemData = try JSONEncoder().encode(item)
+                    let itemDictionary = try JSONSerialization.jsonObject(with: itemData, options: []) as? [String: Any]
+
+                    if let itemJson = itemDictionary {
+                        //let json: [String: Any] = [endPoint.rawValue: itemJson]
+                        
+                        let json: [String: Any] = ["draft_order": itemJson]
+                        print("The jsonData is: \(json)")
+
+                        AF.request(urlFinal, method: .put, parameters: json, encoding: JSONEncoding.default, headers: headers).response { response in
+                            if let error = response.error {
+                                print("Error When Updating product: \(error.localizedDescription)")
+                                completionHandler(false)
+                            } else {
+                                print("Product Updated Successfully")
+                                completionHandler(true)
+                            }
+                        }
+                    }
+                } catch {
+                    print("Error When Encoding data: \(error.localizedDescription)")
+                    completionHandler(false)
+                }
+        }
 }

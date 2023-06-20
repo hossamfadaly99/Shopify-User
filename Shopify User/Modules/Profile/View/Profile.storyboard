@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Me-->
+        <!--ProfileVC-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
-                <viewController id="Y6W-OH-hqX" customClass="Profile_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_Profile" id="Y6W-OH-hqX" customClass="Profile_VC" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -87,9 +87,6 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="oIC-bp-LAQ" secondAttribute="trailing" constant="34" id="ySc-2q-ax9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Me" image="person.circle" catalog="system" id="ZOk-sq-Inz">
-                        <color key="badgeColor" name="main_green"/>
-                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="img" destination="jqP-qp-LIl" id="UuZ-a8-mAx"/>
@@ -106,7 +103,6 @@
         <image name="arrowshape.backward" catalog="system" width="128" height="104"/>
         <image name="mail" catalog="system" width="128" height="93"/>
         <image name="person" catalog="system" width="128" height="121"/>
-        <image name="person.circle" catalog="system" width="128" height="123"/>
         <image name="reviewer10" width="225" height="225"/>
         <namedColor name="main_green">
             <color red="0.039215686274509803" green="0.58039215686274515" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
