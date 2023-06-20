@@ -99,7 +99,6 @@
 		9F1C99892A4044D500E24680 /* PriceRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1C99882A4044D500E24680 /* PriceRule.swift */; };
 		9F1F2BBA2A40E9B7001DAF85 /* EmptyCartProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F1F2BB92A40E9B7001DAF85 /* EmptyCartProtocol.swift */; };
 		9F22F9622A3AEBB2000EE4AE /* EditedDraftOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F22F9612A3AEBB2000EE4AE /* EditedDraftOrder.swift */; };
-		9F236BAA2A41B2520012045E /* DataFetchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F236BA92A41B2520012045E /* DataFetchDelegate.swift */; };
 		9F23F1572A34420700E4FD15 /* DraftOrderEdited.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23F1562A34420700E4FD15 /* DraftOrderEdited.swift */; };
 		9F243AA12A2C742D00F93088 /* CartStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9F243AA02A2C742D00F93088 /* CartStoryboard.storyboard */; };
 		9F243AA32A2C744800F93088 /* CartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F243AA22A2C744800F93088 /* CartViewController.swift */; };
@@ -251,7 +250,6 @@
 		9F1C99882A4044D500E24680 /* PriceRule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceRule.swift; sourceTree = "<group>"; };
 		9F1F2BB92A40E9B7001DAF85 /* EmptyCartProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCartProtocol.swift; sourceTree = "<group>"; };
 		9F22F9612A3AEBB2000EE4AE /* EditedDraftOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditedDraftOrder.swift; sourceTree = "<group>"; };
-		9F236BA92A41B2520012045E /* DataFetchDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetchDelegate.swift; sourceTree = "<group>"; };
 		9F23F1562A34420700E4FD15 /* DraftOrderEdited.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraftOrderEdited.swift; sourceTree = "<group>"; };
 		9F243AA02A2C742D00F93088 /* CartStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CartStoryboard.storyboard; sourceTree = "<group>"; };
 		9F243AA22A2C744800F93088 /* CartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewController.swift; sourceTree = "<group>"; };
@@ -832,7 +830,6 @@
 				9F4FD3AE2A3DEB790002F878 /* AddressViewController.swift */,
 				9F38573D2A3E676D00ED3012 /* AddressDetailsViewController.swift */,
 				9F46CDA02A3F128B00B387E7 /* AddressDetailsProtocol.swift */,
-				9F236BA92A41B2520012045E /* DataFetchDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1353,7 +1350,6 @@
 				9F1C99852A40223400E24680 /* CurrencyModel.swift in Sources */,
 				9F598C8C2A27C58100C36A93 /* SceneDelegate.swift in Sources */,
 				9F1C99872A4044B100E24680 /* Coupon.swift in Sources */,
-				9F236BAA2A41B2520012045E /* DataFetchDelegate.swift in Sources */,
 				04FECD392A37BA7A00846E3F /* FloatyManager.swift in Sources */,
 				9F46CDA12A3F128B00B387E7 /* AddressDetailsProtocol.swift in Sources */,
 				041A646C2A391FB3002BE516 /* AlertCreator.swift in Sources */,

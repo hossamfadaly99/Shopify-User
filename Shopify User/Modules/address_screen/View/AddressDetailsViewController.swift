@@ -80,10 +80,3 @@ class AddressDetailsViewController: UIViewController {
   }
 }
 
-extension AddressDetailsViewController: DataFetchDelegate{
-  func showAlert(with message: String) {
-    AlertCreator.showAlert(title: "Error", message: "invalid province, country, ot exisiting address", viewController: self)
-  }
-
-
-}
