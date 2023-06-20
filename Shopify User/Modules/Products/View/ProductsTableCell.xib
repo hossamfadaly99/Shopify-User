@@ -56,6 +56,19 @@
                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g0x-ce-JHd">
+                        <rect key="frame" x="402" y="90" width="50" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="v6o-lJ-FCc"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="">
+                            <color key="baseForegroundColor" name="main_green"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="addToFavBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="uk4-s5-ugE"/>
+                        </connections>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 <constraints>
@@ -65,15 +78,19 @@
                     <constraint firstItem="V2v-vt-gmM" firstAttribute="leading" secondItem="07V-OV-rZH" secondAttribute="trailing" constant="8" id="Doi-WF-O56"/>
                     <constraint firstItem="07V-OV-rZH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="I6i-sW-1ru"/>
                     <constraint firstItem="V2v-vt-gmM" firstAttribute="top" secondItem="pCN-Ip-HA9" secondAttribute="bottom" constant="8" id="Z6Z-Wt-Tcl"/>
+                    <constraint firstItem="g0x-ce-JHd" firstAttribute="top" secondItem="pCN-Ip-HA9" secondAttribute="bottom" constant="34" id="Zmg-Fk-QfT"/>
                     <constraint firstAttribute="bottom" secondItem="V2v-vt-gmM" secondAttribute="bottom" constant="32" id="dvy-nM-wBE"/>
+                    <constraint firstAttribute="bottom" secondItem="g0x-ce-JHd" secondAttribute="bottom" constant="16" id="heD-9z-Bn7"/>
                     <constraint firstItem="pCN-Ip-HA9" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="l9m-CZ-XMB"/>
                     <constraint firstAttribute="bottom" secondItem="07V-OV-rZH" secondAttribute="bottom" constant="8" id="qUh-cq-qx7"/>
+                    <constraint firstAttribute="trailing" secondItem="g0x-ce-JHd" secondAttribute="trailing" constant="8" id="uM8-iu-YlU"/>
                     <constraint firstItem="pCN-Ip-HA9" firstAttribute="leading" secondItem="07V-OV-rZH" secondAttribute="trailing" constant="8" id="yYJ-bR-4XN"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" systemColor="systemGray5Color"/>
             <connections>
+                <outlet property="favBtn" destination="g0x-ce-JHd" id="LtL-7A-pog"/>
                 <outlet property="productImg" destination="07V-OV-rZH" id="E7w-qb-PDS"/>
                 <outlet property="productPriceLabel" destination="eJG-wm-MfC" id="913-D3-dm4"/>
                 <outlet property="productTitleLabel" destination="pCN-Ip-HA9" id="zTh-iq-Fsl"/>
@@ -83,6 +100,10 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="heart" catalog="system" width="128" height="107"/>
+        <namedColor name="main_green">
+            <color red="0.039215686274509803" green="0.58039215686274515" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

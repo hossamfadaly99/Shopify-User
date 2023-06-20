@@ -22,6 +22,8 @@ class ProductDetails_VC: UIViewController {
     @IBOutlet weak var labeldes: UILabel!
     @IBOutlet weak var popUpBtn: UIButton!
     
+    var favTableViewController : ReloadTableViewDelegate?
+    
     var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
     var ID_Product_VC : Int!
     var sizes : [String]?
@@ -194,5 +196,10 @@ extension ProductDetails_VC  {
         popUpBtn.menu = UIMenu(children: action)
         popUpBtn.showsMenuAsPrimaryAction = true
         popUpBtn.changesSelectionAsPrimaryAction = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        favTableViewController?.reloadTableView()
     }
 }

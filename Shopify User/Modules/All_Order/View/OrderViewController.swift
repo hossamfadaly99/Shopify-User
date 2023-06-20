@@ -22,8 +22,6 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
         
         setupViewModel()
         registerCustomerCell()
-        
-        // Do any additional setup after loading the view.
     }
     
     func setupViewModel(){
@@ -34,6 +32,7 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
             [weak self] in
             DispatchQueue.main.async {
                 self?.ordersList = self?.viewModel?.result ?? []
+                print("orderlist : \(self?.ordersList)")
                 self?.tableView.reloadData()
             }
         }
@@ -63,5 +62,7 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
         return cell
     }
     
-
+    @IBAction func backBtn(_ sender: Any) {
+        self.dismiss(animated: true)
+    }
 }

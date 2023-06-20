@@ -94,7 +94,8 @@ struct Order: Codable {
     var userID: String?
     var billingAddress: Address?
     var customer: OrderCustomer?
-    var discountApplications, fulfillments: [String]?
+    //var discountApplications: [String]?
+    var fulfillments: [String]?
     var lineItems: [LineItem]?
     var paymentTerms: String?
     var refunds: [String]?
@@ -177,7 +178,7 @@ struct Order: Codable {
         case userID = "user_id"
         case billingAddress = "billing_address"
         case customer
-        case discountApplications = "discount_applications"
+       // case discountApplications = "discount_applications"
         case fulfillments
         case lineItems = "line_items"
         case paymentTerms = "payment_terms"
