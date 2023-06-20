@@ -88,16 +88,16 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
 
             let alert = UIAlertController(title: "Deletion Alert", message: "Are you sure you want to delete this item?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: {_ in
-                favViewModel.bindCartData = { [weak self] in
-                    var myDraft = self?.favViewModel.wishListArray
-                    var arr = myDraft?.line_items
+//                self.favViewModel.bindCartData = { [weak self] in
+//                    var myDraft = self?.favViewModel.wishListArray
+//                    var arr = myDraft?.line_items
 //                    for item in arr {
 //                        //if(item)
 //                    }
-                   // myDraft?.line_items? = arr ?? []
-                    self?.favViewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
-                }
-                favViewModel.loadWishListItems()
+//                    myDraft?.line_items? = arr ?? []
+//                    self?.favViewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+//                }
+                self.favViewModel.loadWishListItems()
                 self.viewModel.deleteFromDB(product: (self.favourieList?[indexPath.row])!)
                 self.favourieList?.remove(at: indexPath.row)
                 tableView.reloadData()
