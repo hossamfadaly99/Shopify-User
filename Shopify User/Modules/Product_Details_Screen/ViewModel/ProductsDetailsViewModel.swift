@@ -43,8 +43,6 @@ class ProductsDetailsViewModel{
                   print(items.first?.title)
                 self?.isEmptyList = true
                   self?.wishListArray = result?.draft_order ?? Draft_orders()
-
-                 // print("hjjjjjjjjjjjj\(items)")
               }else {
                 print("items b")
                 print(items.count)
@@ -60,7 +58,7 @@ class ProductsDetailsViewModel{
     
     func updateWishList (wishListItem: Draft_orders){
         guard let wishlist_id = UserDefaults.standard.string(forKey: Constants.USER_WISHLIST) else {return}
-
+        print("Updated wishList ID:\(wishlist_id) ")
         networkManager.setURL(URLCreator().getEditCartURL(id: String(describing: wishlist_id)))
         networkManager.editItem(item: wishListItem, endPoint: "") { res in
             print ("result \(res)")

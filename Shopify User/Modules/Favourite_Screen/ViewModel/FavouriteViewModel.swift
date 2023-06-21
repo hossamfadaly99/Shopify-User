@@ -24,5 +24,11 @@ class FavouritViewModel{
         dataManager.deleteFavProduct(myProduct:product)
     }
     
+    func isExistIntoDB(product:ProductCoreData) -> Bool{
+        return dataManager.isProductExist(myProduct:product)
+    }
+    func insertIntoDB(product:ProductCoreData){
+        dataManager.insertFavProduct(myProduct:product, productRate: 2.5)
+    }
     
 }

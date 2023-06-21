@@ -11,6 +11,8 @@ import RxCocoa
 import RxRelay
 
 class SignupViewModel{
+    
+    let group = DispatchGroup()
     weak var delegate: ViewModelDelegate?
     let defaults = UserDefaults.standard
     let firstname = BehaviorRelay<String>(value: "")
@@ -84,11 +86,22 @@ class SignupViewModel{
                  Network.postMethod(url:URLCreator().getCustomersURL(), model: model)
                  { customer in
                      guard let singleCustomer = customer?.customer else{return}
+                     print("nuuu:\(singleCustomer)")
                      self.setUserDefaults(customer: singleCustomer)
+                     
+                     self.group.enter()
                      self.cresteWishList(mycustomer: singleCustomer)
+                     
+                     self.group.enter()
                      self.createCart(mycustomer: singleCustomer)
-                     self.assignWishListToUser( mycustomer: singleCustomer)
-                     self.delegate?.didLoginSuccessfully()
+                     
+                     self.group.notify(queue: .global()){
+                         self.assignWishListToUser( mycustomer: singleCustomer)
+                         OperationQueue.main.addOperation{
+                             self.delegate?.didLoginSuccessfully()
+                             
+                         }
+                     }
                      print("reg done")
                  }
                  
@@ -109,36 +122,53 @@ class SignupViewModel{
          }
      }
      func cresteWishList(mycustomer:Customer){
-         var myModel = Draft_orders()
-         myModel.note = "wishList"
+         var myModel = MyDraftOrders()
+         myModel.note = "MyWishList"
          myModel.customer?.id = mycustomer.id
-         Network.postDraftOrder(url: URLCreator().getCreateCartURL(), model: myModel) { draftOrder in
+         Network.createDraftOrder(endPoint: URLCreator().getCreateCartURL(), model: myModel) { draftOrder in 
              guard let myWishList = draftOrder?.draft_order else {return}
             // self.assignWishListToUser(whishList: myWishList, mycustomer: mycustomer)
              self.defaults.set(myWishList.id, forKey: Constants.USER_WISHLIST)
+             guard let wishlist_id = UserDefaults.standard.string(forKey: Constants.USER_WISHLIST) else {return}
+             print("result wish\(myWishList)")
+             print("vvv:\(wishlist_id)")
+             
+             self.group.leave()
          }
      }
      func createCart(mycustomer:Customer){
-         var myModel = Draft_orders()
-         myModel.note = "cart"
+         var myModel = MyDraftOrders()
+         myModel.note = "MyCart"
          myModel.customer?.id = mycustomer.id
-         Network.postDraftOrder(url: URLCreator().getCreateCartURL(), model: myModel) { draftOrder in
+         Network.createDraftOrder(endPoint: URLCreator().getCreateCartURL(), model: myModel) { draftOrder in
              guard let myCart = draftOrder?.draft_order else {return}
              self.defaults.set(myCart.id, forKey: Constants.USER_CART)
-
+             guard let cart = UserDefaults.standard.string(forKey: Constants.USER_CART) else {return}
+             print("result cart\(myCart)")
+             print("sss:\(cart)")
+             self.group.leave()
          }
      }
+    
     func assignWishListToUser(mycustomer:Customer){
+        print ("welcome assign")
         guard let cart_id = UserDefaults.standard.string(forKey: Constants.USER_CART) else{return}
         guard let wishlist_id = UserDefaults.standard.string(forKey: Constants.USER_WISHLIST) else {return}
+        print ("\(cart_id),Hollooooo,\(wishlist_id)")
         var customer = mycustomer
         customer.note = "\(cart_id),\(wishlist_id)"
+        let note = customer.note
+        print("Nottte : \(note)")
         print("note : \(customer.note)")
+        print("userdefa : \(wishlist_id)")
+        
+        print("AAAAAAAAAAAAA : \(customer)")
         print("Updated Customer note : \(customer)")
         Network.updateCustomer(url: URLCreator().getCustomer(customer_id: String(mycustomer.id ?? 0)), model: customer) { response in
             print("Updated Customer : \(response)")
         }
     }
+    
 }
  //    func assignCartToUser(whishList:Draft_orders,mycustomer:Customer){
  //        Network.updateCustomer(url: URLCreator().getCustomer(customer_id: String(mycustomer.id ?? 0)), model: whishList) { response in

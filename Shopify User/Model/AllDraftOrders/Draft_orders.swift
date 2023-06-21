@@ -40,6 +40,6 @@ struct Draft_orders : Codable {
 	var total_tax : String?
 	var payment_terms : String?
 	var admin_graphql_api_id : String?
-	var customer : DraftOrderCustomer?
+	var customer : Customer?
 
 }
