@@ -150,7 +150,8 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         
         cell.productTitleLabel.text = productsList[indexPath.row].title
         cell.productTypeLabel.text = productsList[indexPath.row].productType
-      cell.productPriceLabel.text = "\((Double(productsList[indexPath.row].variants?[0].price ?? "0") ?? 0.0) * currencyValue) \(currencySymbol)"
+      var afterCurrency = String(format: "%.2f \(currencySymbol)", (Double(productsList[indexPath.row].variants?[0].price ?? "0") ?? 0.0) * currencyValue)
+      cell.productPriceLabel.text = "\(afterCurrency) \(currencySymbol)"
 
         cell.cellIndex = indexPath.row
         cell.delegate = self

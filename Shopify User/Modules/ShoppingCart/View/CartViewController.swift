@@ -32,7 +32,8 @@ class CartViewController: UIViewController {
       HUD.hide(animated: true)
       self.tableView.reloadData()
       print("lrntkjnrkjnwklntk")
-      self.totalPriceLabel.text = "\(self.viewModel.subTotalPrice * currencyValue) \(currencySymbol)"
+      var afterCurrency = String(format: "%.2f \(currencySymbol)", self.viewModel.subTotalPrice * currencyValue)
+      self.totalPriceLabel.text = "\(afterCurrency)"
     }
 
     viewModel.bindEmptyListToView = {
@@ -72,7 +73,8 @@ class CartViewController: UIViewController {
     if totalPrice > 0.0 {
       self.navigationController?.pushViewController(checkoutVC, animated: true)
     } else {
-      AlertCreator.showAlert(title: "Add Items!", message: "The amount should be at least \(10 * currencyValue) \(currencySymbol)", viewController: self)
+      var afterCurrency = String(format: "%.2f \(currencySymbol)", 10 * currencyValue)
+      AlertCreator.showAlert(title: "Add Items!", message: "The amount should be at least \(afterCurrency)", viewController: self)
     }
   }
 
@@ -105,8 +107,8 @@ extension CartViewController: UITableViewDataSource{
 //      self.viewModel.cartArray[indexPath.row].quantity = (cell.counter)
       print("krbtkuygeksreykvbuyj2222 \(cell.counter)")
       self.viewModel.cartUpdated.draft_order?.line_items?[indexPath.row].quantity = cell.counter
-      self.totalPriceLabel.text = "\(self.viewModel.subTotalPrice * currencyValue) \(currencySymbol)"
-//      String(format: "%.2f \(currencySymbol)", currencyValue * price * Double(item.quantity ?? 1))
+      self.totalPriceLabel.text = String(format: "%.2f \(currencySymbol)", self.viewModel.subTotalPrice * currencyValue)
+
 //may bee problem
       self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated)
     }

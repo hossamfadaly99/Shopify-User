@@ -55,7 +55,8 @@ class ProductDetails_VC: UIViewController {
             self.pageController.numberOfPages = self.photosArray?.count ?? 0
             self.startTimer()
             self.productName.text = self.product_VC.title
-          self.productPrice.text = "\(Double(self.product_VC.variants?[0].price ?? "0.0") ?? 0.0 * currencyValue) \(currencySymbol)"
+          var afterCurrency = String(format: "%.2f \(currencySymbol)", Double(self.product_VC.variants?[0].price ?? "0.0") ?? 0.0 * currencyValue)
+          self.productPrice.text = afterCurrency //"\(Double(self.product_VC.variants?[0].price ?? "0.0") ?? 0.0 * currencyValue) \(currencySymbol)"
           print("liwurhgiuohlitg")
           print(currencyValue)
             self.labeldes.text = self.product_VC.description

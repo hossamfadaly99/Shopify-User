@@ -64,7 +64,8 @@ class Search_VC: UIViewController {
 
               var aastring: String = element.variants?[0].price ?? "0.0"
               var aa: Double = (Double(aastring) ?? 0.0) * currencyValue
-                cell.productPriceLabel.text = "\(aa) \(currencySymbol)"
+              var afterCurrency = String(format: "%.2f \(currencySymbol)", aa)
+                cell.productPriceLabel.text = afterCurrency //"\(aa) \(currencySymbol)"
                 cell.productTitleLabel.text = element.title
                 cell.productTypeLabel.text = element.productType
         

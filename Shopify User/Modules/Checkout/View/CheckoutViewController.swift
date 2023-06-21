@@ -32,9 +32,12 @@ class CheckoutViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
       self.navigationController?.navigationBar.isHidden = true
-    orderAmountLabel.text = "\(amount * currencyValue)\(currencySymbol)"
-    deliveryAmountLabel.text = "\(10 * currencyValue) \(currencySymbol)"
-    summaryAmountLabel.text = "\(totalAmountWithDelivery * currencyValue)\(currencySymbol)"
+    var afterCurrency = String(format: "%.2f \(currencySymbol)", amount * currencyValue)
+    orderAmountLabel.text = afterCurrency//"\(amount * currencyValue)\(currencySymbol)"
+    afterCurrency = String(format: "%.2f \(currencySymbol)", 10 * currencyValue)
+    deliveryAmountLabel.text = afterCurrency//"\(10 * currencyValue) \(currencySymbol)"
+    afterCurrency = String(format: "%.2f \(currencySymbol)", totalAmountWithDelivery * currencyValue)
+    summaryAmountLabel.text = afterCurrency//"\(totalAmountWithDelivery * currencyValue)\(currencySymbol)"
     viewModel = CheckoutViewModel(networkManager: NetworkManager(url: URLCreator().getCreateOrder()))
     viewModel?.transferObject(items: line_Items)
     viewModel?.getDefaultAddress()
