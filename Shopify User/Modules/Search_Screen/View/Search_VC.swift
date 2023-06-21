@@ -61,7 +61,10 @@ class Search_VC: UIViewController {
             .asObservable() // Convert to observable sequence
             .bind(to: myTable.rx.items(cellIdentifier: "product",cellType: ProductsTableCell.self)){
                       index,element,cell in
-                cell.productPriceLabel.text = (element.variants?[0].price ?? "0") + " EGP"
+
+              var aastring: String = element.variants?[0].price ?? "0.0"
+              var aa: Double = (Double(aastring) ?? 0.0) * currencyValue
+                cell.productPriceLabel.text = "\(aa) \(currencySymbol)"
                 cell.productTitleLabel.text = element.title
                 cell.productTypeLabel.text = element.productType
         

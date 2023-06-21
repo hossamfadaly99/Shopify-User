@@ -28,6 +28,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="IS7-Yc-Kqs"/>
                                     <barButtonItem title="Item" image="cart.fill" catalog="system" id="JI2-xj-Wpg">
                                         <color key="tintColor" name="main_green"/>
+                                        <connections>
+                                            <segue destination="HxS-H2-SKQ" kind="show" id="Z9a-gL-fib"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="3az-wv-e4F">
                                         <color key="tintColor" name="main_green"/>
@@ -158,6 +161,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="101.5267175572519" y="-34.507042253521128"/>
+        </scene>
+        <!--CartStoryboard-->
+        <scene sceneID="unL-Lv-9Vx">
+            <objects>
+                <viewControllerPlaceholder storyboardName="CartStoryboard" id="HxS-H2-SKQ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="gjD-8Q-mmL"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6A8-Gp-qnR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="707" y="-353"/>
         </scene>
     </scenes>
     <resources>

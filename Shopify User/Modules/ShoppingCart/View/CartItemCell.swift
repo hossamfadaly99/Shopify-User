@@ -84,7 +84,7 @@ class CartItemCell: UITableViewCell {
     availableQuantity = 30//Int(item.properties?[1].value ?? "1") ?? 1
 
     titleLabel.text = item.name?.components(separatedBy: "-").first
-    priceLabel.text = String(format: "$%.2f", price * Double(item.quantity ?? 1))
+    priceLabel.text = String(format: "%.2f \(currencySymbol)", currencyValue * price * Double(item.quantity ?? 1))
 //    priceLabel.text = "$\(price * Double(item.quantity ?? 1))"
     counterLabel.text = "\(counter)"
     photoImage.kf.setImage(with: URL(string: item.properties?.first?.value ?? "product_placeholder"))

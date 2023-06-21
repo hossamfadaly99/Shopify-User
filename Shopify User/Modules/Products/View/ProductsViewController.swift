@@ -160,8 +160,11 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "product", for: indexPath) as! ProductsTableCell
-        
-        cell.productPriceLabel.text = (productsList[indexPath.row].variants?[0].price ?? "0") + " EGP"
+      let amm: String = productsList[indexPath.row].variants?[0].price ?? "0"
+      let am: Double = (Double(amm) ?? 0.0) * currencyValue
+      cell.productPriceLabel.text =  "\(am) \(currencySymbol)"
+//      cell.productPriceLabel.text = "\((Double(productsList[indexPath.row].variants?[0].price ?? "0") ?? 0.0) * currencyValue) \(currencySymbol)"
+
         cell.productTitleLabel.text = productsList[indexPath.row].title
         cell.productTypeLabel.text = productsList[indexPath.row].productType
         cell.cellIndex = indexPath.row

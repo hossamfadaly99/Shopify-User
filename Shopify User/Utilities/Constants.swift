@@ -83,7 +83,9 @@ var currencySymbol: String {
 }
 
 var currencyValue: Double {
-  var value = UserDefaults.standard.double(forKey: Constants.CURRENCY_KEY)
+  var value = UserDefaults.standard.double(forKey: Constants.CURRENCY_VALUE)
+  print("liwurhgiuohlitg1111")
+  print(value)
   if value == 0.0 { value = 1.0 }
   return value
 }
