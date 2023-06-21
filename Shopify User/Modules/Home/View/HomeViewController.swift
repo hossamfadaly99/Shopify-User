@@ -25,6 +25,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
+      print("enjvkjtn")
+      print("HHHHHHH\(UserDefaults.standard.string(forKey: Constants.USER_CART))")
+
+
         registerCells()
         self.collectionView.register(SectionHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "SectionHeader ")
         let layout = UICollectionViewCompositionalLayout{ index, environment in

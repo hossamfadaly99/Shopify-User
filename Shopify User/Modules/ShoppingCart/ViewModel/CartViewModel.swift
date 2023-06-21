@@ -38,7 +38,7 @@ class CartViewModel{
   }
 
   func loadCartItems(){
-    networkManager.setURL(URLCreator().getEditCartURL(id: "1116795633956"))
+    networkManager.setURL(URLCreator().getEditCartURL(id: "\(cartId)"))
     networkManager.fetchData{ [weak self] (result: DraftOrderr?) in
       //TODO change mail and add name to tags (like "cart")
 
@@ -48,7 +48,7 @@ class CartViewModel{
 //        self?.isEmptyList = true
 //      }
 
-      self?.craftId = 1116795633956 //result?.draft_orders?.filter({ $0.email == dummyMail && $0.note == "cart" }).first?.id ?? 0
+      self?.craftId = cartId //result?.draft_orders?.filter({ $0.email == dummyMail && $0.note == "cart" }).first?.id ?? 0
       self?.subTotalPrice = Double(result?.draft_order?.subtotal_price ?? "0.0") ?? 0
 
 //      print(result?.draft_orders)

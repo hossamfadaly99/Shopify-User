@@ -26,7 +26,7 @@ class CartViewController: UIViewController {
         super.viewDidLoad()
     //TODO save cart id in the customer
 //1116795633956
-    viewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getEditCartURL(id: "1116795633956")))
+    viewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getEditCartURL(id: "\(cartId)")))
 
     viewModel.bindDataToView = {
       HUD.hide(animated: true)

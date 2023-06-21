@@ -34,7 +34,7 @@ class ProductDetails_VC: UIViewController {
     let viewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""))
     let dataManager = DataManager.sharedInstance
     var reviewsList :[(String,String,String)] = []
-    let cartViewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getEditCartURL(id: "1116795633956")))
+    let cartViewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getEditCartURL(id: "\(cartId)")))
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -137,7 +137,8 @@ class ProductDetails_VC: UIViewController {
       print("mlutgiuv5hiubtrhu")
       var arr: [Line_items] = (self.cartViewModel.cartArray)
       //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
-      if arr.count > 0{ //!(1 & empty product)
+      if arr.count > 0 //!(arr.count == 1 && arr.first?.title == "empty product" )
+      { //!(1 & empty product)
         print("mlutgiuv5hiubtrhu22")
 //          (self.cartViewModel.cartUpdated.draft_order?.line_items)!.filter{ $0.variant_id == 123456789 }
         for (index, element) in arr.enumerated() {

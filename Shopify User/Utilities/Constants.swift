@@ -77,9 +77,13 @@ let secondDummyMail = "egnition_sample_81@egnition.com"
 let BASE_CURRENCY_API = "https://api.apilayer.com/exchangerates_data/latest?base=USD&apikey="
 let CURRENCY_API_KEY =  "Qflgr2kG5V3sQQ92JoP8zUe38qGZZlFg"
 let CURRENCY_API = BASE_CURRENCY_API + CURRENCY_API_KEY
+let emptyProductId = 46789
 
 var currencySymbol: String {
   return UserDefaults.standard.string(forKey: Constants.CURRENCY_KEY) ?? "USD"
+}
+var cartId: Int {
+  return Int(UserDefaults.standard.string(forKey: Constants.USER_CART)!) ?? 0
 }
 
 var currencyValue: Double {

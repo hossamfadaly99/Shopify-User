@@ -104,7 +104,7 @@ class LoginViewModel{
         let array = complexSrt.components(separatedBy: ",")
         defaults.set(array[0], forKey: Constants.USER_CART)
         defaults.set(array[1], forKey: Constants.USER_WISHLIST)
-        print("ARRAY: \(array)")
+        print("ARRAY: \(array[0])")
     }
     
     func setUserDefaults(customer:Customer){
