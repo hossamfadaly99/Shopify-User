@@ -85,6 +85,13 @@ var currencySymbol: String {
 var cartId: Int {
   return Int(UserDefaults.standard.string(forKey: Constants.USER_CART)!) ?? 0
 }
+var favvvId: Int {
+  return Int(UserDefaults.standard.string(forKey: Constants.USER_WISHLIST)!) ?? 0
+}
+
+var storedCustomerId: Int {
+  return Int(UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)!) ?? 0
+}
 
 var currencyValue: Double {
   var value = UserDefaults.standard.double(forKey: Constants.CURRENCY_VALUE)

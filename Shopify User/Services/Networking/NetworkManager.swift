@@ -139,6 +139,8 @@ class NetworkManager: NetworkServiceProtocol {
                                   "Content-Type" : "application/json"]
 
     print(method)
+    print("krbtkuygeksreykvbuyj123456789")
+    print(self.url)
     AF.request(finalURL, method: method, parameters: object, encoder: JSONParameterEncoder.default, headers: headers).responseData{ response in
       switch response.result {
       case .success(let data):

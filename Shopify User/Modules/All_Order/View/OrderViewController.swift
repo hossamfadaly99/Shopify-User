@@ -12,7 +12,7 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
     @IBOutlet weak var tableView: UITableView!
     var ordersList : [Order] = []
     var viewModel : OrderViewModel?
-    var customerID : String?
+//    var customerID : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,7 +26,7 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
     
     func setupViewModel(){
         viewModel=OrderViewModel()
-        viewModel?.CustomerID = "6948853350692"
+        viewModel?.CustomerID = "\(storedCustomerId)"
         
         viewModel?.bindResultToViewController={
             [weak self] in

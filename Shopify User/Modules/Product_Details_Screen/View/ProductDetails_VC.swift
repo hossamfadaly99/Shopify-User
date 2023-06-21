@@ -135,6 +135,9 @@ class ProductDetails_VC: UIViewController {
     
     @IBAction func addToCart(_ sender: Any) {
       print("mlutgiuv5hiubtrhu")
+      print(customer_id)
+      print(cartId)
+      print(favvvId)
       var arr: [Line_items] = (self.cartViewModel.cartArray)
       //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
       if arr.count > 0 //!(arr.count == 1 && arr.first?.title == "empty product" )

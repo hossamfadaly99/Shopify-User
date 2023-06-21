@@ -26,6 +26,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
       print("enjvkjtn")
+      print(storedCustomerId)
       print("HHHHHHH\(UserDefaults.standard.string(forKey: Constants.USER_CART))")
 
 

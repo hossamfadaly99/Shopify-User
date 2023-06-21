@@ -36,7 +36,7 @@ class Me_VC: UIViewController {
         viewModel = FavouritViewModel(dataManager: DataManager.sharedInstance)
         favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "" ) ?? []
         
-        setupViewModel()
+       // setupViewModel()
         
 //        if (favourieList?.count == 0){
 //            favouritesTable.isHidden = true
@@ -47,7 +47,7 @@ class Me_VC: UIViewController {
     func setupViewModel(){
         
         orderViewModel = OrderViewModel()
-        orderViewModel?.CustomerID = "6948853350692"
+        orderViewModel?.CustomerID = "\(storedCustomerId)"
         orderViewModel?.getItems()
         orderViewModel?.bindResultToViewController={
             [weak self] in
@@ -66,7 +66,7 @@ class Me_VC: UIViewController {
         //ordersTable.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
 
         favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "" ) ?? []
-       // setupViewModel()
+        setupViewModel()
         favsTable.reloadData()
         checkFav()
         favsTable.reloadData()
@@ -104,7 +104,7 @@ class Me_VC: UIViewController {
         }else if (orderList.count == 1){
             ordersTable.isHidden = false
             if let height = ordersTable.constraints.first(where: { $0.firstAttribute == .height }){
-                height.constant = 145
+                height.constant = 180
             }
         } else {
             ordersTable.isHidden = false
@@ -156,7 +156,7 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
         if tableView ==  favsTable {
             return CGFloat(140)
         }else{
-            return CGFloat(140)
+            return CGFloat(180)
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

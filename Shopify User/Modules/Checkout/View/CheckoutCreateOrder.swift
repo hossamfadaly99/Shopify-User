@@ -10,7 +10,7 @@ extension CheckoutViewController{
     func createOrder(){
 
         var customer = OrderCustomer()
-        customer.id = 6959049769252
+        customer.id = storedCustomerId
       var address = self.viewModel?.address
       print("ekbjhbrbk")
       print(self.viewModel?.address)

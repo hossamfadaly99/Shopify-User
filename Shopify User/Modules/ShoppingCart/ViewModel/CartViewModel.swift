@@ -95,6 +95,8 @@ class CartViewModel{
 
       self?.subTotalPrice = Double(result?.draft_order?.subtotal_price ?? "0.0") ?? 0.0
       self?.cartArray = result?.draft_order?.line_items ?? []
+      print("rkjtbglrhtbg")
+      print(result)
       let items = result!.draft_order!.line_items!
       if items.count == 1 && items.first?.title == "empty product" {
         print("a")

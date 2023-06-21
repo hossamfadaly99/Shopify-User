@@ -19,7 +19,7 @@ class URLCreator {
     func getAllOrderURL(id: String) -> String{
         endPoint = "/orders"
         print(baseURL + "customers/" + id + endPoint + jsontype)
-        return baseURL + "customers/" + id + endPoint + jsontype
+        return baseURL + "customers/" + "\(storedCustomerId)" + endPoint + jsontype
     }
     func getCreateOrder()->String{
         endPoint = "orders"
@@ -47,7 +47,7 @@ class URLCreator {
     func getCustomer(customer_id : String) -> String {
         //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers/6954207117604.json
         endPoint = "customers"
-        return baseURL + endPoint + "/" + customer_id + jsontype
+        return baseURL + endPoint + "/" + "\(storedCustomerId)" + jsontype
     }
     func getBrandProducts(brandName:String) -> String{
         //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json?vendor=ADIDAS
@@ -56,15 +56,15 @@ class URLCreator {
     }
     
     func getAddressURL(customerId: String, addressId: String = "") -> String{
-        endPoint = "customers/\(customerId)/addresses"
+        endPoint = "customers/\(storedCustomerId)/addresses"
         return baseURL + endPoint + jsontype
     }
   func getEditOrDeleteAddressURL(customerId: String, addressId: String = "") -> String{
-      endPoint = "customers/\(customerId)/addresses"
+      endPoint = "customers/\(storedCustomerId)/addresses"
       return baseURL + endPoint + "/\(addressId)" + jsontype
   }
   func setDefaultAddressURL(customerId: String, addressId: String = "") -> String{
-      endPoint = "customers/\(customerId)/addresses"
+      endPoint = "customers/\(storedCustomerId)/addresses"
       return baseURL + endPoint + "/\(addressId)" + "/default" + jsontype
   }
   func getCurrencyURL()-> String{
