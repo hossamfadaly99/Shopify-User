@@ -143,7 +143,7 @@ class ProductDetails_VC: UIViewController {
         for (index, element) in arr.enumerated() {
           print("ketgbrjtkg elemnt: \(index)")
           print(element)
-          if element.variant_id == 45546964058404 {
+          if element.variant_id == viewModel.myproduct.variants?.first?.id {
             print("found variant id")
             self.cartViewModel.indexx = index
             self.cartViewModel.cartUpdated.draft_order?.line_items?[index].quantity! += 1
@@ -154,8 +154,16 @@ class ProductDetails_VC: UIViewController {
           }
         }
 
+        let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
+        print("lsrthvuilrhbjkntrlhuigigiithy")
+        print(self.cartViewModel.cartUpdated.draft_order?.line_items)
+        self.cartViewModel.cartUpdated.draft_order?.line_items?.append(newItem)
+        print(self.cartViewModel.cartUpdated.draft_order?.line_items)
+        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
       } else {
-
+        let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
+        self.cartViewModel.cartUpdated.draft_order?.line_items = [newItem]
+        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
       }
 //      self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
     }
