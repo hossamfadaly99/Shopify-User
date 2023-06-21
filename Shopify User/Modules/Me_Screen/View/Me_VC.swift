@@ -135,7 +135,7 @@ class Me_VC: UIViewController {
     @IBAction func goToSettings(_ sender: Any) {
         let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: "SettingsTableViewController") as! SettingsTableViewController
-       nextViewController.modalPresentationStyle = .fullScreen
+      nextViewController.modalPresentationStyle = .popover
         present(nextViewController, animated: true, completion: nil)
     }
     
