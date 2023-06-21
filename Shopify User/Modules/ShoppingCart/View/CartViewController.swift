@@ -76,6 +76,9 @@ class CartViewController: UIViewController {
     }
   }
 
+  @IBAction func backBtnClick(_ sender: Any) {
+    self.navigationController?.popViewController(animated: true)
+  }
 
 
 }
@@ -127,6 +130,8 @@ extension CartViewController: UITableViewDataSource{
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     handleDeletion(index: indexPath.row)
   }
+
+
 
   func handleDeletion(index: Int){
     let alert = UIAlertController(title: "Watch out!", message: "Are you sure you want to delete this item from the cart?", preferredStyle: .alert)

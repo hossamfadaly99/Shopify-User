@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Cart-->
+        <!--Cart View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController id="Y6W-OH-hqX" customClass="CartViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Cart" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YbW-es-NeQ">
-                                <rect key="frame" x="16" y="83" width="141" height="39"/>
+                                <rect key="frame" x="56" y="83" width="141" height="39"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="141" id="cQo-WD-sTc"/>
                                 </constraints>
@@ -70,20 +70,32 @@
                                     <constraint firstAttribute="height" constant="1" id="4X6-8R-JNF"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOZ-bZ-ea2">
+                                <rect key="frame" x="4" y="83" width="48" height="38"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="back_btn_icon">
+                                    <color key="baseForegroundColor" name="black_22"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="backBtnClick:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="elx-BK-3lg"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" name="bg_gray"/>
                         <constraints>
+                            <constraint firstItem="YbW-es-NeQ" firstAttribute="leading" secondItem="YOZ-bZ-ea2" secondAttribute="trailing" constant="4" id="3Ft-5Q-fwo"/>
                             <constraint firstItem="KPW-Qg-yRm" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="CEd-tR-KTk"/>
+                            <constraint firstItem="YOZ-bZ-ea2" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="DfW-Az-aQe"/>
                             <constraint firstItem="YbW-es-NeQ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="24" id="FRi-6y-dA7"/>
                             <constraint firstItem="JD9-vq-hdl" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="I6F-LM-XZl"/>
+                            <constraint firstItem="YOZ-bZ-ea2" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="4" id="ID0-jf-2rW"/>
                             <constraint firstItem="tgc-Oh-sQ6" firstAttribute="top" secondItem="tFo-GN-YHZ" secondAttribute="bottom" constant="16" id="MDG-TO-Wi1"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="g2K-AL-ShG" secondAttribute="trailing" constant="16" id="OW0-6x-WR7"/>
                             <constraint firstItem="tgc-Oh-sQ6" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="PYg-sd-Arm"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tFo-GN-YHZ" secondAttribute="trailing" id="QWi-5N-C1q"/>
                             <constraint firstItem="KPW-Qg-yRm" firstAttribute="top" secondItem="YbW-es-NeQ" secondAttribute="bottom" constant="16" id="RKw-jA-Osa"/>
                             <constraint firstItem="tFo-GN-YHZ" firstAttribute="top" secondItem="g2K-AL-ShG" secondAttribute="bottom" constant="16" id="UIu-UK-jdE"/>
-                            <constraint firstItem="YbW-es-NeQ" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="bLz-zw-ubs"/>
                             <constraint firstItem="g2K-AL-ShG" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="ceo-Pk-Ho0"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="JD9-vq-hdl" secondAttribute="trailing" constant="16" id="dT5-bH-dfE"/>
                             <constraint firstItem="g2K-AL-ShG" firstAttribute="top" secondItem="YbW-es-NeQ" secondAttribute="bottom" constant="16" id="i5r-2h-WdF"/>
@@ -96,7 +108,6 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="KPW-Qg-yRm" secondAttribute="trailing" constant="16" id="zuk-LQ-nEu"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Cart" image="shopping_cart" id="G1C-yE-bFN"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="noItemsImage" destination="g2K-AL-ShG" id="sSb-Dn-rwB"/>
@@ -120,8 +131,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back_btn_icon" width="24" height="24"/>
         <image name="empty_cart" width="626" height="626"/>
-        <image name="shopping_cart" width="25" height="25"/>
         <namedColor name="bg_gray">
             <color red="0.97647058823529409" green="0.97647058823529409" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
