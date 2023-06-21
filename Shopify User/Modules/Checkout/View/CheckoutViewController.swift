@@ -15,7 +15,7 @@ class CheckoutViewController: UIViewController {
     var line_Items: [Line_items] = []
     var emptyCartProtocol: EmptyCartProtocol!
     var totalAmountWithDelivery: Double {
-    return amount + 20.0
+    return amount + 20.0 * currencyValue
   }
   @IBOutlet weak var addressOneLabel: UILabel!
   @IBOutlet weak var addressTwoLabel: UILabel!
@@ -32,11 +32,14 @@ class CheckoutViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
       self.navigationController?.navigationBar.isHidden = true
-    var afterCurrency = String(format: "%.2f \(currencySymbol)", amount * currencyValue)
+//    var afterCurrency = String(format: "%.2f \(currencySymbol)", amount * currencyValue)
+    print("ltgblrtk")
+    print(amount)
+    var afterCurrency = String(format: "%.2f \(currencySymbol)", amount)
     orderAmountLabel.text = afterCurrency//"\(amount * currencyValue)\(currencySymbol)"
     afterCurrency = String(format: "%.2f \(currencySymbol)", 10 * currencyValue)
     deliveryAmountLabel.text = afterCurrency//"\(10 * currencyValue) \(currencySymbol)"
-    afterCurrency = String(format: "%.2f \(currencySymbol)", totalAmountWithDelivery * currencyValue)
+    afterCurrency = String(format: "%.2f \(currencySymbol)", totalAmountWithDelivery )
     summaryAmountLabel.text = afterCurrency//"\(totalAmountWithDelivery * currencyValue)\(currencySymbol)"
     viewModel = CheckoutViewModel(networkManager: NetworkManager(url: URLCreator().getCreateOrder()))
     viewModel?.transferObject(items: line_Items)

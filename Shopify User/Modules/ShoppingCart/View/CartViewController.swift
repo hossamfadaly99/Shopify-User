@@ -31,8 +31,12 @@ class CartViewController: UIViewController {
     viewModel.bindDataToView = {
       HUD.hide(animated: true)
       self.tableView.reloadData()
-      print("lrntkjnrkjnwklntk")
-      var afterCurrency = String(format: "%.2f \(currencySymbol)", self.viewModel.subTotalPrice * currencyValue)
+      print("lrntkjnrkjnwklntk12345")
+      print(self.viewModel.subTotalPrice)
+      print(currencyValue)
+      print(currencyValue * self.viewModel.subTotalPrice)
+      print("lrntkjnrkjnwklntk1234end")
+      var afterCurrency = String(format: "\(currencySymbol) %.2f", self.viewModel.subTotalPrice * currencyValue)
       self.totalPriceLabel.text = "\(afterCurrency)"
     }
 
@@ -64,11 +68,11 @@ class CartViewController: UIViewController {
     let storyboard = UIStoryboard(name: "CheckoutStoryboard", bundle: nil)
     let checkoutVC = storyboard.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
 
-    var totalPrice = Double(totalPriceLabel.text?.dropFirst() ?? "0.0") ?? 0.0
+    var totalPrice = Double(totalPriceLabel.text?.dropFirst(4) ?? "0.0") ?? 0.0
 
     checkoutVC.line_Items = viewModel.cartArray
     checkoutVC.emptyCartProtocol = self
-    checkoutVC.amount = totalPrice
+    checkoutVC.amount = totalPrice //* currencyValue
 
     if totalPrice > 0.0 {
       self.navigationController?.pushViewController(checkoutVC, animated: true)
@@ -101,13 +105,14 @@ extension CartViewController: UITableViewDataSource{
     let cell = tableView.dequeueReusableCell(withIdentifier: "CartItemCell", for: indexPath) as! CartItemCell
     cell.vc = self
 
-    cell.totalPrice = Double(self.totalPriceLabel.text?.dropFirst() ?? "0") ?? 0
+    cell.totalPrice = Double(self.totalPriceLabel.text?.dropFirst(4) ?? "0") ?? 0
     cell.getTotalPrice = {
 //      self.viewModel.subTotalPrice = cell.totalPrice
 //      self.viewModel.cartArray[indexPath.row].quantity = (cell.counter)
       print("krbtkuygeksreykvbuyj2222 \(cell.counter)")
       self.viewModel.cartUpdated.draft_order?.line_items?[indexPath.row].quantity = cell.counter
-      self.totalPriceLabel.text = String(format: "%.2f \(currencySymbol)", self.viewModel.subTotalPrice * currencyValue)
+      print(self.viewModel.subTotalPrice * currencyValue)
+      self.totalPriceLabel.text = String(format: "\(currencySymbol) %.2f", self.viewModel.subTotalPrice * currencyValue)
 
 //may bee problem
       self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated)

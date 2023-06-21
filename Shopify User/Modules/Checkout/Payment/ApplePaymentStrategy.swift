@@ -16,15 +16,18 @@ class ApplePaymentStrategy: PaymentStrategy{
     request.supportedNetworks = [.visa, .masterCard, .girocard]
     request.supportedCountries = ["EG", "US"]
     request.merchantCapabilities = .capability3DS
-    request.countryCode = "US"
-    request.currencyCode = "USD"
+    request.countryCode = String(currencySymbol.dropLast(1))
+    request.currencyCode = currencySymbol
 
     return request
   }()
 
   
   func pay(amount: Double, vc: UIViewController) -> (Bool, String) {
-    paymentRequest.paymentSummaryItems = [PKPaymentSummaryItem(label: "Shopify Cart", amount: NSDecimalNumber(value: amount))]
+    print("kjnvktrkj")
+    print(amount)
+    let formattedAmount = Double(String(format: "%.1f", amount)) ?? 0.0
+    paymentRequest.paymentSummaryItems = [PKPaymentSummaryItem(label: "Shopify Cart", amount: NSDecimalNumber(value: formattedAmount))]
     let controller = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)
     controller?.delegate = (vc as! any PKPaymentAuthorizationViewControllerDelegate)
     vc.present(controller!, animated: true)
