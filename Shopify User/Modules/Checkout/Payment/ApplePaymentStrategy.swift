@@ -24,8 +24,6 @@ class ApplePaymentStrategy: PaymentStrategy{
 
   
   func pay(amount: Double, vc: UIViewController) -> (Bool, String) {
-    print("kjnvktrkj")
-    print(amount)
     let formattedAmount = Double(String(format: "%.1f", amount)) ?? 0.0
     paymentRequest.paymentSummaryItems = [PKPaymentSummaryItem(label: "Shopify Cart", amount: NSDecimalNumber(value: formattedAmount))]
     let controller = PKPaymentAuthorizationViewController(paymentRequest: paymentRequest)

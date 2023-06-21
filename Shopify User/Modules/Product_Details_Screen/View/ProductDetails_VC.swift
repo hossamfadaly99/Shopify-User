@@ -34,6 +34,7 @@ class ProductDetails_VC: UIViewController {
     let viewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""))
     let dataManager = DataManager.sharedInstance
     var reviewsList :[(String,String,String)] = []
+    let cartViewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getEditCartURL(id: "1116795633956")))
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +66,26 @@ class ProductDetails_VC: UIViewController {
         }
         let pid = String(ID_Product_VC)
         viewModel.getProductData(url:URLCreator().getProductURL(id: pid) )
+//      cartViewModel.loadCartItems()
+
+      cartViewModel.bindDataToView = {
+//        print("mlutgiuv5hiubtrhu22")
+//        var arr: [Line_items] = (self.cartViewModel.cartArray)
+//        //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
+//        if arr.count > 0{
+//          print("mlutgiuv5hiubtrhu22")
+////          (self.cartViewModel.cartUpdated.draft_order?.line_items)!.filter{ $0.variant_id == 123456789 }
+//          for (index, element) in arr.enumerated() {
+//            if element.variant_id == 123456789{
+//              self.cartViewModel.indexx = index
+//              self.cartViewModel.cartUpdated.draft_order?.line_items?[index].quantity! += 1
+//            }
+//          }
+//        } else {
+//
+//        }
+//        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+      }
     }
     
     @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
@@ -113,6 +134,30 @@ class ProductDetails_VC: UIViewController {
     }
     
     @IBAction func addToCart(_ sender: Any) {
+      print("mlutgiuv5hiubtrhu")
+      var arr: [Line_items] = (self.cartViewModel.cartArray)
+      //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
+      if arr.count > 0{ //!(1 & empty product)
+        print("mlutgiuv5hiubtrhu22")
+//          (self.cartViewModel.cartUpdated.draft_order?.line_items)!.filter{ $0.variant_id == 123456789 }
+        for (index, element) in arr.enumerated() {
+          print("ketgbrjtkg elemnt: \(index)")
+          print(element)
+          if element.variant_id == 45546964058404 {
+            print("found variant id")
+            self.cartViewModel.indexx = index
+            self.cartViewModel.cartUpdated.draft_order?.line_items?[index].quantity! += 1
+            print("ketgbrjtkg line items")
+//            print(self.cartViewModel.cartUpdated.draft_order?.line_items)
+            self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+            return
+          }
+        }
+
+      } else {
+
+      }
+//      self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
     }
     
     
@@ -200,6 +245,10 @@ extension ProductDetails_VC  {
         popUpBtn.showsMenuAsPrimaryAction = true
         popUpBtn.changesSelectionAsPrimaryAction = true
     }
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    cartViewModel.loadCartItems()
+  }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

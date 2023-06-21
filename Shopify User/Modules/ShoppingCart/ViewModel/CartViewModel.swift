@@ -13,6 +13,7 @@ class CartViewModel{
   var cartUpdated: DraftOrderr = DraftOrderr(draft_order: Draft_orders(line_items: []))
   var craftId: Int = 0
   var subTotalPrice = 0.0
+  var indexx = 0
 
   var cartArray: [Line_items] = []{
     didSet{
@@ -37,6 +38,7 @@ class CartViewModel{
   }
 
   func loadCartItems(){
+    networkManager.setURL(URLCreator().getEditCartURL(id: "1116795633956"))
     networkManager.fetchData{ [weak self] (result: DraftOrderr?) in
       //TODO change mail and add name to tags (like "cart")
 
