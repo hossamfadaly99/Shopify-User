@@ -129,7 +129,7 @@ extension SettingsTableViewController  {
             action.append( UIAction(title: "Sizes", handler: optionSelected) )
         } else {
             action = []
-          var latestChosen = UserDefaults.standard.string(forKey: "currency_key") ?? "USD"
+          var latestChosen = UserDefaults.standard.string(forKey: Constants.CURRENCY_KEY) ?? "USD"
           action.append(UIAction(title: latestChosen, handler: optionSelected))
             for item in sizes{
               if item != latestChosen{
