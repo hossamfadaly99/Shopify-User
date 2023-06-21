@@ -129,13 +129,19 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         print("Navigate to search_VC From Products")
         let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
-        
+        nextViewController.destination = Constants.SCREEN_ID_CATEGORY
+        nextViewController.productsList = productsList
         nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: true, completion: nil)
     }
     
     
     @IBAction func navigateToCart(_ sender: Any) {
+        print("Navigate to Cart From Products")
+        let storyboard = UIStoryboard(name: "CartStoryboard", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: "ID_Cart") as! CartViewController
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

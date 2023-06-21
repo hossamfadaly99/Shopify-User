@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFJ-bd-Hpm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFJ-bd-Hpm">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -133,7 +132,7 @@
         <!--Category-->
         <scene sceneID="Dze-ww-t7a">
             <objects>
-                <viewController id="PlE-GH-uVV" customClass="CategoryViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ID_Category" id="PlE-GH-uVV" customClass="CategoryViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LFc-cX-IEI">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -146,6 +145,9 @@
                                 <items>
                                     <barButtonItem image="magnifyingglass" catalog="system" id="UIr-vl-KsF">
                                         <color key="tintColor" name="main_green"/>
+                                        <connections>
+                                            <action selector="NavigateToSearch:" destination="PlE-GH-uVV" id="Mqg-JF-gII"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="cRG-D3-k0s"/>
                                     <barButtonItem title="Categories" id="hxX-JE-mLb">
@@ -154,11 +156,14 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="JGK-sL-vke"/>
                                     <barButtonItem image="cart.fill" catalog="system" id="fbI-Ao-Zfv">
                                         <color key="tintColor" name="main_green"/>
+                                        <connections>
+                                            <action selector="navigateToCart:" destination="PlE-GH-uVV" id="2GB-QC-2Ai"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem image="heart.fill" catalog="system" id="l2Q-4i-niy">
                                         <color key="tintColor" name="main_green"/>
                                         <connections>
-                                            <action selector="navigateToFav:" destination="PlE-GH-uVV" id="gax-mC-tsd"/>
+                                            <action selector="navigateToFav:" destination="PlE-GH-uVV" id="DqO-PB-kPn"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

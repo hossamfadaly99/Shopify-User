@@ -18,7 +18,7 @@ class Search_VC: UIViewController {
     var viewModel = SearchViewModel()
     let disposeBag = DisposeBag()
     var brand :String = ""
-    
+    var productsList : [Product] = []
     var destination :String = ""
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +40,9 @@ class Search_VC: UIViewController {
             getData(url: URLCreator().getBrandProducts(brandName: brand))
             searchFunctionality()
             break
+        case Constants.SCREEN_ID_CATEGORY :
+            
+            print("")
         default:
             print("")
         }
@@ -92,7 +95,8 @@ class Search_VC: UIViewController {
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
         //nextViewController.modalPresentationStyle = .fullScreen
         nextViewController.ID_Product_VC = product.id
-        present(nextViewController, animated: true, completion: nil)    }
+        present(nextViewController, animated: true, completion: nil)
+    }
     
     func getData(url:String){
         viewModel.getProducts(urlString: url)
