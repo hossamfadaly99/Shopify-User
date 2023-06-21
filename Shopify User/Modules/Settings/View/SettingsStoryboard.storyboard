@@ -15,7 +15,7 @@
         <!--Settings Table View Controller-->
         <scene sceneID="Prw-wi-qcn">
             <objects>
-                <tableViewController id="niB-Dq-nVI" customClass="SettingsTableViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SettingsTableViewController" id="niB-Dq-nVI" customClass="SettingsTableViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" id="HrO-3f-LAG">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,6 +147,44 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection id="8dq-qt-mSx">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="6SZ-8w-PLS">
+                                        <rect key="frame" x="0.0" y="337.00000381469727" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6SZ-8w-PLS" id="oJb-ng-YeX">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5sC-TG-MFp">
+                                                    <rect key="frame" x="16" y="12.666666666666664" width="20" height="19.333333333333321"/>
+                                                    <color key="tintColor" name="black_22"/>
+                                                    <imageReference key="image" image="escape" catalog="system" symbolScale="medium"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Logout" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n7X-yf-UnB">
+                                                    <rect key="frame" x="52" y="11.333333333333336" width="54" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eBl-ER-sXy">
+                                                    <rect key="frame" x="345" y="14.666666666666668" width="20" height="14.666666666666661"/>
+                                                    <color key="tintColor" name="black_22"/>
+                                                    <imageReference key="image" image="arrow.right" catalog="system" symbolScale="medium"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="n7X-yf-UnB" firstAttribute="centerY" secondItem="oJb-ng-YeX" secondAttribute="centerY" id="95c-L9-65t"/>
+                                                <constraint firstItem="n7X-yf-UnB" firstAttribute="leading" secondItem="5sC-TG-MFp" secondAttribute="trailing" constant="16" id="G4h-X0-YMo"/>
+                                                <constraint firstItem="5sC-TG-MFp" firstAttribute="leading" secondItem="oJb-ng-YeX" secondAttribute="leading" constant="16" id="Mr3-qn-WxX"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="eBl-ER-sXy" secondAttribute="trailing" constant="8" id="aaU-bG-d14"/>
+                                                <constraint firstItem="eBl-ER-sXy" firstAttribute="centerY" secondItem="oJb-ng-YeX" secondAttribute="centerY" id="ddY-b9-iVx"/>
+                                                <constraint firstItem="5sC-TG-MFp" firstAttribute="centerY" secondItem="oJb-ng-YeX" secondAttribute="centerY" id="rtJ-fJ-2D8"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="niB-Dq-nVI" id="zoQ-7v-F7e"/>
@@ -218,6 +256,7 @@ Copyright © 2023 Shopify. All rights reserved.</string>
     </scenes>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
+        <image name="escape" catalog="system" width="128" height="123"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="location.circle" catalog="system" width="128" height="123"/>
         <namedColor name="black_22">

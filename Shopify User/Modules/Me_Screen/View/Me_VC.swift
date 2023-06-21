@@ -133,8 +133,8 @@ class Me_VC: UIViewController {
     
     
     @IBAction func goToSettings(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PROFILE) as! Profile_VC
+        let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: "SettingsTableViewController") as! SettingsTableViewController
        nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: true, completion: nil)
     }

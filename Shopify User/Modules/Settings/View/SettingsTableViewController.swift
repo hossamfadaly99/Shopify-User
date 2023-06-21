@@ -12,6 +12,7 @@ class SettingsTableViewController: UITableViewController {
 
   var sizes: [String]? = ["EGP", "USD", "EUR"]
   var viewModel: SettingsViewModel!
+  let defaults = UserDefaults.standard
 
   @IBOutlet weak var popUpBtn: UIButton!
 
@@ -88,6 +89,28 @@ class SettingsTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    print(indexPath)
+    if indexPath.section == 2 && indexPath.row == 0 {
+            logout()
+        }
+  }
+
+   func logout() {
+      defaults.set("", forKey: Constants.KEY_USER_FIRSTNAME)
+      defaults.set("", forKey: Constants.KEY_USER_LASTNAME)
+      defaults.set("", forKey: Constants.KEY_USER_EMAIL)
+      defaults.set(Constants.USER_STATE_LOGOUT, forKey: Constants.KEY_USER_STATE)
+      defaults.set("", forKey: Constants.KEY_USER_ID)
+      defaults.set("", forKey: Constants.USER_CART)
+      defaults.set("", forKey: Constants.USER_WISHLIST)
+      print("Loged out : \( UserDefaults.standard.string(forKey: Constants.USER_CART))")
+      let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
+      let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
+      nextViewController.modalPresentationStyle = .fullScreen
+      present(nextViewController, animated: true, completion: nil)
+  }
 
 }
 
