@@ -13,4 +13,6 @@ protocol DataManagerProtocol {
     func getStoredProducts(user_id:String)-> [ProductCoreData]
     func deleteFavProduct(myProduct : ProductCoreData)
     func isProductExist(myProduct : ProductCoreData) -> Bool
+    func deleteAllProductsForUser(userId: String)
+    func insertFavProducts(products: [ProductCoreData], productRate: Double) 
 }

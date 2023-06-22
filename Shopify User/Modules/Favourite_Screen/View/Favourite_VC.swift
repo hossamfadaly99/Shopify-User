@@ -14,7 +14,7 @@ class Favourite_VC: UIViewController {
     var viewModel : FavouritViewModel!
     var favourieList:[ProductCoreData]?=[]
     var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
-    let favViewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""))
+    let favViewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""),dataManager: DataManager.sharedInstance)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,15 +25,6 @@ class Favourite_VC: UIViewController {
         mytable.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
-//
-//        if(viewModel?.fetchDataFromDB()?.count != 0){
-//            favourieList = viewModel?.fetchDataFromDB() ?? []
-//            mytable.reloadData()
-//            noItemImg.isHidden = true
-//        }else{
-//            noItemImg.isHidden = false
-//        }
-        
         favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "") ?? []
         mytable.reloadData()
         hideFavouritesImage(list: favourieList ?? [], img: noItemImg)
@@ -46,6 +37,9 @@ class Favourite_VC: UIViewController {
     }
     
 }
+
+
+
 extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("hi")
@@ -62,8 +56,6 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Fav_Cell", for: indexPath) as!Fav_Cell
-        //cell.imgBG.layer.cornerRadius = 9
-       // print(favourieList?[indexPath.row].images?[0].src)
         cell.img?.kf.setImage(with:URL(string: favourieList?[indexPath.row].Pimage ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB3yIFU8Dx5iqV6fxsmrxvzkDYbgQaxIp19SRyR9DQ&s") )
         cell.PName.text = favourieList?[indexPath.row].title ?? "Title"
         cell.pPrice.text = favourieList?[indexPath.row].price ?? "00.00"
@@ -91,7 +83,6 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
                 self.favViewModel.bindCartData = { [weak self] in
                     var myDraft = self?.favViewModel.wishListArray
                     var arr = myDraft?.line_items
-                   
                     guard var arr = arr else {return }
                     print("Array before deletion \(arr)")
                     var myId = self?.favourieList?[indexPath.row].id
@@ -119,8 +110,5 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
                present(alert, animated: true, completion: nil)
         }
     }
-    
-    func deleteFromApi(index:Int){
-        
-    }
+ 
 }

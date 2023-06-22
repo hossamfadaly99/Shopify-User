@@ -47,7 +47,7 @@ class HomeViewModel{
       var initCouponsList: [[Coupon]] = []
       for priceRule in result?.priceRules ?? [] {
         self?.networkManager.setURL(URLCreator().getCouponsURL(priceRuleId: "\(priceRule.id ?? 0)"))
-        print(URLCreator().getCouponsURL(priceRuleId: "\(priceRule.id ?? 0)"))
+      //  print(URLCreator().getCouponsURL(priceRuleId: "\(priceRule.id ?? 0)"))
         self?.networkManager.fetchData{ (result: CouponResponse?) in
 //          print("resssulttt")
 //          print(result?.discountCodes)
@@ -67,11 +67,11 @@ class HomeViewModel{
             return
           }
         }
-        print("initcouponsList11")
-        print(initCouponsList)
+     //   print("initcouponsList11")
+      //  print(initCouponsList)
       }
-      print("initcouponsList")
-      print(initCouponsList)
+     // print("initcouponsList")
+     // print(initCouponsList)
 //      self?.couponsLists = initCouponsList
 
     }

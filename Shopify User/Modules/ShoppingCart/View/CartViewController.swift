@@ -15,27 +15,36 @@ class CartViewController: UIViewController {
   @IBOutlet weak var noItemsImage: UIImageView!
   @IBOutlet weak var totalPriceLabel: UILabel!
   @IBOutlet weak var tableView: UITableView!
-  let defaults = UserDefaults.standard
-  override func viewWillAppear(_ animated: Bool) {
+  
+    @IBOutlet weak var gestView: UIView!
+    
+    
+    let defaults = UserDefaults.standard
+ 
+    override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-
-    HUD.show(.progress)
-    viewModel.loadCartItems()
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            gestView.isHidden = false
+        } else {
+            gestView.isHidden = true
+            HUD.show(.progress)
+            viewModel.loadCartItems()
+            
+        }
   }
   override func viewDidLoad() {
         super.viewDidLoad()
-    //TODO save cart id in the customer
-//1116795633956
+  
     viewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getEditCartURL(id: "\(cartId)")))
-
     viewModel.bindDataToView = {
       HUD.hide(animated: true)
       self.tableView.reloadData()
-      print("lrntkjnrkjnwklntk12345")
-      print(self.viewModel.subTotalPrice)
-      print(currencyValue)
-      print(currencyValue * self.viewModel.subTotalPrice)
-      print("lrntkjnrkjnwklntk1234end")
+   //   print("lrntkjnrkjnwklntk12345")
+    //  print(self.viewModel.subTotalPrice)
+    //  print(currencyValue)
+    //  print(currencyValue * self.viewModel.subTotalPrice)
+    //  print("lrntkjnrkjnwklntk1234end")
       var afterCurrency = String(format: "\(currencySymbol) %.2f", self.viewModel.subTotalPrice * currencyValue)
       self.totalPriceLabel.text = "\(afterCurrency)"
     }
@@ -63,7 +72,13 @@ class CartViewController: UIViewController {
 
     }
     
-
+    @IBAction func navigateToSign(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Signup_SB", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SIGNUP) as! Signup_VC
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true)
+    }
+    
   @IBAction func navigateToCheckout(_ sender: Any) {
     let storyboard = UIStoryboard(name: "CheckoutStoryboard", bundle: nil)
     let checkoutVC = storyboard.instantiateViewController(withIdentifier: "CheckoutViewController") as! CheckoutViewController
@@ -109,9 +124,9 @@ extension CartViewController: UITableViewDataSource{
     cell.getTotalPrice = {
 //      self.viewModel.subTotalPrice = cell.totalPrice
 //      self.viewModel.cartArray[indexPath.row].quantity = (cell.counter)
-      print("krbtkuygeksreykvbuyj2222 \(cell.counter)")
+  //    print("krbtkuygeksreykvbuyj2222 \(cell.counter)")
       self.viewModel.cartUpdated.draft_order?.line_items?[indexPath.row].quantity = cell.counter
-      print(self.viewModel.subTotalPrice * currencyValue)
+  //    print(self.viewModel.subTotalPrice * currencyValue)
       self.totalPriceLabel.text = String(format: "\(currencySymbol) %.2f", self.viewModel.subTotalPrice * currencyValue)
 
 //may bee problem
@@ -150,7 +165,7 @@ extension CartViewController: UITableViewDataSource{
       } else {
         self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy for fav", quantity: 1, price: "0")]
       }
-      print(self.viewModel.cartUpdated)
+    //  print(self.viewModel.cartUpdated)
       self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated)
 
     })

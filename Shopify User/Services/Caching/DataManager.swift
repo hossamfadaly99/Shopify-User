@@ -19,6 +19,28 @@ class DataManager : DataManagerProtocol{
         manager = appDelegate.persistentContainer.viewContext
     }
     
+    func insertFavProducts(products: [ProductCoreData], productRate: Double) {
+        let entity = NSEntityDescription.entity(forEntityName: Constants.CD_ENTITY_NAME, in: manager)
+        
+        for myProduct in products {
+            let product = NSManagedObject(entity: entity ?? NSEntityDescription(), insertInto: manager)
+            product.setValue(myProduct.title, forKey: Constants.ENTITY_ROW_TITLE)
+            product.setValue(myProduct.id, forKey: Constants.ENTITY_ROW_ID)
+            product.setValue(myProduct.price, forKey: Constants.ENTITY_ROW_PRICE)
+            product.setValue(productRate, forKey: Constants.ENTITY_ROW_RATE)
+            product.setValue(myProduct.Pimage, forKey: Constants.ENTITY_ROW_IMAGE)
+            product.setValue(myProduct.user_id, forKey: Constants.ENTITY_ROW_USER_ID)
+        }
+        
+        do {
+            try manager.save()
+            print("Inserted \(products.count) products")
+            print("Products Saved!")
+        } catch let error {
+            print(error.localizedDescription)
+        }
+    }
+
     func insertFavProduct(myProduct: ProductCoreData,productRate:Double) {
         let entity = NSEntityDescription.entity(forEntityName: Constants.CD_ENTITY_NAME, in: manager)
         let product = NSManagedObject(entity: entity ?? NSEntityDescription(), insertInto: manager)
@@ -69,7 +91,23 @@ class DataManager : DataManagerProtocol{
         return myProducts
     }
 
-    
+    func deleteAllProductsForUser(userId: String) {
+        let fetchRequest = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
+        fetchRequest.predicate = NSPredicate(format: "user_id == %@", userId  )
+        do {
+            let allProducts = try manager?.fetch(fetchRequest)
+            if let productsToDelete = allProducts {
+                for product in productsToDelete {
+                    manager?.delete(product)
+                }
+                try manager?.save()
+                print("All Products Deleted")
+            }
+        } catch {
+            print("Error deleting products: \(error.localizedDescription)")
+        }
+    }
+
     func deleteFavProduct(myProduct: ProductCoreData) {
         let fetch = NSFetchRequest<CDProduct>(entityName: Constants.CD_ENTITY_NAME)
         fetch.predicate = NSPredicate(format: "title == %@ and user_id == %@", myProduct.title ?? "",myProduct.user_id ?? "" )

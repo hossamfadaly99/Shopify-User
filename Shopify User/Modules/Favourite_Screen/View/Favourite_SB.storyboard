@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,6 +36,12 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="247" verticalCompressionResistancePriority="773" image="noItemFound" translatesAutoresizingMaskIntoConstraints="NO" id="XQa-zx-yVk">
                                 <rect key="frame" x="58.666666666666657" y="335" width="276" height="182"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Favourite" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1QA-mT-7DJ">
+                                <rect key="frame" x="152.33333333333334" y="65.333333333333329" width="88.666666666666657" height="25.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <color key="textColor" name="main_green"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -42,9 +49,11 @@
                             <constraint firstItem="XQa-zx-yVk" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="AHd-ly-d7P"/>
                             <constraint firstItem="xY7-PC-KQH" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="5" id="MZw-cx-gTM"/>
                             <constraint firstItem="XQa-zx-yVk" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="Nyq-WI-4aH"/>
+                            <constraint firstItem="1QA-mT-7DJ" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="OIN-oF-qG5"/>
                             <constraint firstItem="xY7-PC-KQH" firstAttribute="top" secondItem="XN3-JZ-zGq" secondAttribute="bottom" constant="2" id="Xfk-Gh-jzL"/>
                             <constraint firstAttribute="bottom" secondItem="xY7-PC-KQH" secondAttribute="bottom" constant="15" id="bqM-Iq-FuZ"/>
                             <constraint firstItem="XN3-JZ-zGq" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="10" id="gLf-S2-4Vx"/>
+                            <constraint firstItem="1QA-mT-7DJ" firstAttribute="centerY" secondItem="XN3-JZ-zGq" secondAttribute="centerY" id="gRr-h3-w8f"/>
                             <constraint firstItem="xY7-PC-KQH" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" constant="5" id="hgM-tA-1Ic"/>
                             <constraint firstItem="XN3-JZ-zGq" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="teF-yV-fsI"/>
                         </constraints>
@@ -63,6 +72,9 @@
     <resources>
         <image name="back_btn_icon" width="24" height="24"/>
         <image name="noItemFound" width="276" height="182"/>
+        <namedColor name="main_green">
+            <color red="0.039215686274509803" green="0.58039215686274515" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

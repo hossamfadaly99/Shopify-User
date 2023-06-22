@@ -53,11 +53,22 @@ class SignupViewModel{
                 Network.postMethod(url:URLCreator().getCustomersURL(), model: model)
                 { customer in
                     guard let singleCustomer = customer?.customer else{return}
+                    print("nuuu:\(singleCustomer)")
                     self.setUserDefaults(customer: singleCustomer)
+                    
+                    self.group.enter()
                     self.cresteWishList(mycustomer: singleCustomer)
+                    
+                    self.group.enter()
                     self.createCart(mycustomer: singleCustomer)
-                    self.assignWishListToUser( mycustomer: singleCustomer)
-                    self.delegate?.didLoginSuccessfully()
+                    
+                    self.group.notify(queue: .global()){
+                        self.assignWishListToUser( mycustomer: singleCustomer)
+                        OperationQueue.main.addOperation{
+                            self.delegate?.didLoginSuccessfully()
+                            
+                        }
+                    }
                     print("reg done")
                 }
                 

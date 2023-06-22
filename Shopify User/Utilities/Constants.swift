@@ -16,6 +16,7 @@ class Constants {
     static let SCREEN_ID_PRODUCTSDETAILS = "ID_Products_Details"
     static let SCREEN_ID_HOME = "ID_Home"
     static let SCREEN_ID_BRAND = "ID_Brand"
+    static let SCREEN_ID_CATEGORY = "ID_Category"
     static let SCREEN_ID_SEARCH = "ID_Search"
     static let SCREEN_ID_PROFILE = "ID_Profile"
     
@@ -32,6 +33,7 @@ class Constants {
         static let KEY_USER_ID = "UserID"
         static let KEY_USER_STATE = "State"
         static let USER_STATE_LOGIN = "Login"
+        static let USER_STATE_GUEST = "Guest"
         static let USER_STATE_LOGOUT = "Logout"
         static let USER_COUPON = "coupon"
         static let CURRENCY_KEY = "CURRENCY_KEY"
@@ -68,6 +70,35 @@ class Constants {
         result.gift_card = false
         result.custom = true
         return result
+    }
+    func mapProductToProductCD(product : Product) ->ProductCoreData{
+        guard  let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) else {return ProductCoreData()}
+        var result = ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: customer_id)
+        return result
+    }
+    func mapLineItemsToProductCD( lineitems : [Line_items] ) -> [ProductCoreData] {
+        guard  let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) else {return []}
+        var productCDArray: [ProductCoreData] = []
+           
+           for lineItem in lineitems {
+               if(lineItem.title == "dummy"){
+                   print("MYDummy")
+               }
+               else{
+                   let name = lineItem.properties?[0].value
+                   print("immmmmmmage\(name)")
+                   var productCD = ProductCoreData()
+                   productCD.title = lineItem.title
+                   productCD.id = lineItem.id
+                   productCD.price = lineItem.price
+                   productCD.Pimage = lineItem.properties?[0].value
+                   productCD.user_id = customer_id
+                   
+                   // Add any additional properties you need to set on `productCD`
+                   
+                   productCDArray.append(productCD)}
+           }
+           return productCDArray
     }
 }
 let adminTokenKey = "X-Shopify-Access-Token"
