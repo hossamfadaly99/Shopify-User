@@ -12,13 +12,16 @@ class Profile_VC: UIViewController {
     @IBOutlet weak var img: UIImageView!
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var mail: UILabel!
+    var viewModel : ProfileViewModel!
     let defaults = UserDefaults.standard
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel = ProfileViewModel(dataManager: DataManager.sharedInstance)
         if let customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
         {
 
-            print("Welcome back, \(customer_id)!")
+            print("Welcome id back, \(customer_id)!")
         } else {
             print("No username found.")
         }
@@ -26,14 +29,14 @@ class Profile_VC: UIViewController {
         {
             name.text = customer_name
 
-            print("Welcome back, \(customer_name)!")
+            print("Welcome name back, \(customer_name)!")
         } else {
             print("No username found.")
         }
         if let customer_email = UserDefaults.standard.string(forKey: Constants.KEY_USER_EMAIL)
         {
             mail.text = customer_email
-            print("Welcome back, \(customer_email)!")
+            print("Welcome email back, \(customer_email)!")
         } else {
             print("No username found.")
         }
@@ -42,6 +45,7 @@ class Profile_VC: UIViewController {
     
 
     @IBAction func logout(_ sender: Any) {
+        guard let my_Customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) else {return}
         defaults.set("", forKey: Constants.KEY_USER_FIRSTNAME)
         defaults.set("", forKey: Constants.KEY_USER_LASTNAME)
         defaults.set("", forKey: Constants.KEY_USER_EMAIL)
@@ -49,6 +53,7 @@ class Profile_VC: UIViewController {
         defaults.set("", forKey: Constants.KEY_USER_ID)
         defaults.set("", forKey: Constants.USER_CART)
         defaults.set("", forKey: Constants.USER_WISHLIST)
+        viewModel.deleteAllFromDB(user_id: my_Customer_id)
         print("Loged out : \( UserDefaults.standard.string(forKey: Constants.USER_CART))")
         let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC

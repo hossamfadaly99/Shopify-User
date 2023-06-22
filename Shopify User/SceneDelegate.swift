@@ -35,7 +35,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let state =
         UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE)
         guard let state = state else {return false}
-        if state == Constants.USER_STATE_LOGOUT {
+        if state == Constants.USER_STATE_LOGOUT || state == Constants.USER_STATE_GUEST {
             return false
         }else{
             return true

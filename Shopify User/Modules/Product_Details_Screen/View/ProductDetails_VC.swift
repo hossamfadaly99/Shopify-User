@@ -17,11 +17,12 @@ class ProductDetails_VC: UIViewController {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productPrice: UILabel!
     @IBOutlet weak var cosmosView: CosmosView!
-    @IBOutlet weak var addToFav: UIImageView!
+   // @IBOutlet weak var addToFav: UIImageView!
     @IBOutlet weak var reviewsTable: UITableView!
     @IBOutlet weak var labeldes: UILabel!
     @IBOutlet weak var popUpBtn: UIButton!
     
+    @IBOutlet weak var favBtn: UIButton!
     var favTableViewController : ReloadTableViewDelegate?
     
     var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
@@ -31,7 +32,7 @@ class ProductDetails_VC: UIViewController {
     var photosArray:[ProductImage]?
     var timer:Timer?
     var currentIndex = 0
-    let viewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""))
+    let viewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""),dataManager: DataManager.sharedInstance)
     let dataManager = DataManager.sharedInstance
     var reviewsList :[(String,String,String)] = []
     let cartViewModel = CartViewModel(networkManager: NetworkManager(url: URLCreator().getEditCartURL(id: "\(cartId)")))
@@ -57,73 +58,90 @@ class ProductDetails_VC: UIViewController {
             self.startTimer()
             self.productName.text = self.product_VC.title
           var afterCurrency = String(format: "%.2f \(currencySymbol)", (Double(self.product_VC.variants?[0].price ?? "0.0") ?? 0.0) * currencyValue)
-          self.productPrice.text = afterCurrency //"\(Double(self.product_VC.variants?[0].price ?? "0.0") ?? 0.0 * currencyValue) \(currencySymbol)"
-          print("liwurhgiuohlitg")
-          print(currencyValue)
+          self.productPrice.text = afterCurrency
+        //  print("liwurhgiuohlitg")
+        //  print(currencyValue)
             self.labeldes.text = self.product_VC.description
             self.myCollectionView.reloadData()
             self.colorHeart()
         }
         let pid = String(ID_Product_VC)
         viewModel.getProductData(url:URLCreator().getProductURL(id: pid) )
-//      cartViewModel.loadCartItems()
+        cartViewModel.bindDataToView = {
 
-      cartViewModel.bindDataToView = {
-//        print("mlutgiuv5hiubtrhu22")
-//        var arr: [Line_items] = (self.cartViewModel.cartArray)
-//        //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
-//        if arr.count > 0{
-//          print("mlutgiuv5hiubtrhu22")
-////          (self.cartViewModel.cartUpdated.draft_order?.line_items)!.filter{ $0.variant_id == 123456789 }
-//          for (index, element) in arr.enumerated() {
-//            if element.variant_id == 123456789{
-//              self.cartViewModel.indexx = index
-//              self.cartViewModel.cartUpdated.draft_order?.line_items?[index].quantity! += 1
-//            }
-//          }
-//        } else {
-//
-//        }
-//        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
       }
     }
     
-    @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
-        let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src,user_id: customer_id)
-        let is_Exist = dataManager.isProductExist(myProduct: coreData)
-        if(is_Exist){
-            //print("product already saved")
-        }else{
-            dataManager.insertFavProduct(myProduct: coreData, productRate: 2.5)
-            addToFav.image = UIImage(named: "activated")
-            viewModel.bindCartData = { [weak self] in
-                var myDraft = self?.viewModel.wishListArray
-                var arr = myDraft?.line_items
-                let pro = Constants().mapProductToLineItems(product: self?.product_VC ?? Product())
-                arr?.append(pro)
-                myDraft?.line_items? = arr ?? []
-                self?.viewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+    @IBAction func addToFav(_ sender: Any) {
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            AlertCreator.SignUpAlert(viewController: self)
+        } else {
+            let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src,user_id: customer_id)
+            let is_Exist = viewModel.isExistIntoDB(product: coreData)
+            if(is_Exist){
+                let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "ARE YOU SURE TO DELETE FROM FAVORITE?", preferredStyle: .alert)
+                
+                alert.addAction(UIAlertAction(title: "YES", style: .default,handler: { [weak self] action in
+                    //                    delete fromm fav
+                    self?.viewModel.bindCartData = { [weak self] in
+                        var myDraft = self?.viewModel.wishListArray
+                        var arr = myDraft?.line_items
+                      //  print("Array before deletion \(arr)")
+                        var myId = coreData.id
+                      //  print("myId = \(myId)")
+
+                        for i in 0..<(arr?.count ?? 0) {
+                            var apiId = arr?[i].product_id
+                          //  print("apiId = \(apiId)")
+                            if (apiId == myId){
+                                arr?.remove(at: i)
+                                self?.viewModel.deleteFromDB(product:coreData )
+                                break
+                            }
+                        }
+                      //  print("Array after deletion \(arr)")
+
+                        myDraft?.line_items? = arr ?? []
+                        self?.viewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+                    }
+                    self?.viewModel.loadWishListItems()
+                    self?.favBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+                    
+                }))
+                alert.addAction(UIAlertAction(title: "NO", style: .cancel,handler:nil))
+                present(alert, animated: true, completion: nil)
+            }else{
+                viewModel.insertIntoDB(product: coreData) 
+                favBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                viewModel.bindCartData = { [weak self] in
+                    var myDraft = self?.viewModel.wishListArray
+                    var arr = myDraft?.line_items
+                    let pro = Constants().mapProductToLineItems(product: self?.product_VC ?? Product())
+                    arr?.append(pro)
+                    myDraft?.line_items? = arr ?? []
+                    self?.viewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+                }
+                viewModel.loadWishListItems()
             }
-            viewModel.loadWishListItems()
         }
     }
-    override func viewDidAppear(_ animated: Bool) {
-        //print("view did appear")
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
-        addToFav.addGestureRecognizer(tapGesture)
-        addToFav.isUserInteractionEnabled = true
-    }
+
     
     func colorHeart(){
-        let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src,user_id: customer_id)
-                //print("My p  :\(product_VC)")
-                let is_Exist = dataManager.isProductExist(myProduct: coreData)
-                if(is_Exist){
-                    addToFav.image = UIImage(named: "activated")
-                    print("product already saved")
-                }else{
-                    addToFav.image = UIImage(named: "inactive")
-                }
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            favBtn.setImage(UIImage(systemName: "heart"), for: .normal)        } else {
+            let coreData = ProductCoreData(id: product_VC.id,title: product_VC.title,price: product_VC.variants?[0].price,Pimage: product_VC.image?.src,user_id: customer_id)
+            //print("My p  :\(product_VC)")
+            let is_Exist = dataManager.isProductExist(myProduct: coreData)
+            if(is_Exist){
+                favBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+             //   print("product already saved")
+            }else{
+                favBtn.setImage(UIImage(systemName: "heart"), for: .normal)
+            }
+        }
     }
     
     @IBAction func showMoreReviews(_ sender: Any) {
@@ -134,44 +152,48 @@ class ProductDetails_VC: UIViewController {
     }
     
     @IBAction func addToCart(_ sender: Any) {
-      print("mlutgiuv5hiubtrhu")
-      print(customer_id)
-      print(cartId)
-      print(favvvId)
-      var arr: [Line_items] = (self.cartViewModel.cartArray)
-      //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
-      if arr.count > 0 //!(arr.count == 1 && arr.first?.title == "empty product" )
-      { //!(1 & empty product)
-        print("mlutgiuv5hiubtrhu22")
-//          (self.cartViewModel.cartUpdated.draft_order?.line_items)!.filter{ $0.variant_id == 123456789 }
-        for (index, element) in arr.enumerated() {
-          print("ketgbrjtkg elemnt: \(index)")
-          print(element)
-          if element.variant_id == viewModel.myproduct.variants?.first?.id {
-            print("found variant id")
-            self.cartViewModel.indexx = index
-            self.cartViewModel.cartUpdated.draft_order?.line_items?[index].quantity! += 1
-            print("ketgbrjtkg line items")
-//            print(self.cartViewModel.cartUpdated.draft_order?.line_items)
-            self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
-            return
-          }
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            AlertCreator.SignUpAlert(viewController: self)
+        } else {
+           // print("mlutgiuv5hiubtrhu")
+           // print(customer_id)
+          //  print(cartId)
+         //   print(favvvId)
+            var arr: [Line_items] = (self.cartViewModel.cartArray)
+            //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
+            if arr.count > 0 //!(arr.count == 1 && arr.first?.title == "empty product" )
+            { //!(1 & empty product)
+               // print("mlutgiuv5hiubtrhu22")
+                //          (self.cartViewModel.cartUpdated.draft_order?.line_items)!.filter{ $0.variant_id == 123456789 }
+                for (index, element) in arr.enumerated() {
+                 //   print("ketgbrjtkg elemnt: \(index)")
+             //       print(element)
+                    if element.variant_id == viewModel.myproduct.variants?.first?.id {
+                      //  print("found variant id")
+                        self.cartViewModel.indexx = index
+                        self.cartViewModel.cartUpdated.draft_order?.line_items?[index].quantity! += 1
+                     //   print("ketgbrjtkg line items")
+                        //            print(self.cartViewModel.cartUpdated.draft_order?.line_items)
+                        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+                        return
+                    }
+                }
+                
+                let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
+               // print("lsrthvuilrhbjkntrlhuigigiithy")
+               // print(self.cartViewModel.cartUpdated.draft_order?.line_items)
+                self.cartViewModel.cartUpdated.draft_order?.line_items?.append(newItem)
+              //  print(self.cartViewModel.cartUpdated.draft_order?.line_items)
+                self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+            } else {
+                let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
+                self.cartViewModel.cartUpdated.draft_order?.line_items = [newItem]
+                self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+            }
+            //      self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
         }
-
-        let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
-        print("lsrthvuilrhbjkntrlhuigigiithy")
-        print(self.cartViewModel.cartUpdated.draft_order?.line_items)
-        self.cartViewModel.cartUpdated.draft_order?.line_items?.append(newItem)
-        print(self.cartViewModel.cartUpdated.draft_order?.line_items)
-        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
-      } else {
-        let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
-        self.cartViewModel.cartUpdated.draft_order?.line_items = [newItem]
-        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
-      }
-//      self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
     }
-    
     
 }
 

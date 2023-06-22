@@ -15,7 +15,9 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
     var productCoreData : ProductCoreData!
     var categoriesList : [CustomCollection] = []
     var viewModel : CategoryViewModel?
-    let dataManager = DataManager.sharedInstance
+    let dataViewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""),dataManager: DataManager.sharedInstance)
+
+    //let dataManager = DataManager.sharedInstance
     var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
     @IBOutlet weak var categorySegment: UISegmentedControl!
     
@@ -82,7 +84,7 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         
         let reachability = try! Reachability()
         if reachability.connection != .unavailable{
-            viewModel=CategoryViewModel(dataManager: dataManager)
+            viewModel = CategoryViewModel()
             
             viewModel?.bindResultToViewController={
                 [weak self] in
@@ -136,7 +138,7 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
     func colorHeart(product:Product , favBtn : UIButton){
         let coreData = ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: customer_id)
         //print("My p  :\(product_VC)")
-        let is_Exist = dataManager.isProductExist(myProduct: coreData)
+        let is_Exist = dataViewModel.isExistIntoDB(product: coreData)
         if(is_Exist){
             favBtn.imageView?.image = UIImage(systemName: "heart.fill")
             print("product already saved")
@@ -159,7 +161,8 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         let product = self.productsList[indexPath.row]
         colorHeart(product: product, favBtn: cell.favBtn)
         productCoreData = ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: self.customer_id)
-        let is_Exist = dataManager.isProductExist(myProduct: productCoreData)
+        
+        let is_Exist = dataViewModel.isExistIntoDB(product: productCoreData)
         cell.setFavUI(isFav: is_Exist)
         
         let url = URL(string: productsList[indexPath.row].image?.src ?? "")
@@ -185,11 +188,30 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
         return 120
     }
     @IBAction func navigateToFav(_ sender: UIBarButtonItem) {
-        let storyboard = UIStoryboard(name: "Favourite_SB", bundle: nil)
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_FAVOURITE) as! Favourite_VC
-       nextViewController.modalPresentationStyle = .fullScreen
-        present(nextViewController, animated: true, completion: nil)
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            AlertCreator.SignUpAlert(viewController: self)
+        } else {
+            let storyboard = UIStoryboard(name: "Favourite_SB", bundle: nil)
+            let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_FAVOURITE) as! Favourite_VC
+            nextViewController.modalPresentationStyle = .fullScreen
+            present(nextViewController, animated: true, completion: nil)
+        }
     }
+    
+    
+    @IBAction func navigateToSearch(_ sender: Any) {
+        print("Navigate to search_VC From Category")
+        let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
+        nextViewController.destination = Constants.SCREEN_ID_CATEGORY
+        nextViewController.productsArray = productsList
+        
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
+
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let reachability = try! Reachability()
@@ -213,28 +235,67 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
     }
     func clicked(_ row: Int) {
         //print("My p  :\(product_VC)")
-        let product = productsList[row]
-        productCoreData = ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: self.customer_id)
-        
-         let is_Exist = dataManager.isProductExist(myProduct: productCoreData)
-         if is_Exist{
-            let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "ARE YOU SURE TO DELETE FROM FAVORITE?", preferredStyle: .alert)
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            AlertCreator.SignUpAlert(viewController: self)
+        } else {
+            let product = productsList[row]
+            productCoreData = ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: self.customer_id)
             
-            alert.addAction(UIAlertAction(title: "YES", style: .default,handler: { [weak self] action in
-//                    delete fromm fav
-                self?.viewModel?.deleteFromDB(product: ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: self?.customer_id))
-                self?.tableView.reloadData()
+            let is_Exist = dataViewModel.isExistIntoDB(product: productCoreData)
+            if is_Exist{
+                let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "ARE YOU SURE TO DELETE FROM FAVORITE?", preferredStyle: .alert)
                 
-            }))
-             alert.addAction(UIAlertAction(title: "NO", style: .cancel,handler: { [weak self] action in
-                 self?.tableView.reloadData()
-             }))
-            present(alert, animated: true, completion: nil)
-        }
-        else{
-//             insert to fav
-            viewModel?.insertIntoDB(product: ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: customer_id))
-            tableView.reloadData()
+                alert.addAction(UIAlertAction(title: "YES", style: .default,handler: { [weak self] action in
+                    //                    delete fromm fav
+                    self?.dataViewModel.deleteFromDB(product: ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: self?.customer_id))
+                    self?.tableView.reloadData()
+                    
+                    self?.dataViewModel.bindCartData = { [weak self] in
+                        var myDraft = self?.dataViewModel.wishListArray
+                        var arr = myDraft?.line_items
+                      //  print("Array before deletion \(arr)")
+                        var myId = product.id
+                      //  print("myId = \(myId)")
+
+                        for i in 0..<(arr?.count ?? 0) {
+                            var apiId = arr?[i].product_id
+                          //  print("apiId = \(apiId)")
+                            if (apiId == myId){
+                                arr?.remove(at: i)
+                                self?.dataViewModel.deleteFromDB(product:ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: self?.customer_id) )
+                                break
+                            }
+                        }
+                      //  print("Array after deletion \(arr)")
+
+                        myDraft?.line_items? = arr ?? []
+                        self?.dataViewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+                    }
+                    self?.dataViewModel.loadWishListItems()
+                    
+                }))
+                alert.addAction(UIAlertAction(title: "NO", style: .cancel,handler: { [weak self] action in
+                    self?.tableView.reloadData()
+                }))
+                present(alert, animated: true, completion: nil)
+            }
+            else{
+                //             insert to fav
+                dataViewModel.insertIntoDB(product:  ProductCoreData(id: product.id,title: product.title,price: product.variants?[0].price,Pimage: product.image?.src,user_id: customer_id))
+               // favBtn.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+                dataViewModel.bindCartData = { [weak self] in
+                    var myDraft = self?.dataViewModel.wishListArray
+                    var arr = myDraft?.line_items
+                    let pro = Constants().mapProductToLineItems(product: product )
+                    arr?.append(pro)
+                    myDraft?.line_items? = arr ?? []
+                    self?.dataViewModel.updateWishList(wishListItem: myDraft ?? Draft_orders())
+                }
+                dataViewModel.loadWishListItems()
+                tableView.reloadData()
+            }
+            
         }
     }
 }

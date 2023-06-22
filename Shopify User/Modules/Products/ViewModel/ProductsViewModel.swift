@@ -17,11 +17,7 @@ class GetProductsViewModel{
         }
     }
     
-    var dataManager : DataManagerProtocol!
     
-    init( dataManager: DataManagerProtocol!) {
-        self.dataManager = dataManager
-    }
     //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json
     
     func getItems(){
@@ -37,16 +33,6 @@ class GetProductsViewModel{
         }
     }
     
-    
-    func deleteFromDB(product:ProductCoreData){
-        dataManager.deleteFavProduct(myProduct:product)
-    }
-    
-    func isExistIntoDB(product:ProductCoreData) -> Bool{
-        return dataManager.isProductExist(myProduct:product)
-    }
-    func insertIntoDB(product:ProductCoreData){
-        dataManager.insertFavProduct(myProduct:product, productRate: 2.5)
-    }
+
 
 }

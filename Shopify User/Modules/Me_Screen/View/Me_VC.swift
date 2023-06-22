@@ -12,6 +12,8 @@ class Me_VC: UIViewController {
     @IBOutlet weak var ordersTable: UITableView!
     @IBOutlet weak var favsTable: UITableView!
     
+    @IBOutlet weak var guestView: UIView!
+    
     var viewModel : FavouritViewModel!
     var orderViewModel : OrderViewModel!
     var favourieList:[ProductCoreData] = []
@@ -22,26 +24,26 @@ class Me_VC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        favsTable.delegate = self
-        favsTable.dataSource = self
-        ordersTable.delegate = self
-        ordersTable.dataSource = self
-        guard let customer_Name = customer_Name else {return}
-        WelcomeLabel.text = "Welcome \(customer_Name)"
-        
-        favsTable.register(UINib(nibName: Constants.CELL_ID_FAVOURITE, bundle: nil), forCellReuseIdentifier: Constants.CELL_ID_FAVOURITE)
-        
-        let  nib = UINib(nibName: "OrderCustomCell", bundle: nil)
-        ordersTable.register(nib, forCellReuseIdentifier: "order")
-        viewModel = FavouritViewModel(dataManager: DataManager.sharedInstance)
-        favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "" ) ?? []
-        
-       // setupViewModel()
-        
-//        if (favourieList?.count == 0){
-//            favouritesTable.isHidden = true
-//        }
-//favsTable.reloadData()
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            guestView.isHidden = false
+        } else {
+            guestView.isHidden = true
+            
+            favsTable.delegate = self
+            favsTable.dataSource = self
+            ordersTable.delegate = self
+            ordersTable.dataSource = self
+            guard let customer_Name = customer_Name else {return}
+            WelcomeLabel.text = "Welcome \(customer_Name)"
+            
+            favsTable.register(UINib(nibName: Constants.CELL_ID_FAVOURITE, bundle: nil), forCellReuseIdentifier: Constants.CELL_ID_FAVOURITE)
+            
+            let  nib = UINib(nibName: "OrderCustomCell", bundle: nil)
+            ordersTable.register(nib, forCellReuseIdentifier: "order")
+            viewModel = FavouritViewModel(dataManager: DataManager.sharedInstance)
+            favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "" ) ?? []
+        }
     }
     
     func setupViewModel(){
@@ -61,19 +63,32 @@ class Me_VC: UIViewController {
         
     }
     
+    @IBAction func navigateToSign(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Signup_SB", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SIGNUP) as! Signup_VC
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
-      //  favourieList = viewModel?.fetchDataFromDB(user_ID: customer_Name ?? "") ?? []
-        //ordersTable.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            guestView.isHidden = false
+        } else {
+            guestView.isHidden = true
 
-        favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "" ) ?? []
-        setupViewModel()
-        favsTable.reloadData()
-        checkFav()
-        favsTable.reloadData()
-        checkOrderList()
-        ordersTable.reloadData()
-       // hideFavouritesImage(list: favourieList ?? [], img: noItemImg)
-        
+            //  favourieList = viewModel?.fetchDataFromDB(user_ID: customer_Name ?? "") ?? []
+            //ordersTable.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0)
+            
+            favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "" ) ?? []
+            setupViewModel()
+            favsTable.reloadData()
+            checkFav()
+            favsTable.reloadData()
+            checkOrderList()
+            ordersTable.reloadData()
+            // hideFavouritesImage(list: favourieList ?? [], img: noItemImg)
+        }
      }
     func checkFav(){
         if(favourieList.isEmpty){
@@ -85,12 +100,12 @@ class Me_VC: UIViewController {
         }else if (favourieList.count == 1){
             favsTable.isHidden = false
             if let height = favsTable.constraints.first(where: { $0.firstAttribute == .height }){
-                height.constant = 145
+                height.constant = 160
             }
         } else {
             favsTable.isHidden = false
             if let height = favsTable.constraints.first(where: { $0.firstAttribute == .height }){
-                height.constant = 290
+                height.constant = 320
             }
         }
     }
@@ -104,12 +119,12 @@ class Me_VC: UIViewController {
         }else if (orderList.count == 1){
             ordersTable.isHidden = false
             if let height = ordersTable.constraints.first(where: { $0.firstAttribute == .height }){
-                height.constant = 180
+                height.constant = 160
             }
         } else {
             ordersTable.isHidden = false
             if let height = ordersTable.constraints.first(where: { $0.firstAttribute == .height }){
-                height.constant = 290
+                height.constant = 320
             }
         }
     }
@@ -122,6 +137,11 @@ class Me_VC: UIViewController {
         nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: true, completion: nil)
     }
+    
+    @IBAction func NavigateToCart(_ sender: Any) {
+    }
+    
+    
     
     @IBAction func seeMoreFavs(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Favourite_SB", bundle: nil)

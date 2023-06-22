@@ -21,15 +21,7 @@ class CategoryViewModel{
             bindResultToViewController()
         }
     }
-    
-    var dataManager : DataManagerProtocol!
-    
-    init( dataManager: DataManagerProtocol!) {
-        self.dataManager = dataManager
-    }
-    //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json
-    //https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/custom_collections.json
-    
+  
     func getCustomCollection(){
         let headers: HTTPHeaders = [
             HTTPHeader(name: "X-Shopify-Access-Token", value: "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")
@@ -55,15 +47,6 @@ class CategoryViewModel{
         }
     }
     
-    func deleteFromDB(product:ProductCoreData){
-        dataManager.deleteFavProduct(myProduct:product)
-    }
-    
-    func isExistIntoDB(product:ProductCoreData) -> Bool{
-        return dataManager.isProductExist(myProduct:product)
-    }
-    func insertIntoDB(product:ProductCoreData){
-        dataManager.insertFavProduct(myProduct:product, productRate: 2.5)
-    }
+
 
 }

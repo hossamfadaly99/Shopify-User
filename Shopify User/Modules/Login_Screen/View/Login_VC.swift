@@ -18,8 +18,9 @@ class Login_VC: UIViewController {
     @IBOutlet weak var backBtn: UIButton!
     
     let disposeBag = DisposeBag()
-    var viewModel = LoginViewModel()
+    var viewModel = LoginViewModel(dataManager: DataManager.sharedInstance,networkManager: NetworkManager(url: ""))
     var authManager = AuthenticationManager()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +44,16 @@ class Login_VC: UIViewController {
             self.present(nextViewController, animated: true, completion: nil)
         }).disposed(by: disposeBag)
         setupBindings()
+        
 
+    }
+    
+    @IBAction func enterAsGuest(_ sender: Any) {
+        UserDefaults.standard.set(Constants.USER_STATE_GUEST, forKey: Constants.KEY_USER_STATE)
+        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME)
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
     }
     
     @IBAction func googleLogin(_ sender: Any) {

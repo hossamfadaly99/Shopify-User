@@ -44,10 +44,15 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     }
     
     @IBAction func navigateToFavourite(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Favourite_SB", bundle: nil)
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_FAVOURITE) as! Favourite_VC
-       nextViewController.modalPresentationStyle = .fullScreen
-        present(nextViewController, animated: true, completion: nil)
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            AlertCreator.SignUpAlert(viewController: self)
+        } else {
+            let storyboard = UIStoryboard(name: "Favourite_SB", bundle: nil)
+            let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_FAVOURITE) as! Favourite_VC
+            nextViewController.modalPresentationStyle = .fullScreen
+            present(nextViewController, animated: true, completion: nil)
+        }
     }
     
     @IBAction func navigateSearch(_ sender: Any) {
@@ -90,7 +95,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
             viewModel=HomeViewModel()
 
           viewModel?.showCouponAlert = {
-            print("kejvbjhwrhtbvj")
+           // print("kejvbjhwrhtbvj")
             UserDefaults.standard.setValue(self.viewModel?.couponsLists.first?.first?.code, forKey: Constants.USER_COUPON)
             let alert : UIAlertController = UIAlertController(title: "Congratulations", message: "You can use coupon: \(self.viewModel?.couponsLists.first?.first?.code ?? "")", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
