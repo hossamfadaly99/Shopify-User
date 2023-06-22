@@ -200,3 +200,18 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
         }
     }
 }
+
+extension Me_VC {
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+      if identifier == "cartSegueIdentifier" {
+          // Check if the condition is met
+          if false {
+              // Don't perform the segue
+            print("show alert hereee ya nada")
+              return false
+          }
+      }
+      // Perform the segue
+      return true
+  }
+}

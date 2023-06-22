@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import Reachability
+import PKHUD
 
 class HomeViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -27,6 +28,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         self.navigationController?.navigationBar.isHidden = true
       print("enjvkjtn")
       print(storedCustomerId)
+      print(cartId)
       print("HHHHHHH\(UserDefaults.standard.string(forKey: Constants.USER_CART))")
 
 
@@ -231,6 +233,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         if indexPath.section == 1{
 
             if reachability.connection != .unavailable{
+              HUD.show(.progress)
                 let products = self.storyboard?.instantiateViewController(withIdentifier: "products") as! ProductsViewController
                 products.brandName = brandsList[indexPath.row].rules?[0].condition
                 self.navigationController?.pushViewController(products, animated: true)
@@ -243,4 +246,20 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
             }
         }
     }
+}
+
+
+extension HomeViewController {
+  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+      if identifier == "cartSegueIdentifier" {
+          // Check if the condition is met
+          if false {
+              // Don't perform the segue
+            print("show alert hereee ya nada")
+              return false
+          }
+      }
+      // Perform the segue
+      return true
+  }
 }

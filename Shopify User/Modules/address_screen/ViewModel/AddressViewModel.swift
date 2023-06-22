@@ -28,7 +28,7 @@ class AddressViewModel{
   }
 
   func getAllAddresses(){
-    networkManager.setURL(URLCreator().getAddressURL(customerId: "6947695657252"))
+    networkManager.setURL(URLCreator().getAddressURL())
     networkManager.fetchData{ [weak self] (result: Addresses?) in
       print("get allllllll")
       self?.addressList = result?.addresses ?? []
@@ -38,7 +38,7 @@ class AddressViewModel{
 
   func addAddress(){
     print(addressRequest)
-    networkManager.setURL(URLCreator().getAddressURL(customerId: "6947695657252"))
+    networkManager.setURL(URLCreator().getAddressURL())
     networkManager.uploadData(object: addressRequest, method: .post){ [weak self] (result: CustomerAddressResponse?) in
 //      self?.getAllAddresses()
       print(result)
@@ -53,8 +53,8 @@ class AddressViewModel{
 
   func editAddress(){
     print("monica \(addressRequest.address?.id )")
-    networkManager.setURL(URLCreator().getEditOrDeleteAddressURL(customerId: "6947695657252", addressId: "\(addressRequest.address?.id ?? 0)"))
-    print(URLCreator().getEditOrDeleteAddressURL(customerId: "6947695657252", addressId: "\(addressRequest.address?.id ?? 0)"))
+    networkManager.setURL(URLCreator().getEditOrDeleteAddressURL(addressId: "\(addressRequest.address?.id ?? 0)"))
+    print(URLCreator().getEditOrDeleteAddressURL( addressId: "\(addressRequest.address?.id ?? 0)"))
     print("monicaaaa: \(addressRequest)")
     networkManager.updateData(object: addressRequest, method: .put){ [weak self] (result: CustomerAddressResponse?) in
       if result?.customerAddress == nil{
@@ -70,16 +70,16 @@ class AddressViewModel{
   }
 
   func removeAddress(){
-    networkManager.setURL(URLCreator().getEditOrDeleteAddressURL(customerId: "6947695657252", addressId: "\(self.addressId)"))
-    print(URLCreator().getEditOrDeleteAddressURL(customerId: "6947695657252", addressId: "\(self.addressId)"))
+    networkManager.setURL(URLCreator().getEditOrDeleteAddressURL( addressId: "\(self.addressId)"))
+    print(URLCreator().getEditOrDeleteAddressURL( addressId: "\(self.addressId)"))
     networkManager.deleteData(object: addressRequest){
       print("deleted before get allllllll")
       self.getAllAddresses()
     }
   }
   func makeAddressDefault(){
-    networkManager.setURL(URLCreator().setDefaultAddressURL(customerId: "6947695657252", addressId: "\(self.addressId)"))
-    print(URLCreator().setDefaultAddressURL(customerId: "6947695657252", addressId: "\(self.addressId)"))
+    networkManager.setURL(URLCreator().setDefaultAddressURL(addressId: "\(self.addressId)"))
+    print(URLCreator().setDefaultAddressURL(addressId: "\(self.addressId)"))
     networkManager.updateDataa(){[weak self] (response: CustomerAddressResponse?) in
       self?.getAllAddresses()
     }

@@ -148,15 +148,7 @@ extension CartViewController: UITableViewDataSource{
       if self.viewModel.cartUpdated.draft_order?.line_items?.count ?? 1 > 1{
         self.viewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
       } else {
-        print("hghghghgghhg")
-        self.viewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
-        print(self.viewModel.cartUpdated.draft_order?.line_items?.count)
-        //empty
-        self.viewModel.cartUpdated.draft_order?.line_items?.append(Line_items( variant_id: 45557911028004, quantity: 1))
-        print(self.viewModel.cartUpdated.draft_order?.line_items)
-        print(self.viewModel.cartUpdated.draft_order?.line_items?.count)
-//        self.viewModel.cartUpdated.draftOrder?.lineItems[0].title = "dummy for ward"
-        print(self.viewModel.cartUpdated.draft_order?.line_items?.first?.title)
+        self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy for fav", quantity: 1, price: "0")]
       }
       print(self.viewModel.cartUpdated)
       self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated)
@@ -174,7 +166,7 @@ extension CartViewController: UITableViewDataSource{
 extension CartViewController: EmptyCartProtocol{
   func makeCartEmpty(){
     print("kjhbsrkjbhrtj")
-    self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( variant_id: 45557911028004, quantity: 1)]
+    self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy for fav", quantity: 1, price: "0")]
     self.viewModel.updateCartItem(cartItem: viewModel.cartUpdated)
   }
 }

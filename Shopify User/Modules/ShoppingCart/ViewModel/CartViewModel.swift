@@ -19,6 +19,7 @@ class CartViewModel{
     didSet{
       print("aaa2222")
       transferCartData()
+      print("aaafinished")
       DispatchQueue.main.async {
         self.bindDataToView()
       }
@@ -58,7 +59,7 @@ class CartViewModel{
 
         print(self?.craftId ?? -1)
         print("kejbfbejhfbrhjebhj")
-        if items.count == 1 && items.first?.title == "empty product" {
+        if items.count == 1 && items.first?.title == "dummy for fav" {
           print("a")
           print(items.count)
           print(items.first?.title)
@@ -96,9 +97,10 @@ class CartViewModel{
       self?.subTotalPrice = Double(result?.draft_order?.subtotal_price ?? "0.0") ?? 0.0
       self?.cartArray = result?.draft_order?.line_items ?? []
       print("rkjtbglrhtbg")
+//      print(object)
       print(result)
-      let items = result!.draft_order!.line_items!
-      if items.count == 1 && items.first?.title == "empty product" {
+        let items = result!.draft_order!.line_items!
+      if items.count == 1 && items.first?.title == "dummy for fav" {
         print("a")
         print(items.count)
         print(items.first?.title)

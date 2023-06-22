@@ -35,7 +35,7 @@ class AddressDetailsViewController: UIViewController {
       self.navigationController?.navigationBar.isHidden = true
         // Do any additional setup after loading the view.
 
-      viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL(customerId: "6947695657252")))
+      viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL()))
       viewModel.addressRequest.address = address
       self.loadDetailsData()
       viewModel.changeAddressUI = {

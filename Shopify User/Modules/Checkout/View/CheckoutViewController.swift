@@ -7,6 +7,7 @@
 
 import UIKit
 import PassKit
+import PKHUD
 
 class CheckoutViewController: UIViewController {
   var amount: Double = 0.0
@@ -44,6 +45,9 @@ class CheckoutViewController: UIViewController {
     viewModel = CheckoutViewModel(networkManager: NetworkManager(url: URLCreator().getCreateOrder()))
     viewModel?.transferObject(items: line_Items)
     viewModel?.getDefaultAddress()
+    viewModel?.bindResultToViewController = {
+      HUD.hide()
+    }
     viewModel?.bindDefaultAddress = {
       var address = self.viewModel?.defaultAddress
       self.addressOneLabel.text = address?.address1
@@ -79,6 +83,7 @@ class CheckoutViewController: UIViewController {
     if isPaymentSuccessful.0 {
       if isPaymentSuccessful.1 == "Purchased successfully"{
         //handle server side to make it order
+        HUD.show(.progress)
         self.createOrder()
         self.emptyCartProtocol.makeCartEmpty()
         self.navigationController?.popViewController(animated: true)

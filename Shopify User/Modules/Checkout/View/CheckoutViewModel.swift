@@ -58,8 +58,8 @@ class CheckoutViewModel{
   }
 
   func getDefaultAddress(){
-    networkManager.setURL(URLCreator().getAddressURL(customerId: "6947695657252"))
-    print(URLCreator().getAddressURL(customerId: "6947695657252"))
+    networkManager.setURL(URLCreator().getAddressURL())
+    print(URLCreator().getAddressURL())
     networkManager.fetchData{[weak self] (result: Addresses?) in
       print("oueungejn")
       print(result)

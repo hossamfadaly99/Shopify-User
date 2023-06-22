@@ -85,7 +85,7 @@ class CartItemCell: UITableViewCell {
 
     titleLabel.text = item.name?.components(separatedBy: "-").first
     priceLabel.text = String(format: "%.2f \(currencySymbol)", currencyValue * price * Double(item.quantity ?? 1))
-//    priceLabel.text = "$\(price * Double(item.quantity ?? 1))"
+
     counterLabel.text = "\(counter)"
     photoImage.kf.setImage(with: URL(string: item.properties?.first?.value ?? "product_placeholder"))
     manageQuantity()
@@ -118,22 +118,14 @@ class CartItemCell: UITableViewCell {
     print(counter)
     print(minQuantity)
     if counter == minQuantity{
-//      print("btn - off")
-//      minusBtn.isEnabled = false
       let imggg = UIImage(systemName: "trash")?.withTintColor(.red, renderingMode: .alwaysOriginal)
       minusBtn.setImage(imggg!.withConfiguration(UIImage.SymbolConfiguration(scale: .medium)) , for: .normal)
       isLastItem = true
-//      minusBtn.tintColor = .red
-//      minusBtn.tintColor = .red
-//      minusBtn.setImageTintColor(.red)
-//      print("btn - off")
     } else {
-//      minusBtn.isEnabled = true
+
       let imggg = UIImage(systemName: "minus")?.withTintColor(UIColor(named: "gray_9B")!)
       minusBtn.setImage(imggg!.withConfiguration(UIImage.SymbolConfiguration(scale: .medium)) , for: .normal)
       isLastItem = false
-//      minusBtn.tintColor = UIColor(named: "gray_9B")
-//      minusBtn
     }
 
     if counter == maxQuantity{

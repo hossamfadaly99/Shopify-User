@@ -8,6 +8,8 @@
 import UIKit
 import DropDown
 import Reachability
+import PKHUD
+
 protocol ReloadTableViewDelegate {
     func reloadTableView()
 }
@@ -116,6 +118,7 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
                     indicator.stopAnimating()
                     self?.setupSlider()
                     self?.tableView.reloadData()
+                  HUD.hide(animated: true)
                 }
             }
             viewModel?.getItems()

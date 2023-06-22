@@ -55,15 +55,15 @@ class URLCreator {
         return baseURL + endPoint + jsontype + "?vendor=" + brandName
     }
     
-    func getAddressURL(customerId: String, addressId: String = "") -> String{
+    func getAddressURL( addressId: String = "") -> String{
         endPoint = "customers/\(storedCustomerId)/addresses"
         return baseURL + endPoint + jsontype
     }
-  func getEditOrDeleteAddressURL(customerId: String, addressId: String = "") -> String{
+  func getEditOrDeleteAddressURL( addressId: String = "") -> String{
       endPoint = "customers/\(storedCustomerId)/addresses"
       return baseURL + endPoint + "/\(addressId)" + jsontype
   }
-  func setDefaultAddressURL(customerId: String, addressId: String = "") -> String{
+  func setDefaultAddressURL( addressId: String = "") -> String{
       endPoint = "customers/\(storedCustomerId)/addresses"
       return baseURL + endPoint + "/\(addressId)" + "/default" + jsontype
   }

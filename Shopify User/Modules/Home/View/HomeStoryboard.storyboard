@@ -39,7 +39,7 @@
                                     <barButtonItem image="cart.fill" catalog="system" id="VMB-Kh-TMP">
                                         <color key="tintColor" name="main_green"/>
                                         <connections>
-                                            <segue destination="xEn-bf-cXU" kind="show" id="Qy8-gZ-cx5"/>
+                                            <segue destination="xEn-bf-cXU" kind="show" identifier="cartSegueIdentifier" id="Qy8-gZ-cx5"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem image="heart.fill" catalog="system" id="65e-bY-RUs">
@@ -158,7 +158,7 @@
                                     <barButtonItem image="cart.fill" catalog="system" id="fbI-Ao-Zfv">
                                         <color key="tintColor" name="main_green"/>
                                         <connections>
-                                            <segue destination="xEn-bf-cXU" kind="show" id="0MB-vi-Sxw"/>
+                                            <segue destination="xEn-bf-cXU" kind="show" identifier="cartSegueIdentifier" id="0MB-vi-Sxw"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem image="heart.fill" catalog="system" id="l2Q-4i-niy">
@@ -516,11 +516,11 @@
         <!--CartStoryboard-->
         <scene sceneID="CDy-VB-AE8">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wE0-yd-kC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewControllerPlaceholder storyboardName="CartStoryboard" id="xEn-bf-cXU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="n8h-sF-MO1"/>
                     <navigationItem key="navigationItem" id="uy1-eb-dlM"/>
                 </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wE0-yd-kC9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2488" y="365"/>
         </scene>

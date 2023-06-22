@@ -10,6 +10,7 @@ import RxSwift
 import RxRelay
 import RxCocoa
 import Cosmos
+import PKHUD
 
 class ProductDetails_VC: UIViewController {
     @IBOutlet weak var myCollectionView: UICollectionView!
@@ -22,7 +23,8 @@ class ProductDetails_VC: UIViewController {
     @IBOutlet weak var labeldes: UILabel!
     @IBOutlet weak var popUpBtn: UIButton!
     
-    var favTableViewController : ReloadTableViewDelegate?
+  @IBOutlet weak var addToCartBtn: UIButton!
+  var favTableViewController : ReloadTableViewDelegate?
     
     var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
     var ID_Product_VC : Int!
@@ -38,6 +40,8 @@ class ProductDetails_VC: UIViewController {
   
     override func viewDidLoad() {
         super.viewDidLoad()
+      HUD.show(.progress)
+      self.changeAddToCartBtn(isExist: false)
         let reviews = Reviews()
         self.reviewsList = reviews.getReviews(numberOfReviews: 3)
         reviewsTable.register(UINib(nibName: "reviewCell", bundle: nil), forCellReuseIdentifier: "reviewCell")
@@ -56,35 +60,28 @@ class ProductDetails_VC: UIViewController {
             self.pageController.numberOfPages = self.photosArray?.count ?? 0
             self.startTimer()
             self.productName.text = self.product_VC.title
-          var afterCurrency = String(format: "%.2f \(currencySymbol)", (Double(self.product_VC.variants?[0].price ?? "0.0") ?? 0.0) * currencyValue)
+          let afterCurrency = String(format: "%.2f \(currencySymbol)", (Double(self.product_VC.variants?[0].price ?? "0.0") ?? 0.0) * currencyValue)
           self.productPrice.text = afterCurrency //"\(Double(self.product_VC.variants?[0].price ?? "0.0") ?? 0.0 * currencyValue) \(currencySymbol)"
           print("liwurhgiuohlitg")
           print(currencyValue)
             self.labeldes.text = self.product_VC.description
             self.myCollectionView.reloadData()
             self.colorHeart()
+          HUD.hide(animated: true)
         }
         let pid = String(ID_Product_VC)
         viewModel.getProductData(url:URLCreator().getProductURL(id: pid) )
-//      cartViewModel.loadCartItems()
 
       cartViewModel.bindDataToView = {
-//        print("mlutgiuv5hiubtrhu22")
-//        var arr: [Line_items] = (self.cartViewModel.cartArray)
-//        //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
-//        if arr.count > 0{
-//          print("mlutgiuv5hiubtrhu22")
-////          (self.cartViewModel.cartUpdated.draft_order?.line_items)!.filter{ $0.variant_id == 123456789 }
-//          for (index, element) in arr.enumerated() {
-//            if element.variant_id == 123456789{
-//              self.cartViewModel.indexx = index
-//              self.cartViewModel.cartUpdated.draft_order?.line_items?[index].quantity! += 1
-//            }
-//          }
-//        } else {
-//
-//        }
-//        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+        HUD.hide(animated: true)
+        let arr: [Line_items] = self.cartViewModel.cartArray
+        for (index, element) in arr.enumerated() {
+          if element.variant_id == self.viewModel.myproduct.variants?.first?.id {
+            self.changeAddToCartBtn(isExist: true)
+            return
+          }
+        }
+        self.changeAddToCartBtn(isExist: false)
       }
     }
     
@@ -134,42 +131,45 @@ class ProductDetails_VC: UIViewController {
     }
     
     @IBAction func addToCart(_ sender: Any) {
-      print("mlutgiuv5hiubtrhu")
-      print(customer_id)
-      print(cartId)
-      print(favvvId)
-      var arr: [Line_items] = (self.cartViewModel.cartArray)
-      //cartViewModel.cartUpdated.daraftOrder?.line_Items = arr
-      if arr.count > 0 //!(arr.count == 1 && arr.first?.title == "empty product" )
-      { //!(1 & empty product)
-        print("mlutgiuv5hiubtrhu22")
-//          (self.cartViewModel.cartUpdated.draft_order?.line_items)!.filter{ $0.variant_id == 123456789 }
+//      HUD.show(.progress)
+      let arr: [Line_items] = self.cartViewModel.cartArray
+
+      if !(arr.count == 1 && arr.first?.title == "dummy for fav" ) {
+
         for (index, element) in arr.enumerated() {
-          print("ketgbrjtkg elemnt: \(index)")
-          print(element)
           if element.variant_id == viewModel.myproduct.variants?.first?.id {
-            print("found variant id")
+
             self.cartViewModel.indexx = index
-            self.cartViewModel.cartUpdated.draft_order?.line_items?[index].quantity! += 1
-            print("ketgbrjtkg line items")
-//            print(self.cartViewModel.cartUpdated.draft_order?.line_items)
-            self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+
+            if self.cartViewModel.cartUpdated.draft_order?.line_items?.count == 0 {
+              self.cartViewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy for fav", quantity: 1, price: "0")]
+            }
+            let alert = UIAlertController(title: nil, message: "Are you sure you want to delete this item from the cart?", preferredStyle: .alert)
+            let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
+              HUD.show(.progress)
+              self.cartViewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
+              self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+
+            })
+            let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+            alert.addAction(yesAction)
+            alert.addAction(noAction)
+            self.present(alert, animated: true, completion: nil)
             return
           }
         }
 
         let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
-        print("lsrthvuilrhbjkntrlhuigigiithy")
-        print(self.cartViewModel.cartUpdated.draft_order?.line_items)
         self.cartViewModel.cartUpdated.draft_order?.line_items?.append(newItem)
-        print(self.cartViewModel.cartUpdated.draft_order?.line_items)
+        HUD.show(.progress)
         self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+
       } else {
         let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
         self.cartViewModel.cartUpdated.draft_order?.line_items = [newItem]
+        HUD.show(.progress)
         self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
       }
-//      self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
     }
     
     
@@ -266,4 +266,20 @@ extension ProductDetails_VC  {
         super.viewWillDisappear(animated)
         favTableViewController?.reloadTableView()
     }
+}
+
+extension ProductDetails_VC {
+  func changeAddToCartBtn(isExist: Bool) {
+    if isExist {
+      self.addToCartBtn.setTitle("Remove from Cart", for: .normal)
+      self.addToCartBtn.tintColor = .red
+      let imggg = UIImage(systemName: "trash")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+      self.addToCartBtn.setImage(imggg!.withConfiguration(UIImage.SymbolConfiguration(scale: .medium)).withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -8)) , for: .normal)
+    } else {
+      self.addToCartBtn.setTitle("Add to Cart", for: .normal)
+      self.addToCartBtn.tintColor = UIColor(named: "main_green")
+      let imggg = UIImage(systemName: "cart.badge.plus")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+      self.addToCartBtn.setImage(imggg!.withConfiguration(UIImage.SymbolConfiguration(scale: .medium)).withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -8)) , for: .normal)
+    }
+  }
 }

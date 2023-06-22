@@ -29,7 +29,7 @@
                                     <barButtonItem title="Item" image="cart.fill" catalog="system" id="JI2-xj-Wpg">
                                         <color key="tintColor" name="main_green"/>
                                         <connections>
-                                            <segue destination="HxS-H2-SKQ" kind="show" id="Z9a-gL-fib"/>
+                                            <segue destination="HxS-H2-SKQ" kind="show" identifier="cartSegueIdentifier" id="Z9a-gL-fib"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="3az-wv-e4F">

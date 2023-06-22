@@ -20,7 +20,7 @@ class AddressViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
       self.navigationController?.navigationBar.isHidden = true
-    viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL(customerId: "6947695657252")))
+    viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL()))
 
     viewModel.changeAddressUI = {
       self.tableview.reloadData()
