@@ -29,7 +29,7 @@
                                         <color key="tintColor" name="main_green"/>
                                         <connections>
                                             <action selector="NavigateToCart:" destination="Y6W-OH-hqX" id="J0f-ls-Oud"/>
-                                            <segue destination="HxS-H2-SKQ" kind="show" id="Z9a-gL-fib"/>
+                                            <segue destination="HxS-H2-SKQ" kind="show" identifier="cartSegueIdentifier" id="Z9a-gL-fib"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" image="gearshape.fill" catalog="system" id="3az-wv-e4F">

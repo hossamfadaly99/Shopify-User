@@ -163,7 +163,7 @@ extension CartViewController: UITableViewDataSource{
       if self.viewModel.cartUpdated.draft_order?.line_items?.count ?? 1 > 1{
         self.viewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
       } else {
-        self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy for fav", quantity: 1, price: "0")]
+        self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy", quantity: 1, price: "0")]
       }
     //  print(self.viewModel.cartUpdated)
       self.viewModel.updateCartItem(cartItem: self.viewModel.cartUpdated)
@@ -180,8 +180,8 @@ extension CartViewController: UITableViewDataSource{
 
 extension CartViewController: EmptyCartProtocol{
   func makeCartEmpty(){
-    print("kjhbsrkjbhrtj")
-    self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy for fav", quantity: 1, price: "0")]
+   // print("kjhbsrkjbhrtj")
+    self.viewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy", quantity: 1, price: "0")]
     self.viewModel.updateCartItem(cartItem: viewModel.cartUpdated)
   }
 }

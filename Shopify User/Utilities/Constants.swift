@@ -114,14 +114,14 @@ var currencySymbol: String {
   return UserDefaults.standard.string(forKey: Constants.CURRENCY_KEY) ?? "USD"
 }
 var cartId: Int {
-  return Int(UserDefaults.standard.string(forKey: Constants.USER_CART)!) ?? 0
+  return Int(UserDefaults.standard.string(forKey: Constants.USER_CART) ?? "") ?? 0
 }
 var favvvId: Int {
-  return Int(UserDefaults.standard.string(forKey: Constants.USER_WISHLIST)!) ?? 0
+  return Int(UserDefaults.standard.string(forKey: Constants.USER_WISHLIST) ?? "") ?? 0
 }
 
 var storedCustomerId: Int {
-  return Int(UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)!) ?? 0
+  return Int(UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) ?? "" ) ?? 0
 }
 
 var currencyValue: Double {

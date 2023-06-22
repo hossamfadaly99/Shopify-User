@@ -301,16 +301,17 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
 }
 
 extension CategoryViewController {
-  override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-      if identifier == "cartSegueIdentifier" {
-          // Check if the condition is met
-          if false {
-              // Don't perform the segue
-            print("show alert hereee ya nada")
-              return false
-          }
-      }
-      // Perform the segue
-      return true
-  }
+    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
+        if identifier == "cartSegueIdentifier" {
+            // Check if the condition is met
+            guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return false}
+            if(state == Constants.USER_STATE_GUEST){
+                AlertCreator.SignUpAlert(viewController: self)
+                return false
+            } else {
+                return true
+            }
+        }
+        return true
+    }
 }

@@ -166,47 +166,50 @@ class ProductDetails_VC: UIViewController {
     }
     
     @IBAction func addToCart(_ sender: Any) {
-//      HUD.show(.progress)
-      let arr: [Line_items] = self.cartViewModel.cartArray
-
-      if !(arr.count == 1 && arr.first?.title == "dummy for fav" ) {
-
-        for (index, element) in arr.enumerated() {
-          if element.variant_id == viewModel.myproduct.variants?.first?.id {
-
-            self.cartViewModel.indexx = index
-
-            if self.cartViewModel.cartUpdated.draft_order?.line_items?.count == 0 {
-              self.cartViewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy for fav", quantity: 1, price: "0")]
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            AlertCreator.SignUpAlert(viewController: self)
+        } else {
+            let arr: [Line_items] = self.cartViewModel.cartArray
+            
+            if !(arr.count == 1 && arr.first?.title == "dummy" ) {
+                
+                for (index, element) in arr.enumerated() {
+                    if element.variant_id == viewModel.myproduct.variants?.first?.id {
+                        
+                        self.cartViewModel.indexx = index
+                        
+                        if self.cartViewModel.cartUpdated.draft_order?.line_items?.count == 0 {
+                            self.cartViewModel.cartUpdated.draft_order?.line_items = [Line_items( title: "dummy", quantity: 1, price: "0")]
+                        }
+                        let alert = UIAlertController(title: nil, message: "Are you sure you want to delete this item from the cart?", preferredStyle: .alert)
+                        let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                            HUD.show(.progress)
+                            self.cartViewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
+                            self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+                            
+                        })
+                        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+                        alert.addAction(yesAction)
+                        alert.addAction(noAction)
+                        self.present(alert, animated: true, completion: nil)
+                        return
+                    }
+                }
+                
+                let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
+                self.cartViewModel.cartUpdated.draft_order?.line_items?.append(newItem)
+                HUD.show(.progress)
+                self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
+                
+            } else {
+                let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
+                self.cartViewModel.cartUpdated.draft_order?.line_items = [newItem]
+                HUD.show(.progress)
+                self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
             }
-            let alert = UIAlertController(title: nil, message: "Are you sure you want to delete this item from the cart?", preferredStyle: .alert)
-            let yesAction = UIAlertAction(title: "Yes", style: .default, handler: { _ in
-              HUD.show(.progress)
-              self.cartViewModel.cartUpdated.draft_order?.line_items?.remove(at: index)
-              self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
-
-            })
-            let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
-            alert.addAction(yesAction)
-            alert.addAction(noAction)
-            self.present(alert, animated: true, completion: nil)
-            return
-          }
         }
-
-        let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
-        self.cartViewModel.cartUpdated.draft_order?.line_items?.append(newItem)
-        HUD.show(.progress)
-        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
-
-      } else {
-        let newItem: Line_items = Line_items(variant_id: viewModel.myproduct.variants?.first?.id, quantity: 1, properties: [Properties(name: "img_url", value: self.photosArray?.first?.src)])
-        self.cartViewModel.cartUpdated.draft_order?.line_items = [newItem]
-        HUD.show(.progress)
-        self.cartViewModel.updateCartItem(cartItem: self.cartViewModel.cartUpdated)
-      }
     }
-    
 }
 
 extension ProductDetails_VC:UITableViewDelegate,UITableViewDataSource{

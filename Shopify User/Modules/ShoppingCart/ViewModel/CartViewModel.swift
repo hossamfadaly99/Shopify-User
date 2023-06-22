@@ -59,7 +59,7 @@ class CartViewModel{
 
         print(self?.craftId ?? -1)
         print("kejbfbejhfbrhjebhj")
-        if items.count == 1 && items.first?.title == "dummy for fav" {
+        if items.count == 1 && items.first?.title == "dummy" {
           print("a")
           print(items.count)
           print(items.first?.title)
@@ -100,7 +100,7 @@ class CartViewModel{
 //      print(object)
       print(result)
         let items = result!.draft_order!.line_items!
-      if items.count == 1 && items.first?.title == "dummy for fav" {
+      if items.count == 1 && items.first?.title == "dummy" {
         print("a")
         print(items.count)
         print(items.first?.title)

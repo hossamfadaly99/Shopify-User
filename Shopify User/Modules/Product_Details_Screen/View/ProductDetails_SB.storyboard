@@ -280,6 +280,7 @@
                     </view>
                     <size key="freeformSize" width="393" height="852"/>
                     <connections>
+                        <outlet property="addToCartBtn" destination="iaL-fr-Wx2" id="0lk-ab-PDO"/>
                         <outlet property="cosmosView" destination="cgs-kE-Mns" id="ipc-B5-C4E"/>
                         <outlet property="favBtn" destination="Jcs-rW-RWL" id="FfI-JC-UmI"/>
                         <outlet property="labeldes" destination="O0J-kZ-ZWg" id="Nf7-5p-NJo"/>
