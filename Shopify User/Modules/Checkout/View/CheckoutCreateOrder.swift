@@ -41,6 +41,8 @@ extension CheckoutViewController{
         self.viewModel?.orderRequest.order?.customer = customer
         self.viewModel?.orderRequest.order?.shippingAddress = address
         self.viewModel?.orderRequest.order?.financialStatus = "paid"
+      self.viewModel?.orderRequest.order?.shipping_lines = [ShippingLine(code: "INT.TP", price: "10", title: "Small Packet International Air")]
+
 //        self.viewModel?.orderRequest.order?.discountCodes = discountCodes
 //      var code = UserDefaults.standard.string(forKey: Constants.COUPON_NAME_OBJECT)
 //      var code = UserDefaults.standard.string(forKey: Constants.COUPON_NAME_OBJECT)

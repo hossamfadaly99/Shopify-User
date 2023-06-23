@@ -52,7 +52,8 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
         let cell = tableView.dequeueReusableCell(withIdentifier: "order", for: indexPath) as! OrderCustomCell
         cell.orderIdLabel.text = "\(ordersList[indexPath.row].id ?? 0)"
         cell.orderDateLabel.text = ordersList[indexPath.row].createdAt
-        cell.orderTotalPriceLabel.text = ordersList[indexPath.row].currentTotalPrice
+      var afterCurrency = String(format: "%.2f \(currencySymbol)", ((Double(ordersList[indexPath.row].currentTotalPrice ?? "0.0") ?? 0.0) + 10.0) * currencyValue)
+      cell.orderTotalPriceLabel.text = afterCurrency
         
         cell.contentView.frame = cell.orderIdLabel.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
         cell.contentView.layer.borderWidth = 2
