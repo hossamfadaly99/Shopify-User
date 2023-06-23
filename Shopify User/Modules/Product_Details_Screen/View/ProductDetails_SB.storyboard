@@ -231,17 +231,29 @@
                                                     <constraint firstItem="d1d-Af-WrR" firstAttribute="leading" secondItem="wBU-0B-dgl" secondAttribute="leading" constant="16" id="vwd-PT-aQY"/>
                                                 </constraints>
                                             </view>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vO0-Ee-bTc">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5ag-cu-qHd">
                                                 <rect key="frame" x="0.0" y="552" width="393" height="250"/>
+                                                <subviews>
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="vO0-Ee-bTc">
+                                                        <rect key="frame" x="16" y="0.0" width="361" height="250"/>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="250" id="bQq-K4-Q1h"/>
+                                                        </constraints>
+                                                        <connections>
+                                                            <outlet property="dataSource" destination="Y6W-OH-hqX" id="aej-yY-P6k"/>
+                                                            <outlet property="delegate" destination="Y6W-OH-hqX" id="hqc-lx-DPU"/>
+                                                        </connections>
+                                                    </tableView>
+                                                </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="250" id="bQq-K4-Q1h"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vO0-Ee-bTc" secondAttribute="trailing" constant="16" id="7lB-dS-3PA"/>
+                                                    <constraint firstItem="vO0-Ee-bTc" firstAttribute="top" secondItem="5ag-cu-qHd" secondAttribute="top" id="BMn-pM-jfH"/>
+                                                    <constraint firstAttribute="bottom" secondItem="vO0-Ee-bTc" secondAttribute="bottom" id="lTN-RR-9Ag"/>
+                                                    <constraint firstItem="vO0-Ee-bTc" firstAttribute="leading" secondItem="5ag-cu-qHd" secondAttribute="leading" constant="16" id="wAy-GF-1BX"/>
                                                 </constraints>
-                                                <connections>
-                                                    <outlet property="dataSource" destination="Y6W-OH-hqX" id="aej-yY-P6k"/>
-                                                    <outlet property="delegate" destination="Y6W-OH-hqX" id="hqc-lx-DPU"/>
-                                                </connections>
-                                            </tableView>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kuH-Eb-iw1">
                                                 <rect key="frame" x="0.0" y="814" width="393" height="64"/>
                                                 <subviews>
@@ -280,10 +292,8 @@
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="vO0-Ee-bTc" firstAttribute="leading" secondItem="sHg-Hj-36Z" secondAttribute="leading" id="YHp-nc-VfO"/>
                                             <constraint firstAttribute="trailing" secondItem="lL9-vS-5Ec" secondAttribute="trailing" id="ZPN-RJ-QEa"/>
                                             <constraint firstItem="lL9-vS-5Ec" firstAttribute="leading" secondItem="sHg-Hj-36Z" secondAttribute="leading" id="cDO-Zu-jOH"/>
-                                            <constraint firstAttribute="trailing" secondItem="vO0-Ee-bTc" secondAttribute="trailing" id="fEp-i4-EL4"/>
                                             <constraint firstItem="lL9-vS-5Ec" firstAttribute="top" secondItem="sHg-Hj-36Z" secondAttribute="top" id="wMd-Qi-avr"/>
                                         </constraints>
                                     </stackView>

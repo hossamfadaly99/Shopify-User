@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFJ-bd-Hpm">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="QFJ-bd-Hpm">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -225,7 +226,7 @@
                             <constraint firstItem="sCN-SS-sxq" firstAttribute="top" secondItem="Av3-3R-X0L" secondAttribute="bottom" constant="4" id="zhq-68-780"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Category" image="list.bullet.clipboard" catalog="system" id="XRD-01-lx0"/>
+                    <tabBarItem key="tabBarItem" title="Category" image="list.bullet" catalog="system" id="XRD-01-lx0"/>
                     <connections>
                         <outlet property="categorySegment" destination="sCN-SS-sxq" id="bKm-x6-8a5"/>
                         <outlet property="noItemFoundImg" destination="cT2-8D-qQG" id="5Hk-QM-yKt"/>
@@ -567,7 +568,7 @@
         <image name="heart.fill" catalog="system" width="128" height="107"/>
         <image name="homekit" catalog="system" width="128" height="104"/>
         <image name="line.3.horizontal.decrease.circle" catalog="system" width="128" height="123"/>
-        <image name="list.bullet.clipboard" catalog="system" width="103" height="128"/>
+        <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="noItemFound" width="276" height="182"/>
         <namedColor name="main_green">
