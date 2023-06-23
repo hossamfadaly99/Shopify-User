@@ -154,6 +154,7 @@
 		9F2821312A459AEA0098D2CF /* CouponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F28212F2A459AEA0098D2CF /* CouponCell.swift */; };
 		9F2821322A459AEA0098D2CF /* CouponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9F2821302A459AEA0098D2CF /* CouponCell.xib */; };
 		9F2821342A45F91F0098D2CF /* SavedCoupon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2821332A45F91F0098D2CF /* SavedCoupon.swift */; };
+		9F2821382A4609290098D2CF /* SnackBar in Frameworks */ = {isa = PBXBuildFile; productRef = 9F2821372A4609290098D2CF /* SnackBar */; };
 		9F38573E2A3E676D00ED3012 /* AddressDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F38573D2A3E676D00ED3012 /* AddressDetailsViewController.swift */; };
 		9F3F116D2A31E2680032BEE2 /* UrlCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F116C2A31E2680032BEE2 /* UrlCreator.swift */; };
 		9F3F116F2A31EA970032BEE2 /* InternetConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F3F116E2A31EA970032BEE2 /* InternetConnectivity.swift */; };
@@ -1005,6 +1006,7 @@
 				047655A02A3A85B4005115D5 /* GoogleSignIn in Frameworks */,
 				047655A22A3A85B4005115D5 /* GoogleSignInSwift in Frameworks */,
 				DAA38C0A063795D348428E6E /* Pods_Shopify_User.framework in Frameworks */,
+				9F2821382A4609290098D2CF /* SnackBar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2458,6 +2460,7 @@
 				042B10562A3A7685004793D3 /* FirebaseAnalyticsSwift */,
 				0476559F2A3A85B4005115D5 /* GoogleSignIn */,
 				047655A12A3A85B4005115D5 /* GoogleSignInSwift */,
+				9F2821372A4609290098D2CF /* SnackBar */,
 			);
 			productName = "Shopify User";
 			productReference = 9F598C862A27C58100C36A93 /* Shopify User.app */;
@@ -2568,6 +2571,7 @@
 			packageReferences = (
 				042B104E2A3A7258004793D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				0476559E2A3A85B3005115D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				9F2821362A4609290098D2CF /* XCRemoteSwiftPackageReference "SnackBar" */,
 			);
 			productRefGroup = 9F598C872A27C58100C36A93 /* Products */;
 			projectDirPath = "";
@@ -3212,6 +3216,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		9F2821362A4609290098D2CF /* XCRemoteSwiftPackageReference "SnackBar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ahmedAlmasri/SnackBar.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.2;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3379,6 +3391,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0476559E2A3A85B3005115D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		9F2821372A4609290098D2CF /* SnackBar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9F2821362A4609290098D2CF /* XCRemoteSwiftPackageReference "SnackBar" */;
+			productName = SnackBar;
 		};
 /* End XCSwiftPackageProductDependency section */
 

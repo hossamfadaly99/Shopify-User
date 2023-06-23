@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnackBar
 
 class CouponViewController: UIViewController {
 
@@ -28,6 +29,9 @@ class CouponViewController: UIViewController {
 
     }
     
+  @IBAction func backBtnClick(_ sender: Any) {
+    self.navigationController?.popViewController(animated: true)
+  }
 
     /*
     // MARK: - Navigation
@@ -47,9 +51,6 @@ extension CouponViewController: UITableViewDelegate {
 
 extension CouponViewController: UITableViewDataSource {
 
-//  func numberOfSections(in tableView: UITableView) -> Int {
-//    1
-//  }
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     self.viewModel.savedCoupons.count
@@ -58,6 +59,9 @@ extension CouponViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "CouponCell") as! CouponCell
     cell.setupUI(viewModel.savedCoupons[indexPath.row])
+    cell.showSnackbar =  {
+      SnackBar.make(in: self.view, message: "Coupon Copied", duration: .lengthShort).show()
+    }
     return cell
   }
 
@@ -65,5 +69,8 @@ extension CouponViewController: UITableViewDataSource {
     82
   }
 
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
 
 }

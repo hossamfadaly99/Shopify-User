@@ -45,11 +45,19 @@ class CouponViewModel {
 //          print(result?.discountCodes)
           for i in result?.discountCodes ?? [] {
 //            print(i.code)
-            self?.savedCoupons.append(SavedCoupon(code: i.code, value: priceRule.value, type: priceRule.valueType))
+            self?.savedCoupons.append(SavedCoupon(code: i.code ?? "", value: priceRule.value ?? "", type: priceRule.valueType ?? ""))
           }
 //          print(self?.savedCoupons)
           print("-----------------123")
 //          UserDefaults.standard.setValue(self?.savedCoupons, forKey: Constants.COUPON_OBJECT)
+          // Convert the array to a data object
+          do {
+            let data = try NSKeyedArchiver.archivedData(withRootObject: self?.savedCoupons, requiringSecureCoding: false)
+            UserDefaults.standard.set(data, forKey: Constants.COUPON_OBJECT)
+          }
+          catch {
+            print("errrror in user default")
+          }
 //            UserDefaults.standard.setValue(initCouponsList.first?.first?.code, forKey: Constants.COUPON_NAME_OBJECT)
             self?.isCouponRetrieved.toggle()
         }
