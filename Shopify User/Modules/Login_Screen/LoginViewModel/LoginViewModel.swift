@@ -9,13 +9,15 @@ import Foundation
 import RxSwift
 import RxCocoa
 import RxRelay
-
+import FirebaseAuth
 protocol ViewModelDelegate:AnyObject {
     func didLoginSuccessfully()
     func loginFailed()
+    func userNotVerified(user : User)
 }
 
 class LoginViewModel{
+    var customer = Customer()
     var bindCoreData: ()->() = {}
     var dataManager : DataManagerProtocol
     var networkManager: NetworkServiceProtocol
@@ -80,17 +82,17 @@ class LoginViewModel{
             if let items = result?.draft_order?.line_items{
               if items.count == 1 && items.first?.title == "dummy" {
                // print("items a")
-                print(items.count)
-                  print(items.first?.title)
+               // print(items.count)
+               //   print(items.first?.title)
                 self?.isEmptyList = true
                   self?.wishListArray = result?.draft_order ?? Draft_orders()
               }else {
-                print("items b")
-                print(items.count)
-                  print(items.first?.title)
+             //   print("items b")
+             //   print(items.count)
+             //     print(items.first?.title)
                 self?.isEmptyList = false
                   self?.wishListArray = result?.draft_order ?? Draft_orders()
-                  print("hjjjjjjjjjjjj\(items)")
+              //    print("hjjjjjjjjjjjj\(items)")
               }
             }
           })
@@ -101,7 +103,7 @@ class LoginViewModel{
         bindCoreData = { [weak self] in
             var myDraft = self?.wishListArray
             var arr = myDraft?.line_items
-            print("Count API Data : \(arr?.count)")
+         //   print("Count API Data : \(arr?.count)")
             let productsCD = Constants().mapLineItemsToProductCD(lineitems: arr ?? [])
             let coreData = self?.dataManager.insertFavProducts(products: productsCD, productRate: 3)
             
@@ -109,10 +111,10 @@ class LoginViewModel{
     }
     func updateWishList (wishListItem: Draft_orders){
         guard let wishlist_id = UserDefaults.standard.string(forKey: Constants.USER_WISHLIST) else {return}
-        print("Updated wishList ID:\(wishlist_id) ")
+       // print("Updated wishList ID:\(wishlist_id) ")
         networkManager.setURL(URLCreator().getEditCartURL(id: String(describing: wishlist_id)))
         networkManager.editItem(item: wishListItem, endPoint: "") { res in
-            print ("result \(res)")
+       //     print ("result \(res)")
         }
     }
     
@@ -143,6 +145,29 @@ class LoginViewModel{
         }
     }
     
+//    func checkIfUserVerfied() -> Bool{
+//        var isVerified = false
+//
+//        if let user = Auth.auth().currentUser {
+//            // User is signed in
+//            // Check if the user's email is verified
+//            if user.isEmailVerified {
+//                // User's email is verified
+//                print("User's email is verified")
+//                isVerified = true
+//            } else {
+//                // User's email is not verified
+//                print("User's email is not verified")
+//                isVerified = false
+//            }
+//        } else {
+//            // No user is signed in
+//            print("No user is signed in")
+//        }
+//       // self.firebaseGroup.leave()
+//        return isVerified
+//    }
+    
     func login() {
         getcustomers()
         var isExist = false
@@ -159,18 +184,86 @@ class LoginViewModel{
                 }
             }
             if(isExist){
-                setUserDefaults(customer: model)
-                seperate(complexSrt: model.note ?? "")
-                print("login done")
-                print("Model : \(model)")
-                setCDFromAPI()
-                self.delegate?.didLoginSuccessfully()
+                Auth.auth().signIn(withEmail: model.email ?? "", password: model.tags ?? "") { authResult, error in
+                    if let error = error {
+                        // Handle the sign-in error
+                        print("Error signing in: \(error.localizedDescription)")
+                        return
+                    }
+                    if let user = Auth.auth().currentUser {
+                        // User is signed in
+                        // Check if the user's email is verified
+                        if user.isEmailVerified {
+                            // User's email is verified
+                            print("User's email is verified")
+                            self.setUserDefaults(customer: model)
+                            self.seperate(complexSrt: model.note ?? "")
+                            print("login done")
+                            print("Model : \(model)")
+                            self.setCDFromAPI()
+                            self.delegate?.didLoginSuccessfully()
+                            
+                        } else {
+                            // User's email is not verified
+                            print("User's email is not verified")
+                            self.delegate?.userNotVerified(user: user)
+                        }
+                    } else {
+                        // No user is signed in
+                        print("No user is signed in")
+                    }
+                    
+                }
             } else {
                 self.delegate?.loginFailed()
                 print("not registered")
             }
         }
+        
+//        if let user = Auth.auth().currentUser {
+//            // User is signed in
+//            // Check if the user's email is verified
+//            if user.isEmailVerified {
+//                // User's email is verified
+//                print("User's email is verified")
+//            } else {
+//                // User's email is not verified
+//                print("User's email is not verified")
+//            }
+//        } else {
+//            // No user is signed in
+//            print("No user is signed in")
+//        }
     }
+    
+//    func LoginHandlying(){
+//        getcustomers()
+//        var isExist = false
+//        var model = Customer()
+//        model.email = self.email.value
+//        model.tags = self.password.value
+//        bindDataToView =
+//        { [self] mycustomers in
+//            for customer in mycustomers {
+//                if (model.email == customer.email) && (model.tags == customer.tags){
+//                    model = customer
+//                    isExist = true
+//                    break
+//                }
+//            }
+//            if(isExist){
+//                setUserDefaults(customer: model)
+//                seperate(complexSrt: model.note ?? "")
+//                print("login done")
+//                print("Model : \(model)")
+//                setCDFromAPI()
+//                self.delegate?.didLoginSuccessfully()
+//            } else {
+//                self.delegate?.loginFailed()
+//                print("not registered")
+//            }
+//        }
+//    }
     
     func seperate(complexSrt:String){
         let array = complexSrt.components(separatedBy: ",")
