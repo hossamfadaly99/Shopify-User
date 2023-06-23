@@ -309,7 +309,8 @@ extension ProductDetails_VC {
   func changeAddToCartBtn(isExist: Bool) {
     if isExist {
       self.addToCartBtn.setTitle("Remove from Cart", for: .normal)
-      self.addToCartBtn.tintColor = .red
+//      self.addToCartBtn.tintColor = .red
+      self.addToCartBtn.tintColor = UIColor(named: "delete_color")
       let imggg = UIImage(systemName: "trash")?.withTintColor(.white, renderingMode: .alwaysOriginal)
       self.addToCartBtn.setImage(imggg!.withConfiguration(UIImage.SymbolConfiguration(scale: .medium)).withAlignmentRectInsets(UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -8)) , for: .normal)
     } else {

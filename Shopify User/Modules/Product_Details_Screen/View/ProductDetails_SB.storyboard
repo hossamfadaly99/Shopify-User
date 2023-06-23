@@ -172,11 +172,9 @@
                                                     <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="761" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaL-fr-Wx2">
                                                         <rect key="frame" x="16" y="85" width="361" height="33"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" title="Add to Cart">
-                                                            <backgroundConfiguration key="background" cornerRadius="16">
-                                                                <color key="backgroundColor" name="main_green"/>
-                                                            </backgroundConfiguration>
-                                                            <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="15"/>
+                                                        <buttonConfiguration key="configuration" style="filled" title="Add to Cart">
+                                                            <backgroundConfiguration key="background" cornerRadius="16"/>
+                                                            <fontDescription key="titleFontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         </buttonConfiguration>
                                                         <connections>
