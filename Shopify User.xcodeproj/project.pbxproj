@@ -57,6 +57,7 @@
 		048D0E862A3F646700B8DBFE /* OrderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048D0E852A3F646700B8DBFE /* OrderViewController.swift */; };
 		0490DD212A4193D2009216CB /* WishModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490DD202A4193D2009216CB /* WishModel.swift */; };
 		0490DD232A419435009216CB /* WishLineItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0490DD222A419435009216CB /* WishLineItems.swift */; };
+		0495A7652A45C62900C95275 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0495A7642A45C62900C95275 /* FirebaseAuth */; };
 		0499FB7C2A339A09008CE298 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0499FB7B2A339A09008CE298 /* LoginViewModel.swift */; };
 		04B18D6E2A3F006100EDE265 /* Fav_Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B18D6C2A3F006100EDE265 /* Fav_Cell.swift */; };
 		04B18D6F2A3F006100EDE265 /* Fav_Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 04B18D6D2A3F006100EDE265 /* Fav_Cell.xib */; };
@@ -311,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				042B10572A3A7685004793D3 /* FirebaseAnalyticsSwift in Frameworks */,
+				0495A7652A45C62900C95275 /* FirebaseAuth in Frameworks */,
 				042B10502A3A7258004793D3 /* FirebaseAnalytics in Frameworks */,
 				047655A02A3A85B4005115D5 /* GoogleSignIn in Frameworks */,
 				047655A22A3A85B4005115D5 /* GoogleSignInSwift in Frameworks */,
@@ -1052,6 +1054,7 @@
 				042B10562A3A7685004793D3 /* FirebaseAnalyticsSwift */,
 				0476559F2A3A85B4005115D5 /* GoogleSignIn */,
 				047655A12A3A85B4005115D5 /* GoogleSignInSwift */,
+				0495A7642A45C62900C95275 /* FirebaseAuth */,
 			);
 			productName = "Shopify User";
 			productReference = 9F598C862A27C58100C36A93 /* Shopify User.app */;
@@ -1791,6 +1794,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0476559E2A3A85B3005115D5 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		0495A7642A45C62900C95275 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 042B104E2A3A7258004793D3 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 
