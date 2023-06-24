@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="167" id="KGk-i7-Jjw" customClass="OrderCustomCell" customModule="Shopify_User" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="167"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order ID:-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Snt-71-yrN">
+                        <rect key="frame" x="16" y="32" width="86.333333333333329" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <color key="textColor" name="main_green"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date:- " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PFC-Qg-EAn">
+                        <rect key="frame" x="15.999999999999996" y="77" width="58.666666666666657" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <color key="textColor" name="main_green"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price:-" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KAO-Kt-Pdx">
+                        <rect key="frame" x="16.000000000000007" y="122" width="108.66666666666669" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                        <color key="textColor" name="main_green"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qkg-dh-2Wu">
+                        <rect key="frame" x="146" y="77" width="158" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oEh-7b-pqT">
+                        <rect key="frame" x="150" y="122" width="154" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="id" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FFI-bJ-GRX">
+                        <rect key="frame" x="150" y="32" width="154" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="FFI-bJ-GRX" secondAttribute="trailing" constant="16" id="5R5-Fi-cES"/>
+                    <constraint firstAttribute="bottom" secondItem="oEh-7b-pqT" secondAttribute="bottom" constant="24" id="6ta-9b-HIh"/>
+                    <constraint firstItem="PFC-Qg-EAn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="7l9-0V-Lby"/>
+                    <constraint firstItem="PFC-Qg-EAn" firstAttribute="top" secondItem="Snt-71-yrN" secondAttribute="bottom" constant="24" id="96y-4x-HLe"/>
+                    <constraint firstItem="KAO-Kt-Pdx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Bfg-n6-3f2"/>
+                    <constraint firstAttribute="trailing" secondItem="oEh-7b-pqT" secondAttribute="trailing" constant="16" id="NYR-DE-9j8"/>
+                    <constraint firstItem="Snt-71-yrN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="Rzw-V5-wMN"/>
+                    <constraint firstItem="FFI-bJ-GRX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="150" id="be1-3S-K8I"/>
+                    <constraint firstItem="qkg-dh-2Wu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="130" id="eVJ-Lq-zWG"/>
+                    <constraint firstItem="oEh-7b-pqT" firstAttribute="top" secondItem="qkg-dh-2Wu" secondAttribute="bottom" constant="24" id="fVY-mh-SnG"/>
+                    <constraint firstItem="qkg-dh-2Wu" firstAttribute="top" secondItem="FFI-bJ-GRX" secondAttribute="bottom" constant="24" id="j3a-Bv-r1Q"/>
+                    <constraint firstItem="qkg-dh-2Wu" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="l0u-lb-1bj"/>
+                    <constraint firstItem="KAO-Kt-Pdx" firstAttribute="top" secondItem="PFC-Qg-EAn" secondAttribute="bottom" constant="24" id="mfP-xA-WzU"/>
+                    <constraint firstItem="Snt-71-yrN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nKH-92-uUb"/>
+                    <constraint firstAttribute="bottom" secondItem="KAO-Kt-Pdx" secondAttribute="bottom" constant="24" id="pAg-bg-wJg"/>
+                    <constraint firstItem="oEh-7b-pqT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="150" id="qfW-wB-oE9"/>
+                    <constraint firstItem="FFI-bJ-GRX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="usf-7k-LcJ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="orderDateLabel" destination="qkg-dh-2Wu" id="D1t-3z-pTR"/>
+                <outlet property="orderIdLabel" destination="FFI-bJ-GRX" id="nNt-xd-gva"/>
+                <outlet property="orderTotalPriceLabel" destination="oEh-7b-pqT" id="IE7-Bf-eUP"/>
+            </connections>
+            <point key="canvasLocation" x="42.748091603053432" y="25.704225352112676"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="main_green">
+            <color red="0.039215686274509803" green="0.58039215686274515" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
