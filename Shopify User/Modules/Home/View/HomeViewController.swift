@@ -85,7 +85,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
             currentCellIndex = 0
         }
 //      if collectionView.bounds.contains(<#T##point: CGPoint##CGPoint#>)
-        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: false)
+        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
