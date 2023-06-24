@@ -10,7 +10,8 @@ import PKHUD
 
 class SettingsTableViewController: UITableViewController {
 
-  var sizes: [String]? = ["EGP", "USD", "EUR"]
+    @IBOutlet weak var labelState: UILabel!
+    var sizes: [String]? = ["EGP", "USD", "EUR"]
   var viewModel: SettingsViewModel!
   let defaults = UserDefaults.standard
 
@@ -29,7 +30,14 @@ class SettingsTableViewController: UITableViewController {
 
     }
 
-    
+    override func viewWillAppear(_ animated: Bool) {
+        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+        if(state == Constants.USER_STATE_GUEST){
+            labelState.text = "SignUp"
+        } else {
+            labelState.text = "LogOut"
+        }
+    }
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     print(indexPath)
     if indexPath.section == 2 && indexPath.row == 0 {
@@ -38,21 +46,30 @@ class SettingsTableViewController: UITableViewController {
   }
 
    func logout() {
-       guard let my_Customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) else {return}
-      defaults.set("", forKey: Constants.KEY_USER_FIRSTNAME)
-      defaults.set("", forKey: Constants.KEY_USER_LASTNAME)
-      defaults.set("", forKey: Constants.KEY_USER_EMAIL)
-      defaults.set(Constants.USER_STATE_LOGOUT, forKey: Constants.KEY_USER_STATE)
-      defaults.set("", forKey: Constants.KEY_USER_ID)
-      defaults.set("", forKey: Constants.USER_CART)
-      defaults.set("", forKey: Constants.USER_WISHLIST)
-      print("Loged out : \( UserDefaults.standard.string(forKey: Constants.USER_CART))")
-       viewModel.deleteAllFromDB(user_id: my_Customer_id)
-
-      let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
-      let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
-      nextViewController.modalPresentationStyle = .fullScreen
-      present(nextViewController, animated: true, completion: nil)
+       guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+       if(state == Constants.USER_STATE_GUEST){
+           let storyboard = UIStoryboard(name: "Signup_SB", bundle: nil)
+           let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SIGNUP) as! Signup_VC
+           nextViewController.modalPresentationStyle = .fullScreen
+           present(nextViewController, animated: true)
+           
+       } else {
+           guard let my_Customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) else {return}
+           defaults.set("", forKey: Constants.KEY_USER_FIRSTNAME)
+           defaults.set("", forKey: Constants.KEY_USER_LASTNAME)
+           defaults.set("", forKey: Constants.KEY_USER_EMAIL)
+           defaults.set(Constants.USER_STATE_LOGOUT, forKey: Constants.KEY_USER_STATE)
+           defaults.set("", forKey: Constants.KEY_USER_ID)
+           defaults.set("", forKey: Constants.USER_CART)
+           defaults.set("", forKey: Constants.USER_WISHLIST)
+           print("Loged out : \( UserDefaults.standard.string(forKey: Constants.USER_CART))")
+           viewModel.deleteAllFromDB(user_id: my_Customer_id)
+           
+           let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
+           let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
+           nextViewController.modalPresentationStyle = .fullScreen
+           present(nextViewController, animated: true, completion: nil)
+       }
   }
 
 }
