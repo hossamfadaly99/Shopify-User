@@ -113,8 +113,8 @@
                                 <color key="textColor" name="gray_9B"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcr-x8-WOt">
-                                <rect key="frame" x="343" y="683.66666666666663" width="34" height="21.666666666666629"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10$" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zcr-x8-WOt">
+                                <rect key="frame" x="345.66666666666669" y="683.66666666666663" width="31.333333333333314" height="21.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" name="black_22"/>
                                 <nil key="highlightedColor"/>
@@ -158,6 +158,9 @@
                                     <directionalEdgeInsets key="contentInsets" top="8" leading="8" bottom="8" trailing="8"/>
                                     <color key="baseBackgroundColor" name="black_22"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="applyCoupon:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7VY-CD-xX3"/>
+                                </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your coupon here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QiB-8O-aLy">
                                 <rect key="frame" x="16" y="570" width="316" height="34"/>
@@ -216,7 +219,9 @@
                     <connections>
                         <outlet property="addressOneLabel" destination="Z2x-9a-REG" id="G9C-xE-9vv"/>
                         <outlet property="addressTwoLabel" destination="DYv-ZT-yAJ" id="HX6-KH-ZqF"/>
+                        <outlet property="couponTF" destination="QiB-8O-aLy" id="kXv-tj-BEa"/>
                         <outlet property="deliveryAmountLabel" destination="Zcr-x8-WOt" id="v2J-6s-7QJ"/>
+                        <outlet property="discountAmountLabel" destination="WwG-5N-vNQ" id="oic-Ml-eaO"/>
                         <outlet property="orderAmountLabel" destination="r47-Zs-IGX" id="8vw-0e-HTF"/>
                         <outlet property="summaryAmountLabel" destination="Woh-vj-l44" id="F9U-Nf-b2b"/>
                     </connections>

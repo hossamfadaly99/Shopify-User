@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 class Favourite_VC: UIViewController ,ReloadTableViewDelegate{
     
@@ -26,10 +27,10 @@ class Favourite_VC: UIViewController ,ReloadTableViewDelegate{
         mytable.reloadData()
     }
     override func viewWillAppear(_ animated: Bool) {
+        mytable.reloadData()
         favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "") ?? []
         mytable.reloadData()
         hideFavouritesImage(list: favourieList ?? [], img: noItemImg)
-
      }
     
     @IBAction func backBtn(_ sender: Any) {
@@ -69,12 +70,20 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
-        //nextViewController.modalPresentationStyle = .fullScreen
-        nextViewController.ID_Product_VC = favourieList?[indexPath.row].id
-        nextViewController.favTableViewController = self
-        present(nextViewController, animated: true, completion: nil)
+        let reachability = try! Reachability()
+        if reachability.connection != .unavailable{
+            let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
+            let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
+            //nextViewController.modalPresentationStyle = .fullScreen
+            nextViewController.ID_Product_VC = favourieList?[indexPath.row].id
+            nextViewController.favTableViewController = self
+            present(nextViewController, animated: true, completion: nil)
+        }
+        else{
+            let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

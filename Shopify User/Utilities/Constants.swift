@@ -41,6 +41,7 @@ class Constants {
         static let COUPON_VALUE_OBJECT = "COUPON_VALUE_OBJECT"
         static let COUPON_VALUE_TYPE_OBJECT = "COUPON_VALUE_TYPE_OBJECT"
         static let COUPON_NAME_OBJECT = "COUPON_NAME_OBJECT"
+        static let COUPON_OBJECT = "COUPON_OBJECT"
 
         
     

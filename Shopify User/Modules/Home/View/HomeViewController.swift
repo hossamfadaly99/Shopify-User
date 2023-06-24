@@ -9,10 +9,12 @@ import UIKit
 import Kingfisher
 import Reachability
 import PKHUD
+import SnackBar
 
 class HomeViewController: UIViewController , UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     var viewModel : HomeViewModel?
+  var couponViewModel: CouponViewModel!
     var brandsList : [SmartCollection] = []
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -27,6 +29,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = true
       print("enjvkjtn")
+      couponViewModel = CouponViewModel()
       print(storedCustomerId)
       print(cartId)
       print("HHHHHHH\(UserDefaults.standard.string(forKey: Constants.USER_CART))")
@@ -81,6 +84,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         }else{
             currentCellIndex = 0
         }
+//      if collectionView.bounds.contains(<#T##point: CGPoint##CGPoint#>)
         collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: false)
     }
     
@@ -98,10 +102,17 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
           viewModel?.showCouponAlert = {
            // print("kejvbjhwrhtbvj")
             UserDefaults.standard.setValue(self.viewModel?.couponsLists.first?.first?.code, forKey: Constants.USER_COUPON)
+            UIPasteboard.general.string = self.viewModel?.couponsLists.first?.first?.code ?? ""
+            AdsSnackBar.make(in: self.view, message: "You can use coupon: \(self.viewModel?.couponsLists.first?.first?.code ?? "")", duration: .lengthLong).setAction(with: "View all", action: {
+
+              self.navigateToCoupons()
+
+
+             }).show()
             let alert : UIAlertController = UIAlertController(title: "Congratulations", message: "You can use coupon: \(self.viewModel?.couponsLists.first?.first?.code ?? "")", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
             indicator.stopAnimating()
-            self.present(alert, animated: true, completion: nil)
+//            self.present(alert, animated: true, completion: nil)
 
           }
             viewModel?.bindResultToViewController={
@@ -225,6 +236,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
       if indexPath.section == 0{
         if reachability.connection != .unavailable{
           //viewmodel make network call
+          couponViewModel.getCoupons()
           viewModel?.getCoupons()
         } else{
           let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
@@ -251,6 +263,11 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
             }
         }
     }
+  func navigateToCoupons(){
+    let sb = UIStoryboard(name: "CouponStoryboard", bundle: nil)
+    let vc = sb.instantiateViewController(withIdentifier: "CouponViewController")
+    self.navigationController?.pushViewController(vc, animated: true)
+  }
 }
 
 

@@ -25,9 +25,14 @@ extension CheckoutViewController{
 ////        address.zip = "K2P 1L4"
         
         var discountCode = DiscountCode()
-        discountCode.code = "FAKE30"
-        discountCode.amount = "9.00"
-        discountCode.type = "percentage"
+//        discountCode.code = "FAKE30"
+//        discountCode.amount = "9.00"
+//        discountCode.type = "percentage"
+
+      discountCode.code = self.appliedCoupon?.code
+      var strr = self.appliedCoupon?.value.dropFirst()
+      discountCode.amount = "\(strr ?? "")"//"\(self.discountAmountLabel.text?.dropFirst(1).dropLast(4) ?? "")"
+      discountCode.type = self.appliedCoupon?.type
         
         var discountCodes = Array<DiscountCode>()
 //        discountCodes.append(discountCode)
@@ -36,6 +41,8 @@ extension CheckoutViewController{
         self.viewModel?.orderRequest.order?.customer = customer
         self.viewModel?.orderRequest.order?.shippingAddress = address
         self.viewModel?.orderRequest.order?.financialStatus = "paid"
+      self.viewModel?.orderRequest.order?.shipping_lines = [ShippingLine(code: "INT.TP", price: "10", title: "Small Packet International Air")]
+
 //        self.viewModel?.orderRequest.order?.discountCodes = discountCodes
 //      var code = UserDefaults.standard.string(forKey: Constants.COUPON_NAME_OBJECT)
 //      var code = UserDefaults.standard.string(forKey: Constants.COUPON_NAME_OBJECT)
@@ -43,8 +50,8 @@ extension CheckoutViewController{
 //      var amount = Int(UserDefaults.standard.string(forKey: Constants.COUPON_VALUE_OBJECT) ?? "0")
 //      print(amount)
 //      discountCode.amount = "\(-1 * (amount ?? 0))"
-      discountCode.code = UserDefaults.standard.string(forKey: Constants.COUPON_NAME_OBJECT)
-      discountCode.type = UserDefaults.standard.string(forKey: Constants.COUPON_VALUE_TYPE_OBJECT)
+//      discountCode.code = UserDefaults.standard.string(forKey: Constants.COUPON_NAME_OBJECT)
+//      discountCode.type = UserDefaults.standard.string(forKey: Constants.COUPON_VALUE_TYPE_OBJECT)
       print(discountCode)
       discountCodes.append(discountCode)
         self.viewModel?.orderRequest.order?.discountCodes = [discountCode]

@@ -86,6 +86,15 @@ class ProductDetails_VC: UIViewController {
       }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(animated)
+           
+           if isBeingDismissed {
+               // Notify the presenting view controller to reload its data
+               favTableViewController?.reloadTableView()
+           }
+       }
+    
     @IBAction func addToFav(_ sender: Any) {
         guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
         if(state == Constants.USER_STATE_GUEST){
@@ -299,10 +308,6 @@ extension ProductDetails_VC  {
     cartViewModel.loadCartItems()
   }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        favTableViewController?.reloadTableView()
-    }
 }
 
 extension ProductDetails_VC {

@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import GoogleSignIn
 import Firebase
+import FirebaseAuth
 
 class Signup_VC: UIViewController {
     @IBOutlet weak var email_TF: UITextField!
@@ -176,21 +177,44 @@ class Signup_VC: UIViewController {
     }
 }
 
-extension Signup_VC:ViewModelDelegate{
-    func didLoginSuccessfully() {
+extension Signup_VC:SignUpDelegate{
+    func googleSignUpSuccessfully() {
         let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME)
         nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: true, completion: nil)
     }
     
-    func loginFailed() {
+    func signUpSuccessfully() {
+        let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as!Login_VC
+        nextViewController.modalPresentationStyle = .fullScreen
+        present(nextViewController, animated: true, completion: nil)
+    }
+    
+    func SignUpFailed() {
         print("failed to login")
         AlertCreator.showAlert(title: "Alert", message: "Register Failed. Already User Exist.", viewController: self)
     }
-
-   
+    
+//
+//    func didLoginSuccessfully() {
+//        let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
+//        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as!Login_VC
+//        //nextViewController.customer = model
+//        nextViewController.modalPresentationStyle = .fullScreen
+//        present(nextViewController, animated: true, completion: nil)
+//    }
+//
+//    func loginFailed() {
+//   }
+//    func userNotVerified(user : User)
+//    {
+//        print("verification not compeleted")
+//    }
+    
 }
+
 extension UITextField{
     func addPaddingToTF(){
         let paddingView:UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: 8, height: 0))
