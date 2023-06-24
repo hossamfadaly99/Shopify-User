@@ -120,12 +120,12 @@ class Me_VC: UIViewController {
         }else if (orderList.count == 1){
             ordersTable.isHidden = false
             if let height = ordersTable.constraints.first(where: { $0.firstAttribute == .height }){
-                height.constant = 160
+                height.constant = 120
             }
         } else {
             ordersTable.isHidden = false
             if let height = ordersTable.constraints.first(where: { $0.firstAttribute == .height }){
-                height.constant = 320
+                height.constant = 240
             }
         }
     }
@@ -177,7 +177,7 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
         if tableView ==  favsTable {
             return CGFloat(140)
         }else{
-            return CGFloat(180)
+            return CGFloat(115)
         }
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
