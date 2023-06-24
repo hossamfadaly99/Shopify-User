@@ -8,19 +8,25 @@
 import UIKit
 import PassKit
 import PKHUD
+import RxSwift
+import RxCocoa
 
 class CheckoutViewController: UIViewController {
-  var amount: Double = 0.0
-    
+    var amount: Double = 0.0
+    let disposeBag = DisposeBag()
     var viewModel : CheckoutViewModel?
     var line_Items: [Line_items] = []
     var emptyCartProtocol: EmptyCartProtocol!
+  var appliedCoupon: SavedCoupon? = nil
     var totalAmountWithDelivery: Double {
-    return amount + 20.0 * currencyValue
+      return amount + 10.0 * currencyValue - (Double(discountAmountLabel.text?.dropLast(4).dropFirst() ?? "0.0") ?? 0.0) ?? 0.0
   }
   @IBOutlet weak var addressOneLabel: UILabel!
   @IBOutlet weak var addressTwoLabel: UILabel!
 
+  @IBOutlet weak var couponTF: UITextField!
+
+  @IBOutlet weak var discountAmountLabel: UILabel!
 
   @IBOutlet weak var summaryAmountLabel: UILabel!
   @IBOutlet weak var deliveryAmountLabel: UILabel!
@@ -34,6 +40,7 @@ class CheckoutViewController: UIViewController {
         super.viewDidLoad()
       self.navigationController?.navigationBar.isHidden = true
 //    var afterCurrency = String(format: "%.2f \(currencySymbol)", amount * currencyValue)
+    observeCouponTF()
     print("ltgblrtk")
     print(amount)
     var afterCurrency = String(format: "%.2f \(currencySymbol)", amount)
@@ -95,7 +102,91 @@ class CheckoutViewController: UIViewController {
     }
   }
   
+  @IBAction func applyCoupon(_ sender: Any) {
+    if let coupon = getCouponsFromUserDefaults() {
+      if coupon.type == "fixed_amount" {
+        var afterCurrency = String(format: "%.2f \(currencySymbol)", (Double(coupon.value ?? "0.0") ?? 0.0 ) * currencyValue)
+        self.discountAmountLabel.text = afterCurrency
+        afterCurrency = String(format: "%.2f \(currencySymbol)", totalAmountWithDelivery )
+        summaryAmountLabel.text = afterCurrency
+      } else {
+        let discountPrecentage: Double = ((Double(coupon.value ?? "0.0") ?? 0.0 ) / 100.0)
 
+        let discountValue = ((Double(coupon.value ?? "0.0") ?? 0.0 ) / 100.0) * (Double(self.orderAmountLabel.text?.dropLast(4) ?? "0.0") ?? 0.0)
+        var afterCurrency = String(format: "%.2f \(currencySymbol)", discountValue)
+        self.discountAmountLabel.text = afterCurrency
+        self.appliedCoupon = coupon
+        afterCurrency = String(format: "%.2f \(currencySymbol)", totalAmountWithDelivery )
+        summaryAmountLabel.text = afterCurrency
+      }
+
+    } else {
+      self.appliedCoupon = nil
+      var afterCurrency = String(format: "%.2f \(currencySymbol)", totalAmountWithDelivery )
+      summaryAmountLabel.text = afterCurrency
+      AlertCreator.showAlertWithAction(title: "No coupons found", message: "Do you want see all coupns?", viewController: self){
+        let sb = UIStoryboard(name: "CouponStoryboard", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "CouponViewController")
+        self.navigationController?.pushViewController(vc, animated: true)
+
+      }
+
+    }
+
+  }
+
+}
+
+extension CheckoutViewController {
+
+  func observeCouponTF(){
+    self.couponTF.rx.text.orEmpty
+        .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+        .subscribe(onNext: { text in
+          if let coupon = self.getCouponsFromUserDefaults() {
+            if coupon.type == "fixed_amount" {
+              var afterCurrency = String(format: "%.2f \(currencySymbol)", (Double(coupon.value ?? "0.0") ?? 0.0 ) * currencyValue)
+              self.discountAmountLabel.text = afterCurrency
+              afterCurrency = String(format: "%.2f \(currencySymbol)", self.totalAmountWithDelivery )
+              self.summaryAmountLabel.text = afterCurrency
+            } else {
+              let discountValue = ((Double(coupon.value ?? "0.0") ?? 0.0 ) / 100.0) * (Double(self.orderAmountLabel.text?.dropLast(4) ?? "0.0") ?? 0.0)
+              var afterCurrency = String(format: "%.2f \(currencySymbol)", discountValue)
+              self.discountAmountLabel.text = afterCurrency
+              self.appliedCoupon = coupon
+              afterCurrency = String(format: "%.2f \(currencySymbol)", self.totalAmountWithDelivery )
+              self.summaryAmountLabel.text = afterCurrency
+            }
+
+          } else {
+            self.discountAmountLabel.text = "- 0 \(currencySymbol)"
+            self.appliedCoupon = nil
+            var afterCurrency = String(format: "%.2f \(currencySymbol)", self.totalAmountWithDelivery )
+            self.summaryAmountLabel.text = afterCurrency
+          }
+
+            // Perform your desired action here
+        })
+        .disposed(by: disposeBag)
+
+  }
+
+  //dealing with coupons
+  func getCouponsFromUserDefaults()-> SavedCoupon? {
+    // Retrieve the data object from UserDefaults
+    if let data = UserDefaults.standard.data(forKey: Constants.COUPON_OBJECT) {
+        // Convert the data object back to an array of objects
+      do {
+        if let coupons = try NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(data) as? [SavedCoupon] {
+          let coupon = coupons.filter{$0.code == self.couponTF.text}.first
+          return coupon
+        }
+      } catch {
+        print("connot find coupons in user default")
+      }
+    }
+    return nil
+  }
 }
 
 

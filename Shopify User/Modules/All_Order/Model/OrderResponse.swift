@@ -21,6 +21,7 @@ struct OrderPost : Codable{
     var shippingAddress: OrderAddress?
     var financialStatus: String?
     var discountCodes: [DiscountCode]?
+    var shipping_lines: [ShippingLine]?
 
   enum CodingKeys: String, CodingKey {
     case lineItems = "line_items"
@@ -343,4 +344,8 @@ struct LineItem: Codable {
         case duties
 //        case discountAllocations = "discount_allocations"
     }
+}
+
+struct ShippingLine: Codable {
+    let code, price, title: String?
 }

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CouponCell" rowHeight="103" id="KGk-i7-Jjw" customClass="CouponCell" customModule="Shopify_User" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="385" height="103"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="385" height="103"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EGF-s2-4hE">
+                        <rect key="frame" x="24" y="26.666666666666671" width="50" height="50"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="discount_32" translatesAutoresizingMaskIntoConstraints="NO" id="LTX-JU-wK8">
+                                <rect key="frame" x="9" y="8.9999999999999964" width="32" height="32"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="main_green_light"/>
+                        <constraints>
+                            <constraint firstItem="LTX-JU-wK8" firstAttribute="centerY" secondItem="EGF-s2-4hE" secondAttribute="centerY" id="YLF-sY-TaD"/>
+                            <constraint firstAttribute="height" constant="50" id="fHH-eO-EiY"/>
+                            <constraint firstAttribute="width" constant="50" id="hmA-bd-MRq"/>
+                            <constraint firstItem="LTX-JU-wK8" firstAttribute="centerX" secondItem="EGF-s2-4hE" secondAttribute="centerX" id="mCL-os-hfc"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="16"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OFF30" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufy-nO-hRJ">
+                        <rect key="frame" x="82" y="26.666666666666671" width="54" height="21"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-30%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Qq-nH-Vxc">
+                        <rect key="frame" x="321" y="41" width="48" height="21"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yDG-it-Wzo">
+                        <rect key="frame" x="136" y="19.666666666666671" width="45" height="35"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain">
+                            <imageReference key="image" image="doc.on.doc.fill" catalog="system" symbolScale="medium"/>
+                            <color key="baseForegroundColor" systemColor="systemGray2Color"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="copyCoupon:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="CnC-TV-p8h"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="5Qq-nH-Vxc" secondAttribute="trailing" constant="16" id="6fA-2s-JIm"/>
+                    <constraint firstItem="yDG-it-Wzo" firstAttribute="leading" secondItem="ufy-nO-hRJ" secondAttribute="trailing" id="BdW-WG-uKJ"/>
+                    <constraint firstItem="ufy-nO-hRJ" firstAttribute="top" secondItem="EGF-s2-4hE" secondAttribute="top" id="H5R-w7-RVB"/>
+                    <constraint firstItem="5Qq-nH-Vxc" firstAttribute="centerY" secondItem="EGF-s2-4hE" secondAttribute="centerY" id="MT9-G2-rLY"/>
+                    <constraint firstItem="ufy-nO-hRJ" firstAttribute="leading" secondItem="EGF-s2-4hE" secondAttribute="trailing" constant="8" id="MmL-wN-zgM"/>
+                    <constraint firstItem="yDG-it-Wzo" firstAttribute="centerY" secondItem="ufy-nO-hRJ" secondAttribute="centerY" id="Ydw-EN-ytD"/>
+                    <constraint firstItem="EGF-s2-4hE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dxx-c7-JGD"/>
+                    <constraint firstItem="EGF-s2-4hE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="waH-tY-w0d"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="couponName" destination="ufy-nO-hRJ" id="GRE-2T-oGM"/>
+                <outlet property="couponValue" destination="5Qq-nH-Vxc" id="ggI-9d-CvA"/>
+            </connections>
+            <point key="canvasLocation" x="179.38931297709922" y="8.8028169014084519"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="discount_32" width="32" height="32"/>
+        <image name="doc.on.doc.fill" catalog="system" width="116" height="128"/>
+        <namedColor name="main_green_light">
+            <color red="0.039215686274509803" green="0.58039215686274515" blue="0.41568627450980394" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGray2Color">
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

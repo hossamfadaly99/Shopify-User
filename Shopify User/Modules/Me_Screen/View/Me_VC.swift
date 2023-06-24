@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnackBar
 
 class Me_VC: UIViewController {
     @IBOutlet weak var WelcomeLabel: UILabel!
@@ -196,8 +197,8 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "order", for: indexPath) as! OrderCustomCell
             cell.orderIdLabel.text = "\(orderList[indexPath.row].id ?? 0)"
             cell.orderDateLabel.text = orderList[indexPath.row].createdAt
-            cell.orderTotalPriceLabel.text = orderList[indexPath.row].currentTotalPrice
-            
+          var afterCurrency = String(format: "%.2f \(currencySymbol)", ((Double(orderList[indexPath.row].currentTotalPrice ?? "0.0") ?? 0.0) + 10.0) * currencyValue)
+          cell.orderTotalPriceLabel.text = afterCurrency
             cell.contentView.frame = cell.orderIdLabel.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
             cell.contentView.layer.borderWidth = 2
             cell.contentView.layer.borderColor = UIColor.black.cgColor

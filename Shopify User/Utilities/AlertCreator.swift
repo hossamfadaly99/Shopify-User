@@ -29,5 +29,15 @@ class AlertCreator{
             alertController.addAction(noAction)
             viewController.present(alertController, animated: true, completion: nil)
         }
-    
+  static func showAlertWithAction(title: String?, message: String?, viewController: UIViewController, compilitionHandler: @escaping () -> Void) {
+          let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    let okAction = UIAlertAction(title: "Go", style: .default) {_ in
+      compilitionHandler()
+    }
+    let noAction = UIAlertAction(title: "No", style: .cancel ,handler: nil)
+          alertController.addAction(okAction)
+          alertController.addAction(noAction)
+          viewController.present(alertController, animated: true, completion: nil)
+      }
+
 }
