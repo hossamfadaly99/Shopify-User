@@ -112,28 +112,28 @@ class Login_VC: UIViewController {
 
 }
 
-extension Login_VC:ViewModelDelegate{
-    func didLoginSuccessfully(model: Customer) {
+extension Login_VC:LoginViewModelDelegate{
+    func loginSuccessfully() {
         let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME)
         nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: true, completion: nil)
     }
     
-    func didLoginSuccessfully() {
+    func googleLoginSuccessfully() {
         let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_HOME)
         nextViewController.modalPresentationStyle = .fullScreen
         present(nextViewController, animated: true, completion: nil)
     }
-    
+        
     func loginFailed() {
         print("failed to login")
         AlertCreator.showAlert(title: "Alert", message: "Please enter right data.", viewController: self)
     }
 
     func userNotVerified(user : User) {
-        print("verification not compeleted")
+        print("verification not compeleted\(user)")
         let alertController = UIAlertController(title: "Verification", message: "Your E-Mail isn't verified you can check your mails to verify,or If you clicked resend we will send new verification mail but you have to wait 10 mins", preferredStyle: .alert)
         let signUpAction = UIAlertAction(title: "resend", style: .default) { _ in
          

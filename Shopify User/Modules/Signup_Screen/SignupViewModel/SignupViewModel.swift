@@ -85,100 +85,92 @@ class SignupViewModel{
         }
     }
     func signup() {
-//         getcustomers()
-//         var isExist = false
-//         var model = Customer()
-//         model.firstName = self.firstname.value
-//         model.lastName = self.lastname.value
-//         model.email = self.email.value
-//         model.tags = self.password.value
-//         bindDataToView =
-//         { mycustomers in
-//             for customer in mycustomers {
-//                 if (model.email == customer.email) && (model.tags == customer.tags){
-//                     isExist = true
-//                     break
-//                 }
-//             }
-//             if(isExist){
-//                 self.delegate?.SignUpFailed()
-//             } else {
-//
-//                 Network.postMethod(url:URLCreator().getCustomersURL(), model: model)
-//                 { customer in
-//                     print("creatinnnnnnnnnn")
-//
-//                     guard let singleCustomer = customer?.customer else{return}
-//                     //   print("nuuu:\(singleCustomer)")
-//                     self.setUserDefaults(customer: singleCustomer)
-//
-//                     self.group.enter()
-//                     self.cresteWishList(mycustomer: singleCustomer)
-//
-//                     self.group.enter()
-//                     self.createCart(mycustomer: singleCustomer)
-//
-//                     self.group.notify(queue: .global()){
-//                         self.assignWishListToUser( mycustomer: singleCustomer)
-//                         OperationQueue.main.addOperation{
-//                             self.delegate?.signUpSuccessfully()
-//                         }
-//                     }
-//                     print("reg done")
-//                    // self.firebaseGroup.leave()
-//                 }
-//                 Auth.auth().createUser(withEmail: model.email ?? "", password: model.tags ?? "") { authResult, error in
-//                     if let error = error {
-//                         // Handle the error
-//                         print("Error creating user: \(error.localizedDescription)")
-//                         return
-//                     }
-//                     print("creating Custttttomerr")
-//
-//                    // self.firebaseGroup.enter()
-//
-//
-//                     //self.firebaseGroup.notify(queue: .global()){
-//                         guard let user = authResult?.user else{return}
-//                         user.sendEmailVerification { error in
-//                             if let error = error {
-//                                 // Handle the error
-//                                 print("Error sending email verification: \(error.localizedDescription)")
-//                                 return
-//                             }
-//                             print("Email verification sent successfully")
-//                             self.delegate?.didLoginSuccessfully()
-//                         }
-//                   //  }
-//                 }
-//
-//             }
-//         }
+         getcustomers()
+         var isExist = false
+         var model = Customer()
+         model.firstName = self.firstname.value
+         model.lastName = self.lastname.value
+         model.email = self.email.value
+         model.tags = self.password.value
+         bindDataToView =
+         { mycustomers in
+             for customer in mycustomers {
+                 if (model.email == customer.email) && (model.tags == customer.tags){
+                     isExist = true
+                     break
+                 }
+             }
+             if(isExist){
+                 self.delegate?.SignUpFailed()
+             } else {
+                 print("creating Custttttomerr")
+
+                 Network.postMethod(url:URLCreator().getCustomersURL(), model: model)
+                 { customer in
+                     print("creatinnnnnnnnnn")
+
+                     guard let singleCustomer = customer?.customer else{return}
+                     //   print("nuuu:\(singleCustomer)")
+                     self.setUserDefaults(customer: singleCustomer)
+
+                     self.group.enter()
+                     self.cresteWishList(mycustomer: singleCustomer)
+
+                     self.group.enter()
+                     self.createCart(mycustomer: singleCustomer)
+
+                     self.group.notify(queue: .global()){
+                         self.assignWishListToUser( mycustomer: singleCustomer)
+                     }
+                     print("reg done")
+                    // self.firebaseGroup.leave()
+                 }
+                 Auth.auth().createUser(withEmail: model.email ?? "", password: model.tags ?? "") { authResult, error in
+                     if let error = error {
+                         print("Error creating user: \(error.localizedDescription)")
+                         return
+                     }
+                     print("creating User and send mail")
+                         guard let user = authResult?.user else{return}
+                         user.sendEmailVerification { error in
+                             if let error = error {
+                                 // Handle the error
+                                 print("Error sending email verification: \(error.localizedDescription)")
+                                 return
+                             }
+                             print("Email verification sent successfully")
+                             self.delegate?.signUpSuccessfully()
+                         }
+                   //  }
+                 }
+
+             }
+         }
      }
 
     
-    func checkIfUserVerfied() -> Bool{
-        var isVerified = false
-
-        if let user = Auth.auth().currentUser {
-            // User is signed in
-            // Check if the user's email is verified
-            if user.isEmailVerified {
-                // User's email is verified
-                print("User's email is verified")
-                isVerified = true
-            } else {
-                // User's email is not verified
-                print("User's email is not verified")
-                isVerified = false
-            }
-        } else {
-            // No user is signed in
-            print("No user is signed in")
-        }
-       // self.firebaseGroup.leave()
-        return isVerified
-    }
+//    func checkIfUserVerfied() -> Bool{
+//        var isVerified = false
+//
+//        if let user = Auth.auth().currentUser {
+//            // User is signed in
+//            // Check if the user's email is verified
+//            if user.isEmailVerified {
+//                // User's email is verified
+//                print("User's email is verified")
+//                isVerified = true
+//            } else {
+//                // User's email is not verified
+//                print("User's email is not verified")
+//                isVerified = false
+//            }
+//        } else {
+//            // No user is signed in
+//            print("No user is signed in")
+//        }
+//       // self.firebaseGroup.leave()
+//        return isVerified
+//    }
 //    func sendMailVerfication(authResult: AuthDataResult?) -> Bool{
 //        var isMailSent = false
 //        guard let user = authResult?.user else{return false}
@@ -221,7 +213,7 @@ class SignupViewModel{
              self.defaults.set(myWishList.id, forKey: Constants.USER_WISHLIST)
              guard let wishlist_id = UserDefaults.standard.string(forKey: Constants.USER_WISHLIST) else {return}
           //   print("result wish\(myWishList)")
-          //   print("vvv:\(wishlist_id)")
+             print("vvv:\(wishlist_id)")
              
              self.group.leave()
          }
@@ -235,7 +227,7 @@ class SignupViewModel{
              self.defaults.set(myCart.id, forKey: Constants.USER_CART)
              guard let cart = UserDefaults.standard.string(forKey: Constants.USER_CART) else {return}
           //   print("result cart\(myCart)")
-          //   print("sss:\(cart)")
+             print("sss:\(cart)")
              self.group.leave()
          }
      }
@@ -248,9 +240,9 @@ class SignupViewModel{
         var customer = mycustomer
         customer.note = "\(cart_id),\(wishlist_id)"
         let note = customer.note
-     //   print("Nottte : \(note)")
+        print("Nottte : \(note)")
     //    print("note : \(customer.note)")
-     //   print("userdefa : \(wishlist_id)")
+        print("userdefa : \(wishlist_id)")
         
      //   print("AAAAAAAAAAAAA : \(customer)")
        print("Updated Customer note : \(customer)")
@@ -260,14 +252,8 @@ class SignupViewModel{
     }
     
 }
- //    func assignCartToUser(whishList:Draft_orders,mycustomer:Customer){
- //        Network.updateCustomer(url: URLCreator().getCustomer(customer_id: String(mycustomer.id ?? 0)), model: whishList) { response in
- //           // print("Updated Customer : \(response?.customer?.note)")
- //        }
- //    }
+
  
-
-
 
 // self.firebaseGroup.enter()
 // let isSent = self.sendMailVerfication(authResult: authResult)
