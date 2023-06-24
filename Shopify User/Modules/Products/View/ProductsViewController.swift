@@ -9,16 +9,15 @@ import UIKit
 import DropDown
 import Reachability
 import PKHUD
+import RxSwift
+import RxCocoa
+import RxRelay
 
-protocol ReloadTableViewDelegate {
-    func reloadTableView()
-}
-protocol ClickDelegate {
-    func clicked(_ row: Int)
-}
-class ProductsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource , ReloadTableViewDelegate,ClickDelegate{
+class ProductsViewController: UIViewController , UITableViewDelegate, UITableViewDataSource , ReloadTableViewDelegate,ClickToFavBtnDelegate,UISearchBarDelegate{
     
     @IBOutlet weak var filterBtn: UIBarButtonItem!
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     var productsList : [Product] = []
     var productsListCopy : [Product] = []
     var productCoreData : ProductCoreData!
@@ -28,6 +27,8 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
     let dropDown = DropDown()
     var viewModel : GetProductsViewModel?
     var brandName : String?
+    var comesFrom : Int?
+    let disposeBag = DisposeBag()
     let dataViewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""),dataManager: DataManager.sharedInstance)
 
     var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
@@ -35,31 +36,40 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
     @IBOutlet weak var priceSliderOutlet: UISlider!
     @IBOutlet weak var priceFilterLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationController?.navigationBar.isHidden = true
         noItemFoundImg.isHidden = true
-        let  nib = UINib(nibName: "ProductsTableCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "product")
-        
+        searchBar.delegate = self
+        registerCell()
         setupDropDownMenu()
     }
-    @IBAction func navigateToSearch(_ sender: Any) {
-        print("Navigate to search_VC From Products")
-        let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
-        nextViewController.destination = Constants.SCREEN_ID_BRAND
-        nextViewController.brand = brandName ?? ""
-        
-        nextViewController.modalPresentationStyle = .fullScreen
-        present(nextViewController, animated: true, completion: nil)
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard let searchText = searchBar.text else { return }
+        productsList = productsListCopy
+        let trimmedSearchText = searchText.replacingOccurrences(of: " ", with: "")
+        let filteredResults = productsList.filter { $0.title?.localizedCaseInsensitiveContains(trimmedSearchText) ?? true }
+        if trimmedSearchText != ""{
+            productsList = filteredResults
+        }
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = ""
+        productsList = productsListCopy
+        tableView.reloadData()
+    }
+    
+    func registerCell(){
+        let  nib = UINib(nibName: "ProductsTableCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "product")
     }
     
     func setupDropDownMenu(){
-        //dropDown.dataSource = ["By bestseller", "By A-Z","By Price"]
         dropDown.dataSource = ["Sort From A to Z","Sort By Price"]
-        
         dropDown.anchorView = filterBtn// Replace 'yourButton' with the appropriate reference to your button
         dropDown.selectionAction = { [weak self] (index: Int, item: String) in
             // Handle selection here
@@ -108,21 +118,48 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
         let reachability = try! Reachability()
         if reachability.connection != .unavailable{
             viewModel = GetProductsViewModel()
-            viewModel?.brandName = brandName
-            
-            viewModel?.bindResultToViewController={
-                [weak self] in
-                DispatchQueue.main.async {
-                    self?.productsList = self?.viewModel?.result ?? []
-                    self?.productsListCopy = self?.viewModel?.result ?? []
-                    self?.productsListCopyForPrice = self?.viewModel?.result ?? []
-                    indicator.stopAnimating()
-                    self?.setupSlider()
-                    self?.tableView.reloadData()
-                  HUD.hide(animated: true)
+            if comesFrom == 0{ // from home
+                viewModel?.bindResultToViewController={
+                    [weak self] in
+                    DispatchQueue.main.async {
+                        self?.productsList = self?.viewModel?.result ?? []
+                        self?.productsListCopy = self?.viewModel?.result ?? []
+                        self?.productsListCopyForPrice = self?.viewModel?.result ?? []
+                        indicator.stopAnimating()
+                        self?.setupSlider()
+                        self?.tableView.reloadData()
+                        HUD.hide(animated: true)
+                    }
                 }
+                viewModel?.getAllProducts()
+                
+                
+            }else if comesFrom == 1{ // from brands
+               
+                viewModel?.brandName = brandName
+                
+                viewModel?.bindResultToViewController={
+                    [weak self] in
+                    DispatchQueue.main.async {
+                        self?.productsList = self?.viewModel?.result ?? []
+                        self?.productsListCopy = self?.viewModel?.result ?? []
+                        self?.productsListCopyForPrice = self?.viewModel?.result ?? []
+                        indicator.stopAnimating()
+                        self?.setupSlider()
+                        self?.tableView.reloadData()
+                        HUD.hide(animated: true)
+                    }
+                }
+                viewModel?.getProductsBasedOnbrand()
+               
+            }else{ // from category
+                productsListCopy = productsList
+                productsListCopyForPrice = productsList
+                indicator.stopAnimating()
+                self.setupSlider()
+                self.tableView.reloadData()
+                HUD.hide(animated: true)
             }
-            viewModel?.getItems()
         }
         else{
             let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)

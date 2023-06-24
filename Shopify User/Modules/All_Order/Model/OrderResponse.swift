@@ -308,7 +308,7 @@ struct LineItem: Codable {
     var priceSet: OrderSet?
     var productExists: Bool?
     var productID: Int?
-    var properties: [String]?
+    var properties: [Properties]?
     var quantity: Int?
     var requiresShipping: Bool?
     var sku: String?

@@ -14,7 +14,7 @@ class ProductsTableCell: UITableViewCell {
     @IBOutlet weak var productPriceLabel: UILabel!
     @IBOutlet weak var productTitleLabel: UILabel!
     @IBOutlet weak var productImg: UIImageView!
-    var delegate:ClickDelegate?
+    var delegate:ClickToFavBtnDelegate?
     var cellIndex: Int?
    // var onclickOnFavBtn : (() -> ())?
     

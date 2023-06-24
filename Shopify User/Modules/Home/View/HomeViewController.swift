@@ -59,11 +59,10 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     
     @IBAction func navigateSearch(_ sender: Any) {
         //print("Navigate to search_VC From HOme")
-         let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
-         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
-        nextViewController.destination = Constants.HOME_SEARCH_ICON
-        nextViewController.modalPresentationStyle = .fullScreen
-         present(nextViewController, animated: true, completion: nil)
+          HUD.show(.progress)
+          let products = self.storyboard?.instantiateViewController(withIdentifier: "products") as! ProductsViewController
+          products.comesFrom = 0
+          self.navigationController?.pushViewController(products, animated: true)
     }
     
     func registerCells(){
@@ -241,6 +240,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
               HUD.show(.progress)
                 let products = self.storyboard?.instantiateViewController(withIdentifier: "products") as! ProductsViewController
                 products.brandName = brandsList[indexPath.row].rules?[0].condition
+                products.comesFrom = 1
                 self.navigationController?.pushViewController(products, animated: true)
             }
             else{

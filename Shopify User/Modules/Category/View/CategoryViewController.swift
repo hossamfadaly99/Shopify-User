@@ -8,7 +8,7 @@
 import UIKit
 import Reachability
 
-class CategoryViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, ReloadTableViewDelegate,ClickDelegate{
+class CategoryViewController: UIViewController , UITableViewDelegate, UITableViewDataSource, ReloadTableViewDelegate,ClickToFavBtnDelegate{
     
     var productsList : [Product] = []
     var productsListCopy : [Product] = []
@@ -202,13 +202,10 @@ class CategoryViewController: UIViewController , UITableViewDelegate, UITableVie
     
     @IBAction func navigateToSearch(_ sender: Any) {
         print("Navigate to search_VC From Category")
-        let storyboard = UIStoryboard(name: "Search_SB", bundle: nil)
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_SEARCH) as! Search_VC
-        nextViewController.destination = Constants.SCREEN_ID_CATEGORY
-        nextViewController.productsArray = productsList
-        
-        nextViewController.modalPresentationStyle = .fullScreen
-        present(nextViewController, animated: true, completion: nil)
+        let products = self.storyboard?.instantiateViewController(withIdentifier: "products") as! ProductsViewController
+        products.comesFrom = 2
+        products.productsList = productsList
+        self.navigationController?.pushViewController(products, animated: true)
 
     }
     

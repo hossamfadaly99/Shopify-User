@@ -7,7 +7,8 @@
 
 import UIKit
 
-class Favourite_VC: UIViewController {
+class Favourite_VC: UIViewController ,ReloadTableViewDelegate{
+    
     @IBOutlet weak var noItemImg: UIImageView!
     
     @IBOutlet weak var mytable: UITableView!
@@ -72,6 +73,7 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
         let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
         //nextViewController.modalPresentationStyle = .fullScreen
         nextViewController.ID_Product_VC = favourieList?[indexPath.row].id
+        nextViewController.favTableViewController = self
         present(nextViewController, animated: true, completion: nil)
     }
     
@@ -110,5 +112,8 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
                present(alert, animated: true, completion: nil)
         }
     }
- 
+    
+    func reloadTableView() {
+        mytable.reloadData()
+    }
 }
