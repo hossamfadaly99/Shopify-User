@@ -34,6 +34,7 @@ class ProductDetails_VC: UIViewController {
     var photosArray:[ProductImage]?
     var timer:Timer?
     var currentIndex = 0
+    var variantIndex = 0
     let viewModel = ProductsDetailsViewModel(networkManager: NetworkManager(url: ""),dataManager: DataManager.sharedInstance)
     let dataManager = DataManager.sharedInstance
     var reviewsList :[(String,String,String)] = []
@@ -286,6 +287,7 @@ extension ProductDetails_VC  {
         let optionSelected = {(action : UIAction) in
             //show selected size title
             print(action.title)
+//          self.variantIndex = action
         }
         guard let sizes = sizes else {return}
         if (sizes.isEmpty){

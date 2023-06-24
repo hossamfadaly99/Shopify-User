@@ -19,7 +19,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var adsImagesArray = [UIImage(named: "ad1"),UIImage(named: "ad2"),UIImage(named: "ad3"),UIImage(named: "ad4"),UIImage(named: "ad5")]
+    var adsImagesArray = [UIImage(named: "ads1"),UIImage(named: "ads2"),UIImage(named: "ads3"),UIImage(named: "ad4"),UIImage(named: "ad5"),UIImage(named: "ad1")]
     var timer  : Timer?
     var currentCellIndex = 0
     //@IBOutlet weak var pageControl: UIPageControl!
@@ -85,7 +85,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
             currentCellIndex = 0
         }
 //      if collectionView.bounds.contains(<#T##point: CGPoint##CGPoint#>)
-        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: false)
+        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .centeredHorizontally, animated: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +109,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
 
 
              }).show()
+              
             let alert : UIAlertController = UIAlertController(title: "Congratulations", message: "You can use coupon: \(self.viewModel?.couponsLists.first?.first?.code ?? "")", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))
             indicator.stopAnimating()
@@ -234,11 +235,18 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
         print("Click")
       let reachability = try! Reachability()
       if indexPath.section == 0{
-        if reachability.connection != .unavailable{
-          //viewmodel make network call
-          couponViewModel.getCoupons()
-          viewModel?.getCoupons()
-        } else{
+          if reachability.connection != .unavailable{
+              //viewmodel make network call
+              guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
+
+              if(state == Constants.USER_STATE_GUEST){
+                  AlertCreator.SignUpAlert(viewController: self)
+              } else {
+                  
+                  couponViewModel.getCoupons()
+                  viewModel?.getCoupons()
+              }
+          } else{
           let alert : UIAlertController = UIAlertController(title: "ALERT!", message: "No Connection", preferredStyle: .alert)
 
           alert.addAction(UIAlertAction(title: "OK", style: .cancel,handler: nil))

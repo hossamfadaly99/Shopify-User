@@ -16,6 +16,7 @@ class CheckoutViewController: UIViewController {
     let disposeBag = DisposeBag()
     var viewModel : CheckoutViewModel?
     var line_Items: [Line_items] = []
+  var isAddressAdded: Bool = true
     var emptyCartProtocol: EmptyCartProtocol!
   var appliedCoupon: SavedCoupon? = nil
     var totalAmountWithDelivery: Double {
@@ -24,6 +25,7 @@ class CheckoutViewController: UIViewController {
   @IBOutlet weak var addressOneLabel: UILabel!
   @IBOutlet weak var addressTwoLabel: UILabel!
 
+  @IBOutlet weak var ChangeAddressBtn: UIButton!
   @IBOutlet weak var couponTF: UITextField!
 
   @IBOutlet weak var discountAmountLabel: UILabel!
@@ -59,6 +61,16 @@ class CheckoutViewController: UIViewController {
       var address = self.viewModel?.defaultAddress
       self.addressOneLabel.text = address?.address1
       self.addressTwoLabel.text = "\(address?.address2 ?? ""), \(address?.city ?? ""), \(address?.province ?? ""), \(address?.country ?? "")"
+      print("enkentgkjtn")
+      print(self.addressTwoLabel.text)
+      if self.addressTwoLabel.text == ", , , " {
+        self.addressTwoLabel.text = "No address added!"
+        self.ChangeAddressBtn.titleLabel?.text = "Add"
+        self.isAddressAdded = false
+      } else {
+        self.ChangeAddressBtn.titleLabel?.text = "Change"
+        self.isAddressAdded = true
+      }
     }
 
     }
@@ -79,26 +91,32 @@ class CheckoutViewController: UIViewController {
   }
   @IBAction func purchaseBtnClick(_ sender: Any) {
 
-    let paymentcontext = PaymentContext(pyamentStrategy: CashPaymentStrategy())
-
-    if isCardMethodSelected(){
-      paymentcontext.setPaymentStrategy(paymentStrategy: ApplePaymentStrategy())
-    }
-
-    let isPaymentSuccessful = paymentcontext.makePayment(amount: self.totalAmountWithDelivery, vc: self)
-
-    if isPaymentSuccessful.0 {
-      if isPaymentSuccessful.1 == "Purchased successfully"{
-        //handle server side to make it order
-        HUD.show(.progress)
-        self.createOrder()
-        self.emptyCartProtocol.makeCartEmpty()
-        self.navigationController?.popViewController(animated: true)
-
-      }
-      print(isPaymentSuccessful.1)
+    if !isAddressAdded {
+      AlertCreator.showAlert(title: nil, message: "No Address Added", viewController: self)
     } else {
-      print(isPaymentSuccessful.1)
+      
+      let paymentcontext = PaymentContext(pyamentStrategy: CashPaymentStrategy())
+      
+      if isCardMethodSelected(){
+        paymentcontext.setPaymentStrategy(paymentStrategy: ApplePaymentStrategy())
+      }
+      
+      let isPaymentSuccessful = paymentcontext.makePayment(amount: self.totalAmountWithDelivery, vc: self)
+      
+      if isPaymentSuccessful.0 {
+        if isPaymentSuccessful.1 == "Purchased successfully"{
+          //handle server side to make it order
+          HUD.show(.progress)
+          self.createOrder()
+          self.emptyCartProtocol.makeCartEmpty()
+          self.navigationController?.popViewController(animated: true)
+          
+        }
+        print(isPaymentSuccessful.1)
+      } else {
+        AlertCreator.showAlert(title: nil, message: isPaymentSuccessful.1, viewController: self)
+        print(isPaymentSuccessful.1)
+      }
     }
   }
   

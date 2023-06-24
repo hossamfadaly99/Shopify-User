@@ -176,8 +176,9 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
             print("Price: \(i.variants?[0].price ?? "0")")
         }
         priceSliderOutlet.minimumValue = 0
-        priceSliderOutlet.maximumValue = productsPricesList.max() ?? 0
-        priceSliderOutlet.value = productsPricesList.max() ?? 0
+
+      priceSliderOutlet.maximumValue = (productsPricesList.max() ?? 0) * Float(currencyValue)
+      priceSliderOutlet.value = (productsPricesList.max() ?? 0) * Float(currencyValue)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -258,9 +259,9 @@ class ProductsViewController: UIViewController , UITableViewDelegate, UITableVie
     }
     
     @IBAction func priceSlider(_ sender: UISlider) {
-        priceFilterLabel.text = "From : \(Int(sender.minimumValue)) To \(Int(sender.value))"
+        priceFilterLabel.text = "From : \(Int(sender.minimumValue)) To \(Int(sender.value)) \(currencySymbol)"
         productsList = productsListCopyForPrice
-        productsList = productsList.filter({ Float($0.variants?[0].price ?? "0") ?? 0 <= sender.value})
+        productsList = productsList.filter({ (Float($0.variants?[0].price ?? "0") ?? 0) * Float(currencyValue) <= sender.value})
         tableView.reloadData()
     }
     func reloadTableView() {
