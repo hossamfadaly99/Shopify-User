@@ -61,6 +61,13 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+        let nextViewController = storyboard.instantiateViewController(withIdentifier: "orderDetails") as! OrderDetailsViewController
+        //nextViewController.modalPresentationStyle = .fullScreen
+        nextViewController.order = ordersList[indexPath.row]
+        present(nextViewController, animated: true, completion: nil)
+    }
     
     @IBAction func backBtn(_ sender: Any) {
         self.dismiss(animated: true)

@@ -304,13 +304,13 @@
         <!--Order Details View Controller-->
         <scene sceneID="FjL-kG-7l0">
             <objects>
-                <viewController id="hc5-Sj-emg" customClass="OrderDetailsViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="orderDetails" id="hc5-Sj-emg" customClass="OrderDetailsViewController" customModule="Shopify_User" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Yab-hm-MY9">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IrA-47-swA">
-                                <rect key="frame" x="16" y="59" width="361" height="200"/>
+                                <rect key="frame" x="16" y="99" width="361" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order ID:-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPN-1y-fGY">
                                         <rect key="frame" x="0.0" y="8" width="77" height="35"/>
@@ -418,7 +418,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Items" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9Z-PQ-rUr">
-                                <rect key="frame" x="100" y="275" width="193" height="50"/>
+                                <rect key="frame" x="100" y="315" width="193" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="OkI-H3-yNl"/>
                                 </constraints>
@@ -427,9 +427,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="o7S-g9-SCV">
-                                <rect key="frame" x="8" y="341" width="377" height="469"/>
+                                <rect key="frame" x="8" y="381" width="377" height="429"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Its-M1-ZAn">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Its-M1-ZAn">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -445,16 +445,33 @@
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="hc5-Sj-emg" id="KkS-t3-MTj"/>
+                                    <outlet property="delegate" destination="hc5-Sj-emg" id="acL-en-d9h"/>
+                                </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="471-eC-ueh">
+                                <rect key="frame" x="16" y="45" width="48" height="38"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="h0J-wZ-q95"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="back_btn_icon" title=""/>
+                                <connections>
+                                    <action selector="backBtn:" destination="hc5-Sj-emg" eventType="touchUpInside" id="oDX-O4-K5p"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kCP-dK-Nfc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="471-eC-ueh" firstAttribute="leading" secondItem="kCP-dK-Nfc" secondAttribute="leading" constant="16" id="31c-FX-dtd"/>
                             <constraint firstItem="o7S-g9-SCV" firstAttribute="leading" secondItem="kCP-dK-Nfc" secondAttribute="leading" constant="8" id="3vc-y1-eSa"/>
                             <constraint firstItem="h9Z-PQ-rUr" firstAttribute="top" secondItem="IrA-47-swA" secondAttribute="bottom" constant="16" id="BZL-UA-bOa"/>
                             <constraint firstItem="kCP-dK-Nfc" firstAttribute="bottom" secondItem="o7S-g9-SCV" secondAttribute="bottom" constant="8" id="IIs-Yi-pEM"/>
+                            <constraint firstItem="471-eC-ueh" firstAttribute="top" secondItem="Yab-hm-MY9" secondAttribute="top" constant="45" id="Ijj-gx-jNR"/>
+                            <constraint firstItem="IrA-47-swA" firstAttribute="top" secondItem="471-eC-ueh" secondAttribute="bottom" constant="16" id="Nai-Cp-BER"/>
                             <constraint firstItem="IrA-47-swA" firstAttribute="leading" secondItem="kCP-dK-Nfc" secondAttribute="leading" constant="16" id="Nbm-Hx-2XJ"/>
-                            <constraint firstItem="IrA-47-swA" firstAttribute="top" secondItem="kCP-dK-Nfc" secondAttribute="top" id="NeF-fs-Gdr"/>
                             <constraint firstItem="kCP-dK-Nfc" firstAttribute="trailing" secondItem="o7S-g9-SCV" secondAttribute="trailing" constant="8" id="bjT-B0-kgs"/>
                             <constraint firstItem="h9Z-PQ-rUr" firstAttribute="leading" secondItem="kCP-dK-Nfc" secondAttribute="leading" constant="100" id="dFn-Sj-6ma"/>
                             <constraint firstItem="kCP-dK-Nfc" firstAttribute="trailing" secondItem="h9Z-PQ-rUr" secondAttribute="trailing" constant="100" id="fdP-Uc-uGZ"/>
@@ -463,7 +480,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="addressLabel" destination="W5Z-qN-bec" id="yaF-tQ-mPb"/>
                         <outlet property="collectionView" destination="o7S-g9-SCV" id="3fK-5d-VnQ"/>
+                        <outlet property="orderDateLabel" destination="2Kb-Qd-p96" id="r8X-we-UrZ"/>
+                        <outlet property="orderIDLabel" destination="q5I-Wo-oaq" id="QVa-I9-9q9"/>
+                        <outlet property="totalPriceLabel" destination="Hjt-EG-PPh" id="vfa-0c-cq9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gJy-48-hgG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
