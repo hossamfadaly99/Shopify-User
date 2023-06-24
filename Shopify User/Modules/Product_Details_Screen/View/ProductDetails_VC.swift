@@ -29,7 +29,7 @@ class ProductDetails_VC: UIViewController {
     
     var customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID)
     var ID_Product_VC : Int!
-    var sizes : [String]?
+    var sizes : [ProductVariant]?
     var product_VC :Product = Product()
     var photosArray:[ProductImage]?
     var timer:Timer?
@@ -53,7 +53,7 @@ class ProductDetails_VC: UIViewController {
             //print("sizes : \(variants.count)")
             self.sizes = []
                for item in variants {
-                   self.sizes?.append(item.title ?? "No sizes")
+                   self.sizes?.append(item )
                  //  print("sizes : \(item.title)")
                }
             self.setPopUpButton()
@@ -286,16 +286,38 @@ extension ProductDetails_VC  {
         let optionSelected = {(action : UIAction) in
             //show selected size title
             print(action.title)
+            // Display item details based on the selected title
+            if let selectedItem = self.sizes?.first(where: { $0.title == action.title }) {
+                self.productPrice.text = selectedItem.price
+                        // Access the details of the selected item (e.g., selectedItem.price, selectedItem.description)
+                        // Update the UI with the item details
+                        // self?.productPrice.text = selectedItem.price
+                    }
         }
         guard let sizes = sizes else {return}
         if (sizes.isEmpty){
-            action.append( UIAction(title: "Sizes", handler: optionSelected) )
+            action.append( UIAction(title: "Sizes", handler:  {(action : UIAction) in
+                print(action.title)
+                // Display item details based on the selected title
+                if let selectedItem = self.sizes?.first(where: { $0.title == action.title }) {
+                    self.productPrice.text = selectedItem.price
+                       
+                        }
+            }) )
         } else {
             action = []
             for item in sizes{
-                action.append( UIAction(title: item, handler: optionSelected))
-                //action.state = .on
-               // print("func :")
+                action.append( UIAction(title: item.title ?? "no s", handler:  {(action : UIAction) in
+                    //show selected size title
+                    print(action.title)
+                    // Display item details based on the selected title
+                    if let selectedItem = self.sizes?.first(where: { $0.title == action.title }) {
+                        self.productPrice.text = selectedItem.price
+                                // Access the details of the selected item (e.g., selectedItem.price, selectedItem.description)
+                                // Update the UI with the item details
+                                // self?.productPrice.text = selectedItem.price
+                            }
+                }))
             }
             
         }

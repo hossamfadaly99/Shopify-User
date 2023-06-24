@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niB-Dq-nVI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="niB-Dq-nVI">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -192,6 +191,7 @@
                         </connections>
                     </tableView>
                     <connections>
+                        <outlet property="labelState" destination="n7X-yf-UnB" id="jiD-aP-0vB"/>
                         <outlet property="popUpBtn" destination="wwi-k7-zso" id="2cY-kM-qIX"/>
                     </connections>
                 </tableViewController>
@@ -214,17 +214,17 @@
             <objects>
                 <viewController id="8fU-ef-rd8" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7tO-hc-6iF">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q39-N9-pTs">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                                <rect key="frame" x="0.0" y="59" width="393" height="56"/>
                                 <items>
                                     <navigationItem title="About Us" id="fCZ-5o-7Nk"/>
                                 </items>
                             </navigationBar>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="9EK-kj-H8d">
-                                <rect key="frame" x="8" y="64" width="377" height="770"/>
+                                <rect key="frame" x="8" y="123" width="377" height="652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <string key="text">At Shopify, we're a team of four passionate individuals dedicated to bringing you the best shopping experience on your mobile device.
 
