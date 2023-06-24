@@ -19,7 +19,7 @@ class HomeViewController: UIViewController , UICollectionViewDelegate, UICollect
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var adsImagesArray = [UIImage(named: "ad1"),UIImage(named: "ad2"),UIImage(named: "ad3"),UIImage(named: "ad4"),UIImage(named: "ad5")]
+    var adsImagesArray = [UIImage(named: "ads1"),UIImage(named: "ads2"),UIImage(named: "ads3"),UIImage(named: "ad4"),UIImage(named: "ad5")]
     var timer  : Timer?
     var currentCellIndex = 0
     //@IBOutlet weak var pageControl: UIPageControl!
