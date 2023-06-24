@@ -148,6 +148,12 @@ extension CartViewController: UITableViewDataSource{
 
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
+//    let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil)
+//
+//    let nextViewController = storyboard.instantiateInitialViewController() as! ProductDetails_VC
+//    nextViewController.ID_Product_VC = viewModel.cartArray[indexPath.row].id
+////    nextViewController.modalPresentationStyle = .fullScreen
+//    present(nextViewController, animated: true)
   }
 
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
