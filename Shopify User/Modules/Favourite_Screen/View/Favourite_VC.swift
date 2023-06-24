@@ -123,6 +123,7 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
     }
     
     func reloadTableView() {
+      favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "") ?? []
         mytable.reloadData()
     }
 }
