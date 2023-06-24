@@ -74,7 +74,7 @@ class ProductDetails_VC: UIViewController {
         viewModel.getProductData(url:URLCreator().getProductURL(id: pid) )
 
       cartViewModel.bindDataToView = {
-        HUD.hide(animated: true)
+          HUD.hide(animated: true)
         let arr: [Line_items] = self.cartViewModel.cartArray
         for (index, element) in arr.enumerated() {
           if element.variant_id == self.viewModel.myproduct.variants?.first?.id {
