@@ -30,6 +30,18 @@ The Categories tab displays main categories and subcategories.
 
 The Me tab provides the user with navigation options to view their shopping cart and access the application's settings. The Me tab is customizable for both logged in and guest modes.
 
+# Tools & technologies
+
+- Swift
+- UIKit
+- Alamofire
+- CoreData
+- Firebase
+- RxSwift
+- MVVM Design Architecture
+- Auto layout
+- Unit testing
+
 # Design Patterns Used
 
 The application uses the following design patterns:
