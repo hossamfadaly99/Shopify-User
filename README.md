@@ -61,6 +61,12 @@ The application uses the following design patterns:
 
 You can access the project's Trello board through the following link: https://trello.com/b/XQCBcmjk/mad43-sv-ios3
 
+# github Repo
+
+You can access the project's github repo board through the following link:
+https://github.com/hossamfadaly99/Shopify-User
+https://github.com/hossamfadaly99/Shopify-Admin.git
+
 # Installation
 
 To install the application, follow these steps:
