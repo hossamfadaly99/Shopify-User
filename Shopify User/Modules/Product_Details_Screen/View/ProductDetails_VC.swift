@@ -301,7 +301,8 @@ extension ProductDetails_VC  {
                 print(action.title)
                 // Display item details based on the selected title
                 if let selectedItem = self.sizes?.first(where: { $0.title == action.title }) {
-                    self.productPrice.text = selectedItem.price
+                    var afterCurrency = String(format: "%.2f \(currencySymbol)", (Double(selectedItem.price ?? "0.0") ?? 0.0) * currencyValue)
+                    self.productPrice.text = afterCurrency
                        
                         }
             }) )
@@ -313,8 +314,8 @@ extension ProductDetails_VC  {
                     print(action.title)
                     // Display item details based on the selected title
                     if let selectedItem = self.sizes?.first(where: { $0.title == action.title }) {
-                        self.productPrice.text = selectedItem.price
-                                // Access the details of the selected item (e.g., selectedItem.price, selectedItem.description)
+                        var afterCurrency = String(format: "%.2f \(currencySymbol)", (Double(selectedItem.price ?? "0.0") ?? 0.0) * currencyValue)
+                        self.productPrice.text = afterCurrency                                // Access the details of the selected item (e.g., selectedItem.price, selectedItem.description)
                                 // Update the UI with the item details
                                 // self?.productPrice.text = selectedItem.price
                             }

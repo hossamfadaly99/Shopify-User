@@ -60,7 +60,9 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "Fav_Cell", for: indexPath) as!Fav_Cell
         cell.img?.kf.setImage(with:URL(string: favourieList?[indexPath.row].Pimage ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB3yIFU8Dx5iqV6fxsmrxvzkDYbgQaxIp19SRyR9DQ&s") )
         cell.PName.text = favourieList?[indexPath.row].title ?? "Title"
-        cell.pPrice.text = favourieList?[indexPath.row].price ?? "00.00"
+        var afterCurrency = String(format: "%.2f \(currencySymbol)", ((Double(favourieList?[indexPath.row].price  ?? "0.0") ?? 0.0) + 10.0) * currencyValue)
+
+        cell.pPrice.text = afterCurrency //?? "00.00"
         
         return cell
     }
@@ -106,6 +108,7 @@ extension Favourite_VC : UITableViewDelegate , UITableViewDataSource{
                             arr.remove(at: i)
                             self?.viewModel.deleteFromDB(product: (self?.favourieList?[indexPath.row])!)
                             self?.favourieList?.remove(at: indexPath.row)
+                            self?.hideFavouritesImage(list: self?.favourieList ?? [], img:self?.noItemImg ?? UIImageView())
                             tableView.reloadData()
                             break
                         }

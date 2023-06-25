@@ -14,6 +14,7 @@ class SettingsTableViewController: UITableViewController {
     var sizes: [String]? = ["EGP", "USD", "EUR"]
   var viewModel: SettingsViewModel!
   let defaults = UserDefaults.standard
+    var favTableViewController : ReloadTableViewDelegate?
 
   @IBOutlet weak var popUpBtn: UIButton!
 
@@ -45,6 +46,15 @@ class SettingsTableViewController: UITableViewController {
         }
   }
 
+    override func viewWillDisappear(_ animated: Bool) {
+           super.viewWillDisappear(animated)
+           
+           if isBeingDismissed {
+               print ("Dismissed")
+               // Notify the presenting view controller to reload its data
+               favTableViewController?.reloadTableView()
+           }
+       }
    func logout() {
        guard let state = UserDefaults.standard.string(forKey: Constants.KEY_USER_STATE) else{return}
        if(state == Constants.USER_STATE_GUEST){
