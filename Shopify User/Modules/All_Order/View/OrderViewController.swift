@@ -67,6 +67,7 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
 
   }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
         let nextViewController = storyboard.instantiateViewController(withIdentifier: "orderDetails") as! OrderDetailsViewController
         //nextViewController.modalPresentationStyle = .fullScreen
