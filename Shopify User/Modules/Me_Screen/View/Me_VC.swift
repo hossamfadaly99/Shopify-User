@@ -218,6 +218,12 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
             //nextViewController.modalPresentationStyle = .fullScreen
             nextViewController.ID_Product_VC = favourieList[indexPath.row].id
             present(nextViewController, animated: true, completion: nil)
+        }else{
+            let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+            let nextViewController = storyboard.instantiateViewController(withIdentifier: "orderDetails") as! OrderDetailsViewController
+            //nextViewController.modalPresentationStyle = .fullScreen
+            nextViewController.order = orderList[indexPath.row]
+            present(nextViewController, animated: true, completion: nil)
         }
     }
 }

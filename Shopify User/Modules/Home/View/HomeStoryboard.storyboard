@@ -313,7 +313,7 @@
                                 <rect key="frame" x="16" y="99" width="361" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order ID:-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPN-1y-fGY">
-                                        <rect key="frame" x="0.0" y="8" width="77" height="35"/>
+                                        <rect key="frame" x="16" y="8" width="77" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="6cO-0j-m6B"/>
                                         </constraints>
@@ -322,7 +322,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M86-7Z-x4e">
-                                        <rect key="frame" x="0.0" y="59" width="75" height="35"/>
+                                        <rect key="frame" x="16" y="59" width="75" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="dhF-rt-RDf"/>
                                         </constraints>
@@ -331,7 +331,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Total Price:-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWB-n1-vRE">
-                                        <rect key="frame" x="0.0" y="110" width="92" height="35"/>
+                                        <rect key="frame" x="16" y="110" width="92" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="qfw-1x-InH"/>
                                         </constraints>
@@ -340,7 +340,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order Date:-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aUi-Yg-WR3">
-                                        <rect key="frame" x="0.0" y="161" width="97" height="35"/>
+                                        <rect key="frame" x="16" y="161" width="97" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="35" id="kRa-gh-BG9"/>
                                         </constraints>
@@ -395,22 +395,22 @@
                                     <constraint firstAttribute="height" constant="200" id="F4X-aa-Ytp"/>
                                     <constraint firstItem="2Kb-Qd-p96" firstAttribute="top" secondItem="Hjt-EG-PPh" secondAttribute="bottom" constant="16" id="GEx-g2-rYH"/>
                                     <constraint firstItem="W5Z-qN-bec" firstAttribute="top" secondItem="q5I-Wo-oaq" secondAttribute="bottom" constant="16" id="HKh-G0-bd3"/>
-                                    <constraint firstItem="M86-7Z-x4e" firstAttribute="leading" secondItem="IrA-47-swA" secondAttribute="leading" id="K3N-2M-GNS"/>
+                                    <constraint firstItem="M86-7Z-x4e" firstAttribute="leading" secondItem="IrA-47-swA" secondAttribute="leading" constant="16" id="K3N-2M-GNS"/>
                                     <constraint firstItem="Hjt-EG-PPh" firstAttribute="top" secondItem="W5Z-qN-bec" secondAttribute="bottom" constant="16" id="U27-Zy-xYW"/>
                                     <constraint firstAttribute="trailing" secondItem="2Kb-Qd-p96" secondAttribute="trailing" constant="8" id="Uit-0Z-ERS"/>
                                     <constraint firstItem="q5I-Wo-oaq" firstAttribute="top" secondItem="IrA-47-swA" secondAttribute="top" constant="8" id="XQY-DB-ljV"/>
-                                    <constraint firstItem="GWB-n1-vRE" firstAttribute="leading" secondItem="IrA-47-swA" secondAttribute="leading" id="XQb-25-7yS"/>
+                                    <constraint firstItem="GWB-n1-vRE" firstAttribute="leading" secondItem="IrA-47-swA" secondAttribute="leading" constant="16" id="XQb-25-7yS"/>
                                     <constraint firstItem="GWB-n1-vRE" firstAttribute="top" secondItem="M86-7Z-x4e" secondAttribute="bottom" constant="16" id="Yxg-Vg-UOt"/>
                                     <constraint firstAttribute="trailing" secondItem="q5I-Wo-oaq" secondAttribute="trailing" constant="8" id="bIU-bm-tqy"/>
                                     <constraint firstItem="rPN-1y-fGY" firstAttribute="top" secondItem="IrA-47-swA" secondAttribute="top" constant="8" id="chU-3D-7wp"/>
                                     <constraint firstItem="M86-7Z-x4e" firstAttribute="top" secondItem="rPN-1y-fGY" secondAttribute="bottom" constant="16" id="cno-4N-E18"/>
                                     <constraint firstItem="aUi-Yg-WR3" firstAttribute="top" secondItem="GWB-n1-vRE" secondAttribute="bottom" constant="16" id="eEf-P3-ZKJ"/>
-                                    <constraint firstItem="rPN-1y-fGY" firstAttribute="leading" secondItem="IrA-47-swA" secondAttribute="leading" id="ehd-6j-8b1"/>
+                                    <constraint firstItem="rPN-1y-fGY" firstAttribute="leading" secondItem="IrA-47-swA" secondAttribute="leading" constant="16" id="ehd-6j-8b1"/>
                                     <constraint firstItem="aUi-Yg-WR3" firstAttribute="top" secondItem="GWB-n1-vRE" secondAttribute="bottom" constant="16" id="fgQ-nh-no5"/>
                                     <constraint firstAttribute="trailing" secondItem="W5Z-qN-bec" secondAttribute="trailing" constant="8" id="p90-qM-imd"/>
                                     <constraint firstItem="M86-7Z-x4e" firstAttribute="top" secondItem="rPN-1y-fGY" secondAttribute="bottom" constant="16" id="s3g-ah-nU4"/>
                                     <constraint firstAttribute="bottom" secondItem="aUi-Yg-WR3" secondAttribute="bottom" constant="4" id="uAi-gT-Tjp"/>
-                                    <constraint firstItem="aUi-Yg-WR3" firstAttribute="leading" secondItem="IrA-47-swA" secondAttribute="leading" id="uHa-hy-b21"/>
+                                    <constraint firstItem="aUi-Yg-WR3" firstAttribute="leading" secondItem="IrA-47-swA" secondAttribute="leading" constant="16" id="uHa-hy-b21"/>
                                     <constraint firstItem="GWB-n1-vRE" firstAttribute="top" secondItem="M86-7Z-x4e" secondAttribute="bottom" constant="16" id="vlp-WG-96W"/>
                                     <constraint firstItem="2Kb-Qd-p96" firstAttribute="top" secondItem="Hjt-EG-PPh" secondAttribute="bottom" constant="16" id="vxv-qg-3um"/>
                                     <constraint firstItem="Hjt-EG-PPh" firstAttribute="top" secondItem="W5Z-qN-bec" secondAttribute="bottom" constant="16" id="y42-N4-0L5"/>
@@ -477,6 +477,7 @@
                         <outlet property="addressLabel" destination="W5Z-qN-bec" id="yaF-tQ-mPb"/>
                         <outlet property="orderDateLabel" destination="2Kb-Qd-p96" id="r8X-we-UrZ"/>
                         <outlet property="orderIDLabel" destination="q5I-Wo-oaq" id="QVa-I9-9q9"/>
+                        <outlet property="orderView" destination="IrA-47-swA" id="1Z1-mm-4UL"/>
                         <outlet property="tableView" destination="U0h-lK-6dd" id="92p-Jc-KpX"/>
                         <outlet property="totalPriceLabel" destination="Hjt-EG-PPh" id="vfa-0c-cq9"/>
                     </connections>
@@ -507,7 +508,7 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" id="xMe-rI-1Z6">
                                         <searchBar key="customView" contentMode="redraw" id="kZE-tk-mkh">
-                                            <rect key="frame" x="46" y="0.0" width="300" height="44"/>
+                                            <rect key="frame" x="46.333333333333343" y="0.0" width="300" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                             <textInputTraits key="textInputTraits"/>
                                             <connections>

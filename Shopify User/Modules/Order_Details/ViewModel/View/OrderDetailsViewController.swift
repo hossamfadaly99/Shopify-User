@@ -9,6 +9,7 @@ import UIKit
 
 class OrderDetailsViewController: UIViewController, UITableViewDelegate , UITableViewDataSource{
     
+    @IBOutlet weak var orderView: UIView!
     @IBOutlet weak var orderDateLabel: UILabel!
     @IBOutlet weak var totalPriceLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
@@ -22,6 +23,8 @@ class OrderDetailsViewController: UIViewController, UITableViewDelegate , UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         lineItems = order?.lineItems
+        orderView.layer.cornerRadius = 16
+        orderView.layer.borderWidth = 0.5
         registerCell()
         // Do any additional setup after loading the view.
     }
