@@ -35,6 +35,7 @@ class AddressDetailsViewController: UIViewController {
       self.navigationController?.navigationBar.isHidden = true
         // Do any additional setup after loading the view.
 
+      setupUI()
       viewModel = AddressViewModel(networkManager: NetworkManager(url: URLCreator().getAddressURL()))
       viewModel.addressRequest.address = address
       self.loadDetailsData()
@@ -45,6 +46,16 @@ class AddressDetailsViewController: UIViewController {
         AlertCreator.showAlert(title: "Error", message: "invalid province, country, ot exisiting address", viewController: self)
       }
     }
+
+  func setupUI(){
+    let arrayOfTF = [address1TF, address2TF, firstNameTF, lastNameTF, cityTF, phoneTF, provinceTF, countryTF]
+    for tf in arrayOfTF {
+      setupTFBorder(tf: tf!)
+    }
+  }
+
+  
+
 
   func loadDetailsData(){
     self.firstNameTF.text = address?.firstName

@@ -25,6 +25,7 @@ class CheckoutViewController: UIViewController {
   @IBOutlet weak var addressOneLabel: UILabel!
   @IBOutlet weak var addressTwoLabel: UILabel!
 
+  @IBOutlet weak var shippingView: UIView!
   @IBOutlet weak var ChangeAddressBtn: UIButton!
   @IBOutlet weak var couponTF: UITextField!
 
@@ -41,6 +42,9 @@ class CheckoutViewController: UIViewController {
   override func viewDidLoad() {
         super.viewDidLoad()
       self.navigationController?.navigationBar.isHidden = true
+    setupTFBorder(tf: couponTF, width: 0.5, raduis: 8)
+    shippingView.layer.cornerRadius = 16
+    shippingView.layer.borderWidth = 0.5
 //    var afterCurrency = String(format: "%.2f \(currencySymbol)", amount * currencyValue)
     observeCouponTF()
     print("ltgblrtk")

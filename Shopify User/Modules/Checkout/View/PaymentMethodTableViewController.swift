@@ -16,7 +16,8 @@ class PaymentMethodTableViewController: UITableViewController {
 
   override func viewDidLoad() {
         super.viewDidLoad()
-
+    self.tableView.layer.cornerRadius = 16
+    self.tableView.layer.borderWidth = 0.5
     }
     // MARK: - Table view data source
 
@@ -25,6 +26,10 @@ class PaymentMethodTableViewController: UITableViewController {
 
     selectMethod(indexPath.row)
 
+  }
+
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    60
   }
 
   func selectMethod(_ index: Int){

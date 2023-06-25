@@ -14,3 +14,8 @@ func makeTableCellCornerRadius(cell: UITableViewCell){
 //  cell.contentView.layer.borderColor = UIColor.black.cgColor
   cell.contentView.layer.cornerRadius = 16
 }
+
+func setupTFBorder(tf: UITextField, width: CGFloat = 1, raduis: CGFloat = 8){
+  tf.layer.borderWidth = width
+  tf.layer.cornerRadius = raduis
+}

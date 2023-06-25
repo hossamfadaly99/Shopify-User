@@ -38,7 +38,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LAJ-jy-uoX">
-                                <rect key="frame" x="16" y="156" width="361" height="128"/>
+                                <rect key="frame" x="16" y="156" width="361" height="95"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ELV-sP-el4">
                                         <rect key="frame" x="262" y="8.6666666666666572" width="83" height="35"/>
@@ -65,8 +65,9 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="DYv-ZT-yAJ" secondAttribute="bottom" constant="16" id="6m7-ui-uC0"/>
                                     <constraint firstItem="DYv-ZT-yAJ" firstAttribute="leading" secondItem="Z2x-9a-REG" secondAttribute="leading" id="Hpf-Ak-9iz"/>
-                                    <constraint firstAttribute="height" constant="128" id="LHa-fH-lrt"/>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="128" id="LHa-fH-lrt"/>
                                     <constraint firstItem="Z2x-9a-REG" firstAttribute="top" secondItem="LAJ-jy-uoX" secondAttribute="top" constant="16" id="Lze-Of-C6G"/>
                                     <constraint firstItem="Z2x-9a-REG" firstAttribute="leading" secondItem="LAJ-jy-uoX" secondAttribute="leading" constant="16" id="RWr-8M-FWM"/>
                                     <constraint firstAttribute="trailing" secondItem="ELV-sP-el4" secondAttribute="trailing" constant="16" id="aiV-0i-YOF"/>
@@ -81,15 +82,15 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment method" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SaR-00-oz3">
-                                <rect key="frame" x="16" y="300" width="143" height="21"/>
+                                <rect key="frame" x="16" y="267" width="143" height="21"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <color key="textColor" name="black_22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <containerView opaque="NO" contentMode="top" translatesAutoresizingMaskIntoConstraints="NO" id="N8S-Tk-1JJ">
-                                <rect key="frame" x="16" y="337" width="361" height="65"/>
+                                <rect key="frame" x="16" y="304" width="361" height="120"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="2hy-MD-crp"/>
+                                    <constraint firstAttribute="height" constant="120" id="2hy-MD-crp"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="Rlx-gG-ZF6" kind="embed" id="WlI-g3-WdO"/>
@@ -224,6 +225,7 @@
                         <outlet property="deliveryAmountLabel" destination="Zcr-x8-WOt" id="v2J-6s-7QJ"/>
                         <outlet property="discountAmountLabel" destination="WwG-5N-vNQ" id="oic-Ml-eaO"/>
                         <outlet property="orderAmountLabel" destination="r47-Zs-IGX" id="8vw-0e-HTF"/>
+                        <outlet property="shippingView" destination="LAJ-jy-uoX" id="7hi-V2-uWO"/>
                         <outlet property="summaryAmountLabel" destination="Woh-vj-l44" id="F9U-Nf-b2b"/>
                     </connections>
                 </viewController>
@@ -353,7 +355,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="arrow.right" catalog="system" width="32" height="32"/>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="back_btn_icon" width="24" height="24"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <image name="credit_card_icon" width="512" height="512"/>
