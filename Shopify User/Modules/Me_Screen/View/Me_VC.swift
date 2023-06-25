@@ -196,7 +196,7 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "order", for: indexPath) as! OrderCustomCell
             cell.orderIdLabel.text = "\(orderList[indexPath.row].id ?? 0)"
-            cell.orderDateLabel.text = orderList[indexPath.row].createdAt
+            cell.orderDateLabel.text = "\(orderList[indexPath.row].createdAt?.split(separator: "T").first ?? "")"
           var afterCurrency = String(format: "%.2f \(currencySymbol)", ((Double(orderList[indexPath.row].currentTotalPrice ?? "0.0") ?? 0.0) + 10.0) * currencyValue)
           cell.orderTotalPriceLabel.text = afterCurrency
             cell.contentView.frame = cell.orderIdLabel.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))

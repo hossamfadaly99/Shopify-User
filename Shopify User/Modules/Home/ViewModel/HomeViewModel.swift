@@ -34,7 +34,7 @@ class HomeViewModel{
             HTTPHeader(name: "X-Shopify-Access-Token", value: "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")
                ]
         let url = "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/smart_collections.json"
-        MonicaNetworkManager().loadData(url : url,param: Parameters(),header: headers) { [weak self] (result : Response? ,error) in
+        NetworkCallManager().loadData(url : url,param: Parameters(),header: headers) { [weak self] (result : Response? ,error) in
             self?.result = result?.smart_collections
         }
     }

@@ -28,7 +28,7 @@ class CategoryViewModel{
                ]
         
         let url = "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/custom_collections.json"
-        MonicaNetworkManager().loadData(url : url, param: Parameters(), header: headers) { [weak self] (result : CategoryResponse? ,error) in
+        NetworkCallManager().loadData(url : url, param: Parameters(), header: headers) { [weak self] (result : CategoryResponse? ,error) in
             self?.customCollectionResult = result?.customCollections
         }
     }
@@ -42,7 +42,7 @@ class CategoryViewModel{
                let param = ["collection_id": categoryID ?? 0]
         
         let url = "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/products.json"
-        MonicaNetworkManager().loadData(url : url, param: param, header: headers) { [weak self] (result : ProductResponse? ,error) in
+        NetworkCallManager().loadData(url : url, param: param, header: headers) { [weak self] (result : ProductResponse? ,error) in
             self?.categoryResult = result?.products
         }
     }

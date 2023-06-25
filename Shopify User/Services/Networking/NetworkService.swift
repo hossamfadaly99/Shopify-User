@@ -10,7 +10,7 @@ import Alamofire
 protocol NetworkService{
     func loadData<T: Decodable>(url:String,param :Parameters,header : HTTPHeaders ,compilitionHandler: @escaping (T?, Error?) -> Void)
 }
-class MonicaNetworkManager : NetworkService{
+class NetworkCallManager : NetworkService{
   func loadData<T: Decodable>(url:String,param :Parameters,header : HTTPHeaders,compilitionHandler: @escaping (T?, Error?) -> Void){
     AF.request(url,parameters: param,headers: header).responseDecodable(of: T.self){ response in
     //  debugPrint(response)
