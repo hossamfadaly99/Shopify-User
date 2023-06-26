@@ -36,7 +36,7 @@ class SettingsTableViewController: UITableViewController {
         if(state == Constants.USER_STATE_GUEST){
             labelState.text = "SignUp"
         } else {
-            labelState.text = "LogOut"
+            labelState.text = "Logout"
         }
     }
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -64,21 +64,34 @@ class SettingsTableViewController: UITableViewController {
            present(nextViewController, animated: true)
            
        } else {
-           guard let my_Customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) else {return}
-           defaults.set("", forKey: Constants.KEY_USER_FIRSTNAME)
-           defaults.set("", forKey: Constants.KEY_USER_LASTNAME)
-           defaults.set("", forKey: Constants.KEY_USER_EMAIL)
-           defaults.set(Constants.USER_STATE_LOGOUT, forKey: Constants.KEY_USER_STATE)
-           defaults.set("", forKey: Constants.KEY_USER_ID)
-           defaults.set("", forKey: Constants.USER_CART)
-           defaults.set("", forKey: Constants.USER_WISHLIST)
-           print("Loged out : \( UserDefaults.standard.string(forKey: Constants.USER_CART))")
-           viewModel.deleteAllFromDB(user_id: my_Customer_id)
+           //
            
-           let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
-           let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
-           nextViewController.modalPresentationStyle = .fullScreen
-           present(nextViewController, animated: true, completion: nil)
+           let alert : UIAlertController = UIAlertController(title: "Logout!", message: "Are you sure you want to logout?", preferredStyle: .alert)
+           
+           alert.addAction(UIAlertAction(title: "Logout", style: .destructive,handler: { [weak self] action in
+               //                    delete fromm fav
+               guard let my_Customer_id = UserDefaults.standard.string(forKey: Constants.KEY_USER_ID) else {return}
+               self?.defaults.set("", forKey: Constants.KEY_USER_FIRSTNAME)
+               self?.defaults.set("", forKey: Constants.KEY_USER_LASTNAME)
+               self?.defaults.set("", forKey: Constants.KEY_USER_EMAIL)
+               self?.defaults.set(Constants.USER_STATE_LOGOUT, forKey: Constants.KEY_USER_STATE)
+               self?.defaults.set("", forKey: Constants.KEY_USER_ID)
+               self?.defaults.set("", forKey: Constants.USER_CART)
+               self?.defaults.set("", forKey: Constants.USER_WISHLIST)
+               print("Loged out : \( UserDefaults.standard.string(forKey: Constants.USER_CART))")
+               self?.viewModel.deleteAllFromDB(user_id: my_Customer_id)
+               
+               let storyboard = UIStoryboard(name: "Login_SB", bundle: nil)
+               let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_LOGIN) as! Login_VC
+               nextViewController.modalPresentationStyle = .fullScreen
+               self?.present(nextViewController, animated: true, completion: nil)
+               }
+           ))
+           alert.addAction(UIAlertAction(title: "NO", style: .cancel,handler:nil))
+           present(alert, animated: true, completion: nil)
+           
+           //
+           
        }
   }
 
