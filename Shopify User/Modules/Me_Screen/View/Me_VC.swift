@@ -175,7 +175,7 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView ==  favsTable {
-            return CGFloat(140)
+            return CGFloat(160)
         }else{
             return CGFloat(115)
         }
