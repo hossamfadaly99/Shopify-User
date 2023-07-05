@@ -1,19 +1,15 @@
 //
-//  Favourite_Cell.swift
+//  OrderItemsTableViewCell.swift
 //  Shopify User
 //
-//  Created by MAC on 08/06/2023.
+//  Created by Mac on 25/06/2023.
 //
 
 import UIKit
-import Cosmos
-class Favourite_Cell: UITableViewCell {
-    @IBOutlet weak var pImg: UIImageView!
-    @IBOutlet weak var pName: UILabel!
-    @IBOutlet weak var pPrice: UILabel!
-    
-    @IBOutlet weak var ratingCosmos: CosmosView!
-   
+
+class OrderItemsTableViewCell: UITableViewCell {
+
+    @IBOutlet weak var itemTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,4 +20,5 @@ class Favourite_Cell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
 }

@@ -51,7 +51,7 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "order", for: indexPath) as! OrderCustomCell
         cell.orderIdLabel.text = "\(ordersList[indexPath.row].id ?? 0)"
-        cell.orderDateLabel.text = ordersList[indexPath.row].createdAt
+        cell.orderDateLabel.text = "\(ordersList[indexPath.row].createdAt?.split(separator: "T").first ?? "")"
       var afterCurrency = String(format: "%.2f \(currencySymbol)", ((Double(ordersList[indexPath.row].currentTotalPrice ?? "0.0") ?? 0.0) + 10.0) * currencyValue)
       cell.orderTotalPriceLabel.text = afterCurrency
         
@@ -67,8 +67,11 @@ class OrderViewController: UIViewController ,UITableViewDelegate, UITableViewDat
 
   }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
-        let nextViewController = storyboard.instantiateViewController(withIdentifier: "orderDetails") as! OrderDetailsViewController
+      tableView.deselectRow(at: indexPath, animated: true)
+//        let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+//        let nextViewController = storyboard.instantiateViewController(withIdentifier: "orderDetails") as! OrderDetailsViewController
+      let storyboard = UIStoryboard(name: "OrderDetailsStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+      let nextViewController = storyboard.instantiateInitialViewController() as! OrderDetailsViewController
         //nextViewController.modalPresentationStyle = .fullScreen
         nextViewController.order = ordersList[indexPath.row]
         present(nextViewController, animated: true, completion: nil)

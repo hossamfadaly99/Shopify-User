@@ -24,7 +24,7 @@ class OrderViewModel{
                ]
         
         let url = "https://mad43-sv-ios3.myshopify.com/admin/api/2023-04/customers/\(CustomerID ?? "0")/orders.json"
-        MonicaNetworkManager().loadData(url : url, param: Parameters(), header: headers) { [weak self] (result : OrderResponse? ,error) in
+        NetworkCallManager().loadData(url : url, param: Parameters(), header: headers) { [weak self] (result : OrderResponse? ,error) in
             self?.result = result?.orders
         }
     }

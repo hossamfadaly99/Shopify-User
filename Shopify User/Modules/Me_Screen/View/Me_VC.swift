@@ -14,7 +14,7 @@ class Me_VC: UIViewController {
     @IBOutlet weak var favsTable: UITableView!
     
     @IBOutlet weak var guestView: UIView!
-    
+
     var viewModel : FavouritViewModel!
     var orderViewModel : OrderViewModel!
     var favourieList:[ProductCoreData] = []
@@ -30,7 +30,6 @@ class Me_VC: UIViewController {
             guestView.isHidden = false
         } else {
             guestView.isHidden = true
-            
             favsTable.delegate = self
             favsTable.dataSource = self
             ordersTable.delegate = self
@@ -156,6 +155,7 @@ class Me_VC: UIViewController {
     @IBAction func goToSettings(_ sender: Any) {
         let storyboard = UIStoryboard(name: "SettingsStoryboard", bundle: nil)
         let nextViewController = storyboard.instantiateViewController(withIdentifier: "SettingsTableViewController") as! SettingsTableViewController
+        nextViewController.favTableViewController = self
 //      nextViewController.modalPresentationStyle = 
         present(nextViewController, animated: true, completion: nil)
     }
@@ -175,7 +175,7 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if tableView ==  favsTable {
-            return CGFloat(140)
+            return CGFloat(160)
         }else{
             return CGFloat(115)
         }
@@ -186,7 +186,8 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
             let cell = tableView.dequeueReusableCell(withIdentifier: "Fav_Cell", for: indexPath) as!Fav_Cell
             cell.img?.kf.setImage(with:URL(string: favourieList[indexPath.row].Pimage ?? "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQB3yIFU8Dx5iqV6fxsmrxvzkDYbgQaxIp19SRyR9DQ&s") )
             cell.PName.text = favourieList[indexPath.row].title ?? "Title"
-            cell.pPrice.text = favourieList[indexPath.row].price ?? "00.00"
+            var afterCurrency = String(format: "%.2f \(currencySymbol)", ((Double(favourieList[indexPath.row].price ?? "0.0") ?? 0.0) + 10.0) * currencyValue)
+            cell.pPrice.text = afterCurrency
             cell.contentView.frame = cell.PName.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
             cell.contentView.layer.borderWidth = 2
             cell.contentView.layer.borderColor = UIColor.black.cgColor
@@ -196,7 +197,7 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "order", for: indexPath) as! OrderCustomCell
             cell.orderIdLabel.text = "\(orderList[indexPath.row].id ?? 0)"
-            cell.orderDateLabel.text = orderList[indexPath.row].createdAt
+            cell.orderDateLabel.text = "\(orderList[indexPath.row].createdAt?.split(separator: "T").first ?? "")"
           var afterCurrency = String(format: "%.2f \(currencySymbol)", ((Double(orderList[indexPath.row].currentTotalPrice ?? "0.0") ?? 0.0) + 10.0) * currencyValue)
           cell.orderTotalPriceLabel.text = afterCurrency
             cell.contentView.frame = cell.orderIdLabel.frame.inset(by: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
@@ -213,16 +214,24 @@ extension Me_VC :UITableViewDelegate,UITableViewDataSource{
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView ==  favsTable {
+            tableView.deselectRow(at: indexPath, animated: true)
             let storyboard = UIStoryboard(name: "ProductDetails_SB", bundle: nil) // Replace "Main" with your storyboard name
             let nextViewController = storyboard.instantiateViewController(withIdentifier: Constants.SCREEN_ID_PRODUCTSDETAILS) as! ProductDetails_VC
             //nextViewController.modalPresentationStyle = .fullScreen
             nextViewController.ID_Product_VC = favourieList[indexPath.row].id
             present(nextViewController, animated: true, completion: nil)
+        }else{
+            let storyboard = UIStoryboard(name: "HomeStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+//            let storyboard = UIStoryboard(name: "OrderDetailsStoryboard", bundle: nil) // Replace "Main" with your storyboard name
+            let nextViewController = storyboard.instantiateViewController(withIdentifier: "orderDetails") as! OrderDetailsViewController
+            //nextViewController.modalPresentationStyle = .fullScreen
+            nextViewController.order = orderList[indexPath.row]
+            present(nextViewController, animated: true, completion: nil)
         }
     }
 }
 
-extension Me_VC {
+extension Me_VC :ReloadTableViewDelegate {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "cartSegueIdentifier" {
             // Check if the condition is met
@@ -235,5 +244,13 @@ extension Me_VC {
             }
         }
         return true
+    }
+    func reloadTableView() {
+        print ("reeeeeeeeeeload")
+
+        favourieList = viewModel?.fetchDataFromDB(user_ID: customer_id ?? "" ) ?? []
+        favsTable.reloadData()
+        //orderList =
+        ordersTable.reloadData()
     }
 }

@@ -25,7 +25,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xK4-Yb-bTN">
-                                <rect key="frame" x="30" y="439" width="333" height="48"/>
+                                <rect key="frame" x="30" y="429" width="333" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="KEM-eb-VsG"/>
                                 </constraints>
@@ -39,7 +39,7 @@
                                 </buttonConfiguration>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2m9-ca-wXI">
-                                <rect key="frame" x="30" y="522" width="333" height="48"/>
+                                <rect key="frame" x="30" y="512" width="333" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="KMW-Ka-fhO"/>
                                 </constraints>
@@ -95,7 +95,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mCn-Pe-QPs" userLabel="password">
-                                <rect key="frame" x="16" y="324" width="361" height="80"/>
+                                <rect key="frame" x="16" y="324" width="361" height="70"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQx-kv-kj3">
                                         <rect key="frame" x="0.0" y="0.0" width="78" height="21"/>
@@ -104,7 +104,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Your Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QDY-xI-3Dq">
-                                        <rect key="frame" x="0.0" y="22" width="361" height="57"/>
+                                        <rect key="frame" x="0.0" y="22" width="361" height="47"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" spellCheckingType="yes" secureTextEntry="YES"/>
@@ -117,11 +117,11 @@
                                     <constraint firstAttribute="bottom" secondItem="QDY-xI-3Dq" secondAttribute="bottom" constant="1" id="ZaB-JW-lOq"/>
                                     <constraint firstItem="QDY-xI-3Dq" firstAttribute="leading" secondItem="mCn-Pe-QPs" secondAttribute="leading" id="lD5-t4-Hqa"/>
                                     <constraint firstItem="qQx-kv-kj3" firstAttribute="leading" secondItem="mCn-Pe-QPs" secondAttribute="leading" id="lbI-ry-G5F"/>
-                                    <constraint firstAttribute="height" constant="80" id="rst-g5-fRN"/>
+                                    <constraint firstAttribute="height" constant="70" id="rst-g5-fRN"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fc-zN-j5Y">
-                                <rect key="frame" x="10" y="636.66666666666663" width="373" height="94"/>
+                                <rect key="frame" x="10" y="626.66666666666663" width="373" height="94"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="Google">
                                     <backgroundConfiguration key="background"/>
@@ -131,7 +131,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Or Login with social account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUd-l9-zGI">
-                                <rect key="frame" x="10" y="605" width="373" height="21.666666666666629"/>
+                                <rect key="frame" x="10" y="595" width="373" height="21.666666666666629"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>

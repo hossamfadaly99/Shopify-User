@@ -31,4 +31,19 @@ class Fav_Cell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    override var frame: CGRect{
+        get{
+            return super.frame
+        }
+        set(newFrame){
+            var frame = newFrame
+            frame.origin.x += 8
+            frame.size.width -= 2 * 8
+            frame.origin.y += 8
+            frame.size.height -= 2 * 8
+            super.frame = frame
+        }
+        
+    }
+
 }

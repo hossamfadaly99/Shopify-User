@@ -44,10 +44,10 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="1014"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mzA-t1-NnC" userLabel="MyView">
-                                        <rect key="frame" x="0.0" y="0.0" width="406.33333333333331" height="782.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="426.33333333333331" height="782.66666666666663"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome " textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wUr-9Z-NSJ">
-                                                <rect key="frame" x="16" y="16" width="374.33333333333331" height="24"/>
+                                                <rect key="frame" x="16" y="16" width="394.33333333333331" height="24"/>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -64,7 +64,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ll4-CS-vCX">
-                                                <rect key="frame" x="293.33333333333331" y="53.333333333333343" width="97" height="34"/>
+                                                <rect key="frame" x="313.33333333333331" y="53.333333333333343" width="97" height="34"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="See More">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
@@ -74,7 +74,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FD8-Qq-z7n">
-                                                <rect key="frame" x="293.66666666666669" y="434.33333333333337" width="96.666666666666686" height="34.333333333333314"/>
+                                                <rect key="frame" x="313.66666666666669" y="434.33333333333337" width="96.666666666666686" height="34.333333333333314"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="See More">
                                                     <fontDescription key="titleFontDescription" type="system" pointSize="17"/>
@@ -84,30 +84,30 @@
                                                 </connections>
                                             </button>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="bM6-dZ-oto">
-                                                <rect key="frame" x="8" y="476.66666666666663" width="390.33333333333331" height="320"/>
+                                                <rect key="frame" x="8" y="476.66666666666663" width="410.33333333333331" height="320"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="320" id="ytO-x2-hnE"/>
                                                 </constraints>
                                             </tableView>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2Ah-nC-Lrh">
-                                                <rect key="frame" x="8" y="95.333333333333371" width="390.33333333333331" height="330"/>
+                                            <tableView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="2Ah-nC-Lrh">
+                                                <rect key="frame" x="8" y="95.333333333333371" width="410.33333333333331" height="330"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="330" id="II2-vx-3aR"/>
                                                 </constraints>
                                             </tableView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7gJ-iJ-uEe" userLabel="guestView">
-                                                <rect key="frame" x="0.0" y="0.0" width="406.33333333333331" height="782.66666666666663"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="426.33333333333331" height="782.66666666666663"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You Have To SignUp First" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W3E-eU-hO8">
-                                                        <rect key="frame" x="16" y="100" width="374.33333333333331" height="21"/>
+                                                        <rect key="frame" x="16" y="100" width="394.33333333333331" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="teh-08-les">
-                                                        <rect key="frame" x="60" y="201" width="286.33333333333331" height="35"/>
+                                                        <rect key="frame" x="60" y="201" width="306.33333333333331" height="35"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" title="SignUp">
                                                             <backgroundConfiguration key="background" cornerRadius="15">
@@ -150,7 +150,7 @@
                                             <constraint firstItem="wUr-9Z-NSJ" firstAttribute="top" secondItem="mzA-t1-NnC" secondAttribute="top" constant="16" id="hCR-NK-7fQ"/>
                                             <constraint firstItem="FD8-Qq-z7n" firstAttribute="centerY" secondItem="c24-LC-Ju5" secondAttribute="centerY" id="lDg-YL-9wJ"/>
                                             <constraint firstAttribute="trailing" secondItem="bM6-dZ-oto" secondAttribute="trailing" constant="8" id="r1T-fj-vgW"/>
-                                            <constraint firstItem="Ll4-CS-vCX" firstAttribute="leading" secondItem="7eS-b3-jOz" secondAttribute="trailing" constant="180" id="ruC-dq-xUO"/>
+                                            <constraint firstItem="Ll4-CS-vCX" firstAttribute="leading" secondItem="7eS-b3-jOz" secondAttribute="trailing" constant="200" id="ruC-dq-xUO"/>
                                             <constraint firstAttribute="trailing" secondItem="2Ah-nC-Lrh" secondAttribute="trailing" constant="8" id="sTL-QR-obm"/>
                                             <constraint firstAttribute="bottom" secondItem="bM6-dZ-oto" secondAttribute="bottom" constant="-14" id="w0V-co-Sqe"/>
                                             <constraint firstAttribute="trailing" secondItem="7gJ-iJ-uEe" secondAttribute="trailing" id="xYQ-Au-Ii1"/>
